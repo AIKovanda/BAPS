@@ -1,0 +1,212 @@
+\documentclass[oneside,intlimits,reqno]{scrbook}
+
+\usepackage{array}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{pgf,tikz}
+\usetikzlibrary{arrows}
+\usepackage{extarrows}
+\usepackage{graphicx,makeidx}
+\usepackage{a4wide}
+\usepackage{ragged2e}
+\usepackage[nottoc]{tocbibind}
+\usepackage{amsmath,amssymb,amsthm,amsfonts}
+\usepackage{mathabx}
+\usepackage[utf8]{inputenc}
+\usepackage[czech]{babel}
+\usepackage{relsize}
+\usepackage[unicode,breaklinks=true,hypertexnames=false]{hyperref}
+\def\dotminus{\mathbin{\ooalign{\hss\raise1ex\hbox{.}\hss\cr
+			\mathsurround=0pt$-$}}}
+
+%definice textu nad rovnítkem
+\newcommand{\equal}[1]{\mathop{\overset{#1}{\resizebox{\widthof{.{\ensuremath{\mathop{\overset{#1}{\mathop{=}}}}.}}}{\heightof{=}}{$\mathop{=}$}}}}
+
+%redefinice znaků
+\renewcommand{\epsilon}{\varepsilon}
+\let\crossedphi\phi
+\renewcommand{\phi}{\varphi}
+\renewcommand{\rho}{\varrho}
+\renewcommand{\emptyset}{\font\cmsy = cmsy10 at 12pt\hbox{\cmsy \char 59}}
+
+
+%definice českých uvozovek
+\def\bq{\mbox{\kern.1ex\protect\raisebox{-1.3ex}[0pt][0pt]{''}\kern-.1ex}}
+\def\eq{\mbox{\kern-.1ex``\kern.1ex}}
+\gdef\uv#1{\bq #1\eq}
+
+
+\renewcommand{\d}{\mathrm{d}} % diferenciál
+\newcommand{\me}{\mathrm{e}} % eulerovo číslo
+\newcommand{\E}{\mathbb{E}} % střední hodnota
+\newcommand{\D}{\mathrm{D}} %  rozptyl
+\newcommand{\LL}{\mathscr{L}}
+\newcommand{\Loss}{\mathscr{L}}
+\newcommand{\FF}{\mathrm{F}} % distribuční funkce
+\newcommand{\PP}{\mathbb{P}} % pravděpodobnost
+\newcommand{\NN}{\mathcal{N}}
+\newcommand{\MSE}{\mathrm{MSE}}
+\newcommand{\Exp}{\mathrm{Exp}}
+\newcommand{\NF}{\mathrm{F}}
+\newcommand{\AN}{\mathcal{AN}}
+\newcommand{\sgn}{\mathrm{sgn}}
+\newcommand{\A}{\mathrm{A}}
+
+\newcommand{\prostor}{(\Omega,\mathcal{A},\PP)} % prostor
+\newcommand{\mi}{\mathrm{i}} % imaginární jednotka
+\newcommand{\R}{\mathbb{R}} % množina reálných čísel
+\renewcommand{\C}{\mathbb{C}} % množina komplexních čísel
+\newcommand{\Z}{\mathbb{Z}} % množina celých čísel
+\newcommand{\N}{\mathbb{N}} % množina přirozených čísel
+\newcommand{\Cc}{\mathcal{C}} % funkce třídy C (spojité)
+\newcommand{\I}{\mathbb{I}} % identita
+\newcommand{\Identita}[1]{\mathbb{I}_{#1}} % identita
+\newcommand{\fisher}{\mathbb{I}} % Fisherova matice
+\newcommand{\RR}{\mathcal{R}}
+\newcommand{\Be}{\mathrm{Be}}
+\newcommand{\Bi}{\mathrm{Bi}}
+\newcommand{\X}{\textbf{X}}
+\newcommand{\Y}{\textbf{Y}}
+
+\newcommand{\PEX}{\PP^\X}
+\newcommand{\fex}{f_\X}
+\newcommand{\FEX}{\FF_\X}
+
+
+\newcommand{\Aa}{\mathcal{A}}
+\newcommand{\Bb}{\mathcal{B}}
+\renewcommand{\t}{\theta} % theta
+\newcommand{\bmu}{\boldsymbol{\mu}} % vektorové mí
+
+\newcommand{\htm}{\widehat{\t}_\txt{M}}
+\newcommand{\html}{\widehat{\t}_\txt{ML}}
+\newcommand{\htn}{\widehat{\t}_n}
+\newcommand{\rhn}{R_{H_0}}
+\newcommand{\Phiast}{\crossedphi^\ast}
+\newcommand{\rhno}{\overline{R}_{H_0}}
+\newcommand{\freg}{\mathcal{F}_{reg}}
+\newcommand{\fregp}{\mathcal{F}_{reg}^+}
+\newcommand{\fregml}{\mathcal{F}_{reg}^\txt{ML}}
+\newcommand{\RE}{\mathrm{RE}_{2,1}}
+\newcommand{\ARE}{\mathrm{ARE}_{2,1}}
+
+
+%matematické výrazy
+\newcommand{\tg}{\mathop{\mathrm{tg}}}
+\newcommand{\argmin}{\mathop{\mathrm{argmin}}}
+\newcommand{\argmax}{\mathop{\mathrm{argmax}}}
+\newcommand{\argsup}{\mathop{\mathrm{argsup}}}
+\renewcommand{\Re}{\mathop{\mathrm{Re}}}
+\newcommand{\Ran}{\mathop{\mathrm{Ran}}}
+\newcommand{\supp}{\mathop{\mathrm{supp}}}
+\renewcommand{\Im}{\mathop{\mathrm{Im}}}
+\newcommand{\Cov}{\mathbb{C}\mathrm{ov}}
+
+
+%konvergence
+\newcommand{\sj}{\stackrel{s.j.}{\longrightarrow}}
+\newcommand{\Pto}{\stackrel{\PP}{\to}}
+\newcommand{\wto}{\stackrel{w}{\to}}
+\newcommand{\Dto}{\stackrel{\mathscr{D}}{\to}}
+\newcommand{\PSJ}{\stackrel{\PP,s.j.}{\longrightarrow}}
+\newcommand{\Lto}{\stackrel{(\mathscr{L})}{\to}}
+\newcommand{\sjP}{\stackrel{s.j.~\PP}{\longrightarrow}}
+\newcommand{\Lp}{\stackrel{L_p}{\longrightarrow}}
+
+%nadtržítka
+\newcommand{\overbar}[1]{\mkern 1mu\overline{\mkern-1mu#1\mkern-3mu}\mkern 3mu}
+\newcommand{\Oxn}{\overbar{\rule{0ex}{1.8ex}X_n}}
+\newcommand{\Oyn}{\overbar{\rule{0ex}{1.8ex}Y_n}}
+\newcommand{\Ox}[1]{\overbar{\rule{0ex}{1.8ex}X_{#1}}}
+\newcommand{\Oy}[1]{\overbar{\rule{0ex}{1.8ex}Y_{#1}}}
+\newcommand{\oxn}{\overbar{\rule{0ex}{1.33ex}X_n}}
+\newcommand{\ox}[1]{\overbar{\rule{0ex}{1.33ex}X_{#1}}}
+\newcommand{\oy}[1]{\overbar{\rule{0ex}{1.33ex}Y_{#1}}}
+\newcommand{\oyn}{\overbar{\rule{0ex}{1.33ex}Y_n}}
+\newcommand{\omn}{\overbar{\rule{0ex}{1.3ex}\mu_n}}
+\newcommand{\walpha}{\widehat{\alpha}}
+\newcommand{\wbeta}{\widehat{\beta}}
+\newcommand{\wgamma}{\widehat{\gamma}}
+
+\newcommand{\hyn}{\widehat{y}_n}
+\newcommand{\hyi}{\widehat{y}_i}
+\newcommand{\hy}{\widehat{y}}
+\newcommand{\lyn}{\overline{y}_n}
+\newcommand{\ly}{\overline{y}}
+\newcommand{\lhyn}{\overline{\hy}_n}
+\newcommand{\lhy}{\overline{\hy}}
+\newcommand{\lyi}{\overline{y}_i}
+\newcommand{\RMR}{\mathrm{R}}
+\newcommand{\SST}{\mathrm{SST}}
+\newcommand{\SSE}{\mathrm{SSE}}
+\newcommand{\SSR}{\mathrm{SSR}}
+\newcommand{\lei}{\overline{e}_i}
+\newcommand{\hei}{\widehat{e}_i}
+\newcommand{\he}{\widehat{e}}
+
+\newcommand{\oxnn}{\overbar{\rule{0ex}{1.33ex}x_n}}
+
+%stříšky
+\newcommand{\hsn}{\widehat{\sigma}_n^2}
+
+%posloupnosti
+\newcommand{\posl}{(X_j)_{j=1}^{+\infty}}
+\newcommand{\poslkon}{(X_j)_{j=1}^{n}}
+\newcommand{\posln}{(X_n)_{n=1}^{+\infty}}
+\newcommand{\poslnn}{(\X_n)_{n=1}^{+\infty}}
+
+%sumy
+\newcommand{\suminftyo}{\sum\limits_{n=0}^{+\infty}}
+\newcommand{\suminfty}{\sum\limits_{n=1}^{+\infty}}
+\newcommand{\sumainfty}[1]{\sum\limits_{#1}^{+\infty}}
+\newcommand{\suminftylo}{\sum\limits_{l=0}^{+\infty}}
+\newcommand{\sumin}{\sum\limits_{i=1}^{n}}
+\newcommand{\sumjn}{\sum\limits_{j=1}^{n}}
+\newcommand{\sm}[2]{\sum\limits_{ #1 }^{ #2 }}
+
+
+\newcommand{\dom}[1]{\mathop{\mathrm{Dom} (#1)}} % definiční obor
+\newcommand{\mat}[1]{\mathbf #1}
+\newcommand{\abs}[1]{\left|#1\right|}
+\renewcommand{\b}[1]{\left( #1 \right)}
+\newcommand{\nor}[1]{\left\|#1\right\|}
+\newcommand{\Br}[1]{\Bigl(#1\Bigr)}
+\newcommand{\br}[1]{\bigl(#1\bigr)}
+\newcommand{\e}[1]{\me^{#1}}
+\newcommand{\inv}[1]{#1^{-1}}
+\newcommand{\ini}{\theta\in\Theta}
+\newcommand{\init}[1]{\theta\in\Theta\subset\R^#1}
+\newcommand{\txt}[1]{\mathrm{{\footnotesize  #1 }}}
+\newcommand{\matice}[4]{\left(\begin{array}{cc}	#1 & #2 \\ #3 & #4	\end{array} \right)}
+\newcommand{\maticehrana}[4]{\left[\begin{array}{cc}	#1 & #2 \\ #3 & #4	\end{array} \right]}
+\newcommand{\vektor}[2]{\left(\begin{array}{c}	#1  \\  #2	\end{array} \right)}
+\newcommand{\p}[1]{\PP\left( #1 \right)}
+\newcommand{\EE}[1]{\E\left[ #1 \right]}
+\newcommand{\n}[1]{\NN\left( #1 \right)}
+\newcommand{\hypothesis}[2]{H_0: #1 ~\text{vs.}~ H_1: #2 }
+\newcommand{\hypothesiswide}[2]{H_0: #1 \qquad\text{vs.}\qquad H_1: #2 }
+\newcommand{\silofunkce}[1]{\beta_\crossedphi\big|_{\Theta_{#1}}}
+\newcommand{\silofunkceast}[1]{\beta_{\Phiast}\big|_{\Theta_{#1}}}
+\newcommand{\hypothesisap}[2]{H'_0: #1 ~\text{vs.}~H'_1: #2 }
+\newcommand{\test}[1]{\boxed{\text{TEST: $H_0$ zamítáme, pokud } #1 .}}
+\renewcommand{\S}{\mathbb{S}}
+
+
+% Prostředí
+\theoremstyle{definition}
+\newtheorem{define}{Definice}[chapter]
+\theoremstyle{plain}
+\newtheorem{theorem}[define]{Věta}
+\newtheorem{lemma}[define]{Lemma}
+\newtheorem{dusl}[define]{Důsledek}
+\newtheorem{corollary}[define]{Tvrzení}
+\renewcommand{\proofname}{Důkaz}
+
+\theoremstyle{remark}
+\newtheorem{example}[define]{\textsc{Příklad}}
+\newtheorem{remark}[define]{\textsc{Poznámka}}
+
+\renewcommand{\indexname}{Rejstřík}
+
+\frenchspacing
