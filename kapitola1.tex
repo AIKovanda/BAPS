@@ -20,10 +20,10 @@ Rozdělení $x$ je potom $X\sim f_X(x)=\frac{\binom{r}{x}\binom{N-r}{s-x}}{\bino
 \begin{example}[Analýza dat o~přežití]
 	Mějme $X\geq0$ jako čas do~poruchy (ale i~něčeho pozitivního). Pokud tento problém řešíme stochasticky, máme rozdělení $X\sim \FF_X,f_X$ a~hledáme $\EE X=\t$, kterou značíme i~jako MTTF (\textit{mean time to failure}). Zavedeme dále \textbf{intenzitu poruch} jako $r_X(x)=\frac{f_X(x)}{1-\FF_X(x)}$. Úkolem je potom nalézt $\widehat{\t}$.
 \end{example}
-\begin{example}[MEX] Představme si počítačovou síť, kde máme za~úkol kontrolovat switch. Obecně o~jednotlivých uživatelích sítě nevíme nic (nevíme, že zrovna dneska bude někdo stahovat filmy apod.) Označme $X_i\sin\NN$ jako průtok dat od~$i$-tého uživatele. Potom chceme mít pod~kontrolou pravděpodobnost přetečení switche, tedy $\p{\sumin X_i>C_s}<\e{-\gamma}$ (např. $10^{-10}$, což je velice nepravděpodobné). Zabýváme se~tedy jevy, které se~dějí velice zřídka, ale které by mohli mít i~vážný dopad, např. u~povodní. 
+\begin{example}[MEX] Představme si počítačovou síť, kde máme za~úkol kontrolovat switch. Obecně o~jednotlivých uživatelích sítě nevíme nic (nevíme, že zrovna dneska bude někdo stahovat filmy apod.) Označme $X_i \sim \NN$ jako průtok dat od~$i$-tého uživatele. Potom chceme mít pod~kontrolou pravděpodobnost přetečení switche, tedy $\p{\sumin X_i>C_s}<\e{-\gamma}$ (např. $10^{-10}$, což je velice nepravděpodobné). Zabýváme se~tedy jevy, které se~dějí velice zřídka, ale které by mohli mít i~vážný dopad, např. u~povodní. 
 \end{example}
 \begin{example}[Ekonometrie]
-	Víme, že změna mzdy souvisí se~změnou ceny komodity, tedy $\Delta M \stackrel{?}{\leftrightarrow}\Delta C$ (např. $\Delta C=\alpha+\beta(\Delta M)^2+\gamma\ln\Delta M+\epsilon$). Abychom mohli takový vztah odhadnout, potřebujeme data z~minulosti $\big(\Delta M_i,\Delta C_i\big)_{i=1}^n$. Z~toho pak lze odhadnout $\walpha,\wbeta,\wgamma$. Deterministický přístup by byl použít např. lineární regresi. Pokud však bude součástí zadání předpovědět hodnotu v~místě, které nikdy nebylo k~dispozici, nemůžeme si být jisti výsledkem, viz obr.\ref{fig:overfitting}. Cílem je odhadnout $\epsilon$, což můžeme například pomocí CLT jako $\epsilon=\sumin \epsilon_i\sin\AN$.
+	Víme, že změna mzdy souvisí se~změnou ceny komodity, tedy $\Delta M \stackrel{?}{\leftrightarrow}\Delta C$ (např. $\Delta C=\alpha+\beta(\Delta M)^2+\gamma\ln\Delta M+\epsilon$). Abychom mohli takový vztah odhadnout, potřebujeme data z~minulosti $\big(\Delta M_i,\Delta C_i\big)_{i=1}^n$. Z~toho pak lze odhadnout $\walpha,\wbeta,\wgamma$. Deterministický přístup by byl použít např. lineární regresi. Pokud však bude součástí zadání předpovědět hodnotu v~místě, které nikdy nebylo k~dispozici, nemůžeme si být jisti výsledkem, viz obr.\ref{fig:overfitting}. Cílem je odhadnout $\epsilon$, což můžeme například pomocí CLT jako $\epsilon=\sumin \epsilon_i\sim\AN$.
 \end{example}
 \input{PIC01}
 
@@ -52,10 +52,17 @@ $$ f(y|x)=\frac{f_{X,Y}(x,y)}{f(x)}=\frac{f(x|y)g(y)}{\int_{\mathcal{Y}}f(x|y)g(
 	
 	Z toho vyplývá, že $\phi(\textbf{x},\t)=f(\textbf{x}|\t)\pi(\t)$, $m(\textbf{x})=\int\phi(\textbf{x},\t)\d \t=\int f(\textbf{x}|\t)\pi(\t)\d\t$ jako marginální rozdělení $\X$. 
 	$$ \pi(\t|\textbf{x})\stackrel{B}{=}\frac{\phi(\textbf{x},\t)}{m(\textbf{x})}=\frac{f(\textbf{x}|\t)\pi(\t)}{\int_\Theta f(\textbf{x}|\t)..........} $$
-\end{remark}
-...tady jsem to nestihl ...
+	\begin{itemize}
+	\item 	$\pi(\t)$ nazýváme \textit{apriorní hustota}
+	\item   $\pi(\t|\textbf{x})$ nazýváme \textit{aposteriorní hustota}
+	\item znáhodnění $\theta$ je tedy způsob, jak sumarizovat dosažitelnou informaci o $\theta$
+	\end{itemize}
 
-$\pi(\t)$...\begin{enumerate}[a)]
+	
+\end{remark}
+
+
+$\pi(\t)$ lze určit na základě:\begin{enumerate}[a)]
 	\item objektivní informace, tj. znalost z~předchozích úloh (z minulosti),
 	\item subjektivní informace (znalost experta, naše znalost, ...),
 	\item kombinace a) a~b) ($C=\alpha_1\pi_1(\t)+\alpha_2\pi_2(\t)$), případně více a) nebo více b)
@@ -72,8 +79,7 @@ $$ \pi(\t)\stackrel{\text{data}}{\longrightarrow}\pi_n(\t|\textbf{x})\to \wideha
 Chtěli bychom, aby byl náš odhad $\widehat{\t}_B\big( \pi_s(\t|\textbf{x}) \big)$ s~rostoucím $n\to+\infty$ stále méně ovlivněn $\pi(\t)$.
 
 \begin{example} --zde by to chtělo asi lepší popis--
-	Představme si, že máme biliárový stůl a~
-	...
+	Představme si, že máme biliárový stůl a dva hráče, kteří mezi sebou hrají. První hráč dostane kouli na pozici (1) s pravděpodobností $p$, která leží mezi 0 a 1. Druhý hráč chce poté odhadnout místo, kde se koule prvního hráče nachází, čili chce dostat odhad $\widehat{p}=?$ na základě $n$ šťouchů, o kterých víme, že se buďto dotkly koule, či nikoliv. 
 	
 	statistika: máme $n$ šťouchů s~rovnoměrným rozdělením. Označme $X$ jako počet neťuků. $X(\omega)=\textbf{x}$, což jsou data, která máme k~dispozici a~ptáme se~na~odhad $\widehat{p}=?$.
 	
@@ -94,15 +100,15 @@ Chtěli bychom, aby byl náš odhad $\widehat{\t}_B\big( \pi_s(\t|\textbf{x}) \b
 		\end{split}
 		\] 
 		Dále
-		$$ \widehat{p}_B=\EE{\mathrm{Beta}(x+\alpha,n-x+\beta)}=\frac{x+\alpha}{n+\alpha+\beta}\doteq\frac{x}{n}....???....$$
+		$$ \widehat{p}_B=\EE{\mathrm{Beta}(x+\alpha,n-x+\beta)}=\frac{x+\alpha}{n+\alpha+\beta}\doteq\frac{x}{n} = \widehat{p}_{ML} ~~~\text{pro velká \textit{n}, tedy i velká \textit{x}}$$
 	\end{enumerate}
 \end{example}
 
 \input{PIC04}
 
 $\pi(\t)=c\neq0$ konstantní, takže $\pi(\t)$ můžeme volit tak, aby $\int_\Theta\pi(\t)=+\infty$.
-\begin{define}[Nevlastní hustota (apriorní)] Definujeme regulární hustotu (apost.??) vztahem
-	$$\pi(\t|x)=\frac{f\cdot \pi}{\int f\pi\d\t}.$$
+\begin{define}[Nevlastní hustota (apriorní)] Definujeme apriorní nevlastní hustotu jako hustotu $\pi(\theta)$ takovou, že $$ \int\limits_{\Phi}{\pi(\theta)} = +\infty,$$  avšak 
+	$$\pi(\t|x)=\frac{f\cdot \pi}{\int f\pi\d\t}$$ je stále regulární hustotou. Nevlastní hustota $\pi(\theta)$ tedy stále nese apriorní informaci o $\theta$.
 \end{define}
 \begin{example}\begin{enumerate}[a)]
 		\item 
@@ -114,9 +120,9 @@ $\pi(\t)=c\neq0$ konstantní, takže $\pi(\t)$ můžeme volit tak, aby $\int_\Th
 	\input{PIC05}
 	
 	Pojďme nyní udělat apriorní odhad $\mu$, tedy $\widehat{\mu}_{\mathrm{apr.}}=\EE{\NN(0,10)}=0$. $X=x...f_X$. Dále
-	$$ \pi(\mu|x)=\frac{1}{c}f\cdot\pi=\frac{1}{c}\e{-\frac{1}{2}(x-\mu)^2}\e{-\frac{1}{20}(\mu-o)^2}=\frac{1}{c}\e{-\frac{11}{20}(\mu-\frac{10}{11}x)^2}.$$
-	Pro odhad $mu$ pak platí, že
-	$$\widehat{\mu}_B=\EE{\pi(\mu|x)}=\int\frac{1}{c}\e{????}\d\mu=\frac{1}{c''}$$ s~rozdělením $\NN\left(\frac{10}{11}x,\frac{10}{11}\right)$.
+	$$ \pi(\mu|x)=\frac{1}{c}f\cdot\pi=\frac{1}{c}\e{-\frac{1}{2}(x-\mu)^2}\e{-\frac{1}{20}(\mu-o)^2}=\frac{1}{c}\e{-\frac{11}{20}(\mu-\frac{10}{11}x)^2}$$ s~rozdělením $\NN\left(\frac{10}{11}x,\frac{10}{11}\right)$.
+	Pro odhad $\mu$ pak platí, že
+	$$\widehat{\mu}_B=\EE{\pi(\mu|x)}=\int\frac{1}{c}\e{-\frac{11}{20}(\mu-\frac{10}{11}x)^2}\d\mu=\frac{10}{11}x.$$ 
 	
 	HPD (High Posterior Density) region
 	
