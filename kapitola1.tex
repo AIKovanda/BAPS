@@ -27,6 +27,12 @@ Rozdělení $x$ je potom $X\sim f_X(x)=\frac{\binom{r}{x}\binom{N-r}{s-x}}{\bino
 \end{example}
 \input{PIC01}
 
+\begin{example}[Silverman, Mardia]
+Sledovány směry vyplutí želv po vypuštění do vody.
+$ n = 72 $ ŽELV
+\input{PIC02}
+\end{example}
+
 $$ \mathcal{F}=\big\{ f(x,\t):\t\in\Theta\subset\R^k \big\} $$
 $X_i~iid~f$, kde $f_\textbf{X}=\prod f_{X_i}$. $\widehat{\t}$ na~základě $\textbf{x}$ (rozhodnutí o~$\t$). Znáhodníme parametr $\t$, kde $\t\sim\pi(\t)$.
 \begin{theorem}[Bayesova] 
@@ -58,6 +64,7 @@ $$ f(y|x)=\frac{f_{X,Y}(x,y)}{f(x)}=\frac{f(x|y)g(y)}{\int_{\mathcal{Y}}f(x|y)g(
 	\item znáhodnění $\theta$ je tedy způsob, jak sumarizovat dosažitelnou informaci o $\theta$
 	\end{itemize}
 
+\input{PIC_navrh}
 	
 \end{remark}
 
@@ -69,7 +76,7 @@ $\pi(\t)$ lze určit na základě:\begin{enumerate}[a)]
 	\item neurčitost (neznalost)
 \end{enumerate}
 
-\input{PIC02}
+\input{PIC03}
 
 \begin{remark}
 	Tímto způsobem by se~dalo pojmout i~strojové učení. To bere nějaká trénovací a~testovací data, kde na~trénovacích datech dochází k~učení modelu a~na~testovacích datech (která nebyla použita při~trénování) pak vyhodnocuje, jak moc daný model funguje.
@@ -77,13 +84,18 @@ $\pi(\t)$ lze určit na základě:\begin{enumerate}[a)]
 Takto víceméně funguje rozhodování, která děláme. 
 $$ \pi(\t)\stackrel{\text{data}}{\longrightarrow}\pi_n(\t|\textbf{x})\to \widehat{\t}_B=\EE{\pi(\t|\textbf{x})}$$
 Chtěli bychom, aby byl náš odhad $\widehat{\t}_B\big( \pi_s(\t|\textbf{x}) \big)$ s~rostoucím $n\to+\infty$ stále méně ovlivněn $\pi(\t)$.
+\begin{remark}
+Při určení odhadu parametru $ \theta $ nemusí být vždy nejvhodnější volbou $ \theta_{\text{MLE}} = \text{argmax}[\pi(\t|\textbf{x})]$. Můžou nastat případy, kdy je střední hodnota aposteriorní hustoty pravděpodobnosti $ \pi $ vhodnější.
+\input{PIC04}
+\end{remark}
+
 
 \begin{example} --zde by to chtělo asi lepší popis--
 	Představme si, že máme biliárový stůl a dva hráče, kteří mezi sebou hrají. První hráč dostane kouli na pozici (1) s pravděpodobností $p$, která leží mezi 0 a 1. Druhý hráč chce poté odhadnout místo, kde se koule prvního hráče nachází, čili chce dostat odhad $\widehat{p}=?$ na základě $n$ šťouchů, o kterých víme, že se buďto dotkly koule, či nikoliv. 
 	
 	statistika: máme $n$ šťouchů s~rovnoměrným rozdělením. Označme $X$ jako počet neťuků. $X(\omega)=\textbf{x}$, což jsou data, která máme k~dispozici a~ptáme se~na~odhad $\widehat{p}=?$.
 	
-	\input{PIC03}
+	\input{PIC05}
 	
 	\begin{enumerate}[a)]
 		\item Předpokládejme, že 1. hráč je uniformní. Potom $p\sim\pi(p)=1$ na~$(0,1)$ (podle principu neurčitosti). Potom
@@ -104,7 +116,7 @@ Chtěli bychom, aby byl náš odhad $\widehat{\t}_B\big( \pi_s(\t|\textbf{x}) \b
 	\end{enumerate}
 \end{example}
 
-\input{PIC04}
+\input{PIC06}
 
 $\pi(\t)=c\neq0$ konstantní, takže $\pi(\t)$ můžeme volit tak, aby $\int_\Theta\pi(\t)=+\infty$.
 \begin{define}[Nevlastní hustota (apriorní)] Definujeme apriorní nevlastní hustotu jako hustotu $\pi(\theta)$ takovou, že $$ \int\limits_{\Phi}{\pi(\theta)} = +\infty,$$  avšak 
@@ -117,7 +129,7 @@ $\pi(\t)=c\neq0$ konstantní, takže $\pi(\t)$ můžeme volit tak, aby $\int_\Th
 	$$\widehat{\mu}_B=\EE{\NN(x,1)}=x=\widehat{\mu}_{\mathrm{ML}}.$$
 	\item Nechť $f=\NN(0,1)$ a~$\pi(\mu)=\NN(0,10)$.
 	
-	\input{PIC05}
+	\input{PIC07}
 	
 	Pojďme nyní udělat apriorní odhad $\mu$, tedy $\widehat{\mu}_{\mathrm{apr.}}=\EE{\NN(0,10)}=0$. $X=x...f_X$. Dále
 	$$ \pi(\mu|x)=\frac{1}{c}f\cdot\pi=\frac{1}{c}\e{-\frac{1}{2}(x-\mu)^2}\e{-\frac{1}{20}(\mu-o)^2}=\frac{1}{c}\e{-\frac{11}{20}(\mu-\frac{10}{11}x)^2}$$ s~rozdělením $\NN\left(\frac{10}{11}x,\frac{10}{11}\right)$.
@@ -126,7 +138,7 @@ $\pi(\t)=c\neq0$ konstantní, takže $\pi(\t)$ můžeme volit tak, aby $\int_\Th
 	
 	HPD (High Posterior Density) region
 	
-	\input{PIC06}
+	\input{PIC08}
 	
 	Zkoumáme tedy hypotézu $\hypothesis{\t\in\Theta_0}{\t\notin\Theta_0}$. Máme k~dispozici $\X....T(\X)$, kde $T(\X)\sim\FF_T$. Testujeme tedy $W_\alpha=\big\{ |T(\X)|<K_\alpha \big\}$. Bayesova věta nám říká, že pokud je $\t$ znáhodněný parametr, potom pravděpodobnost, že platí $H_0$ je rovna ????? (tohle jsem nějak nestihnul).
 	\end{enumerate}
