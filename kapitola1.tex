@@ -28,7 +28,7 @@ Rozdělení $x$ je potom $X\sim f_X(x)=\frac{\binom{r}{x}\binom{N-r}{s-x}}{\bino
 \input{PIC01}
 
 \begin{example}[Silverman, Mardia]
-Sledovány směry vyplutí želv po vypuštění do vody.
+Sledovány směry vyplutí želv po~vypuštění do~vody.
 $ n = 72 $ ŽELV
 \input{PIC02}
 \end{example}
@@ -61,7 +61,7 @@ $$ f(y|x)=\frac{f_{X,Y}(x,y)}{f(x)}=\frac{f(x|y)g(y)}{\int_{\mathcal{Y}}f(x|y)g(
 	\begin{itemize}
 	\item 	$\pi(\t)$ nazýváme \textit{apriorní hustota}
 	\item   $\pi(\t|\textbf{x})$ nazýváme \textit{aposteriorní hustota}
-	\item znáhodnění $\theta$ je tedy způsob, jak sumarizovat dosažitelnou informaci o $\theta$
+	\item znáhodnění $\theta$ je tedy způsob, jak sumarizovat dosažitelnou informaci o~$\theta$
 	\end{itemize}
 
 \input{PIC_navrh}
@@ -69,7 +69,7 @@ $$ f(y|x)=\frac{f_{X,Y}(x,y)}{f(x)}=\frac{f(x|y)g(y)}{\int_{\mathcal{Y}}f(x|y)g(
 \end{remark}
 
 
-$\pi(\t)$ lze určit na základě:\begin{enumerate}[a)]
+$\pi(\t)$ lze určit na~základě:\begin{enumerate}[a)]
 	\item objektivní informace, tj. znalost z~předchozích úloh (z minulosti),
 	\item subjektivní informace (znalost experta, naše znalost, ...),
 	\item kombinace a) a~b) ($C=\alpha_1\pi_1(\t)+\alpha_2\pi_2(\t)$), případně více a) nebo více b)
@@ -91,7 +91,7 @@ Při určení odhadu parametru $ \theta $ nemusí být vždy nejvhodnější vol
 
 
 \begin{example} --zde by to chtělo asi lepší popis--
-	Představme si, že máme biliárový stůl a dva hráče, kteří mezi sebou hrají. První hráč dostane kouli na pozici (1) s pravděpodobností $p$, která leží mezi 0 a 1. Druhý hráč chce poté odhadnout místo, kde se koule prvního hráče nachází, čili chce dostat odhad $\widehat{p}=?$ na základě $n$ šťouchů, o kterých víme, že se buďto dotkly koule, či nikoliv. 
+	Představme si, že máme biliárový stůl a~dva hráče, kteří mezi~sebou hrají. První hráč dostane kouli na~pozici (1) s~pravděpodobností $p$, která leží mezi~0 a~1. Druhý hráč chce poté odhadnout místo, kde se~koule prvního hráče nachází, čili chce dostat odhad $\widehat{p}=?$ na~základě $n$ šťouchů, o~kterých víme, že se~buďto dotkly koule, či nikoliv. 
 	
 	statistika: máme $n$ šťouchů s~rovnoměrným rozdělením. Označme $X$ jako počet neťuků. $X(\omega)=\textbf{x}$, což jsou data, která máme k~dispozici a~ptáme se~na~odhad $\widehat{p}=?$.
 	
@@ -112,7 +112,7 @@ Při určení odhadu parametru $ \theta $ nemusí být vždy nejvhodnější vol
 		\end{split}
 		\] 
 		Dále
-		$$ \widehat{p}_B=\EE{\mathrm{Beta}(x+\alpha,n-x+\beta)}=\frac{x+\alpha}{n+\alpha+\beta}\doteq\frac{x}{n} = \widehat{p}_{ML} ~~~\text{pro velká \textit{n}, tedy i velká \textit{x}}$$
+		$$ \widehat{p}_B=\EE{\mathrm{Beta}(x+\alpha,n-x+\beta)}=\frac{x+\alpha}{n+\alpha+\beta}\doteq\frac{x}{n} = \widehat{p}_{ML} ~~~\text{pro velká \textit{n}, tedy i~velká \textit{x}}$$
 	\end{enumerate}
 \end{example}
 
@@ -120,7 +120,7 @@ Při určení odhadu parametru $ \theta $ nemusí být vždy nejvhodnější vol
 
 $\pi(\t)=c\neq0$ konstantní, takže $\pi(\t)$ můžeme volit tak, aby $\int_\Theta\pi(\t)=+\infty$.
 \begin{define}[Nevlastní hustota (apriorní)] Definujeme apriorní nevlastní hustotu jako hustotu $\pi(\theta)$ takovou, že $$ \int\limits_{\Phi}{\pi(\theta)} = +\infty,$$  avšak 
-	$$\pi(\t|x)=\frac{f\cdot \pi}{\int f\pi\d\t}$$ je stále regulární hustotou. Nevlastní hustota $\pi(\theta)$ tedy stále nese apriorní informaci o $\theta$.
+	$$\pi(\t|x)=\frac{f\cdot \pi}{\int f\pi\d\t}$$ je stále regulární hustotou. Nevlastní hustota $\pi(\theta)$ tedy stále nese apriorní informaci o~$\theta$.
 \end{define}
 \begin{example}\begin{enumerate}[a)]
 		\item 
@@ -143,48 +143,3 @@ $\pi(\t)=c\neq0$ konstantní, takže $\pi(\t)$ můžeme volit tak, aby $\int_\Th
 	Zkoumáme tedy hypotézu $\hypothesis{\t\in\Theta_0}{\t\notin\Theta_0}$. Máme k~dispozici $\X....T(\X)$, kde $T(\X)\sim\FF_T$. Testujeme tedy $W_\alpha=\big\{ |T(\X)|<K_\alpha \big\}$. Bayesova věta nám říká, že pokud je $\t$ znáhodněný parametr, potom pravděpodobnost, že platí $H_0$ je rovna ????? (tohle jsem nějak nestihnul).
 	\end{enumerate}
 \end{example}
-\chapter{Princip postačitelnosti, podmíněnosti, věrohodnosti, zastavovací pravidlo sekvenčního principu, vztahy.}
-
-
-\chapter{Bayesovský princip, bayesovský úplný model, výhody jeho použití, vztah k~ostatním principům.}
-
-
-\chapter{Třídy optimálních strategii, užitková funkce a~podmínky pro~existenci užitkové funkce.}
-
-
-\chapter{Bayesovské riziko, aposteriorní hustota, prediktivní bayesovská hustota.}
-
-
-\chapter{Asymptotické vlastnosti aposteriorní hustoty a~bayesovských bodových odhadů.}
-
-
-\chapter{Formy apriorní informace, princip neurčitosti, Jeffreysova hustota, ukázky.}
-
-
-\chapter{Konjugované systémy apriorních hustot, princip maximální entropie, limitní aposteriorní hustoty, příklady.}
-
-
-\chapter{Nejméně příznivá apriorní rozdělení, souvislost s~minimaxním principem rozhodování.}
-
-
-\chapter{Přípustnost bayesovského řešení, Steinův efekt pro~sféricky symetrická rozdělení, Bergerův jev.}
-
-
-\chapter{Grupy transformací, ekvivariantní odhady a~jejich bayesovská representace.}
-
-
-\chapter{Bayesovské odhady pro~absolutní, multi-lineární, (váženou) kvadratickou a~0-1 ztrátovou funkci.}
-
-
-\chapter{Hierarchický bayesovský model, empirický Bayes a~jeho suboptimalita, aplikace.}
-
-
-\chapter{Laplaceova asymptotická expanze, podmínky regularity stochastické aproximace, numerické kvadratury.}
-
-
-\chapter{Vzorkování podle důležitosti, Metropolisův algoritmus, variační Bayes.}
-
-
-\chapter{Bayesovská strategie testování hypotéz, Bayes faktor, vlastnosti, porovnání s~klasickými testy.}
-
-
