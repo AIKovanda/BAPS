@@ -1,0 +1,73 @@
+\chapter{Princip postačitelnosti, podmíněnosti, věrohodnosti, zastavovací pravidlo sekvenčního principu, vztahy.}
+\begin{description}
+	\item[SUFFICIENCY princip:] Máme $\epsilon$ závislé na~$\t$, pozorování $x,y$ a~nechť je v~$\epsilon$ k~dispozici postačující statistika $T$ (PS). Víme, že $T(x)=T(y)$ a~chceme, aby závěry o~$\t$ na~základě $x$ nebo $y$ byly shodné. ($T$ je PS pokud rozdělení $X|T(X)=t$ nezávisí na~$\t$).
+
+\item[LIKELIHOOD princip:] Informace o~$\t$ nesená $x$ je zcela obsažena ve~všech funkcích ($f_\X(\textbf{x},\t)=L$). Navíc, pokud máme pozorování $x_1$ experimentu $\epsilon_1$ a~$x_2$ v~experimentu $\epsilon_2$ taková, že 
+$$ L_1(\t|x_1)=c L_2(\t|x_2),\qquad\forall\t\in\Theta.$$
+Chceme, aby závěry o~parametru $\t$ v~obou experimentech byly shodné. označíme $\mathrm{Ev}(\epsilon_1,x_1)=\mathrm{Ev}(\epsilon_2,x_2)$ (Ev jako Evidence). 
+\item[CONDITIONALITY princip:] Nechť máme dostupné $\epsilon_1,\epsilon_2$. Definujeme $\epsilon^*$ experiment tak, že vybereme náhodně mezi~$\epsilon_1 \vee \epsilon_2$, a~v~něm měříme $x_1/x_2$. Chceme, aby $\Ev(\epsilon^*,(j,x_j))=\Ev(\epsilon_j,x_j),~\forall j,\forall x_j$.
+\item[STOPPING rule:] Máme $\epsilon_1,\epsilon_2$ jako zastavovací pravidlo $\tau$, které zastavuje posloupnost v~$\epsilon_n$. Jsou naměřeny $\textbf{x}=\Big( x_1^{\epsilon_1},x_2^{\epsilon_2},...,x_n^{\epsilon_n} \Big)$, ozn. $\{ \epsilon_1,...,\epsilon_n,\tau \}$ (sekvenční). Chceme, aby $\Ev\Big( \{ \epsilon_1,...,\epsilon_n,\tau \},\textbf{x} \Big)$ zvisela na~$\tau$ pouze prostřednictvím $\textbf{x}$, tzn. $$\Ev\Big( \{ \epsilon_1,...,\epsilon_n,\tau_1 \},\textbf{x} \Big)=\Ev\Big( \{ \epsilon_1,...,\epsilon_n,\tau_2 \},\textbf{x} \Big),~\forall \textbf{x}.$$
+\item[BAYESOVSKÝ princip:] Taková procedůra, která využívá k~rozhodnutí o~parametru $\t$ aposteriorní hustotu $\pi(\t,\textbf{x})=\frac{f_\X\cdot\pi(\t)}{\int f_\X\cdot\pi(\t) d\t}$, např. $\widehat{\t}_B=''\EE{\pi(\t,\textbf{x})}''=\E^\pi(\t)$.
+\end{description}
+
+\begin{example}[STOPPING rule]
+	Mějme $\epsilon_j..x_j\in\Ran(X_j)$, kde $X_j\sim f(x_j,\t),~\forall j\in 1,2,...$. Teoricky můžeme jít až do~nekonečna, ale někdy chceme experiment zastavit, abychom mohli vyhodnotit data. Definujeme tedy $\tau$ jako zastavení v~bodě $n$, pokud $\textbf{x}:=(x_1,...,x_n)\in\Ran(X_1)\times\Ran(X_2)\times...\times\Ran(X_n)\equal{ozn}\Aa_n$. Platí, že
+	$$ L(\t|\textbf{x})\equal{id}\Big(\prod f_{X_j}(x_j,\t) \Big)\cdot I_{\Aa_n}(\textbf{x})=f(x_1|\t)f(x_2|x_1,\t)...f(x_n|x_1,x_2,...,x_{n-1},\t)I_{\Aa_n}(\textbf{x}).$$
+	$\tau_1,\tau_2... \textbf{x}(\epsilon_n)$ (!! prosím o~intro). Pokud platí $L$, potom platí $SR$, tedy ($L_1^{(\tau_1)}=L_2^{(\tau_2)}$).
+\end{example}
+\begin{example}[BAYESOVSKÝ princip]
+	Máme TV seriál. Označme $\t\in[0,1]$ jako podíl diváků, kteří daný seriál sledují. Bylo zjištěno, že 9 diváků seriál sledují a~3 nikoliv (to jsou naše data). Problém je, že nevíme, jakým způsobem byla data naměřena. 
+	\begin{description}
+		\item[$\epsilon_\mathrm{I}:$] vybráno $n=12$ lidí - test (9DIV,3NEDIV). Máme tedy náhodnou veličinu $X$ jako počet diváků z~$n=12$ nezávislých opakování. Z~toho plyne, že $X\sim \Bi(12,\t)$. Máme napozorováno $X(\omega)=x=9$.
+		\item[$\epsilon_\mathrm{II}:$] vybíráme $N$ osob a~testujeme, dokud nezískáme $3$ nediváky. Při~tomto způsobu ale měření probíhá zcela odlišně. Tedy $N\sim\mathrm{NegBi}(3,1-\t)$. Napozorováno tedy bylo $N(\omega)=n=12$.
+	\end{description}
+$$ L_\mathrm{I}(\t,\epsilon_\mathrm{I})=c_1\t^9(1-\t)^3\quad\propto\quad L_\mathrm{II}(\t,\epsilon_\mathrm{II})=c_2\t^9(1-\t)^3,\quad \forall\t\in[0,1] $$
+Z toho pro~LIKELIHOOD vyplývá, že $\Ev(\epsilon_\mathrm{I},(9/??))=\Ev(\epsilon_\mathrm{II},(12))$ (takže vlastně na~zastavovacím principu nezáleželo).
+\end{example}
+
+\begin{example}
+	Máme laboratoř a~v~ní dva přístroje. Jako $\t$ označme\begin{itemize}
+		\item 1. přístroj přesný $X_1\sim\NN(\t,0.1)$ [$\epsilon_1$] (vytížený)
+		\item 2. přístroj nepřesný $X_2\sim\NN(\t,10)$ [$\epsilon_2$] (volný)
+	\end{itemize}
+Rozhodování o~$\t$: 95\%-interval spolehlivosti pro~$\t$\begin{enumerate}[A)]
+	\item osobně. naměříme $x_1$ jako délka($IS_{95\%}$)$=0.62$ (na 2.př. nezáviselo).
+	\item vyšleme laborantku. která nese data (ale neví, ze~kterého přístroje jsou, prostě použila volný přístroj). $\beta\in(0,1)$. Máme model $\Phi=\beta\NN(\t,0.1)+(1-\beta)\NN(\t,10).$ Pak zjistíme $x$ jako délku($IS_{95\%}$) s~hodnotou $5.19$.
+\end{enumerate}
+\end{example}
+\begin{theorem}
+	$S\wedge C\Leftrightarrow L\Rightarrow SR$. Implikace $S\Rightarrow C$ je důležitá, protože $B''\Rightarrow'' L$.
+	\begin{proof}
+		Mějme $\epsilon_1,\epsilon_2$, $x_1,x_2$ a~předpokládejme, že $L_1(\t)=c L_2(\t)$. Ptáme se, jestli je $\Ev(\epsilon_1,x_1)=\Ev(\epsilon_2,x_2)$. Víme, že $$ \underbrace{\pi_1(\t,x_1)}_{\epsilon_1}=\frac{f_X(x_1,\t)\pi(\t)}{\int f_X(x_1,\t)\pi(\t)\d\t}=\frac{c f_{X_2}\pi}{\int c f_{X_2}\pi\d\t}=\underbrace{\pi_2(\t| x_2)}_{\epsilon_2}.$$
+	\end{proof}
+\begin{proof}[$L\Rightarrow S$]
+	Nechť T je PS($\epsilon$) a~nechť máme data $x_1^0,x_2^0$ (nula značí konkrétní výběr, nikoliv obecný), taková, že $T(x_1^0)=T(x_2^0)$. Máme k~dispozici Neymannův faktorizační teorém, $X\sim f(x,\t)$, pak $T(X)$ je PS právě tehdy, když $f(x|\t)=h(x)g\big(T(x),\t \big),~\forall\t$. Potom tedy 
+	$$ L(\t|x_1^0)=f(x_1^0,\t)=h(x_1^0)g\big( T(x_1^0),\t \big)=\frac{h(x_1^0)}{h(x_2^0)}\underbrace{h(x_2^0)g\big(T(x_2^0),\t \big)}_{f(x_2^0,\t)=L(\t,x_2^0)},\quad\forall\t.$$
+	Z toho vyplývá, že dle principu L platí, že $\Ev(\epsilon,x_1^0)=\Ev(\epsilon,x_2^0)$.
+	
+	
+	!!!všude velké l pokud není, TODO!!
+\end{proof}
+\begin{proof}[$L\Rightarrow C$]
+Uvažujeme experiment $\epsilon^*$ tak, že $(\mathrm{I},X_\mathrm{I})=X^*$, $(\forall j\in\{1,2\},~\forall x_1,x_2)$, tedy $$\Ev\big(\epsilon^*,(j,x_j) \big)=\Ev\big(\epsilon_j,x_j \big).$$
+Dále potom $$ L^*(\t|\underbrace{j,x_j}_{X^*})=\PP\big(X^*=(j,x_j) \big)=\PP(I=j\wedge X_{I=j}=x_j)=\PP(I=j)\PP(X_j=x_j)=0.5f(x_j,\t)=0.5 L_j(\t,x_j).$$
+Potom 
+$$L^*=c L_j,~ \forall j,\forall x_j\quad\Rightarrow\quad\Ev\big(\epsilon^*,(j,x_j) \big)=\Ev\big(\epsilon_j,x_j \big).$$
+\end{proof}
+\end{theorem}
+
+Statistical decision theory:
+
+\begin{define}
+	Označíme $\Dd$ jako množinu možných rozhodnutí o~$\t$, případně $\tau(\t)$. Dále potom $\delta\in\Dd$. $L:\Theta\times\Dd\to[0,+\infty)$ nazýváme \textbf{loss function} (ztrátová funkce) a~$L(\t,\delta)$ jako \textbf{míru ztráty} (shody, neshody), pokud pro~$\t$ použijeme rozhodnutí $\delta$.
+	
+	Označme dále $\Rr$ jako \textbf{reward space}, který je spojen s~$\Dd$,tj. $\forall\delta\in\Dd$ přiřazuje $r\in\Rr$ ($\delta\leftrightarrow r$). Předpokládejme dále, že na~$\Rr$ existuje úplné uspořádání ($\leq$) tak, že \begin{enumerate}[A1)]
+		\item $\forall r_1,r_2\in\Rr,~r_1\leq r_2 \vee r_2\leq r_1$,
+		\item $\forall r_1,r_2,r_3\in\Rr,~r_1\leq r_2 \wedge r_2\leq r_3~\Rightarrow~r_1\leq r_3$. Z~toho vyplývá, že 
+		$$ r_1<r_2,\quad r_2<r_1,\quad r_1=r_2~(r_1\sim r_2).$$
+		Poslední rovnost není myšlena jako číselná rovnost, ale spíše jako ekvivalence (peníze pro nás můžou mít stejnou cenu, jako získané znalosti).
+	\end{enumerate}
+Nad $\Rr$ definujeme prostor $\mathcal{P}$ jako pravděpodobnostní distribuci $\{\PP\}$ nad $r$ ($r\sim\PP\in\mathcal{P}$). Předpokládejme, že na $\mathcal{P}$ existuje úplné uspořádání ($\leq$) takové, že ...
+\end{define}
+
+Motivace: označme $d_i$ jako investice do $i$-té společnosti. Na konci roku pak očekáváme dividenda $r_i$. $(d_i)_1^k...(r_i)_1^k...r_i\sim \PP_1\ast\PP_k$ (CLT)..
