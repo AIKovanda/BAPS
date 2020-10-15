@@ -65,9 +65,104 @@ Statistical decision theory:
 		\item $\forall r_1,r_2\in\Rr,~r_1\leq r_2 \vee r_2\leq r_1$,
 		\item $\forall r_1,r_2,r_3\in\Rr,~r_1\leq r_2 \wedge r_2\leq r_3~\Rightarrow~r_1\leq r_3$. Z~toho vyplývá, že 
 		$$ r_1<r_2,\quad r_2<r_1,\quad r_1=r_2~(r_1\sim r_2).$$
-		Poslední rovnost není myšlena jako číselná rovnost, ale spíše jako ekvivalence (peníze pro nás můžou mít stejnou cenu, jako získané znalosti).
+		Poslední rovnost není myšlena jako číselná rovnost, ale spíše jako ekvivalence (peníze pro~nás můžou mít stejnou cenu, jako získané znalosti).
 	\end{enumerate}
-Nad $\Rr$ definujeme prostor $\mathcal{P}$ jako pravděpodobnostní distribuci $\{\PP\}$ nad $r$ ($r\sim\PP\in\mathcal{P}$). Předpokládejme, že na $\mathcal{P}$ existuje úplné uspořádání ($\leq$) takové, že ...
+Nad $\Rr$ definujeme prostor $\mathcal{P}$ jako pravděpodobnostní distribuci $\{\PP\}$ nad~$r$ ($r\sim\PP\in\mathcal{P}$). Předpokládejme, že na~$\mathcal{P}$ existuje úplné uspořádání ($\leq$) takové, že ...
 \end{define}
 
-Motivace: označme $d_i$ jako investice do $i$-té společnosti. Na konci roku pak očekáváme dividenda $r_i$. $(d_i)_1^k...(r_i)_1^k...r_i\sim \PP_1\ast\PP_k$ (CLT)..
+Motivace: označme $d_i$ jako investice do~$i$-té společnosti. Na~konci roku pak očekáváme dividenda $r_i$. $(d_i)_1^k...(r_i)_1^k...r_i\sim \PP_1\ast\PP_k$ (CLT)..
+
+\section{15.10.}
+\begin{define}
+	Funkci $U$ na~$\R$ nazveme \textbf{užitkovou} (utility function), pokud $\forall P,Q\in\mathcal{P}$ platí, že 
+	$$ P\leq Q\quad\Leftrightarrow\quad\E^P\big[U(r)\big]\leq\E^Q\big[U(r)\big],$$ kde $r$ je náhodná veličina, pro~kterou $U(r)=r$.
+\end{define}
+\begin{remark}
+	Pokud má $\mathcal{P}$ vhodné vlastnosti, pak existuje užitková funkce $U(r)$, která zachovává dané uspořádání $\mathcal{P}$. 
+\end{remark}
+\begin{remark}
+	\begin{enumerate}[a)]
+		\item Pro~ztrátu $L(\t,\delta)$ platí, že $L(\t,\delta)=U(\t,\delta)=-\E[U(r)]+c$, kde konstantu $c$ přičítáme proto, abychom se~nedostali do~záporných čísel. Tím zajistíme??? minimalizaci $L\sim\max$ užitku.
+		\item Předpověď počasí v~Kanadě. Předpovědi jsou ve~tvaru "pravděpodobnost, že zítra bude pršet je $p$". Předpovědi od~$N$ různých společností chceme nějak porovnat. Sledujeme tedy 365 dní všechny předpovědi a~přiřadíme jim $p_1,...,p_N$. Definujeme relativní četnost $$\t_j=\frac{\text{\# dnů, kdy pršelo a~byla použita }p_j}{\text{\# dnů, kdy byla použita }p_j},j\in\widehat{N}.$$ Sestavíme ztrátovou funkci (poprvé použil De Grout v~roce 1988) $$L(\t,p)=\sumjn q_j(\underbrace{p_j-\t_j}_{H(q)})^2+\sum_{i=1}^N q_i\ln q_i,$$ kde $q_j=\frac{\text{\# použití }p_j}{365}$ a~$H(q)=-\sum_1^J q_j\ln q_j\geq 0$, kde ${q_j}_1^J$ jsou rozdělení pravděpodobnosti. Suma $\sum_{i=1}^N q_i\ln q_i$ pak penalizuje předpovědi, které jsou nevyvážené.
+		
+		Pokud bychom měli systém neuspořádanosti, pak by bylo $H(\textbf{q})$ maximální. O~$\textbf{q}$ víme, e má rovnoměrné rozdělení $q_j=\frac{1}{J}$.
+	\end{enumerate}
+\end{remark}
+\begin{remark}
+	Člen $\sumjn q_j(p_j-\t_j)^2$ v~minulé poznámce nemusí nutně být na~druhou, můžeme brát závorku i~v~absolutní hodnotě, případně ji umocnit na~$\alpha$. Zde vstupuju do~našeho problému tzv. \textbf{Apriorno}. Musíme totiž dopředu vědět některé informace, třeba $X\sim f(x,\t),~L(\t,\delta)$.
+\end{remark}
+\begin{define}
+	Mějme $\Theta$, $\mathcal{F}=\big\{ f(x,\t):\t\in\Theta \big\}$,~$\mathscr{D}$, kde $\delta\in\mathscr{D}$ a~$\chi$ jako výběrový prostor s~daty $\textbf{x}$.
+	
+	Funkci $\delta:\chi\to\mathscr{D}$ nazýváme \textbf{rozhodovací funkce}, $\delta(\textbf{x})=\delta\in\mathscr{D}$. 
+\end{define}
+\begin{description}
+	\item[Metoda A) minimalizace L] Máme $\delta_L(\textbf{x})=\argmin\limits_{\delta\in\mathscr{D}} L\big(\t,\delta(\textbf{x})\big),~\forall \t\in\Theta,~\forall\textbf{x}\in\chi$. (vynechal jsem prezentace)
+	\item[Metoda B) Riziková funkce] (risk function) je funkce $\mathcal{R}:\Theta\to\R^+$ definovaná jako $$\mathcal{R}(\t,\delta)=\E_\t L\big(\t,\delta(\textbf{X})\big)=\int L\big(\t,\delta(\textbf{x})\big)f_\textbf{X}(\textbf{x},\t)\d\textbf{x}.$$
+	Rizikovou funkci také nazýváme jako \textit{střední ztrátu}. Dále definujeme $\delta_U=\argmin\limits_{\delta\in\mathscr{D}} \mathcal{R}(\t,\delta),~\forall\t\in\Theta$.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.5\linewidth]{pictures/P4_1}
+	\caption{chybí popis}
+	\label{fig:p41}
+\end{figure}\begin{figure}[h]
+\centering
+\includegraphics[width=7cm,height=3cm]{pictures/P4_1v2}
+\caption{template pro Filipa ;)}
+\label{fig:p41v2}
+\end{figure}
+Řešením je potom $\mathscr{D}_0\subset\mathscr{D}$ minimální na~??? $\mathscr{D}_0$.\begin{enumerate}[a)]
+	\item  Prostor rozhodovacích funkcí, které jsou nestranné pak vede na~UMVUE.
+	\item $\mathscr{D}_0$ je invariantní rozhodovací funkcí na~určitou transformaci (lokálně-měřítkové modely) (nemám páru co jsem to psal :D díky~za~opravu)
+\end{enumerate}
+
+Problémy: \begin{enumerate}[a)]
+	\item $\delta_1,\delta_2$, $\mathcal{R}(\t,\delta_1$ a~$\mathcal{R}(\t,\delta_2)$) .. tady mi to chybí
+\end{enumerate}
+\end{description}
+
+\begin{example}
+	Mějme $X=\begin{cases}
+	\t-1,& \PP=\frac{1}{2}, \\ \t+1,& \PP=\frac{1}{2},
+	\end{cases}~\t\in\R,~\mathscr{D}=\R$. Potom
+	$ L(\t,\delta)=1-I_\t(\delta)$ nazýváme "0-1" ztrátovou funkci, viz obrázek \ref{fig:p42}.
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.4\linewidth]{pictures/P4_2}
+		\caption{nic}
+		\label{fig:p42}
+	\end{figure}
+	\begin{enumerate}[1)]
+		\item Máme $(x_1,x_2)$ data a~sestrojíme $\delta_0=\frac{x_1+x_2}{2}=\begin{cases}
+		\t\\\t-1\\\t+1
+		\end{cases}$ symetricky kolem~$\t$. Potom
+		$$ \mathcal{R}(\t,\delta_0)=\E L(\t,\delta_0)=1-\E I_\t(\delta_0)=1-\PP(\delta_0=\t)=1-\PP(X_1\neq X_2)=\frac{1}{2}.$$ To nám říká, že střední ztráta je rovna $\frac{1}{2}$. V~průměru tedy 50\% případu bude příznivá (trefíme se~do~parametru).
+		\item Máme data $(x_1,x_2)$ a~sestrojíme $\delta_1=x_1+1=\begin{cases}
+		\t\\\t+2
+		\end{cases}$ nesymetricky rozdělené kolem~$\t$. Potom
+		$$\mathcal{R}(\t,\delta_1)=...=1-\PP(\delta_1=\t).$$
+	\end{enumerate}
+Srovnání $\delta_0$ a~$\delta_1$ nelze rozhodnout na~základě $\mathcal{R}$-strategie. Můžeme na~ně však využít např. UMVUE, MREE nebo N-P lemma.
+\end{example}
+\begin{description}
+	\item[Metoda c) Strategie MINIMAXní] $\sup\limits_{\t\in\Theta} \mathcal{R}(\t,\delta)$ nazýváme \textit{maxní} riziková funkce a~je rovna $\mathcal{R}_{\sup}(\t,\delta)$. Definujeme 
+	$$ \delta_0=\argmin\limits_{\delta\in\mathscr{D}}\mathcal{R}_{\sup}(\t,\delta)=\argmin\limits_{\delta\in\mathscr{D}}\underbrace{\sup\limits_{\t\in\Theta}\underbrace{\E_\t L(\t,\delta(\X))}_{\mathcal{R}(\t,\delta)}}_{r_{\sup}\in\R_0^+}.$$
+\end{description}
+
+\begin{define}
+	Definujeme \textbf{minimaxní riziko} ve~tvaru $\overline{\mathcal{R}}=\inf\limits_\delta\sup\limits_\t\mathcal{R}(\t,\delta)$.
+\end{define}
+\newpage
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.95\linewidth]{pictures/P4_3}
+	\caption{1: zeleně suprema, nejmenší supremum je delta3 2: lepší je delta2, protože ač je riziko vysoké, jeho šance je velice malá - toto je nevýhoda minimaxní strategie 3: delta2 jen lehce překmitne delta1 a pak se k němu blíží asymptoticky}
+	\label{fig:p43}
+\end{figure}
+
+
+
+\begin{remark}
+	Analogie z~teorie her. Pokud máme 2 hráče, kteří mají antagonický vztah (snaží se~navzájem poškodit a~nezáleží jim na~ztrátě). První hráč udělá nějaký tah. Druhý hráč pak udělá tah, který co nejvíc poškodí 1. hráče. První hráč to předvídá a~snaží se~tedy minimalizovat nejhorší možnou ztrátu.
+\end{remark}
+
