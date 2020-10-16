@@ -13,7 +13,7 @@ Chceme, aby závěry o~parametru $\t$ v~obou experimentech byly shodné. označ�
 \begin{example}[STOPPING rule]
 	Mějme $\epsilon_j..x_j\in\Ran(X_j)$, kde $X_j\sim f(x_j,\t),~\forall j\in 1,2,...$. Teoricky můžeme jít až do~nekonečna, ale někdy chceme experiment zastavit, abychom mohli vyhodnotit data. Definujeme tedy $\tau$ jako zastavení v~bodě $n$, pokud $\textbf{x}:=(x_1,...,x_n)\in\Ran(X_1)\times\Ran(X_2)\times...\times\Ran(X_n)\equal{ozn}\Aa_n$. Platí, že
 	$$ L(\t|\textbf{x})\equal{id}\Big(\prod f_{X_j}(x_j,\t) \Big)\cdot I_{\Aa_n}(\textbf{x})=f(x_1|\t)f(x_2|x_1,\t)...f(x_n|x_1,x_2,...,x_{n-1},\t)I_{\Aa_n}(\textbf{x}).$$
-	$\tau_1,\tau_2... \textbf{x}(\epsilon_n)$ (!! prosím o~intro). Pokud platí $L$, potom platí $SR$, tedy ($L_1^{(\tau_1)}=L_2^{(\tau_2)}$).
+	dvě různá zastavovací pravidal $\tau_1,\tau_2$, která zastaví na základě stejného $\textbf{x}(\epsilon_n)$ ve stejném bodě (!! prosím o~intro). Pokud platí $L$ princip, potom platí $SR$ princip, tedy ($L_1^{(\tau_1)}=L_2^{(\tau_2)}$).
 \end{example}
 \begin{example}[BAYESOVSKÝ princip]
 	Máme TV seriál. Označme $\t\in[0,1]$ jako podíl diváků, kteří daný seriál sledují. Bylo zjištěno, že 9 diváků seriál sledují a~3 nikoliv (to jsou naše data). Problém je, že nevíme, jakým způsobem byla data naměřena. 
@@ -22,7 +22,7 @@ Chceme, aby závěry o~parametru $\t$ v~obou experimentech byly shodné. označ�
 		\item[$\epsilon_\mathrm{II}:$] vybíráme $N$ osob a~testujeme, dokud nezískáme $3$ nediváky. Při~tomto způsobu ale měření probíhá zcela odlišně. Tedy $N\sim\mathrm{NegBi}(3,1-\t)$. Napozorováno tedy bylo $N(\omega)=n=12$.
 	\end{description}
 $$ L_\mathrm{I}(\t,\epsilon_\mathrm{I})=c_1\t^9(1-\t)^3\quad\propto\quad L_\mathrm{II}(\t,\epsilon_\mathrm{II})=c_2\t^9(1-\t)^3,\quad \forall\t\in[0,1] $$
-Z toho pro~LIKELIHOOD vyplývá, že $\Ev(\epsilon_\mathrm{I},(9/??))=\Ev(\epsilon_\mathrm{II},(12))$ (takže vlastně na~zastavovacím principu nezáleželo).
+Z toho pro~LIKELIHOOD vyplývá, že $\Ev(\epsilon_\mathrm{I},(9))=\Ev(\epsilon_\mathrm{II},(12))$ (takže vlastně na~zastavovacím principu nezáleželo).
 \end{example}
 
 \begin{example}
@@ -32,21 +32,19 @@ Z toho pro~LIKELIHOOD vyplývá, že $\Ev(\epsilon_\mathrm{I},(9/??))=\Ev(\epsil
 	\end{itemize}
 Rozhodování o~$\t$: 95\%-interval spolehlivosti pro~$\t$\begin{enumerate}[A)]
 	\item osobně. naměříme $x_1$ jako délka($IS_{95\%}$)$=0.62$ (na 2.př. nezáviselo).
-	\item vyšleme laborantku. která nese data (ale neví, ze~kterého přístroje jsou, prostě použila volný přístroj). $\beta\in(0,1)$. Máme model $\Phi=\beta\NN(\t,0.1)+(1-\beta)\NN(\t,10).$ Pak zjistíme $x$ jako délku($IS_{95\%}$) s~hodnotou $5.19$.
+	\item vyšleme laborantku. která nese data (ale neví, ze~kterého přístroje jsou, prostě mohla použít i volný přístroj). $\beta\in(0,1)$. Máme model $\Phi=\beta\NN(\t,0.1)+(1-\beta)\NN(\t,10).$ Pak zjistíme $x$ jako délku($IS_{95\%}$) s~hodnotou $5.19$.
 \end{enumerate}
 \end{example}
 \begin{theorem}
-	$S\wedge C\Leftrightarrow L\Rightarrow SR$. Implikace $S\Rightarrow C$ je důležitá, protože $B''\Rightarrow'' L$.
+	$S\wedge C\Leftrightarrow L\Rightarrow SR$. Implikace $S\Rightarrow C$ je důležitá, protože $B~''\Rightarrow'' L$.
 	\begin{proof}
 		Mějme $\epsilon_1,\epsilon_2$, $x_1,x_2$ a~předpokládejme, že $L_1(\t)=c L_2(\t)$. Ptáme se, jestli je $\Ev(\epsilon_1,x_1)=\Ev(\epsilon_2,x_2)$. Víme, že $$ \underbrace{\pi_1(\t,x_1)}_{\epsilon_1}=\frac{f_X(x_1,\t)\pi(\t)}{\int f_X(x_1,\t)\pi(\t)\d\t}=\frac{c f_{X_2}\pi}{\int c f_{X_2}\pi\d\t}=\underbrace{\pi_2(\t| x_2)}_{\epsilon_2}.$$
 	\end{proof}
 \begin{proof}[$L\Rightarrow S$]
 	Nechť T je PS($\epsilon$) a~nechť máme data $x_1^0,x_2^0$ (nula značí konkrétní výběr, nikoliv obecný), taková, že $T(x_1^0)=T(x_2^0)$. Máme k~dispozici Neymannův faktorizační teorém, $X\sim f(x,\t)$, pak $T(X)$ je PS právě tehdy, když $f(x|\t)=h(x)g\big(T(x),\t \big),~\forall\t$. Potom tedy 
 	$$ L(\t|x_1^0)=f(x_1^0,\t)=h(x_1^0)g\big( T(x_1^0),\t \big)=\frac{h(x_1^0)}{h(x_2^0)}\underbrace{h(x_2^0)g\big(T(x_2^0),\t \big)}_{f(x_2^0,\t)=L(\t,x_2^0)},\quad\forall\t.$$
-	Z toho vyplývá, že dle principu L platí, že $\Ev(\epsilon,x_1^0)=\Ev(\epsilon,x_2^0)$.
-	
-	
-	!!!všude velké l pokud není, TODO!!
+	Z toho vyplývá (dle L principu), že $\Ev(\epsilon,x_1^0)=\Ev(\epsilon,x_2^0)$.
+
 \end{proof}
 \begin{proof}[$L\Rightarrow C$]
 Uvažujeme experiment $\epsilon^*$ tak, že $(\mathrm{I},X_\mathrm{I})=X^*$, $(\forall j\in\{1,2\},~\forall x_1,x_2)$, tedy $$\Ev\big(\epsilon^*,(j,x_j) \big)=\Ev\big(\epsilon_j,x_j \big).$$
@@ -75,14 +73,14 @@ Motivace: označme $d_i$ jako investice do~$i$-té společnosti. Na~konci roku p
 \section{15.10.}
 \begin{define}
 	Funkci $U$ na~$\R$ nazveme \textbf{užitkovou} (utility function), pokud $\forall P,Q\in\mathcal{P}$ platí, že 
-	$$ P\leq Q\quad\Leftrightarrow\quad\E^P\big[U(r)\big]\leq\E^Q\big[U(r)\big],$$ kde $r$ je náhodná veličina, pro~kterou $U(r)=r$.
+	$$ P\leq Q\quad\Leftrightarrow\quad\E^P\big[U(r)\big]\leq\E^Q\big[U(r)\big],$$ kde $r$ je náhodná veličina. Pokut to jde, můžeme například definovat $U(r)=r$.
 \end{define}
 \begin{remark}
 	Pokud má $\mathcal{P}$ vhodné vlastnosti, pak existuje užitková funkce $U(r)$, která zachovává dané uspořádání $\mathcal{P}$. 
 \end{remark}
 \begin{remark}
 	\begin{enumerate}[a)]
-		\item Pro~ztrátu $L(\t,\delta)$ platí, že $L(\t,\delta)=U(\t,\delta)=-\E[U(r)]+c$, kde konstantu $c$ přičítáme proto, abychom se~nedostali do~záporných čísel. Tím zajistíme??? minimalizaci $L\sim\max$ užitku.
+		\item Pro~ztrátu $L(\t,\delta)$ platí, že $L(\t,\delta)=U(\t,\delta)=-\E[U(r)]+c$, kde konstantu $c$ přičítáme proto, abychom se~nedostali do~záporných čísel. Tím zajistíme, že pokud budeme provádět minimalizaci $L$, pak provádíme i maximalizaci užitku.
 		\item Předpověď počasí v~Kanadě. Předpovědi jsou ve~tvaru "pravděpodobnost, že zítra bude pršet je $p$". Předpovědi od~$N$ různých společností chceme nějak porovnat. Sledujeme tedy 365 dní všechny předpovědi a~přiřadíme jim $p_1,...,p_N$. Definujeme relativní četnost $$\t_j=\frac{\text{\# dnů, kdy pršelo a~byla použita }p_j}{\text{\# dnů, kdy byla použita }p_j},j\in\widehat{N}.$$ Sestavíme ztrátovou funkci (poprvé použil De Grout v~roce 1988) $$L(\t,p)=\sumjn q_j(\underbrace{p_j-\t_j}_{H(q)})^2+\sum_{i=1}^N q_i\ln q_i,$$ kde $q_j=\frac{\text{\# použití }p_j}{365}$ a~$H(q)=-\sum_1^J q_j\ln q_j\geq 0$, kde ${q_j}_1^J$ jsou rozdělení pravděpodobnosti. Suma $\sum_{i=1}^N q_i\ln q_i$ pak penalizuje předpovědi, které jsou nevyvážené.
 		
 		Pokud bychom měli systém neuspořádanosti, pak by bylo $H(\textbf{q})$ maximální. O~$\textbf{q}$ víme, e má rovnoměrné rozdělení $q_j=\frac{1}{J}$.
@@ -111,17 +109,20 @@ Motivace: označme $d_i$ jako investice do~$i$-té společnosti. Na~konci roku p
 \caption{template pro Filipa ;)}
 \label{fig:p41v2}
 \end{figure}
-Řešením je potom $\mathscr{D}_0\subset\mathscr{D}$ minimální na~??? $\mathscr{D}_0$.\begin{enumerate}[a)]
-	\item  Prostor rozhodovacích funkcí, které jsou nestranné pak vede na~UMVUE.
-	\item $\mathscr{D}_0$ je invariantní rozhodovací funkcí na~určitou transformaci (lokálně-měřítkové modely) (nemám páru co jsem to psal :D díky~za~opravu)
+Ne vždy lze najít stejnoměrně nejlepší řešení. V takovém případě pak přejdeme na prostor $\mathscr{D}_0\subset\mathscr{D}$, kde již lze najít stejnoměrně nejlepší řešení (typicky vypustíme některé rizikové funkce). Můžeme tedy brát různé prostory rozhodovacích fukncí:
+\begin{enumerate}[a)]
+	\item  Prostor rozhodovacích funkcí, které jsou nestranné -- pak vede na~UMVUE.
+	\item $\mathscr{D}_0$ takový, který je prostorem rozhodovacích funkcí invariantních na~určitou transformaci (např. posunutí, přeškálování -- lokálně-měřítkové modely).
 \end{enumerate}
 
 Problémy: \begin{enumerate}[a)]
-	\item $\delta_1,\delta_2$, $\mathcal{R}(\t,\delta_1$ a~$\mathcal{R}(\t,\delta_2)$) .. tady mi to chybí
+	\item $\delta_1,\delta_2$ a k nim $\mathcal{R}(\t,\delta_1),\mathcal{R}(\t,\delta_2)$ takové, že se kříží -- nejsme schopni rozhodnout, která strategie je lepší.
+	\item Minimalizujeme $\E L$, ale předpis $\delta$ (odhadce) nezávisí na $\textbf{x}$ - výběr nejlepšího $\delta$ nezávisí na naměřených datech.
+	\item Na rozmyšlenou je následující příklad \ref{example:problemy}.
 \end{enumerate}
 \end{description}
 
-\begin{example}
+\begin{example} \label{example:problemy}
 	Mějme $X=\begin{cases}
 	\t-1,& \PP=\frac{1}{2}, \\ \t+1,& \PP=\frac{1}{2},
 	\end{cases}~\t\in\R,~\mathscr{D}=\R$. Potom
@@ -145,7 +146,7 @@ Problémy: \begin{enumerate}[a)]
 Srovnání $\delta_0$ a~$\delta_1$ nelze rozhodnout na~základě $\mathcal{R}$-strategie. Můžeme na~ně však využít např. UMVUE, MREE nebo N-P lemma.
 \end{example}
 \begin{description}
-	\item[Metoda c) Strategie MINIMAXní] $\sup\limits_{\t\in\Theta} \mathcal{R}(\t,\delta)$ nazýváme \textit{maxní} riziková funkce a~je rovna $\mathcal{R}_{\sup}(\t,\delta)$. Definujeme 
+	\item[Metoda c) Strategie MINIMAXní] $\sup\limits_{\t\in\Theta} \mathcal{R}(\t,\delta)$ nazýváme ''\textit{maxní}''(\textit{supremální}) riziková funkce a~je rovna $\mathcal{R}_{\sup}(\t,\delta)$. Definujeme 
 	$$ \delta_0=\argmin\limits_{\delta\in\mathscr{D}}\mathcal{R}_{\sup}(\t,\delta)=\argmin\limits_{\delta\in\mathscr{D}}\underbrace{\sup\limits_{\t\in\Theta}\underbrace{\E_\t L(\t,\delta(\X))}_{\mathcal{R}(\t,\delta)}}_{r_{\sup}\in\R_0^+}.$$
 \end{description}
 
