@@ -136,6 +136,8 @@ $\pi(\t)=c\neq0$ konstantní, takže $\pi(\t)$ můžeme volit tak, aby $\int_\Th
 	
 	\input{PIC08}
 	
-	Zkoumáme tedy hypotézu $\hypothesis{\t\in\Theta_0}{\t\notin\Theta_0}$. Máme k~dispozici $\X....T(\X)$, kde $T(\X)\sim\FF_T$. Testujeme tedy $W_\alpha=\big\{ |T(\X)|<K_\alpha \big\}$. Bayesova věta nám říká, že pokud je $\t$ znáhodněný parametr, potom pravděpodobnost, že platí $H_0$ je rovna ????? (tohle jsem nějak nestihnul).
+	Zkoumáme tedy hypotézu $\hypothesis{\t\in\Theta_0}{\t\notin\Theta_0}$. Máme k~dispozici $\X$ a k ní příslušnou statistiku $T(\X)$, kde $T(\X)\sim\FF_T$. Testujeme tedy na základě kritické oblasti $W_\alpha=\big\{ |T(\X)|<K_\alpha \big\}$. Toto byl přístup doposud. Nyní nám ale Bayesova věta říká, že pokud je $\t$ znáhodněný parametr, tak potom můžeme přímo vyjádřit pravděpodobnost (ať už apriorní, či aposteriorní), že platí $H_0$, a to následovně
+	$$\PP(H_0) = \PP(\theta \in \Theta_0),$$
+	jelikož na parametr $\theta$ nahlížíme jako na náhodnou veličinu. Pravděpodobnost $\PP(\theta \in \Theta_0)$ lze, jak již bylo zmíněno, počítat vzhledem k apriornímu i aposteriornímu rozdělení $\theta$.
 	\end{enumerate}
 \end{example}
