@@ -98,12 +98,9 @@ Motivace: označme $d_i$ jako investice do~$i$-té společnosti. Na~konci roku p
 	\item[Metoda A) minimalizace L] Máme $\delta_L(\textbf{x})=\argmin\limits_{\delta\in\mathscr{D}} L\big(\t,\delta(\textbf{x})\big),~\forall \t\in\Theta,~\forall\textbf{x}\in\chi$. (vynechal jsem prezentace)
 	\item[Metoda B) Riziková funkce] (risk function) je funkce $\mathcal{R}:\Theta\to\R^+$ definovaná jako $$\mathcal{R}(\t,\delta)=\E_\t L\big(\t,\delta(\textbf{X})\big)=\int L\big(\t,\delta(\textbf{x})\big)f_\textbf{X}(\textbf{x},\t)\d\textbf{x}.$$
 	Rizikovou funkci také nazýváme jako \textit{střední ztrátu}. Dále definujeme $\delta_U=\argmin\limits_{\delta\in\mathscr{D}} \mathcal{R}(\t,\delta),~\forall\t\in\Theta$.
+\input{PIC09}
+
 \begin{figure}[h]
-	\centering
-	\includegraphics[width=0.5\linewidth]{pictures/P4_1}
-	\caption{chybí popis}
-	\label{fig:p41}
-\end{figure}\begin{figure}[h]
 \centering
 \includegraphics[width=7cm,height=3cm]{pictures/P4_1v2}
 \caption{template pro~Filipa ;)}
@@ -127,12 +124,9 @@ Problémy: \begin{enumerate}[a)]
 	\t-1,& \PP=\frac{1}{2}, \\ \t+1,& \PP=\frac{1}{2},
 	\end{cases}~\t\in\R,~\mathscr{D}=\R$. Potom
 	$ L(\t,\delta)=1-I_\t(\delta)$ nazýváme "0-1" ztrátovou funkci, viz obrázek \ref{fig:p42}.
-	\begin{figure}[h]
-		\centering
-		\includegraphics[width=0.4\linewidth]{pictures/P4_2}
-		\caption{nic}
-		\label{fig:p42}
-	\end{figure}
+	
+\input{PIC11}	
+	
 	\begin{enumerate}[1)]
 		\item Máme $(x_1,x_2)$ data a~sestrojíme $\delta_0=\frac{x_1+x_2}{2}=\begin{cases}
 		\t\\\t-1\\\t+1
@@ -154,12 +148,9 @@ Srovnání $\delta_0$ a~$\delta_1$ nelze rozhodnout na~základě $\mathcal{R}$-s
 	Definujeme \textbf{minimaxní riziko} ve~tvaru $\overline{\mathcal{R}}=\inf\limits_\delta\sup\limits_\t\mathcal{R}(\t,\delta)$.
 \end{define}
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.95\linewidth]{pictures/P4_3}
-	\caption{1: zeleně suprema, nejmenší supremum je delta3 2: lepší je delta2, protože ač je riziko vysoké, jeho šance je velice malá - toto je nevýhoda minimaxní strategie 3: delta2 jen lehce překmitne delta1 a~pak se~k~němu blíží asymptoticky}
-	\label{fig:p43}
-\end{figure}
+\input{PIC12}
+
+
 
 
 
