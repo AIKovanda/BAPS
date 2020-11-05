@@ -336,12 +336,8 @@ Další výhody: $\pi(\t)$ a~máme data $\textbf{X}\sim f(\textbf{x},\t)\stackre
 \begin{remark}
 	$\epsilon_{a,b,c}$ chceme malé. Potřebujeme $a,b$ malé, $c$ ne příliš velké.
 	
-	\begin{figure}[h]
-		\centering
-		\includegraphics[width=0.95\linewidth]{pictures/P6_1}
-		\caption{popis}
-		\label{fig:p61}
-	\end{figure}
+	\input{PIC13}
+	
 	
 \end{remark}
 
@@ -350,13 +346,8 @@ Problém principu neurčitosti: $\pi(\t)=$konst. na~$\Theta$ (rovnoměrnou aprio
 \begin{example}
 	Mějme $X\sim f(x|\t),~\t\in(0,1),~\pi(\t)=1$ na~$(0,1)$. Bayes: $\pi(\t|\textbf{x})$.. $\widehat{\t}_B(\textbf{x})$. Označme $\eta=\t^2...,~\t=\sqrt{\eta}$, reparametrizace $f(x|\t=\sqrt{\eta})=f(x|\eta)$. $\t$ považujeme za~znáhodněné (apriorně předpokládáme, že o~$\t$ nic nevíme). Transformace $\t$ na~$\eta$: $$\pi_H(\eta)=\pi(\sqrt{\eta})\big|\mathbb{J}_H(\eta)\big|=1\cdot\frac{1}{2\sqrt{\eta}}=\frac{1}{2\sqrt{\eta}}.$$
 	Je paradoxní, že o~$\t$ nemáme konkrétní apriorní informaci a~přitom o~$\eta=\t^2$ víme, že (viz obr. \ref{fig:p71}) nevlastní.
+	\input{PIC14}
 	
-	\begin{figure}[h]
-		\centering
-		\includegraphics[width=0.25\linewidth]{pictures/P7_1}
-		\caption{}
-		\label{fig:p71}
-	\end{figure}
 \end{example}
 \begin{example}
 	Mějme $X\sim f(x|\t),~\t\in\Theta_j,~\t\sim\pi(\t),~\mathcal{F}=\{f(x|\t)\}$. Víme, že $\eta=\inv{H}(\t)$, tzn. $\t=H(\eta)$. 
