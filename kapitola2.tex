@@ -96,8 +96,8 @@ Motivace: označme $d_i$ jako investice do~$i$-té společnosti. Na~konci roku p
 \end{define}
 \begin{description}
 	\item[Metoda A) minimalizace L] Máme $\delta_L(\textbf{x})=\argmin\limits_{\delta\in\mathscr{D}} L\big(\t,\delta(\textbf{x})\big),~\forall \t\in\Theta,~\forall\textbf{x}\in\chi$. (vynechal jsem prezentace)
-	\item[Metoda B) Riziková funkce] (risk function) je funkce $\mathcal{R}:\Theta\to\R^+$ definovaná jako $$\mathcal{R}(\t,\delta)=\E_\t L\big(\t,\delta(\textbf{X})\big)=\int L\big(\t,\delta(\textbf{x})\big)f_\textbf{X}(\textbf{x},\t)\d\textbf{x}.$$
-	Rizikovou funkci také nazýváme jako \textit{střední ztrátu}. Dále definujeme $\delta_U=\argmin\limits_{\delta\in\mathscr{D}} \mathcal{R}(\t,\delta),~\forall\t\in\Theta$.
+	\item[Metoda B) Riziková funkce] (risk function) je funkce $\RF:\Theta\to\R^+$ definovaná jako $$\RF(\t,\delta)=\E_\t L\big(\t,\delta(\textbf{X})\big)=\int L\big(\t,\delta(\textbf{x})\big)f_\textbf{X}(\textbf{x},\t)\d\textbf{x}.$$
+	Rizikovou funkci také nazýváme jako \textit{střední ztrátu}. Dále definujeme $\delta_U=\argmin\limits_{\delta\in\mathscr{D}} \RF(\t,\delta),~\forall\t\in\Theta$.
 	\input{PIC09}
 	
 	Ne vždy lze najít stejnoměrně nejlepší řešení. V~takovém případě pak přejdeme na~prostor $\mathscr{D}_0\subset\mathscr{D}$, kde již lze najít stejnoměrně nejlepší řešení (typicky vypustíme některé rizikové funkce). Můžeme tedy brát různé prostory rozhodovacích fukncí:
@@ -107,7 +107,7 @@ Motivace: označme $d_i$ jako investice do~$i$-té společnosti. Na~konci roku p
 	\end{enumerate}
 	
 	Problémy: \begin{enumerate}[a)]
-		\item $\delta_1,\delta_2$ a~k~nim $\mathcal{R}(\t,\delta_1),\mathcal{R}(\t,\delta_2)$ takové, že se~kříží -- nejsme schopni rozhodnout, která strategie je lepší.
+		\item $\delta_1,\delta_2$ a~k~nim $\RF(\t,\delta_1),\RF(\t,\delta_2)$ takové, že se~kříží -- nejsme schopni rozhodnout, která strategie je lepší.
 		\item Minimalizujeme $\E L$, ale předpis $\delta$ (odhadce) nezávisí na~$\textbf{x}$ - výběr nejlepšího $\delta$ nezávisí na~naměřených datech.
 		\item Na~rozmyšlenou je následující příklad \ref{example:problemy}.
 	\end{enumerate}
@@ -125,21 +125,21 @@ Motivace: označme $d_i$ jako investice do~$i$-té společnosti. Na~konci roku p
 		\item Máme $(x_1,x_2)$ data a~sestrojíme $\delta_0=\frac{x_1+x_2}{2}=\begin{cases}
 		\t\\\t-1\\\t+1
 		\end{cases}$ symetricky kolem~$\t$. Potom
-		$$ \mathcal{R}(\t,\delta_0)=\E L(\t,\delta_0)=1-\E I_\t(\delta_0)=1-\PP(\delta_0=\t)=1-\PP(X_1\neq X_2)=\frac{1}{2}.$$ To nám říká, že střední ztráta je rovna $\frac{1}{2}$. V~průměru tedy 50\% případu bude příznivá (trefíme se~do~parametru).
+		$$ \RF(\t,\delta_0)=\E L(\t,\delta_0)=1-\E I_\t(\delta_0)=1-\PP(\delta_0=\t)=1-\PP(X_1\neq X_2)=\frac{1}{2}.$$ To nám říká, že střední ztráta je rovna $\frac{1}{2}$. V~průměru tedy 50\% případu bude příznivá (trefíme se~do~parametru).
 		\item Máme data $(x_1,x_2)$ a~sestrojíme $\delta_1=x_1+1=\begin{cases}
 		\t\\\t+2
 		\end{cases}$ nesymetricky rozdělené kolem~$\t$. Potom
-		$$\mathcal{R}(\t,\delta_1)=...=1-\PP(\delta_1=\t).$$
+		$$\RF(\t,\delta_1)=...=1-\PP(\delta_1=\t).$$
 	\end{enumerate}
-	Srovnání $\delta_0$ a~$\delta_1$ nelze rozhodnout na~základě $\mathcal{R}$-strategie. Můžeme na~ně však využít např. UMVUE, MREE nebo N-P lemma.
+	Srovnání $\delta_0$ a~$\delta_1$ nelze rozhodnout na~základě $\RF$-strategie. Můžeme na~ně však využít např. UMVUE, MREE nebo N-P lemma.
 \end{example}
 \begin{description}
-	\item[Metoda c) Strategie MINIMAXní] $\sup\limits_{\t\in\Theta} \mathcal{R}(\t,\delta)$ nazýváme ''\textit{maxní}''(\textit{supremální}) riziková funkce a~je rovna $\mathcal{R}_{\sup}(\t,\delta)$. Definujeme 
-	$$ \delta_0=\argmin\limits_{\delta\in\mathscr{D}}\mathcal{R}_{\sup}(\t,\delta)=\argmin\limits_{\delta\in\mathscr{D}}\underbrace{\sup\limits_{\t\in\Theta}\underbrace{\E_\t L(\t,\delta(\X))}_{\mathcal{R}(\t,\delta)}}_{r_{\sup}\in\R_0^+}.$$
+	\item[Metoda c) Strategie MINIMAXní] $\sup\limits_{\t\in\Theta} \RF(\t,\delta)$ nazýváme ''\textit{maxní}''(\textit{supremální}) riziková funkce a~je rovna $\RF_{\sup}(\t,\delta)$. Definujeme 
+	$$ \delta_0=\argmin\limits_{\delta\in\mathscr{D}}\RF_{\sup}(\t,\delta)=\argmin\limits_{\delta\in\mathscr{D}}\underbrace{\sup\limits_{\t\in\Theta}\underbrace{\E_\t L(\t,\delta(\X))}_{\RF(\t,\delta)}}_{r_{\sup}\in\R_0^+}.$$
 \end{description}
 
 \begin{define}
-	Definujeme \textbf{minimaxní riziko} ve~tvaru $\overline{\mathcal{R}}=\inf\limits_\delta\sup\limits_\t\mathcal{R}(\t,\delta)$.
+	Definujeme \textbf{minimaxní riziko} ve~tvaru $\overline{\RF}=\inf\limits_\delta\sup\limits_\t\RF(\t,\delta)$.
 \end{define}
 
 \input{PIC12}
@@ -425,3 +425,116 @@ Z toho vyplývá, že $\htb^\mathrm{lim} =\EE{\pi_{\lambda_0}(\t|\textbf{x})}$, 
 Máme $\mathcal{H}=\{\pi(\t,\lambda):\lambda\in\Lambda\}$. Spočítá se~$m_\lambda(\textbf{x})=\int_\Theta\underbrace{f(\textbf{x}|\t)\pi(\t,\lambda)}_{\phi(\textbf{x},\t,\lambda)}\d\t$. Data $\textbf{X}..\textbf{x}$ na~základě dat odhadneme $\widehat{\lambda}(\textbf{x})$ v~té $m_\lambda(\textbf{x})$ a~provedeme BP s~apriorní hustotou $\pi(\t,\widehat{\lambda}_{\mathrm{ML}})$ klasickou statistickou procedurou $\widehat{\lambda}_{\mathrm{ML}}$.
 
 Principem ME $H(\pi)=-\int_\Theta\pi(\t)\log \pi(\t)\d\t$ .. $\pi$ volíme tak, aby $H(\pi)$ bylo maximální.
+
+%%%%%%%%%%%%%%%%%%% lesson 8
+
+Máme tedy omezení ve formě $\E^\pi[g_i(\t)]=\omega_i,~\forall i\in K$. $H(\pi)$ max vazebné je $$\pi^K(\t_i)=\frac{\e{\sumjn \lambda_j g_j(\t_i)}}{\sum \e{\sumjn \lambda_jg_j(\t_i)}},~\forall i,$$
+kde $\lambda_j$ jsou Lagrangeovy koeficienty.
+
+$$ KL(\pi,\pi_0)=\E^\pi\big[\log\frac{\pi_0}{\pi}\big]=\int\pi\log\frac{\pi_0}{\pi}\d\t.$$
+Pokud $\pi_0=1$, pak $KL(\pi,1)=-\int\pi\log\pi=H(\pi)$. Závisí naše volba $\pi$ na $\pi_0$?
+
+\begin{define}[Konjugované sytémy apriorní hodnoty]
+	Mějme systém hustot $\mathcal{F}=\{f(x|\t):\t\in\Theta\subset\R^k\}$ a označme $\mathcal{H}$ systém hustot pro $\t$. $\mathcal{H}$ nazveme \textbf{konjugovaný sytém apriorní hodnoty} pro $\mathcal{F}$, pokud $\pi(\t|\textbf{x})\in\mathcal{H}$.
+\end{define}
+\begin{theorem}
+	Mějme $\mathcal{F}_n=\{\fex(\textbf{x}|\t)=\prod_{j=1}^n f_{X_j}(x_j|\t)\} ~id$ a předpokládejme, že $T_n(\textbf{X})$ je postačující statistika pro $\mathcal{F}_\textbf{X}$, tzn. dle Neymannova faktorizačního kritéria $\fex(\textbf{y}|\t)=h_n(\textbf{y})g_n\big(T_n(\t,\textbf{y})\big),$ $\forall\t,\forall\textbf{y},\forall n$. Pak $$\mathcal{H}=\bigg\{\frac{g_m(\boldsymbol{\t},\textbf{t})}{\int g_m(\boldsymbol{\t},\textbf{t})\d\t}:\forall m\in\N,\forall\textbf{t}\in S_m,\text{ kde }S_m=\{\textbf{t}:\exists\textbf{y},\text{ že }T_m(\textbf{y})=\textbf{t}\}\bigg\}\text{ je CF.}$$
+	\begin{proof}
+		$\pi(\t)\in\mathcal{H}$, tzn. $\pi(\t)\sim g_m(\t,\textbf{t})$. Z toho vyplývá, že $\exists\textbf{y}$ tak, že $T_m(\textbf{y})=\textbf{t}$. Dále pak platí, že \[
+		\begin{split}
+		\pi(&\t|\underbrace{\textbf{x}}_{\dim n})\sim f_n(\textbf{x}|\t)g_m(\boldsymbol{\t},\textbf{t})\sim \underbrace{g_m\big(\t,T_m(\textbf{y})\big)h_m(\textbf{y})}_{NF_nK\Rightarrow f_m(\textbf{y}|\t)}f_n(\textbf{x}|\t)=f_m(\textbf{y}|\t)f_n(\textbf{x}|\t)=\\&=\prod_{j=1}^nf(y_j|\t)\prod_{j=1}^nf(x_j|\t)=\prod_{j=1}^{m+n}\underbrace{f_{Z_j}(z_j|\t)}_{\textbf{z}=(\textbf{y},\textbf{x})}=f_{m+n}(\textbf{z}|\t)=\underbrace{h_{n+m}(\textbf{z})}_{\text{konst}}g_{n+m}\big(\t,\underbrace{T_{n+m}(\textbf{y})}_{\textbf{t}\in S_{n+m}}\big)\sim g_{n+m}(\t,\textbf{t})
+		\end{split}
+		\]
+		Z rozšíření na $m\in\R$ (vhodně) vznikne CF (obvyklá).
+	\end{proof}
+\end{theorem}
+\begin{example}
+	Mějme $X\sim f_X(x|\t)=\Exp(\lambda)$, $f_X=\lambda\e{-\lambda x},~\lambda>0$. $$\mathcal{F}_n: ~f_n(\textbf{x}|\underbrace{\t}_{\lambda})=\lambda^n\e{-\lambda\sumjn x_j}=\left|\begin{array}{c}
+	ozn.~T_n(\textbf{x})=\sumjn x_j\\\text{je PS pro }\mathcal{F}_n
+\end{array}
+\right|=1\cdot g_n\big(\lambda,T_n(\textbf{x})\big).$$
+Označme $$\sumjn x_j=t~\Rightarrow~\mathcal{H}=\Big\{ \frac{g_m(\lambda,\textbf{t})}{c}:m\in\N,~t\in S_m,... \Big\}=\Big\{\underbrace{\lambda^m\frac{\e{-\lambda t}}{c}}_{\Gamma(m+1,t)}:m\in\N,t\in S_m=\{\textbf{t}=\sum x_j \}=\R^+\Big\}.$$
+Přirozená CF ... širší $\Gamma(\alpha,\beta)=\Hobv ,~\alpha,\beta>0$.
+Protože $X\sim\Exp(\lambda),~\pi(\lambda)=\mathrm{Gamma}(\alpha,\beta)$, pak 
+$$ \pi(\lambda|\textbf{x})=\frac{\lambda^n\e{-\lambda\sum x_j}\frac{1}{c}\lambda^{\alpha-1}\e{-\lambda\beta}}{\int_{0}^{+\infty}\lambda^n\e{-\lambda\sum x_j}\frac{1}{c}\lambda^{\alpha-1}\e{-\lambda\beta}\d\lambda}=\frac{\lambda^{n+\alpha-1}\e{-\lambda(\sum x_j+\beta)}}{c}\sim\mathrm{Gamma}\big(n+\alpha,\sumjn x_j+\beta\big)\in\Hobv .$$
+
+Seznam CF: \begin{enumerate}[a)]
+	\item $X\sin \mathrm{Bi}(n,p)\Rightarrow CF~\mathcal{H}=\{\pi(p)\sim\mathrm{Beta}(\alpha,\beta)\}$,
+	\item $X\sim\mathrm{Poisson}(\lambda)\Rightarrow CF~\mathcal{H}=\{\pi(\lambda)\sim\mathrm{Gamma}(\alpha,\beta)\}$,
+	\item $X\sim U(0,\t),~\t\in\R^+\Rightarrow CF~\mathcal{H}=\{\pi(\t)\sim\mathrm{Pareto}(a,b)\}$, kde Paretovo rozdělení je mocninného typu $\t\sim\frac{a}{b}\big(\frac{b}{\t}\big)^{a+1},~\t\geq b$, které má těžké chvosty.
+	\item \begin{enumerate}[1)]
+		\item $X\sim \NN(\mu,\sigma_0^2),~\sigma_0\text{ známé }>0$, pak PS je ve tvaru $T_n(\textbf{X})=\sumjn X_j\in\R$. Potom $$\HCF=\big\{\pi(\mu)\sim\NN(a,b^2),~a\in\R,b>0\big\}$$ a parametry $a,b$ ladíme pro tvar apriorní informace.
+		\item $X\sim\NN(\mu_0,\sigma^2),~\mu_0$ známe. Pak PS je ve tvaru $T_n(\textbf{X})=\sumjn(X_j-\mu_0)^2$, protože 
+		$$ \fex=\underbrace{\frac{1}{c}\e{-\frac{1}{2\sigma^2}\sumjn(X_j-\mu_0)^2}}_{g_n(t,\sigma^2)},$$ a proto $\Hobv$ pro parametr $\underbrace{\frac{1}{\sigma^2}}_{\t}=\{\pi(\t)\sim\mathrm{Gamma}(\alpha,\beta)\}.$
+		\item $X\sim\NN(\mu,\sigma^2)$. Pak $\pi_n(\textbf{X})=\Big(\sumjn X_j,\sumjn X_j^2\Big)\in\R\times\R_0^+$ je PS, a proto
+		$\Hobv$ pro $(\mu,\frac{1}{\sigma^2})$ definujeme tak, že $\pi\big(\mu\frac{
+		1}{\sigma^2}\big)\sim\NN$ a $\pi\big(\frac{1}{\sigma^2}\big)\sim\mathrm{Gamma}$. Z toho pak 
+		$$ \pi\big(\mu,\frac{1}{\sigma^2}\big)=\pi\big(\mu|\frac{1}{\sigma^2}\big)\pi\big(\frac{1}{\sigma^2}\big)=N\cdot\mathrm{Gamma}.$$
+	\end{enumerate}
+\end{enumerate}
+\end{example}
+\begin{remark}
+	$\pi(\t)=\sum_{i=1}^lw_i\pi_i(\t)$, kde $\pi_i\in\HCF$. Pak $$\pi(\t|\textbf{x})=\frac{f\pi}{\int f\pi}=\frac{1}{c}\sum_{i=1}^lw_i f\pi_i(\t)=\frac{1}{c}\sum_{i=1}^l w_ic_i\frac{f \pi_i}{c_i~(=\int f\pi_i\d\t)}=\sum_{i=1}^l \underbrace{\frac{w_ic_i}{c}}_{w_i'}\pi_i(\t|\textbf{x})=\sum_{i=1}^l w_i\underbrace{\pi_i(\t|\textbf{x})}_{\HCF}.$$
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=0.7\linewidth]{pictures/8_1}
+			\caption{no idea what is it and where did it come from :D}
+			\label{fig:81}
+		\end{figure}
+		
+\end{remark}
+
+\section{Propojování Bayese s klasickou statistikou (nejméně příznivost)}
+\begin{define}
+	Mějme $\t\in\Theta,~\tau(\t)\in\mathcal{T},~\mathscr{D},~L(\t,\delta)$ ztrátu, $\RF(\t,\delta)$ riziko $=\E^fL,~\sup_\t\RF(\t,\delta)$. ÚBM: $r(\pi,\delta)=\E^\pi\RF(\t,\delta)$.. $\delta_{(B)}^\pi$. Definujeme $\RF=\sup\limits_{\pi\in\Pi}r(\pi,\delta^\pi)=\sup\limits_{neco}r(\pi),$ kde $\Pi$ je rodina apriorních hustot a $\RF$ nazveme riziko.
+\end{define}
+\begin{theorem}\label{veticka}
+	$\underline{\RF}\leq \overline{\RF}$, kde $\overline{\RF}=\inf\limits_\delta\sup\limits_\t \RF(\t,\delta)$ (minimální riziko).
+	\begin{proof}
+		$\pi$ apr.r. (nevím), a proto $$ r(\pi,\delta)=\int_\Theta\underbrace{\RF(\t,\delta)}_{\geq0}\underbrace{\pi(\t)}_{\geq0}\d\t\leq \int\sup\limits_\t \RF(\t,\delta)\pi(\t)\d\t=\sup\limits_\t \RF(\t,\delta)\cdot 1.$$
+		Dále platí nerovnice \[
+		\begin{split}
+		r(\pi,\delta)&\leq \sup\limits_\t\RF(\t,\delta),\quad \forall\delta,\forall\pi\\
+		\inf\limits_\delta r(\pi,\delta)&\leq \inf\limits_\delta\sup\limits_\t \RF (=\overline{\RF}),\quad \forall\pi\\
+		\sup\limits_\pi\inf\limits_\delta r=\underline{\RF}&\leq \overline{\RF}
+		\end{split}
+		\]
+	\end{proof}
+\end{theorem}
+\begin{remark}
+	Pokud $\delta^\pi$ dosahuje na $\underline{\RF}$ a $\underline{\RF}=\overline{\RF}$ ve větě \ref{veticka}, pak $\delta^\pi$ je současně \textbf{minimaxní strategie}.
+\end{remark}
+\begin{define}
+	Pokud existuje $\pi^\ast$ apriorní rozdělení, že $r(\pi ^\ast)=\RF$ (tzn. $\forall\pi\in\Pi,~r(\pi)\leq r(\pi^\ast)$), tak pak se nazývá \textbf{nejméně příznivé} (least favourable).
+\end{define}
+
+\begin{theorem}
+	Nechť $\pi$ je vlastní apriorní r. na $\Theta$ tak, že $r(\pi)=\sup\limits_\RF(\t,\delta^\pi)$. Pak \begin{enumerate}
+		\item $\delta^ypi$ je MINIMAX,
+		\item $\delta^\pi$ jedn. Bayes, pak $\delta^\pi$ je jedn. MIMAX,
+		\item $\pi$ je LF. 
+	\end{enumerate}
+\begin{proof}
+	\begin{enumerate}
+		\item $\delta$ libovolné fixní. Pak $\sup\limits_\t\RF(\t,\delta)\geq\int\RF\pi(\t)\d\t=\E^\pi\RF=r(\pi,\delta)\geq r(\pi,\delta^\pi)=r(\pi)=\sup\limits_\t\RF(\t,\delta^\pi)$.
+		\item >
+		\item $\pi'$ libovolné fixní. Pak $r(\pi')=r(\pi',\delta^{\pi'})\leq r(\pi'\delta^\pi)\leq \sup\limits_\t\RF(\t,\delta^\pi)=r(\pi)$. Potom $\pi$ ($=\pi^\ast$) je LF.
+	\end{enumerate}
+\end{proof}
+\end{theorem}
+\begin{dusl}
+	V ok, pokud $\RF(\t,\delta^\pi)$ je konstantní v $\t$ na $\Theta$ $s.j.\pi$, tedy $r(\pi)=\sup\RF$.
+\end{dusl}
+\begin{theorem}
+	Nejméně příznivá posloupnost $(\pi_n)_1^{+\infty}$ je taková, že $\lim\limits_{n\to+\infty} r(\pi_n)=\RF$. 
+\end{theorem}
+\begin{theorem}
+	Nechť $(\pi_n)_1^{+\infty}$ je taková posloupnost, že $\lim\limits_{n\to+\infty}r(\pi_n)=r$. Nechť $\delta_0$ je rozhodovací funkce taková, že $\sup\limits_\t \RF(\t,\delta_0)=r$. Pak \begin{enumerate}
+		\item $\delta_0$ je minimax,
+		\item X
+		\item $(\pi_n)_1^{+\infty}$ je LF
+	\end{enumerate}
+\begin{proof}
+	Analogicky jako v \ref{veticka} (tedy za domácí cvičení).
+\end{proof}
+\end{theorem}
