@@ -509,15 +509,15 @@ Seznam CF: \begin{enumerate}[a)]
 \end{define}
 
 \begin{theorem}
-	Nechť $\pi$ je vlastní apriorní r. na $\Theta$ tak, že $r(\pi)=\sup\limits_\RF(\t,\delta^\pi)$. Pak \begin{enumerate}
-		\item $\delta^ypi$ je MINIMAX,
+	Nechť $\pi$ je vlastní apriorní r. na $\Theta$ tak, že $r(\pi)=\sup\limits_\t\RF(\t,\delta^\pi)$. Pak \begin{enumerate}
+		\item $\delta^\pi$ je MINIMAX,
 		\item $\delta^\pi$ jedn. Bayes, pak $\delta^\pi$ je jedn. MIMAX,
 		\item $\pi$ je LF. 
 	\end{enumerate}
 \begin{proof}
 	\begin{enumerate}
 		\item $\delta$ libovolné fixní. Pak $\sup\limits_\t\RF(\t,\delta)\geq\int\RF\pi(\t)\d\t=\E^\pi\RF=r(\pi,\delta)\geq r(\pi,\delta^\pi)=r(\pi)=\sup\limits_\t\RF(\t,\delta^\pi)$.
-		\item >
+		\item $>$
 		\item $\pi'$ libovolné fixní. Pak $r(\pi')=r(\pi',\delta^{\pi'})\leq r(\pi'\delta^\pi)\leq \sup\limits_\t\RF(\t,\delta^\pi)=r(\pi)$. Potom $\pi$ ($=\pi^\ast$) je LF.
 	\end{enumerate}
 \end{proof}
@@ -537,4 +537,88 @@ Seznam CF: \begin{enumerate}[a)]
 \begin{proof}
 	Analogicky jako v \ref{veticka} (tedy za domácí cvičení).
 \end{proof}
+\end{theorem}
+\begin{remark}
+	Mějme $X\sim \mathrm{Bi}(n,p),~\widehat{p}=?,~\pi(p)\sim\mathrm{Beta}(a,b)\sim\frac{1}{B(a,b)}p^{a-1}(1-p)^{b-1}$. Příkladem může být teorie spolehlivosti, kde máme datové pole v RAIDu, tj. $n$ komponentní systém. Označme $X$ počet poruch za čas $1$. $\{X\geq5\}\Rightarrow$ výpadek. Jaká je pravděpodobnost $\PP(X\geq5)=\widehat{p}$. $\widehat{\E X}=n\widehat{p}$ za čas 1.
+	
+	Se zadáním můžeme dělat několik věcí:\begin{enumerate}[1)]
+		\item apriorní odhad $\widehat{p}_a=\E\mathrm{Beta}(a,b)=\frac{a}{a+b}.$
+		\item Můžeme naměřit data $x$a vypočíst klasický ML: $\widehat{p}_\mathrm{ML}=\frac{x}{n}=\oxnn ... \widehat{p}_\mathrm{UMVUE}$ $(L=L_2)$.
+		\item Bayesovský odhad: $$\pi(p|x)=\frac{\binom{n}{x}p^x(1-p)^{n-x}\cdot\frac{1}{B(a,b)}p^{a-1}(1-p)^{b-1}}{\int_{0}^{1}...\d p}=\frac{1}{c}p^{x+a-1}(1-p)^{n-x+b-1}\sim\mathrm{Beta}(x+a,n-x+b).$$
+		Z toho potom $\widehat{p}_B=\E \mathrm{Beta}(x+a,n-x+b)=\frac{x+a}{n+a+b}=\frac{\oxnn+\frac{a}{n}}{1+\frac{a+b}{n}}$. Zároveň však
+		$$ \widehat{p}_B=\frac{a+b}{a+b+n}\frac{a}{a+b}+\frac{n}{n+a+b}\frac{x}{n}==\alpha_n\widehat{p}_a+(1-\alpha_n)\widehat{p}_\mathrm{ML}.$$
+		\begin{enumerate}[a)]
+			\item $n$ pevně, $a,b\to+\infty$ (velké), $b/a=konst$ $(\alpha_n\to1\Rightarrow\widehat{p}_B=\widehat{p}_a)$
+			\item $a,b$ pevně, $n\to+\infty$ (velké), pak $\alpha_n\to0$ $(\alpha_n\doteq0)\Rightarrow\widehat{p}_B=\widehat{p}_\mathrm{ML}$,
+			\item $a=b=1$, tzn. $\pi(p)=U(0,1)$ princip neurčitosti. Z toho pak $\widehat{p}_B=\frac{x+1}{n+2}\doteq \widehat{p}_\mathrm{ML}$ pro vysoká $n$.
+			\item $a=b=0,~\pi(p)=\inv{p}\inv{(1-p)}$ nevlastní (limitní), pak $\pB=\pML$.
+			\item $a=a_n=\frac{\sqrt{n}}{2},~b=b_n=\frac{\sqrt{n}}{2}$, tzn. $\pi(p)=\mathrm{Beta}\big(\frac{\sqrt{n}}{2},\frac{\sqrt{n}}{2}\big)$ (závisí na $n$).
+			\[
+			\begin{split}
+			\pB&=\frac{x+\frac{\sqrt{n}}{2}}{n+\sqrt{n}}\Rightarrow \RF(p,\pB)=\Big|L=L_2\Big|=\E \underbrace{(p-pB)^2}_{L_2(p,\pB)}=\E\Big(p-\frac{X+\frac{\sqrt{n}}{2}}{n+\sqrt{n}}\Big)^2=\\&=c\underbrace{\E X^2}_{np-np^2+n^2p^2}+d \underbrace{\E X}_{np}+e\equal{...}\frac{n}{4(n+\sqrt{n})^2}=konst.
+			\end{split}
+			\] 
+			Dle V víme, že $r(\pi)=\sup\limits_{\theta}\RF(\t,\delta^\pi)$ implikuje to, že $\pB=\widehat{p}_\mathrm{Minimax}$ a $\pi^\ast=\pi(p)$ je LF.
+			\begin{figure}[h]
+				\centering
+				\includegraphics[width=0.7\linewidth]{pictures/9_1}
+				\caption{popis}
+				\label{fig:91}
+			\end{figure}			
+		\end{enumerate}
+	\end{enumerate}
+\end{remark}
+\begin{remark}
+	Mějme $X\sim\NN(\mu,1)=\NN(\t,1),~\wmu=?$ a\begin{enumerate}[A)]
+		\item $\pi(\mu)=konst=1$ na $\R$ nevlastní, tedy $\wmu_a$ není. $$\pi(\mu|x)=\frac{1}{\sqrt{2\pi}}\e{-\frac{1}{2}(x-\mu)^2}\cdot \frac{1}{\int_\R...\d\mu}=\frac{1}{\sqrt{n}}\e{-\frac{1}{2}(\mu-x)^2}\sim\NN(x,1).$$
+		$$\widehat{\mu}_B=\EE{\NN(x,1)}=x(=\oxnn),$$
+		$$ \RF(\mu,\widehat{\mu}_B)\equal{L=L_2}\E(\mu-X)^2=\D X=1~konst,\text{ ale nelze aplikovat tu V...}$$
+		\item $\pi_n(\mu)=\NN(0,n)$ vlastní $\forall n$ (CF).
+		\[
+		\begin{split}
+		\pi_n(\mu|x)~\propto~ \e{-\frac{1}{2}(x-\mu)^2}\e{-\frac{1}{2n}(\mu-0)^2}~\propto~\e{-\frac{1}{2}\big[\big(1+\frac{1}{n}\big)\mu^2-2\mu x+x^2\big]}~\propto~\e{-\frac{1}{2}\big(1+\frac{1}{n}\big)\big[\mu-\frac{n}{n+1}x\big]^2}\sim \NN\Big(\frac{n}{n+1}x,\frac{n}{n+1}\Big)
+		\end{split}
+		\]
+		$$\widehat{\mu}_B=\E \NN\Big(\frac{n}{n+1}x,\frac{n}{n+1}\Big)=\frac{n}{n+1}x=\delta^{\pi_n}\sim\widehat{\mu}_{B,n}.$$
+		$$r(\pi_n)\equal{L=L_2}\D \pi(\mu|x)=\frac{n}{n+1}\to1.$$
+		$\lim\limits_{n\to+\infty}r(\pi_n)=1=r$ a víme, že 
+		----nestihl jsem to, konec strany
+	\end{enumerate}
+\end{remark}
+\begin{theorem}[Vyhazovací]
+	ÚBM $X\sim f(x|\t),~\pi(\t),~L(\t,\delta)=L_2(\t,\delta)=(\t,\delta)^2$. Nechť $0<\E^\pi(\t^2|x)<+\infty$. Pak $$\delta^\pi(x)=\E^\pi(\t|x)=\frac{\int\t f(x|\t)\pi(\t)\d\t}{\int f(x|\t)\pi(\t)\d\t}$$
+	a pro Bayesovské riziko 
+	$$r(\pi)=\E^m[\D^\pi(\t|x)],$$
+	kde $m(x)=\int f\pi\d\t$.
+	\begin{proof}
+		\[
+		\begin{split}
+		\delta^\pi&=\argmin\limits_{\delta} r(\pi,\delta),~r(\pi,\delta)=\E^\pi[\RF(\t,\delta)]=\E^\pi\big[\E^f\big(\t-\delta(X)\big)\big]=\left|\begin{array}{c}
+		\text{záměna} \\ \E^\pi\text{ a }\E^f		
+		\end{array}
+		\right|=\E^m\big[\E^\pi\big(\t-\delta(x)\big)^2\big|x\big]=\\&=\E^m\big[\E^\pi(\t^2|x)-2\delta(x)\E^\pi(\t|x)+\delta(x)^2\big]=\E^m\big[\underbrace{\E^\pi(\t^2|x)}_{0<...<+\infty}+\big(\delta(x)-\E^\pi(\t|x)\big)^2-\underbrace{\big(\E^\pi(\t|x)\big)^2}_{0<...<+\infty}\big]
+		\end{split}
+		\] Abychom tento výraz optimalizovali, musíme vzít $\delta(x)=\E^\pi(\t|x)$, abychom výraz minimalizovali.
+		$$ r(\pi)=r(\pi,\delta^\pi)=\E^m\big[\underbrace{\E^\pi\big(\t-\E^\pi(\t|x)\big)^2|x}_{\D(\t|x)}\big].$$
+	\end{proof}
+\end{theorem}
+
+\section{Přípustnost (Admissibility)}
+\begin{define}
+	Mějme $\mathscr{D},\Theta,...$ Rozhodovací funkce $\delta_0$ se nazývá \textbf{nepřípustná}, pokud existuje $\delta_1$ která dominuje $\delta_0$, ozn. $\delta_1\ll\delta_0$, tzn. $\RF(\t,\delta_1)\leq\RF(\t,\delta_0),~\forall\t\in\Theta$ (stejnoměrně) a $\exists\t_0$ tak, že $\RF(\t_0,\delta_1)<\RF(\t_0,\delta_0)$. V případě, že taková $\delta_1$ neexistuje, pak $\delta_0$ nazýváme \textbf{přípustný}.
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.4\linewidth]{pictures/9_2}
+		\includegraphics[width=0.4\linewidth]{pictures/9_3}
+		\caption{Který je přípustný? Všechny 4. Vpravo ale už je $\RF(\t,\delta_\circ)$ nepřípustný.}
+		\label{fig:92}
+	\end{figure}
+	
+\end{define}
+\begin{theorem}
+	\begin{itemize}
+		\item 
+	$\delta_L(x)=\argmin\limits_\delta L\big(\t,\delta(x)\big),~\forall\t,\forall x$, je vždy přípustný, pokud existuje, \item  $\delta_u=\argmin\limits_\delta\RF(\t,\delta),~\forall\t$, je vždy přípustný, pokud existuje, \item  $\delta_0=\argmin\limits_\delta\sup\limits_\t\RF(\t,\delta),~\forall\t$, je přípustný, pokud existuje a je jednoznačný, \item  $\delta^\pi=\argmin\limits_\delta r(\pi,\delta)$ je přípustný, pokud existuje a je jednoznačný.
+\end{itemize}
 \end{theorem}
