@@ -4,43 +4,75 @@ Ve statistice provádíme experimenty, abychom získali nějaký užitek, příp
 
 \begin{example}[Požár lesa ve~Španělsku]~
 	 \begin{enumerate}[a)]
-		\item Abychom mohli předvídat budoucí požáry lesa, musíme si nejprve rozmyslet, jestli jsou požáry náhodné, tedy jestli je daná veličina deterministická, nebo stochastická úloha. 
+		\item Abychom mohli předvídat budoucí požáry lesa, musíme si nejprve rozmyslet, jestli jsou takové požáry náhodné, tedy zda jde o deterministickou nebo stochastickou úlohu. 
 		\item V~tom případě ale potřebujeme model, který by úlohu popisoval. V~rámci toho modelu musíme zkoumat faktory ovlivňující požáry lesa. Těch je však mnoho, a~proto musíme vybrat ty relevantní. 
-		\item Dále potom záleží na~struktuře dat. Vezmeme $p$ jako pravděpodobnost, že v~lese vznikne požár. Potom logistický model pro~tuto pravděpodobnost vypadá jako
+		\item Dále potom záleží na~struktuře dat. Vezmeme $p$ jako pravděpodobnost, že v~lese vznikne požár. Vybraný logistický model pro~tuto pravděpodobnost vypadá jako
 		$$ p=\frac{\e{\alpha_1 h+\alpha_2t+\alpha_3x}}{1+\e{\alpha_1 h+\alpha_2 t+\alpha_3 x}}, $$
 		kde $h$ je vlhost, $t$ teplota a~$x$ stupeň péče o~les.
 		\item Snažíme se~nyní odhadnout parametry $\walpha_1,\walpha_2,\walpha_3$. na~základě dostupných dat.
 		\item Dále musíme ověřit tento model na~reálné situaci.
 	\end{enumerate} 
 \end{example}
-\begin{example}[Capture-Recapture] V~rybníce je $N$ ryb. Abychom tento počet zjistili, aniž bychom museli vylovit celý rychník, vylovíme pouze $r$ ryb, označíme je a~pustíme zpět do~vody. Dále počkáme, až budou ryby rovnoměrně rozmístěny a~vylovíme $s$ ryb. Z~nich bude $x$ značit počet označených ryb.
-	
-Rozdělení $x$ je potom $X\sim f_X(x)=\frac{\binom{r}{x}\binom{N-r}{s-x}}{\binom{N}{s}}\sim\mathrm{Hyp}(N,r,s)$. Nyní nám jde o~to odhadnout, jak vypadá $\widehat{N}$ jako odhad počtu ryb v~rybníce. Po~krátké úvaze dospějeme k~tomu, že $\widehat{N}=\frac{rs}{x}$.
+\begin{example}[Capture-Recapture] V~rybníce je $N$ ryb. Abychom tento počet zjistili, aniž bychom museli vylovit celý rybník, vylovíme nejprve pouze $r$ ryb, označíme je a~pustíme zpět do~vody. Dále počkáme, až budou tyto ryby rovnoměrně rozmístěny a~vylovíme $s$ ryb. Z~nich bude $x$ značit počet označených ryb. Rozdělení odpovídající náhodné veličiny $X$ je potom $X\sim f_X(x)=\frac{\binom{r}{x}\binom{N-r}{s-x}}{\binom{N}{s}}\sim\mathrm{Hyp}(N,r,s)$. Nyní nám jde o~to odhadnout, jak vypadá $\widehat{N}$ jako odhad počtu ryb v~rybníce. Po~krátké úvaze dospějeme k~tomu, že $\widehat{N}=\frac{rs}{x}$.
 \end{example}
 \begin{example}[Analýza dat o~přežití]
-	Mějme $X\geq0$ jako čas do~poruchy (ale i~něčeho pozitivního). Pokud tento problém řešíme stochasticky, máme rozdělení $X\sim \FF_X,f_X$ a~hledáme $\EE X=\t$, kterou značíme i~jako MTTF (\textit{mean time to failure}). Zavedeme dále \textbf{intenzitu poruch} jako $r_X(x)=\frac{f_X(x)}{1-\FF_X(x)}$. Úkolem je potom nalézt $\widehat{\t}$.
+	Mějme $X\geq0$ jako čas do~poruchy. Pokud tento problém řešíme stochasticky, máme rozdělení $X\sim \FF_X,f_X$ a~můžeme hledat hodnotu $\EE X=\t$, kterou značíme MTTF (\textit{mean time to failure}). Zavedeme dále \textbf{intenzitu poruch} jako $r_X(x)=\frac{f_X(x)}{1-\FF_X(x)}$. Úkolem je potom nalézt $\widehat{\t}$, resp. $\widehat{r}_X(x)$.
 \end{example}
-\begin{example}[MEX] Představme si počítačovou síť, kde máme za~úkol kontrolovat switch. Obecně o~jednotlivých uživatelích sítě nevíme nic (nevíme, že zrovna dneska bude někdo stahovat filmy apod.) Označme $X_i \sim \NN$ jako průtok dat od~$i$-tého uživatele. Potom chceme mít pod~kontrolou pravděpodobnost přetečení switche, tedy $\p{\sumin X_i>C_s}<\e{-\gamma}$ (např. $10^{-10}$, což je velice nepravděpodobné). Zabýváme se~tedy jevy, které se~dějí velice zřídka, ale které by mohli mít i~vážný dopad, např. u~povodní. 
+\begin{example}[MEX] Představme si počítačovou síť, kde máme za~úkol kontrolovat síťový přístupový switch. Obecně o~jednotlivých uživatelích sítě nevíme nic (nevíme, že zrovna dneska bude někdo stahovat filmy apod.) Označme $X_i$ jako průtok dat od~$i$-tého uživatele. Potom chceme mít pod~kontrolou pravděpodobnost přetečení switche, tedy $\p{\sumin X_i>C_X}<\e{-\gamma}$ pro relativně vysoká $\gamma$ (např. $\gamma\geq 10$). Zabýváme se~tedy jevy, které se~dějí velice zřídka, ale které by mohli mít i~vážný dopad, např. analogicky u~povodní. 
 \end{example}
 \begin{example}[Ekonometrie]
-	Víme, že změna mzdy souvisí se~změnou ceny komodity, tedy $\Delta M \stackrel{?}{\leftrightarrow}\Delta C$ (např. $\Delta C=\alpha+\beta(\Delta M)^2+\gamma\ln\Delta M+\epsilon$). Abychom mohli takový vztah odhadnout, potřebujeme data z~minulosti $\big(\Delta M_i,\Delta C_i\big)_{i=1}^n$. Z~toho pak lze odhadnout $\walpha,\wbeta,\wgamma$. Deterministický přístup by byl použít např. lineární regresi. Pokud však bude součástí zadání předpovědět hodnotu v~místě, které nikdy nebylo k~dispozici, nemůžeme si být jisti výsledkem, viz obr.\ref{fig:overfitting}. Cílem je odhadnout $\epsilon$, což můžeme například pomocí CLT jako $\epsilon=\sumin \epsilon_i\sim\AN$.
+	Víme, že změna mzdy souvisí se~změnou ceny komodity, tedy $\Delta M \stackrel{?}{\leftrightarrow}\Delta C$ (např. $\Delta C=\alpha+\beta(\Delta M)^2+\gamma\ln\Delta M+\epsilon$). Abychom mohli takový regresní vztah odhadnout, potřebujeme data z~minulosti $\big(\Delta M_i,\Delta C_i\big)_{i=1}^n$. Z~toho pak lze odhadnout regresní koeficienty $\walpha,\wbeta,\wgamma$. Pro zdárné použití modelu potřebujeme znát rozdělení $\epsilon$, což můžeme aproximovat například pomocí CLT jako $\epsilon=\sumin \epsilon_i\sim\AN$.
 \end{example}
-\input{PIC01}
 
 
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=6.0cm,y=6.0cm]
+	\clip(-0.26,-0.05) rectangle (1.5,0.68);
+	\draw [color=green!45!black](0.75,0.21) node[anchor=north west] {Přeučení};
+	\draw [color=red!65!black](0.12,0.45) node[anchor=north west] {Nedostatečné naučení};
+	\draw [color=blue!55!black](0.80,0.34) node[anchor=north west] {Skutečná závislost};
+	\draw (0,-0.05) -- (0,0.68);
+	\draw [domain=-0.26:1.28] plot(\x,{(-0-0*\x)/1});
+	\draw[line width=1pt,color=red!65!black] plot[raw gnuplot, id=func0] function{set samples 10000; set xrange [-0.16:1.18]; plot 0.18*x+0.22};
+	\draw[line width=1pt,color=blue!55!black] plot[raw gnuplot, id=func1] function{set samples 10000; set xrange [-0.16:1.18]; plot 1.35*x**2-1.06*x+0.31};
+	\draw[line width=1pt,color=green!45!black] plot[raw gnuplot, id=func2] function{set samples 10000; set xrange [-0.16:1.18]; plot 1476.55*x**8-5318.13*x**7+7495.45*x**6-5161.41*x**5+1738.28*x**4-227.24*x**3-4.93*x**2+2.01*x+0.25};
+	\begin{scriptsize}
+	\fill [color=black] (0.7,0.16) circle (3.0pt);
+	\fill [color=black] (0.65,0.13) circle (3.0pt);
+	\fill [color=black] (-0.09,0.35) circle (3.0pt);
+	\fill [color=black] (0.03,0.3) circle (3.0pt);
+	\fill [color=black] (0.14,0.26) circle (3.0pt);
+	\fill [color=black] (0.2,0.18) circle (3.0pt);
+	\fill [color=black] (0.26,0.17) circle (3.0pt);
+	\fill [color=black] (0.98,0.62) circle (3.0pt);
+	\fill [color=black] (0.93,0.48) circle (3.0pt);
+	\fill [color=black] (0.7,0.16) circle (3.0pt);
+	\fill [color=black] (0.65,0.13) circle (3.0pt);
+	\fill [color=black] (-0.09,0.35) circle (3.0pt);
+	\fill [color=black] (0.03,0.3) circle (3.0pt);
+	\fill [color=black] (0.14,0.26) circle (3.0pt);
+	\fill [color=black] (0.2,0.18) circle (3.0pt);
+	\fill [color=black] (0.26,0.17) circle (3.0pt);
+	\fill [color=black] (0.98,0.62) circle (3.0pt);
+	\fill [color=black] (0.93,0.48) circle (3.0pt);
+	\end{scriptsize}
+	\end{tikzpicture}
+	\caption{Příklad přeučení a~nedostatečného naučení u~kvadratických dat.}
+	\label{fig:overfitting}
+\end{figure}
 
-$$ \mathcal{F}=\big\{ f(x,\t):\t\in\Theta\subset\R^k \big\} $$
-$X_i~iid~f$, kde $f_\textbf{X}=\prod f_{X_i}$. $\widehat{\t}$ na~základě $\textbf{x}$ (rozhodnutí o~$\t$). Znáhodníme parametr $\t$, kde $\t\sim\pi(\t)$.
+
 \begin{theorem}[Bayesova] 
 	Mějme $(H_k)_{k=1}^{n,+\infty}$ jako úplný rozklad $\Omega,~A~\in \Aa , ~\PP(A)>0$. Potom $\forall k\in\N$ platí, že 
 	\[
-	\PP(H_k|A)=\frac{\PP(A|H_k)\PP(H_k)}{\sum\limits_{j=1}^{n,+\infty}\PP(A|H_j)\PP(H_j)}
+	\PP(H_k|A)=\frac{\PP(A|H_k)\PP(H_k)}{\sum\limits_{j=1}^{n,+\infty}\PP(A|H_j)\PP(H_j)}.
 	\]
 	\begin{proof}
-		$$\PP(H_k|A)=\frac{\PP(H_k\cap A)}{\PP(A)}=\frac{\PP(A|H_k)\PP(H_k)}{\sum\limits_{j=1}^{n,+\infty}\PP(A|H_j)\PP(H_j)}$$
+		$$\PP(H_k|A)=\frac{\PP(H_k\cap A)}{\PP(A)}=\frac{\PP(A|H_k)\PP(H_k)}{\sum\limits_{j=1}^{n,+\infty}\PP(A|H_j)\PP(H_j)}.$$
 	\end{proof}
 \end{theorem}
-\begin{theorem}
+\begin{theorem}{Bayesova (pro hustoty)}
 	Mějme $X,Y$ jako náhodné veličiny s~$f_{X,Y}$. Pak
 	$$ f(y|x)=\frac{f(x|y)g(y)}{\int_{\mathcal{Y}}f(x|y)g(y)dy}. $$
 \begin{proof}
@@ -48,96 +80,167 @@ $$ f(y|x)=\frac{f_{X,Y}(x,y)}{f(x)}=\frac{f(x|y)g(y)}{\int_{\mathcal{Y}}f(x|y)g(
 \end{proof}
 
 \end{theorem}
+
+Mějme statistický model $\mathcal{F}=\big\{ f(x,\t):\t\in\Theta\subset\R^k \big\}$.
+$X_i~iid~f$, kde $f_\textbf{X}=\prod_{i=1}^n f_{X_i}$. $\widehat{\t}$ na~základě $\textbf{x}$ (rozhodnutí o~$\t$). Znáhodníme parametr $\t$, kde $\t\sim\pi(\t)$.
+
 %%%%%%%%%%%%%%%%%%%% 2. lesson
-\begin{remark}
-	Bayesova věta... znáhodnění $\t$. Máme třídu hustot $\mathcal{F}=\big\{f(x,\t):\t\in\Theta\subset\R^k\big\},~\t\sim\pi(\t)$. Dále $X\sim f(x|\t)\Rightarrow \X=(X_1,...,X_n)~iid~f_\X(\textbf{x}|\t)$.
-	
-	Z toho vyplývá, že $\phi(\textbf{x},\t)=f(\textbf{x}|\t)\pi(\t)$, $m(\textbf{x})=\int\phi(\textbf{x},\t)\d \t=\int f(\textbf{x}|\t)\pi(\t)\d\t$ jako marginální rozdělení $\X$. 
-	$$ \pi(\t|\textbf{x})\stackrel{B}{=}\frac{\phi(\textbf{x},\t)}{m(\textbf{x})}=\frac{f(\textbf{x}|\t)\pi(\t)}{\int_\Theta f(\textbf{x}|\t)..........} $$
+Aplikace Bayesovy věty na model $\mathcal{F}$: znáhodnění $\t$. Máme třídu hustot $\mathcal{F}=\big\{f(x,\t):\t\in\Theta\subset\R^k\big\},~\t\sim\pi(\t)$. Dále $X\sim f(x|\t)\Rightarrow \X=(X_1,...,X_n)~iid~f_\X(\textbf{x}|\t)$.
+Z toho vyplývá, že $\phi(\textbf{x},\t)=f(\textbf{x}|\t)\pi(\t)$, $m(\textbf{x})=\int\phi(\textbf{x},\t)\d \t=\int f(\textbf{x}|\t)\pi(\t)\d\t$ jako marginální rozdělení $\X$ a nakonec 
+	$$ \pi(\t|\textbf{x})\stackrel{B}{=}\frac{\phi(\textbf{x},\t)}{m(\textbf{x})}=\frac{f(\textbf{x}|\t)\pi(\t)}{\int_\Theta f(\textbf{x}|\t)\pi(\t)\d\t}. $$
 	\begin{itemize}
-	\item 	$\pi(\t)$ nazýváme \textit{apriorní hustota}
-	\item   $\pi(\t|\textbf{x})$ nazýváme \textit{aposteriorní hustota}
-	\item znáhodnění $\theta$ je tedy způsob, jak sumarizovat dosažitelnou informaci o~$\theta$
+	\item 	$\pi(\t)$ nazýváme \textit{apriorní hustota} a toto znáhodnění $\theta$ je tedy způsob, jak sumarizovat dosažitelnou informaci o~$\theta$.
+	\item   $\pi(\t|\textbf{x})$ nazýváme \textit{aposteriorní hustota}, viz schéma na obrázku \ref{pic1.2}.
 	\end{itemize}
 
-\input{PIC02}
-	
-\end{remark}
+\begin{figure}[h]
+	\centering  
+	\begin{tikzpicture}
+	\node[inner sep=0pt] (pic) at (0,0)
+	{\includegraphics[width=12cm]{pictures/picture_2_3.pdf}};
+	\draw [color=black](-0.8,0.5) node[anchor=north west] {$ \textbf{x} $ data};
+	\draw [color={rgb,255:red,00; green,00; blue,255}](-3.5,1.2) node[anchor=north west] {$ \pi(\t) $};
+	\draw [color={rgb,255:red,00; green,00; blue,255}](4.4,0.6) node[anchor=north west] {$ \pi(\t|\textbf{x}) $};
+	\end{tikzpicture}
+	\caption{Naznačení přechodu od apriorní hustoty $\t$ k aposteriorní hustotě pravděpodobnosti $\t|\textbf{x}$ při daných datech.}
+	\label{pic1.2}
+\end{figure}
 
-
-$\pi(\t)$ lze určit na~základě:\begin{enumerate}[a)]
+$\pi(\t)$ může představovat:\begin{enumerate}[a)]
 	\item objektivní informace, tj. znalost z~předchozích úloh (z minulosti),
 	\item subjektivní informace (znalost experta, naše znalost, ...),
-	\item kombinace a) a~b) ($C=\alpha_1\pi_1(\t)+\alpha_2\pi_2(\t)$), případně více a) nebo více b)
-	\item neurčitost (neznalost)
+	\item kombinace a) a~b) ($\pi(\t)=\alpha_1\pi_1(\t)+\alpha_2\pi_2(\t)$), případně více a) nebo více b),
+	\item neurčitost (neznalost), tzn. rovnoměrné rozdělení pro $\t$.
 \end{enumerate}
-
-\input{PIC03}
 
 \begin{remark}
 	Tímto způsobem by se~dalo pojmout i~strojové učení. To bere nějaká trénovací a~testovací data, kde na~trénovacích datech dochází k~učení modelu a~na~testovacích datech (která nebyla použita při~trénování) pak vyhodnocuje, jak moc daný model funguje.
 \end{remark}
-Takto víceméně funguje rozhodování, která děláme. 
-$$ \pi(\t)\stackrel{\text{data}}{\longrightarrow}\pi_n(\t|\textbf{x})\to \widehat{\t}_B=\EE{\pi(\t|\textbf{x})}$$
-Chtěli bychom, aby byl náš odhad $\widehat{\t}_B\big( \pi_s(\t|\textbf{x}) \big)$ s~rostoucím $n\to+\infty$ stále méně ovlivněn $\pi(\t)$.
+Takto Bayesovsky víceméně funguje rozhodování, která v praxi děláme za účelem odhadu $\t$: 
+$$ \pi(\t)\stackrel{\text{data}}{\longrightarrow}\pi(\t|\textbf{x})\to \widehat{\t}_B=\EE{\pi(\t|\textbf{x})}.$$
+Chtěli bychom, aby byl náš odhad $\widehat{\t}_B$ s~rostoucím $n\to+\infty$ stále méně ovlivněn $\pi(\t)$.
 \begin{remark}
-Při určení odhadu parametru $ \theta $ nemusí být vždy nejvhodnější volbou $ \theta_{\text{MLE}} = \text{argmax}[\pi(\t|\textbf{x})]$. Můžou nastat případy, kdy je střední hodnota aposteriorní hustoty pravděpodobnosti $ \pi $ vhodnější.
-\input{PIC04}
+Při určení odhadu parametru $ \theta $ nemusí být vždy nejvhodnější volbou $ \widehat{\theta}_{\text{BMLE}} = \text{argmax}[\pi(\t|\textbf{x})]$. Můžou nastat případy, kdy je střední hodnota aposteriorní hustoty pravděpodobnosti $ \pi $ vhodnější.
+\begin{figure}[h]
+	\centering    
+	\begin{tikzpicture}
+	\node[inner sep=0pt] (pic) at (0,0)
+	{\includegraphics[width=10cm]{pictures/picture_2_1.pdf}};
+	\draw [color=black](-2.5,-2) node[anchor=north west] {$ \widehat{\t}_{\text{MLE}} $};
+	\draw [color=black](0.2,-2) node[anchor=north west] {$ \widehat{\t}_{\text{B}} $};
+	\draw [color=blue](2.8,1.2) node[anchor=north west] {$ \pi(\t|\textbf{x}) $};
+	\end{tikzpicture}
+	\caption{Možný tvar aposteriorní hustoty pravděpodobnosti. Demonstrace skutečnosti, že Bayesovský MLE odhad nemusí být vždy nejlepší.}
+\end{figure}
 \end{remark}
 
 
-\begin{example} --zde by to chtělo asi lepší popis--
-	Představme si, že máme biliárový stůl a~dva hráče, kteří mezi~sebou hrají. První hráč dostane kouli na~pozici (1) s~pravděpodobností $p$, která leží mezi~0 a~1. Druhý hráč chce poté odhadnout místo, kde se~koule prvního hráče nachází, čili chce dostat odhad $\widehat{p}=?$ na~základě $n$ šťouchů, o~kterých víme, že se~buďto dotkly koule, či nikoliv. 
+\begin{example}
+	Představme si, že máme biliárový stůl délky 1 a~dva hráče, kteří hrají mezi~sebou. První hráč dostane kouli na~pozici $p$, která leží mezi~0 a~1. Druhý hráč to neví a chce poté odhadnout místo, kde se~koule prvního hráče nachází, čili chce dostat odhad $\widehat{p}$ na~základě $n$ náhodně rozložených šťouchů, o~kterých víme, že se~buďto dotkly koule, či nikoliv. Máme tedy $n$ šťouchů s~rovnoměrným rozdělením. Označme $X$ jako počet neťuků, $X(\omega)=x$, což jsou data, která máme k~dispozici a~ptáme se~na~odhad $\widehat{p}=?$.
 	
-	statistika: máme $n$ šťouchů s~rovnoměrným rozdělením. Označme $X$ jako počet neťuků. $X(\omega)=\textbf{x}$, což jsou data, která máme k~dispozici a~ptáme se~na~odhad $\widehat{p}=?$.
-	
-	\input{PIC05}
+\begin{figure}[h]
+	\centering  
+	\begin{tikzpicture}
+	\node[inner sep=0pt] (pic) at (0,0)
+	{\includegraphics[width=8cm]{pictures/picture_2_2.pdf}};
+	\draw [color=blue](-4.0,0.4) node[anchor=north west] {$ \text{U}(0,1) $};
+	\draw [color=black](-0.75,3.5) node[anchor=north west] {$ 0 $};
+	\draw [color=black](2.65,3.5) node[anchor=north west] {$ 1 $};
+	\draw [color=black](1.6,3.5) node[anchor=north west] {$ p $};
+	\draw [color=black](4.6,0.4) node[anchor=north west] {$ X\sim\text{Bi}(n,p) $};
+	\draw [color=black](-1.9,3.2) node[anchor=north west] {$ \text{X}_{1} $};
+	\draw [color=black](-1.9,2.35) node[anchor=north west] {$ \text{X}_{2} $};
+	\draw [color=black](-1.9,1.5) node[anchor=north west] {$ \text{X}_{3} $};
+	\draw [color=black](-1.9,0.65) node[anchor=north west] {$ \text{X}_{4} $};
+	\draw [color=black](-1.9,-1.9) node[anchor=north west] {$ \text{X}_{n} $};
+	\end{tikzpicture}
+	\caption{Kulečníkový stůl a zjišťování polohy $p$ červené koule.}
+\end{figure}
 	
 	\begin{enumerate}[a)]
 		\item Předpokládejme, že 1. hráč je uniformní. Potom $p\sim\pi(p)=1$ na~$(0,1)$ (podle principu neurčitosti). Potom
 		$$ X\sim\Bi(n,p)=f(x|p).$$
-		Dále pak 
-		$$ \pi(\t|x)=\frac{f\cdot\pi}{\int_0^1 f\pi\d p}=\frac{\binom{n}{x}p^x(1-p)^{n-x}\cdot 1}{\int_0^1 \binom{n}{x}p^x(1-p^{n-x}\cdot1 \d p)}=\mathrm{Beta}(x+1,n-x+1).$$
-		Z toho vyplývá, že
+		Dále pak z Bayesovy věty vyjádříme
+		$$ \pi(p|x)=\frac{f\cdot\pi}{\int_0^1 f\pi\d p}=\frac{\binom{n}{x}p^x(1-p)^{n-x}\cdot 1}{\int_0^1 \binom{n}{x}p^x(1-p)^{n-x}\cdot1 \d p}=\mathrm{Beta}(x+1,n-x+1).$$
+		Z toho vypočítáme Bayesovský odhad parametru $\t$ jako
 		$$ \widehat{\t}_B=\widehat{p}_B=\EE{p|x}=\int...=\frac{x+1}{n+2}.$$
-		Potom se~můžeme ptát, jaké je $p$, pokud známe $\textbf{x}$. Klasický odhad by byl ve~tvaru $\widehat{p}_{\mathrm{ML}}=\frac{x}{n}$.
-		\item $\pi(\t)=\pi(p)=\mathrm{Beta}(\alpha,\beta)$ Z~toho pak 
+		Klasický odhad by byl ve~tvaru $\widehat{p}_{\mathrm{ML}}=\frac{x}{n}$.
+		\item $p\sim \pi(p)=\mathrm{Beta}(\alpha,\beta)$ Z~toho opět získáme 
 		\[
 		\begin{split}
-		\pi(p|x)&=\frac{f\cdot\pi}{\underbrace{\int f\pi}_c}=\frac{1}{c}\binom{n}{x}p^x(1-p)^n\cdot \frac{1}{B(...)}p^{\alpha-1}(1-p)^{\beta-1}=\frac{1}{c'}p^{x+\alpha-1}(1-p)^{n-x+\beta-1}=\\&=\mathrm{Beta}(x+\alpha,n-x+\beta).
+		\pi(p|x)&=\frac{f\cdot\pi}{\underbrace{\int f\pi\d p}_c}=\frac{1}{c}\binom{n}{x}p^x(1-p)^{n-x}\cdot \frac{1}{B(...)}p^{\alpha-1}(1-p)^{\beta-1}=\frac{1}{c'}p^{x+\alpha-1}(1-p)^{n-x+\beta-1}=\\&=\mathrm{Beta}(x+\alpha,n-x+\beta).
 		\end{split}
 		\] 
 		Dále
-		$$ \widehat{p}_B=\EE{\mathrm{Beta}(x+\alpha,n-x+\beta)}=\frac{x+\alpha}{n+\alpha+\beta}\doteq\frac{x}{n} = \widehat{p}_{ML} ~~~\text{pro velká \textit{n}, tedy i~velká \textit{x}}$$
+		$\widehat{p}_B=\EE{\mathrm{Beta}(x+\alpha,n-x+\beta)}=\frac{x+\alpha}{n+\alpha+\beta}\doteq\frac{x}{n} = \widehat{p}_{ML}$ pro velká $n$, tedy i~velká \textit{x}.
 	\end{enumerate}
 \end{example}
 
-\input{PIC06}
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}
+	\node[inner sep=0pt] (pic) at (0,0)
+	{\includegraphics[width=15.5cm]{pictures/picture_2_4.pdf}};
+	\draw [color=black](4.6,-0.2) node[anchor=north west] {$ c\to0 $};
+	\draw [color=black](0,-1) node[anchor=north west] {$ \mu_{0} $};
+	\draw [color=black](-5.2,-1) node[anchor=north west] {$ \mu_{0} $};
+	\draw [color=black](5.23,-1) node[anchor=north west] {$ \mu_{0} $};
+	\draw [color=black](-4.5,0.5) node[anchor=north west] {$ \sigma^{2} = 1 $};
+	\draw [color=black](1,0.5) node[anchor=north west] {$ \sigma^{2} = 10 $};
+	\draw [color=black](6,0.5) node[anchor=north west] {$ \sigma^{2} \rightarrow \infty $};
+	\end{tikzpicture}
+	\caption{Vykreslení změny normálního rozdělení při rostoucím rozptylu.}
+\end{figure}
 
 $\pi(\t)=c\neq0$ konstantní, takže $\pi(\t)$ můžeme volit tak, aby $\int_\Theta\pi(\t)=+\infty$.
-\begin{define}[Nevlastní hustota (apriorní)] Definujeme apriorní nevlastní hustotu jako hustotu $\pi(\theta)$ takovou, že $$ \int\limits_{\Phi}{\pi(\theta)} = +\infty,$$  avšak 
-	$$\pi(\t|x)=\frac{f\cdot \pi}{\int f\pi\d\t}$$ je stále regulární hustotou. Nevlastní hustota $\pi(\theta)$ tedy stále nese apriorní informaci o~$\theta$.
+\begin{define}[Nevlastní hustota (apriorní)] Definujeme apriorní nevlastní funkci jako hustotu $\pi(\theta)$ takovou, že $$ \int\limits_{\Theta}{\pi(\theta)\d\t} = +\infty.$$  Uvažujeme však pouze takové nevlastní apriorní hustoty, pro které je 
+	$$\pi(\t|x)=\frac{f\cdot \pi}{\int f\pi\d\t}$$ stále regulérní hustotou. Nevlastní hustota $\pi(\theta)$ tedy stále nese jistou apriorní informaci o~$\theta$.
 \end{define}
 \begin{example}\begin{enumerate}[a)]
 		\item 
-	Mějme $X\sim f(x|\mu)=\NN(\mu,1)$, kde $\mu\in\R$. Dále nechť $\pi(\mu)=c\neq0$. Potom$$ \pi(\mu|x)=\frac{f\cdot \pi}{\int_{-\infty}^{+\infty}\frac{1}{\sqrt{2\pi}}\e{-\frac{1}{2}(x-\mu)^2}c\d\mu}=\frac{\e{-\frac{1}{2}(\mu-x)^2}}{\sqrt{2\pi}}\sim\NN(x,1).$$
+	Mějme $X\sim f(x|\mu)=\NN(\mu,1)$, kde $\mu\in\R$. Dále nechť $\pi(\mu)=c\neq0$ na celém $\R$. Potom$$ \pi(\mu|x)=\frac{f\cdot c}{\int_{-\infty}^{+\infty}\frac{1}{\sqrt{2\pi}}\e{-\frac{1}{2}(x-\mu)^2}c~\d\mu}=\frac{\e{-\frac{1}{2}(\mu-x)^2}}{\sqrt{2\pi}}\sim\NN(x,1).$$
 	Dále pak 
 	$$\widehat{\mu}_B=\EE{\NN(x,1)}=x=\widehat{\mu}_{\mathrm{ML}}.$$
-	\item Nechť $f=\NN(0,1)$ a~$\pi(\mu)=\NN(0,10)$.
+	\item Nechť $f=\NN(\mu,1)$ a~$\pi(\mu)=\NN(0,10)$.
 	
-	\input{PIC07}
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}
+	\node[inner sep=0pt] (pic) at (0,0)
+	{\includegraphics[width=15.5cm]{pictures/picture_2_5.pdf}};
+	\draw [color=red](3,0.2) node[anchor=north west] {$ \pi ( \mu | x ) $};
+	\draw [color=blue](-5.2,-0.5) node[anchor=north west] {$ \pi (\mu) $};
+	\draw [color=gray!35!black](0.6,-1.8) node[anchor=north west] {$ \frac{10}{11}x $};
+	\end{tikzpicture}
+	\caption{Vykreslení apriorní hustoty a aposteriorní hustoty pravděpodobnosti.}
+\end{figure}
 	
-	Pojďme nyní udělat apriorní odhad $\mu$, tedy $\widehat{\mu}_{\mathrm{apr.}}=\EE{\NN(0,10)}=0$. $X=x...f_X$. Dále
-	$$ \pi(\mu|x)=\frac{1}{c}f\cdot\pi=\frac{1}{c}\e{-\frac{1}{2}(x-\mu)^2}\e{-\frac{1}{20}(\mu-o)^2}=\frac{1}{c}\e{-\frac{11}{20}(\mu-\frac{10}{11}x)^2}$$ s~rozdělením $\NN\left(\frac{10}{11}x,\frac{10}{11}\right)$.
+
+	
+	Pojďme nyní udělat apriorní odhad $\mu$, tedy $\widehat{\mu}_{\mathrm{apr.}}=\EE{\NN(0,10)}=0$. Nyní mějme navíc data $x$ kde $X\sim f$.  Pak
+	$$ \pi(\mu|x)=\frac{1}{c}f\cdot\pi=\frac{1}{c}\e{-\frac{1}{2}(x-\mu)^2}\e{-\frac{1}{20}(\mu-o)^2}=\frac{1}{c'}\e{-\frac{11}{20}(\mu-\frac{10}{11}x)^2}\sim \NN\left(\frac{10}{11}x,\frac{10}{11}\right)$$ 
 	Pro odhad $\mu$ pak platí, že
 	$$\widehat{\mu}_B=\EE{\pi(\mu|x)}=\int\frac{1}{c}\e{-\frac{11}{20}(\mu-\frac{10}{11}x)^2}\d\mu=\frac{10}{11}x.$$ 
-	
-	HPD (High Posterior Density) region
-	
-	\input{PIC08}
-	
-	Zkoumáme tedy hypotézu $\hypothesis{\t\in\Theta_0}{\t\notin\Theta_0}$. Máme k~dispozici $\X$ a k ní příslušnou statistiku $T(\X)$, kde $T(\X)\sim\FF_T$. Testujeme tedy na základě kritické oblasti $W_\alpha=\big\{ |T(\X)|<K_\alpha \big\}$. Toto byl přístup doposud. Nyní nám ale Bayesova věta říká, že pokud je $\t$ znáhodněný parametr, tak potom můžeme přímo vyjádřit pravděpodobnost (ať už apriorní, či aposteriorní), že platí $H_0$, a to následovně
-	$$\PP(H_0) = \PP(\theta \in \Theta_0),$$
-	jelikož na parametr $\theta$ nahlížíme jako na náhodnou veličinu. Pravděpodobnost $\PP(\theta \in \Theta_0)$ lze, jak již bylo zmíněno, počítat vzhledem k apriornímu i aposteriornímu rozdělení $\theta$.
-	\end{enumerate}
+		\end{enumerate}
 \end{example}
+	\subsection*{Výhody Bayesovského přístupu}
+\begin{enumerate}[a)]
+	\item Výpočet HPDR (High Posterior Density Region), kde $\mathrm{HPDR}(k)=\{\t\in\Theta:\pi(\t|\textbf{x})>k\}$ pro vhodnou konstantu $k>0$.
+
+	\begin{figure}[h]
+		\centering
+		\begin{tikzpicture}
+		\node[inner sep=0pt] (pic) at (0,0)
+		{\includegraphics[width=7.5cm]{pictures/picture_3_1.pdf}};
+		\draw [color=blue](0.7,1.4) node[anchor=north west] {$ \pi ( \theta | x ) $};
+		\draw [color=gray](-1.5,-2.2) node[anchor=north west] {$ \text{HPDR}_k $};
+		\draw [color=gray](-3.5,0.95) node[anchor=north west] {$ k $};
+		\end{tikzpicture}
+		\caption{HPD Region.}
+	\end{figure}
+	
+	\item Zkoumání hypotézy $\hypothesis{\t\in\Theta_0}{\t\notin\Theta_0}$. Máme k~dispozici $\X$ a k ní příslušnou statistiku $T(\X)$, kde $T(\X)\sim\FF_T$. Testujeme tedy na základě kritické oblasti $W_\alpha=\big\{ |T(\X)|<K_\alpha \big\}$. Toto byl přístup doposud v klasické statistice. Nyní nám ale Bayesova věta říká, že pokud je $\t$ znáhodněný parametr, tak potom můžeme přímo vyjádřit pravděpodobnost (ať už apriorní, či aposteriorní), že platí $H_0$, a to následovně
+	$$\PP^\pi(H_0) = \PP^\pi(\theta \in \Theta_0),\quad\text{resp.}\quad \PP^\pi(H_0|\textbf{x})=\PP^\pi(\t\in\Theta_0|\textbf{x}),$$
+	jelikož na parametr $\theta$ nahlížíme jako na náhodnou veličinu.
+
+\end{enumerate}

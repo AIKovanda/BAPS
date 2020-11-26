@@ -1,112 +1,130 @@
 \chapter{Princip postačitelnosti, podmíněnosti, věrohodnosti, zastavovací pravidlo sekvenčního principu, vztahy.}
 \begin{description}
-	\item[SUFFICIENCY princip:] Máme $\epsilon$ závislé na~$\t$, pozorování $x,y$ a~nechť je v~$\epsilon$ k~dispozici postačující statistika $T$ (PS). Víme, že $T(x)=T(y)$ a~chceme, aby závěry o~$\t$ na~základě $x$ nebo $y$ byly shodné. ($T$ je PS pokud rozdělení $X|T(X)=t$ nezávisí na~$\t$).
+	\item[SUFFICIENCY princip:] Máme experiment $\mathcal{E}$ závislý na~$\t$, pozorování $x,y$ a~nechť je v~$\mathcal{E}$ k~dispozici postačující statistika $T$ (PS). Víme-li, že $T(x)=T(y)$,~chceme, aby závěry o~$\t$ na~základě $x$ nebo $y$ byly shodné. ($T$ je PS pokud rozdělení $X|T(X)=t$ nezávisí na~$\t$).
 	
-	\item[LIKELIHOOD princip:] Informace o~$\t$ nesená $x$ je zcela obsažena ve~všech funkcích ($f_\X(\textbf{x},\t)=L$). Navíc, pokud máme pozorování $x_1$ experimentu $\epsilon_1$ a~$x_2$ v~experimentu $\epsilon_2$ taková, že 
-	$$ L_1(\t|x_1)=c L_2(\t|x_2),\qquad\forall\t\in\Theta.$$
-	Chceme, aby závěry o~parametru $\t$ v~obou experimentech byly shodné. označíme $\mathrm{Ev}(\epsilon_1,x_1)=\mathrm{Ev}(\epsilon_2,x_2)$ (Ev jako Evidence). 
-	\item[CONDITIONALITY princip:] Nechť máme dostupné $\epsilon_1,\epsilon_2$. Definujeme $\epsilon^*$ experiment tak, že vybereme náhodně mezi~$\epsilon_1 \vee \epsilon_2$, a~v~něm měříme $x_1/x_2$. Chceme, aby $\Ev(\epsilon^*,(j,x_j))=\Ev(\epsilon_j,x_j),~\forall j,\forall x_j$.
-	\item[STOPPING rule:] Máme $\epsilon_1,\epsilon_2$ jako zastavovací pravidlo $\tau$, které zastavuje posloupnost v~$\epsilon_n$. Jsou naměřeny $\textbf{x}=\Big( x_1^{\epsilon_1},x_2^{\epsilon_2},...,x_n^{\epsilon_n} \Big)$, ozn. $\{ \epsilon_1,...,\epsilon_n,\tau \}$ (sekvenční). Chceme, aby $\Ev\Big( \{ \epsilon_1,...,\epsilon_n,\tau \},\textbf{x} \Big)$ zvisela na~$\tau$ pouze prostřednictvím $\textbf{x}$, tzn. $$\Ev\Big( \{ \epsilon_1,...,\epsilon_n,\tau_1 \},\textbf{x} \Big)=\Ev\Big( \{ \epsilon_1,...,\epsilon_n,\tau_2 \},\textbf{x} \Big),~\forall \textbf{x}.$$
-	\item[BAYESOVSKÝ princip:] Taková procedůra, která využívá k~rozhodnutí o~parametru $\t$ aposteriorní hustotu $\pi(\t,\textbf{x})=\frac{f_\X\cdot\pi(\t)}{\int f_\X\cdot\pi(\t) d\t}$, např. $\widehat{\t}_B=''\EE{\pi(\t,\textbf{x})}''=\E^\pi(\t)$.
+	\item[LIKELIHOOD princip:] Informace o~$\t$ nesená $x$ je zcela obsažena ve~věrohodnostní funkci $f_\X(\textbf{x},\t)=L$. Navíc, pokud máme pozorování $x_1$ v experimentu $\mathcal{E}_1$ a~$x_2$ v~experimentu $\mathcal{E}_2$ taková, že 
+	$$ L_1(\t|x_1)=c L_2(\t|x_2),\quad\forall\t\in\Theta,$$
+	pak chceme, aby závěry o~parametru $\t$ v~obou experimentech byly shodné. Označíme to $\mathrm{Ev}(\mathcal{E}_1,x_1)=\mathrm{Ev}(\mathcal{E}_2,x_2)$ (Ev jako Evidence). 
+	\item[CONDITIONALITY princip:] Nechť máme dostupné $\mathcal{E}_1,\mathcal{E}_2$. Definujeme $\mathcal{E}^*$ experiment tak, že vybereme náhodně mezi~$\mathcal{E}_1 \vee \mathcal{E}_2$, a~v~tom vybraném naměříme $x_j,~j=1\vee 2$. Chceme, aby $\Ev\big(\mathcal{E}^*,(j,x_j)\big)=\Ev(\mathcal{E}_j,x_j),~\forall j,\forall x_j$.
+	\item[STOPPING rule:] Máme posloupnost experimentů $\mathcal{E}_1,\mathcal{E}_2,...$ a zastavovací pravidlo $\tau$, které zastavuje posloupnost v~bodě $\mathcal{E}_n$. Jsou naměřeny $\textbf{x}=\Big( x_1^{\mathcal{E}_1},x_2^{\mathcal{E}_2},...,x_n^{\mathcal{E}_n} \Big)$, ozn. $\{ \mathcal{E}_1,...,\mathcal{E}_n,\tau \}$ (sekvenční). Chceme, aby $\Ev\Big( \{ \mathcal{E}_1,...,\mathcal{E}_n,\tau \},\textbf{x} \Big)$ zvisela na~$\tau$ pouze prostřednictvím $\textbf{x}$, tzn. $$\Ev\Big( \{ \mathcal{E}_1,...,\mathcal{E}_n,\tau_1 \},\textbf{x} \Big)=\Ev\Big( \{ \mathcal{E}_1,...,\mathcal{E}_n,\tau_2 \},\textbf{x} \Big),~\forall \textbf{x}.$$
+	\item[BAYESOVSKÝ princip:] Taková procedůra, která využívá k~rozhodnutí o~parametru $\t$ aposteriorní hustotu $\pi(\t,\textbf{x})=\frac{f_\X\cdot\pi(\t)}{\int f_\X\cdot\pi(\t) d\t}$, např. $\widehat{\t}_B=''\EE{\pi(\t,\textbf{x})}''=\E^\pi(\t|\textbf{x})$.
 \end{description}
 
-\begin{example}[STOPPING rule]
-	Mějme $\epsilon_j..x_j\in\Ran(X_j)$, kde $X_j\sim f(x_j,\t),~\forall j\in 1,2,...$. Teoricky můžeme jít až do~nekonečna, ale někdy chceme experiment zastavit, abychom mohli vyhodnotit data. Definujeme tedy $\tau$ jako zastavení v~bodě $n$, pokud $\textbf{x}:=(x_1,...,x_n)\in\Ran(X_1)\times\Ran(X_2)\times...\times\Ran(X_n)\equal{ozn}\Aa_n$. Platí, že
-	$$ L(\t|\textbf{x})\equal{id}\Big(\prod f_{X_j}(x_j,\t) \Big)\cdot I_{\Aa_n}(\textbf{x})=f(x_1|\t)f(x_2|x_1,\t)...f(x_n|x_1,x_2,...,x_{n-1},\t)I_{\Aa_n}(\textbf{x}).$$
-	dvě různá zastavovací pravidal $\tau_1,\tau_2$, která zastaví na~základě stejného $\textbf{x}(\epsilon_n)$ ve~stejném bodě (!! prosím o~intro). Pokud platí $L$ princip, potom platí $SR$ princip, tedy ($L_1^{(\tau_1)}=L_2^{(\tau_2)}$).
+\begin{example}
+	Mějme $\mathcal{E}_j..x_j\in\Ran(X_j)$, kde $X_j\sim f(x_j,\t),~\forall j\in 1,2,...$. Teoricky můžeme jít až do~nekonečna, ale někdy chceme experiment zastavit, abychom mohli vyhodnotit data. Definujeme tedy $\tau$ jako zastavení v~bodě $n$, pokud $\textbf{x}:=(x_1,...,x_n)\in\Ran(X_1)\times\Ran(X_2)\times...\times\Ran(X_n)\equal{ozn}\Aa_n$. Platí, že
+	$$ L(\t|\textbf{x})\equal{id}\Big(\prod f_{X_j}(x_j,\t) \Big)\cdot I_{\Aa_n}(\textbf{x})\equal{non~id}f(x_1|\t)f(x_2|x_1,\t)...f(x_n|x_1,x_2,...,x_{n-1},\t)I_{\Aa_n}(\textbf{x}).$$
+	Vidíme, že $L(\t|\textbf{x})$ nezávisí na zastavovacím pravidlu $\tau$ přímo, ale pouze prostřednictvím $\textbf{x}$. Tedy pokud platí $L$ princip, potom platí i $SR$ princip.
 \end{example}
-\begin{example}[BAYESOVSKÝ princip]
-	Máme TV seriál. Označme $\t\in[0,1]$ jako podíl diváků, kteří daný seriál sledují. Bylo zjištěno, že 9 diváků seriál sledují a~3 nikoliv (to jsou naše data). Problém je, že nevíme, jakým způsobem byla data naměřena. 
+\begin{example}
+	Máme TV seriál. Označme $\t\in[0,1]$ jako sledovanost daného dílu. Bylo zjištěno, že 9 diváků seriál sledují a~3 nikoliv (to jsou naše data). Problém je, že nevíme, jakým způsobem byla data naměřena. 
 	\begin{description}
-		\item[$\epsilon_\mathrm{I}:$] vybráno $n=12$ lidí - test (9DIV,3NEDIV). Máme tedy náhodnou veličinu $X$ jako počet diváků z~$n=12$ nezávislých opakování. Z~toho plyne, že $X\sim \Bi(12,\t)$. Máme napozorováno $X(\omega)=x=9$.
-		\item[$\epsilon_\mathrm{II}:$] vybíráme $N$ osob a~testujeme, dokud nezískáme $3$ nediváky. Při~tomto způsobu ale měření probíhá zcela odlišně. Tedy $N\sim\mathrm{NegBi}(3,1-\t)$. Napozorováno tedy bylo $N(\omega)=n=12$.
+		\item[$\mathcal{E}_\mathrm{I}:$] vybráno $n=12$ lidí, otestováno, získána data (9DIV,3NEDIV). Máme tedy náhodnou veličinu $X$ jako počet diváků z~$n=12$ nezávislých opakování. Z~toho plyne, že $X\sim \Bi(12,\t)$. Máme napozorováno $X(\omega)=x=9$.
+		\item[$\mathcal{E}_\mathrm{II}:$] vybíráme $x$ osob a~testujeme tak dlouho, dokud nezískáme $3$ nediváky. Při~tomto způsobu ale měření probíhá zcela odlišně. Tedy celkový počet otestovaných osob \mbox{$N\sim\mathrm{NegBi}(3,1-\t)$}. Napozorováno tedy bylo $N(\omega)=n=12$.
 	\end{description}
-	$$ L_\mathrm{I}(\t,\epsilon_\mathrm{I})=c_1\t^9(1-\t)^3\quad\propto\quad L_\mathrm{II}(\t,\epsilon_\mathrm{II})=c_2\t^9(1-\t)^3,\quad \forall\t\in[0,1] $$
-	Z toho pro~LIKELIHOOD vyplývá, že $\Ev(\epsilon_\mathrm{I},(9))=\Ev(\epsilon_\mathrm{II},(12))$ (takže vlastně na~zastavovacím principu nezáleželo).
+	$$ \text{Vidíme, že}\qquad L_\mathrm{I}(\t,\mathcal{E}_\mathrm{I})=c_1\t^9(1-\t)^3\quad\propto\quad L_\mathrm{II}(\t,\mathcal{E}_\mathrm{II})=c_2\t^9(1-\t)^3,\quad \forall\t\in[0,1]. $$
+	Pokud platí LIKELIHOOD princip, pak $\Ev\big(\mathcal{E}_\mathrm{I},(9)\big)=\Ev\big(\mathcal{E}_\mathrm{II},(12)\big)$ (takže vlastně na~zastavovacím principu nezáleželo).
 \end{example}
 
 \begin{example}
-	Máme laboratoř a~v~ní dva přístroje. Jako $\t$ označme\begin{itemize}
-		\item 1. přístroj přesný $X_1\sim\NN(\t,0.1)$ [$\epsilon_1$] (vytížený)
-		\item 2. přístroj nepřesný $X_2\sim\NN(\t,10)$ [$\epsilon_2$] (volný)
+	Máme laboratoř a~v~ní dva přístroje:
+	\begin{itemize}
+		\item 1. přístroj přesný $X_1\sim\NN(\t,0.1)$ [$\mathcal{E}_1$] (vytížený),
+		\item 2. přístroj nepřesný $X_2\sim\NN(\t,10)$ [$\mathcal{E}_2$] (volný).
 	\end{itemize}
-	Rozhodování o~$\t$: 95\%-interval spolehlivosti pro~$\t$\begin{enumerate}[A)]
-		\item osobně. naměříme $x_1$ jako délka($IS_{95\%}$)$=0.62$ (na 2.př. nezáviselo).
-		\item vyšleme laborantku. která nese data (ale neví, ze~kterého přístroje jsou, prostě mohla použít i~volný přístroj). $\beta\in(0,1)$. Máme model $\Phi=\beta\NN(\t,0.1)+(1-\beta)\NN(\t,10).$ Pak zjistíme $x$ jako délku($IS_{95\%}$) s~hodnotou $5.19$.
+	Rozhodování o~$\t$: 95\%-interval spolehlivosti pro~$\t$.\begin{enumerate}[A)]
+		\item osobně, naměříme $x_1$ v $\mathcal{E}$, pak spočteme délku ($IS_{95\%}$)$=0.62$ (na 2. přístroji nezáviselo).
+		\item vyšleme laborantku. která nese data (ale neví, ze~kterého přístroje jsou, prostě mohla použít i~volný přístroj). Máme model $\Phi=\beta\NN(\t,0.1)+(1-\beta)\NN(\t,10)$, kde $\beta$ vyjadřuje míru obsazenosti 1. přístroje. Pak zjistíme $x$ jako délku($IS_{95\%}$) s~hodnotou $5.19$.
 	\end{enumerate}
 \end{example}
 \begin{theorem}
-	$S\wedge C\Leftrightarrow L\Rightarrow SR$. Implikace $S\Rightarrow C$ je důležitá, protože $B~''\Rightarrow'' L$.
+	$S\wedge C\Leftrightarrow L\Rightarrow SR$. Implikace $L\Rightarrow C$ a $L\Rightarrow S$ jsou důležité, protože $B~''\Rightarrow'' L$.
 	\begin{proof}
-		Mějme $\epsilon_1,\epsilon_2$, $x_1,x_2$ a~předpokládejme, že $L_1(\t)=c L_2(\t)$. Ptáme se, jestli je $\Ev(\epsilon_1,x_1)=\Ev(\epsilon_2,x_2)$. Víme, že $$ \underbrace{\pi_1(\t,x_1)}_{\epsilon_1}=\frac{f_X(x_1,\t)\pi(\t)}{\int f_X(x_1,\t)\pi(\t)\d\t}=\frac{c f_{X_2}\pi}{\int c f_{X_2}\pi\d\t}=\underbrace{\pi_2(\t| x_2)}_{\epsilon_2}.$$
-	\end{proof}
-	\begin{proof}[$L\Rightarrow S$]
-		Nechť T je PS($\epsilon$) a~nechť máme data $x_1^0,x_2^0$ (nula značí konkrétní výběr, nikoliv obecný), taková, že $T(x_1^0)=T(x_2^0)$. Máme k~dispozici Neymannův faktorizační teorém, $X\sim f(x,\t)$, pak $T(X)$ je PS právě tehdy, když $f(x|\t)=h(x)g\big(T(x),\t \big),~\forall\t$. Potom tedy 
-		$$ L(\t|x_1^0)=f(x_1^0,\t)=h(x_1^0)g\big( T(x_1^0),\t \big)=\frac{h(x_1^0)}{h(x_2^0)}\underbrace{h(x_2^0)g\big(T(x_2^0),\t \big)}_{f(x_2^0,\t)=L(\t,x_2^0)},\quad\forall\t.$$
-		Z toho vyplývá (dle L principu), že $\Ev(\epsilon,x_1^0)=\Ev(\epsilon,x_2^0)$.
-		
-	\end{proof}
-	\begin{proof}[$L\Rightarrow C$]
-		Uvažujeme experiment $\epsilon^*$ tak, že $(\mathrm{I},X_\mathrm{I})=X^*$, $(\forall j\in\{1,2\},~\forall x_1,x_2)$, tedy $$\Ev\big(\epsilon^*,(j,x_j) \big)=\Ev\big(\epsilon_j,x_j \big).$$
-		Dále potom $$ L^*(\t|\underbrace{j,x_j}_{X^*})=\PP\big(X^*=(j,x_j) \big)=\PP(I=j\wedge X_{I=j}=x_j)=\PP(I=j)\PP(X_j=x_j)=0.5f(x_j,\t)=0.5 L_j(\t,x_j).$$
-		Potom 
-		$$L^*=c L_j,~ \forall j,\forall x_j\quad\Rightarrow\quad\Ev\big(\epsilon^*,(j,x_j) \big)=\Ev\big(\epsilon_j,x_j \big).$$
+		\begin{enumerate}[$B"\Rightarrow"L$:]
+			\item Mějme $\mathcal{E}_1,\mathcal{E}_2$, $x_1,x_2$ a~předpokládejme, že $L_1(\t)=c L_2(\t)$. Ptáme se, jestli je $\Ev(\mathcal{E}_1,x_1)=\Ev(\mathcal{E}_2,x_2)$. Víme, že $$ \underbrace{\pi_1(\t|x_1)}_{\sim\mathcal{E}_1}=\frac{f_{X_1}(x_1|\t)\pi(\t)}{\int f_{X_1}(x_1|\t)\pi(\t)\d\t}=\frac{c f_{X_2}\pi}{\int c f_{X_2}\pi\d\t}=\underbrace{\pi_2(\t| x_2)}_{\sim\mathcal{E}_2}.$$
+		\end{enumerate}
+	\begin{enumerate}[$L\Rightarrow S$:]
+		\item Nechť T je PS pro exponenciální $\mathcal{E}$ a~nechť máme data $x_1^0,x_2^0$ (nula značí konkrétní výběr, nikoliv obecný), taková, že $T(x_1^0)=T(x_2^0)$. Máme k~dispozici Neymannův faktorizační teorém, $X\sim f(x,\t)$, pak $T(X)$ je PS právě tehdy, když $f(x|\t)=h(x)g\big(T(x),\t \big),~\forall\t$. Potom tedy 
+		$$ L(\t|x_1^0)=f(x_1^0,\t)=h(x_1^0)g\big( T(x_1^0),\t \big)=\frac{h(x_1^0)}{h(x_2^0)}\underbrace{h(x_2^0)g\big(T(x_2^0),\t \big)}_{f(x_2^0,\t)=L(\t|x_2^0)},\quad\forall\t.$$
+		Z toho vyplývá (dle L principu), že $\Ev(\mathcal{E},x_1^0)=\Ev(\mathcal{E},x_2^0)$.
+\end{enumerate}
+\begin{enumerate}[$L\Rightarrow C$:]
+	\item Uvažujeme experiment $\mathcal{E}^*$ tak, že $(\mathrm{I},X_\mathrm{I})=X^*$, $I=1\vee 2,~X_I=x_1\vee x_2$. 
+	Dále potom \[
+	\begin{split}
+	L^*\big(\t|(j,x_j)\big)&=\PP\big(X^*=(j,x_j) \big)=\PP(I=j\wedge X_{I=j}=x_j)=\PP(I=j)\PP(X_j=x_j)=\\&=0.5f(x_j,\t)=0.5 L_j(\t,x_j)
+	\end{split}
+	\]
+	pro $\forall\t,~\forall x_j$, tzn. $L^*=c L_j$. Potom tedy dle Likelihood principu máme $$\Ev\big(\mathcal{E}^*,(j,x_j) \big)=\Ev\big(\mathcal{E}_j,x_j \big),~\forall j,~\forall x_j.$$
+\end{enumerate}
 	\end{proof}
 \end{theorem}
 
-Statistical decision theory:
+\section{Statistical decision theory}
 
 \begin{define}
-	Označíme $\Dd$ jako množinu možných rozhodnutí o~$\t$, případně $\tau(\t)$. Dále potom $\delta\in\Dd$. $L:\Theta\times\Dd\to[0,+\infty)$ nazýváme \textbf{loss function} (ztrátová funkce) a~$L(\t,\delta)$ jako \textbf{míru ztráty} (shody, neshody), pokud pro~$\t$ použijeme rozhodnutí $\delta$.
+	Označíme $\Dd$ jako množinu možných rozhodnutí o~$\t$, případně $\tau(\t)$. Dále potom $\delta\in\Dd$. $L:\Theta\times\Dd\to[0,+\infty)$ nazýváme \textbf{loss function} (ztrátová funkce) a~$L(\t,\delta)$ je \textbf{míra ztráty} (shody, neshody), pokud pro~$\t$ použijeme rozhodnutí $\delta$.
 	
-	Označme dále $\Rr$ jako \textbf{reward space}, který je spojen s~$\Dd$,tj. $\forall\delta\in\Dd$ přiřazuje $r\in\Rr$ ($\delta\leftrightarrow r$). Předpokládejme dále, že na~$\Rr$ existuje úplné uspořádání ($\leq$) tak, že \begin{enumerate}[A1)]
+	Označme dále $\Rr$ jako \textbf{reward space}, který je spojen s~$\Dd$, tj. $\forall\delta\in\Dd$ přiřazujeme $r\in\Rr$ ($\delta\leftrightarrow r$). Předpokládejme dále, že na~$\Rr$ existuje úplné uspořádání ($\leq$) tak, že \begin{enumerate}[{A}1)]
 		\item $\forall r_1,r_2\in\Rr,~r_1\leq r_2 \vee r_2\leq r_1$,
-		\item $\forall r_1,r_2,r_3\in\Rr,~r_1\leq r_2 \wedge r_2\leq r_3~\Rightarrow~r_1\leq r_3$. Z~toho vyplývá, že 
-		$$ r_1<r_2,\quad r_2<r_1,\quad r_1=r_2~(r_1\sim r_2).$$
-		Poslední rovnost není myšlena jako číselná rovnost, ale spíše jako ekvivalence (peníze pro~nás můžou mít stejnou cenu, jako získané znalosti).
-	\end{enumerate}
-	Nad $\Rr$ definujeme prostor $\mathcal{P}$ jako pravděpodobnostní distribuci $\{\PP\}$ nad~$r$ ($r\sim\PP\in\mathcal{P}$). Předpokládejme, že na~$\mathcal{P}$ existuje úplné uspořádání ($\leq$) takové, že ...
+		\item $\forall r_1,r_2,r_3\in\Rr,~r_1\leq r_2 \wedge r_2\leq r_3~\Rightarrow~r_1\leq r_3$. 
+	\end{enumerate}Z~toho vyplývá, že nastává právě jedna varianta
+$$ r_1<r_2,\quad r_2<r_1,\quad r_1=r_2~(r_1\sim r_2).$$
+Poslední rovnost není myšlena jako číselná rovnost, ale spíše jako ekvivalence (peníze pro~nás můžou mít stejnou cenu, jako získané znalosti).
+
+	Nad $\Rr$ definujeme prostor $\mathcal{P}$ pravděpodobnostních distribucí náhodné veličiny $r$ ($r\sim\PP\in\mathcal{P}$). Předpokládejme, že na~$\mathcal{P}$ existuje úplné uspořádání ($\leq$) analogické s A1) a A2).
 \end{define}
 
-Motivace: označme $d_i$ jako investice do~$i$-té společnosti. Na~konci roku pak očekáváme dividenda $r_i$. $(d_i)_1^k...(r_i)_1^k...r_i\sim \PP_1\ast\PP_k$ (CLT)..
+Motivace: označme $d_i$ jako investice do~$i$-té společnosti. Na~konci roku pak očekáváme dividendy $r_i$. $(d_i)_1^k...(r_i)_1^k$ a celková dividenda $r=\sumin r_i$ má pak rozdělení $\PP=\PP_1\ast...\ast\PP_k$, které lze aproximovat z CLT.
 
-\section{15.10.}
 \begin{define}
 	Funkci $U$ na~$\R$ nazveme \textbf{užitkovou} (utility function), pokud $\forall P,Q\in\mathcal{P}$ platí, že 
-	$$ P\leq Q\quad\Leftrightarrow\quad\E^P\big[U(r)\big]\leq\E^Q\big[U(r)\big],$$ kde $r$ je náhodná veličina. Pokut to jde, můžeme například definovat $U(r)=r$.
+	$$ P\leq Q\quad\Leftrightarrow\quad\E^P\big[U(r)\big]\leq\E^Q\big[U(r)\big],$$ kde $r$ je náhodná veličina. Pokut to jde, můžeme například volit $U(r)=r$.
 \end{define}
 \begin{remark}
-	Pokud má $\mathcal{P}$ vhodné vlastnosti, pak existuje užitková funkce $U(r)$, která zachovává dané uspořádání $\mathcal{P}$. 
+	Pokud má $\mathcal{P}$ vhodné vlastnosti, pak existuje užitková funkce $U(r)$, která zachovává dané uspořádání $\mathcal{P}$ a pro~ztrátu $L(\t,\delta)$ můžeme volit $L(\t,\delta)=U(\t,\delta)=-\E[U(r)]+c$, kde konstantu $c$ přičítáme proto, abychom se~nedostali do~záporných čísel. Tím zajistíme, že pokud budeme provádět minimalizaci $L$, pak provádíme i~maximalizaci užitku.
 \end{remark}
-\begin{remark}
-	\begin{enumerate}[a)]
-		\item Pro~ztrátu $L(\t,\delta)$ platí, že $L(\t,\delta)=U(\t,\delta)=-\E[U(r)]+c$, kde konstantu $c$ přičítáme proto, abychom se~nedostali do~záporných čísel. Tím zajistíme, že pokud budeme provádět minimalizaci $L$, pak provádíme i~maximalizaci užitku.
-		\item Předpověď počasí v~Kanadě. Předpovědi jsou ve~tvaru "pravděpodobnost, že zítra bude pršet je $p$". Předpovědi od~$N$ různých společností chceme nějak porovnat. Sledujeme tedy 365 dní všechny předpovědi a~přiřadíme jim $p_1,...,p_N$. Definujeme relativní četnost $$\t_j=\frac{\text{\# dnů, kdy pršelo a~byla použita }p_j}{\text{\# dnů, kdy byla použita }p_j},j\in\widehat{N}.$$ Sestavíme ztrátovou funkci (poprvé použil De Grout v~roce 1988) $$L(\t,p)=\sumjn q_j(\underbrace{p_j-\t_j}_{H(q)})^2+\sum_{i=1}^N q_i\ln q_i,$$ kde $q_j=\frac{\text{\# použití }p_j}{365}$ a~$H(q)=-\sum_1^J q_j\ln q_j\geq 0$, kde ${q_j}_1^J$ jsou rozdělení pravděpodobnosti. Suma $\sum_{i=1}^N q_i\ln q_i$ pak penalizuje předpovědi, které jsou nevyvážené.
+\begin{example}[volba L]
+		Předpověď počasí v~Kanadě. Předpovědi jsou ve~tvaru "pravděpodobnost, že zítra bude pršet je $p$". Předpovědi od~různých společností chceme nějak porovnat. Sledujeme tedy 365 dní všechny předpovědi a~přiřadíme každému předpovídateli jeho použitá $p_1,...,p_N$. Definujeme relativní četnost $$\t_j=\frac{\text{\# dnů, kdy pršelo a~byla použita }p_j}{\text{\# dnů, kdy byla použita }p_j},\quad j\in\widehat{N}.$$ Sestavíme ztrátovou funkci (použil De Groot v~roce 1988) $$L(\boldsymbol{\t},\textbf{p})=\sum_{j=1}^N q_j(p_j-\t_j)^2+\sum_{i=1}^N q_i\ln q_i,$$ kde $q_j=\frac{\text{\# použití }p_j}{365}$ a~$H(\textbf{q})=-\sum_1^N q_j\ln q_j\geq 0$ je entropie rozdělení $\{q_j\}_{j=1}^N$. Suma $\sum_{i=1}^N q_i\ln q_i$ pak penalizuje předpovědi, které jsou nevyvážené, protože pro systém neuspořádanosti (rovnoměrné rozdělení $q_j=\frac{1}{N},~\forall j$) je $H(\textbf{q})$ maximální.
 		
-		Pokud bychom měli systém neuspořádanosti, pak by bylo $H(\textbf{q})$ maximální. O~$\textbf{q}$ víme, e má rovnoměrné rozdělení $q_j=\frac{1}{J}$.
-	\end{enumerate}
-\end{remark}
-\begin{remark}
-	Člen $\sumjn q_j(p_j-\t_j)^2$ v~minulé poznámce nemusí nutně být na~druhou, můžeme brát závorku i~v~absolutní hodnotě, případně ji umocnit na~$\alpha$. Zde vstupuju do~našeho problému tzv. \textbf{Apriorno}. Musíme totiž dopředu vědět některé informace, třeba $X\sim f(x,\t),~L(\t,\delta)$.
-\end{remark}
+		Člen $\sumjn q_j(p_j-\t_j)^2$ nemusí být nutně na~druhou, můžeme brát závorku i~v~absolutní hodnotě, případně ji umocnit na~$\alpha\in(0,2)$ a regulovat tak robustnost $L(\t,p)$. Tím vším vstupuje do~našeho problému tzv. \textbf{Apriorno}, musíme totiž dopředu vědět některé informace, třeba $X\sim f(x,\t)$, tvar $L(\t,\delta)$. 
+\end{example}
+
+\section{Rozhodovací principy statistiky}
+
 \begin{define}
-	Mějme $\Theta$, $\mathcal{F}=\big\{ f(x,\t):\t\in\Theta \big\}$,~$\mathscr{D}$, kde $\delta\in\mathscr{D}$ a~$\chi$ jako výběrový prostor s~daty $\textbf{x}$.
-	
-	Funkci $\delta:\chi\to\mathscr{D}$ nazýváme \textbf{rozhodovací funkce}, $\delta(\textbf{x})=\delta\in\mathscr{D}$. 
+	Mějme $\Theta$, $\mathcal{F}=\big\{ f(x,\t):\t\in\Theta \big\}$,~$\mathscr{D}$, kde $\delta\in\mathscr{D}$ a~$\chi$ jako výběrový prostor pro~data $\textbf{x}$. Funkci $\delta:\chi\to\mathscr{D}$ nazýváme \textbf{rozhodovací funkce}, $\delta(\textbf{x})=\delta\in\mathscr{D}$. 
 \end{define}
 \begin{description}
-	\item[Metoda A) minimalizace L] Máme $\delta_L(\textbf{x})=\argmin\limits_{\delta\in\mathscr{D}} L\big(\t,\delta(\textbf{x})\big),~\forall \t\in\Theta,~\forall\textbf{x}\in\chi$. (vynechal jsem prezentace)
-	\item[Metoda B) Riziková funkce] (risk function) je funkce $\RF:\Theta\to\R^+$ definovaná jako $$\RF(\t,\delta)=\E_\t L\big(\t,\delta(\textbf{X})\big)=\int L\big(\t,\delta(\textbf{x})\big)f_\textbf{X}(\textbf{x},\t)\d\textbf{x}.$$
-	Rizikovou funkci také nazýváme jako \textit{střední ztrátu}. Dále definujeme $\delta_U=\argmin\limits_{\delta\in\mathscr{D}} \RF(\t,\delta),~\forall\t\in\Theta$.
-	\input{PIC09}
+	\item[Metoda A) minimalizace L:] $\delta_L(\textbf{x})=\argmin\limits_{\delta\in\mathscr{D}} L\big(\t,\delta(\textbf{x})\big),~\forall \t\in\Theta,~\forall\textbf{x}\in\chi$. Avšak je obtížné, až nemožné, takto obecně stejnoměrně minimalizovat.
+	\item[Metoda B) Riziková funkce] (risk function) je funkce $\RF:\Theta\times\mathscr{D}\to\R^+$, definovaná jako $$\RF(\t,\delta)=\E_\t L\big(\t,\delta(\textbf{X})\big)=\int L\big(\t,\delta(\textbf{x})\big)f_\textbf{X}(\textbf{x},\t)\d\textbf{x}.$$
+	Rizikovou funkci také nazýváme jako \textit{střední ztrátu}. Definujeme $\delta_U=\argmin\limits_{\delta\in\mathscr{D}} \RF(\t,\delta),~\forall\t\in\Theta$.
 	
-	Ne vždy lze najít stejnoměrně nejlepší řešení. V~takovém případě pak přejdeme na~prostor $\mathscr{D}_0\subset\mathscr{D}$, kde již lze najít stejnoměrně nejlepší řešení (typicky vypustíme některé rizikové funkce). Můžeme tedy brát různé prostory rozhodovacích fukncí:
+	\begin{figure}[h]
+		\centering
+		\begin{tikzpicture}
+		\node[inner sep=0pt] (pic) at (0,0)
+		{\includegraphics[width=7.5cm]{pictures/picture_3_2.pdf}};
+		\draw [color=black](3.4,2.0) node[anchor=north west] {$ \text{R}(\theta, \delta_1 )
+			$};
+		\draw [color=black](3.4,1.3) node[anchor=north west] {$ \text{R}(\theta, \delta_2 )
+			$};
+		\draw [color=black](3.4,0.2) node[anchor=north west] {$ \text{R}(\theta, \delta_3 )
+		$};
+	\draw [color=black](3.4,-0.4) node[anchor=north west] {$ \text{R}(\theta, \delta_4 )
+	$};
+\draw [color=black](3.4,-.8) node[anchor=north west] {$ \text{R}(\theta, \delta_5 )
+$};
+		\end{tikzpicture}
+		\caption{HPD Region.}
+	\end{figure}
+	
+	Ne vždy lze najít stejnoměrně nejlepší řešení. V~takovém případě pak přejdeme na~prostor $\mathscr{D}_0\subset\mathscr{D}$, kde již lze najít stejnoměrně nejlepší řešení (typicky vypustíme některé rizikové funkce). Můžeme tedy optimalizovat na různých prostorech rozhodovacích fukncí, např.
 	\begin{enumerate}[a)]
 		\item  Prostor rozhodovacích funkcí, které jsou nestranné -- pak vede na~UMVUE.
-		\item $\mathscr{D}_0$ takový, který je prostorem rozhodovacích funkcí invariantních na~určitou transformaci (např. posunutí, přeškálování -- lokálně-měřítkové modely).
+		\item $\mathscr{D}_0$ takový, který je prostorem ekvivariantních rozhodovacích funkcí na modelech invariantních na~určitou transformaci (např. posunutí, přeškálování, tzn. tzv. \textbf{lokálně-měřítkové modely}).
 	\end{enumerate}
 	
-	Problémy: \begin{enumerate}[a)]
+	Problémy této stejnoměrně optimální strategie: \begin{enumerate}[a)]
 		\item $\delta_1,\delta_2$ a~k~nim $\RF(\t,\delta_1),\RF(\t,\delta_2)$ takové, že se~kříží -- nejsme schopni rozhodnout, která strategie je lepší.
 		\item Minimalizujeme $\E L$, ale předpis $\delta$ (odhadce) nezávisí na~$\textbf{x}$ - výběr nejlepšího $\delta$ nezávisí na~naměřených datech.
 		\item Na~rozmyšlenou je následující příklad \ref{example:problemy}.
@@ -116,23 +134,23 @@ Motivace: označme $d_i$ jako investice do~$i$-té společnosti. Na~konci roku p
 \begin{example} \label{example:problemy}
 	Mějme $X=\begin{cases}
 	\t-1,& \PP=\frac{1}{2}, \\ \t+1,& \PP=\frac{1}{2},
-	\end{cases}~\t\in\R,~\mathscr{D}=\R$. Potom
-	$ L(\t,\delta)=1-I_\t(\delta)$ nazýváme "0-1" ztrátovou funkci, viz obrázek \ref{pic11}.
-	
-	\input{PIC11}	
+	\end{cases}~\t\in\R,~\mathscr{D}=\R$. Volme
+	$ L(\t,\delta)=1-I_\t(\delta)$, kterou nazýváme "0-1" ztrátovou funkci.
 	
 	\begin{enumerate}[1)]
 		\item Máme $(x_1,x_2)$ data a~sestrojíme $\delta_0=\frac{x_1+x_2}{2}=\begin{cases}
 		\t\\\t-1\\\t+1
 		\end{cases}$ symetricky kolem~$\t$. Potom
-		$$ \RF(\t,\delta_0)=\E L(\t,\delta_0)=1-\E I_\t(\delta_0)=1-\PP(\delta_0=\t)=1-\PP(X_1\neq X_2)=\frac{1}{2}.$$ To nám říká, že střední ztráta je rovna $\frac{1}{2}$. V~průměru tedy 50\% případu bude příznivá (trefíme se~do~parametru).
+		$$ \RF(\t,\delta_0)=\E L(\t,\delta_0)=1-\E I_\t(\delta_0)=1-\PP(\delta_0=\t)=1-\PP(X_1\neq X_2)=\frac{1}{2}.$$ To nám říká, že střední ztráta je rovna $\frac{1}{2}$, tzn. že v~průměru 50\% případů bude příznivých (trefíme se~do~parametru).
 		\item Máme data $(x_1,x_2)$ a~sestrojíme $\delta_1=x_1+1=\begin{cases}
 		\t\\\t+2
 		\end{cases}$ nesymetricky rozdělené kolem~$\t$. Potom
-		$$\RF(\t,\delta_1)=...=1-\PP(\delta_1=\t).$$
+		$$\RF(\t,\delta_1)=...=1-\PP(\delta_1=\t)=1-\PP(X_1=\t-1)=\frac{1}{2}.$$
 	\end{enumerate}
-	Srovnání $\delta_0$ a~$\delta_1$ nelze rozhodnout na~základě $\RF$-strategie. Můžeme na~ně však využít např. UMVUE, MREE nebo N-P lemma.
+	Srovnání $\delta_0$ a~$\delta_1$ nelze rozhodnout na~základě $\RF$-strategie. 
 \end{example}
+
+\chapter{Nezkontrolováno}
 \begin{description}
 	\item[Metoda c) Strategie MINIMAXní] $\sup\limits_{\t\in\Theta} \RF(\t,\delta)$ nazýváme ''\textit{maxní}''(\textit{supremální}) riziková funkce a~je rovna $\RF_{\sup}(\t,\delta)$. Definujeme 
 	$$ \delta_0=\argmin\limits_{\delta\in\mathscr{D}}\RF_{\sup}(\t,\delta)=\argmin\limits_{\delta\in\mathscr{D}}\underbrace{\sup\limits_{\t\in\Theta}\underbrace{\E_\t L(\t,\delta(\X))}_{\RF(\t,\delta)}}_{r_{\sup}\in\R_0^+}.$$
@@ -142,11 +160,16 @@ Motivace: označme $d_i$ jako investice do~$i$-té společnosti. Na~konci roku p
 	Definujeme \textbf{minimaxní riziko} ve~tvaru $\overline{\RF}=\inf\limits_\delta\sup\limits_\t\RF(\t,\delta)$.
 \end{define}
 
-\input{PIC12}
-
-
-
-
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}
+	\node[inner sep=0pt] (pic) at (0,0)
+	{\includegraphics[width=15.0cm]{pictures/picture_3_4.pdf}};
+	\draw [color=black](3,0.5) node[anchor=north west] {$ \delta $};
+	\draw [color=black](0,-0.3) node[anchor=north west] {$ \theta $};
+	\end{tikzpicture}
+	\caption{1: zeleně suprema, nejmenší supremum je delta3 2: lepší je delta2, protože ač je riziko vysoké, jeho šance je velice malá - toto je nevýhoda minimaxní strategie 3: delta2 jen lehce překmitne delta1 a~pak se~k~němu blíží asymptoticky}
+\end{figure}
 
 \begin{remark}
 	Analogie z~teorie her. Pokud máme 2 hráče, kteří mají antagonický vztah (snaží se~navzájem poškodit a~nezáleží jim na~ztrátě). První hráč udělá nějaký tah. Druhý hráč pak udělá tah, který co nejvíc poškodí 1. hráče. První hráč to předvídá a~snaží se~tedy minimalizovat nejhorší možnou ztrátu.
@@ -336,8 +359,16 @@ Další výhody: $\pi(\t)$ a~máme data $\textbf{X}\sim f(\textbf{x},\t)\stackre
 \begin{remark}
 	$\epsilon_{a,b,c}$ chceme malé. Potřebujeme $a,b$ malé, $c$ ne příliš velké.
 	
-	\input{PIC13}
-	
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}
+	\node[inner sep=0pt] (pic) at (0,0)
+	{\includegraphics[width=15.0cm]{pictures/picture_4_1.pdf}};
+	\draw [color=black](3,0.5) node[anchor=north west] {$ \delta $};
+	\draw [color=black](0,-0.3) node[anchor=north west] {$ \theta $};
+	\end{tikzpicture}
+	\caption{popis}
+\end{figure}
 	
 \end{remark}
 
@@ -346,8 +377,18 @@ Problém principu neurčitosti: $\pi(\t)=$konst. na~$\Theta$ (rovnoměrnou aprio
 \begin{example}
 	Mějme $X\sim f(x|\t),~\t\in(0,1),~\pi(\t)=1$ na~$(0,1)$. Bayes: $\pi(\t|\textbf{x})$.. $\widehat{\t}_B(\textbf{x})$. Označme $\eta=\t^2...,~\t=\sqrt{\eta}$, reparametrizace $f(x|\t=\sqrt{\eta})=f(x|\eta)$. $\t$ považujeme za~znáhodněné (apriorně předpokládáme, že o~$\t$ nic nevíme). Transformace $\t$ na~$\eta$: $$\pi_H(\eta)=\pi(\sqrt{\eta})\big|\mathbb{J}_H(\eta)\big|=1\cdot\frac{1}{2\sqrt{\eta}}=\frac{1}{2\sqrt{\eta}}.$$
 	Je paradoxní, že o~$\t$ nemáme konkrétní apriorní informaci a~přitom o~$\eta=\t^2$ víme, že (viz obr. \ref{fig:p71}) nevlastní.
-	\input{PIC14}
-	
+
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}
+	\node[inner sep=0pt] (pic) at (0,0)
+	{\includegraphics[width=12.0cm]{pictures/picture_4_2.pdf}};
+	\draw [color=black](3,0.5) node[anchor=north west] {$ \delta $};
+	\draw [color=black](0,-0.3) node[anchor=north west] {$ \theta $};
+	\end{tikzpicture}
+	\caption{popis}
+\end{figure}
+
 \end{example}
 \begin{example}
 	Mějme $X\sim f(x|\t),~\t\in\Theta_j,~\t\sim\pi(\t),~\mathcal{F}=\{f(x|\t)\}$. Víme, že $\eta=\inv{H}(\t)$, tzn. $\t=H(\eta)$. 
@@ -622,3 +663,115 @@ Seznam CF: \begin{enumerate}[a)]
 	$\delta_L(x)=\argmin\limits_\delta L\big(\t,\delta(x)\big),~\forall\t,\forall x$, je vždy přípustný, pokud existuje, \item  $\delta_u=\argmin\limits_\delta\RF(\t,\delta),~\forall\t$, je vždy přípustný, pokud existuje, \item  $\delta_0=\argmin\limits_\delta\sup\limits_\t\RF(\t,\delta),~\forall\t$, je přípustný, pokud existuje a je jednoznačný, \item  $\delta^\pi=\argmin\limits_\delta r(\pi,\delta)$ je přípustný, pokud existuje a je jednoznačný.
 \end{itemize}
 \end{theorem}
+
+
+%%% 26.11.2020
+
+\begin{theorem}
+	Nechť $L(\t,\delta)$ je striktně konvexní v $\delta$ pro $\forall\t$. Mějme $\delta_0$ rozhodovací funkci pro $\tau(\t)|(\t)$ a $\delta_0$ je přípustný. Nechť $\delta'$ je tak, že $\RF(\t,\delta')=\RF(\t,\delta_0),~\forall\t$. Pak $\delta'=\delta_0$ s pravděpodobností 1 ($s.j.$), tedy $$ \E L(\t,\delta'(X))=\E\big(L(\t),\delta_0(X)\big).$$
+	\begin{proof}
+		Sporem: $\delta_0\neq\delta'$ s nenulovou pravděpodobností. Sestrojíme $\delta^\ast=\frac{\delta_0+\delta'}{2}$ konvexní. Pak
+		\[
+		\begin{split}
+		\RF(\t,\delta^\ast)&=\E L\big(\t,\delta^\ast(X)\big)=\E\Big[L\Big(\t,\frac{\delta_0+\delta'}{2}\Big)\Big]<\E\Big[\frac{1}{2}L(\t,\delta_0)+\frac{1}{2}L(\t,\delta')\Big]=\\&= \frac{1}{2}\underbrace{\E L(\t,\delta_0)}_{\RF(\t,\delta_0)}+\frac{1}{2}\underbrace{\E L(\t,\delta')}_{\RF(\t,\delta')=\RF(\t,\delta_0\forall\t)}=\RF(\t,\delta_0),~\forall\t.
+		\end{split}
+		\] 
+		To znamená, že $\delta^\ast\ll\delta_0$, což je spor s přípustností $\delta_0$.
+	\end{proof}
+\end{theorem}
+\begin{theorem}
+	Jednoznačná $\delta^\pi$ je vždy přípustná riziková funkce.\begin{proof}
+		$\delta^\pi$ jednoznačný Bayes, pak \[
+		\begin{split}
+		r(\pi,\delta^\pi)&<r(\pi,\delta),\quad\forall\delta,\\
+		\E \RF(\t,\delta^\pi)&<\E \RF(\t,\delta),\quad\forall\delta,\\
+		\int\RF(\t,\delta^\pi)\pi(\t)\d\t&<\int\RF(\t,\delta)\pi(\t)\d\t,\quad\forall\delta.		
+		\end{split}
+		\]
+		Z toho vyplývá, že $\exists\t_0$, $\RF(\t_0,\delta^\pi)<\RF(\t_0,\delta),~\forall\delta$. Kvůli tomu $\delta$ nedominuje $\delta^\pi$, a proto je $\delta^\pi$ přípustná.
+	\end{proof}
+\end{theorem}
+\begin{remark}
+	Pokud $L(\t,\delta)$ je striktně konvexní v $\delta$ pro $\forall\t$, pak $\delta^\pi$ je vždy jednoznačná.
+\end{remark}
+\begin{theorem}
+	ÚBM $f,~\pi(\t)$. Nechť $\pi(\t)>0$ pro $\forall\delta$. Pak $\delta^\pi$ je přípustná.
+	\begin{proof}
+		Sporem. Nechť $\delta^\pi$ je nepřípustná. Pak by ale $\exists\delta_0\ll\delta^\pi$, tzn. $\RF(\t,\delta_0)$ stejnoměrně vylepšuje $\RF(\t,\delta^\pi)$ a $\exists\t_0$ tak, že $\RF(\t_0,\delta_0)<\RF(\t_0,\delta^\pi)$,viz obr. \ref{fig:26}.
+		\begin{figure}[h]
+			\centering
+			\includegraphics[width=0.5\linewidth]{pictures/26.11}
+			\caption{popis}
+			\label{fig:26}
+		\end{figure}
+		Potom by ale existovalo $H_{\t_0}$ tak, že $\RF(\t,\delta_0)<\RF(\t,\delta^\pi)$ na $H_{\t_0}$. Potom by platilo, že $\E \RF(\t,\delta_0)<\E^\pi \RF(\t,\delta^\pi)$. To platí, protože $\pi(\t)>0,~\forall\t$. Potom tedy 
+		$$ r(\pi,\delta_0)<\underbrace{r(\pi,\delta^\pi)}_{r(\pi)<+\infty},$$ což je spor s Bayesem.
+	\end{proof} 
+\end{theorem}
+\begin{remark}
+	$\pi(\t)>0$
+\begin{enumerate}[a)]
+	\item 	\begin{center}
+			\includegraphics[width=0.5\linewidth]{pictures/26.11-2}
+	\end{center}
+\item $\RF(\t,\delta)=\E L\big(\t,\delta(X)\big)=\int_{\chi(\R^n)}L\big(\t,\delta(x)\big)f(x|\t)\d x$. Zde stačí zajistit, aby měl integrand Lebegovskou majorantu.
+\end{enumerate}
+
+\end{remark}
+\begin{remark}
+	$\delta^\pi$ podmiňuje přípustnost.\begin{description}
+		\item[Stein (1955+)] Nutnou a postačující podmínkou, za které jsou všechny přípustné riziková funkce limitami posloupnosti $\delta^{\pi_m}$ Bayesovskou strategií.
+		\item[Farrell (1968)] Předpokládáme, že \begin{enumerate}[1)]
+			\item $f(x|\t)$ spojitá v $\t$, $f>0$ na $\Theta$,
+			\item $L(\t,\delta)$ je striktně konvexní, spojitá,
+			\item $\forall E\subset\Theta$ kompaktní platí, že 
+			$$ \lim\limits_{\left\|\delta\right\|\to+\infty}\inf\limits_{\t\in E}L(\t,\delta)=+\infty.\qquad(\text{L nutně neomezená})$$ 
+		\end{enumerate}
+	Pak libovolná $\delta_0$ přípustná je limitou $\delta^{\pi_n}$ Bayes.
+	\item[Brown (1986)] Předpokládejme, že \begin{enumerate}[1)]
+		\item $L$ striktně konvexní,
+		\item $f(x|\t)>0$, $\mathscr{D}$ uzavřená a konvexní,
+		\item $L$ je zespoda polospojitá (lower semicontinuous), tzn. [$f$ je v $x_0$ zespoda polospojitá, pokud $(\forall\epsilon>0)(\exists H_{x_0})\big(f(x)\geq f(x_0)-\epsilon\big)$ na $H_{x_0}$].
+		\item $\lim\limits_{\left\|\delta\right\|\to+\infty} L(\t,\delta)=+\infty$.
+	\end{enumerate}
+Pak libovolná přípustná strategie je bodovou limitou $\delta^{\pi_n}$, kde $\pi_n(\t)$ mají omezený support.
+\item[Závěr] Přípustná $\delta$ je dosažitelná buď přímo $\delta^\pi$ nebo zobecněným $\delta^\pi$, nebo posloupností $\delta^{\pi_n}$.
+	\end{description}
+\end{remark}
+Jak přípustnost u klasických strategií?
+\begin{theorem}
+	Pokud existuje jednoznačně minimax $\delta_0$, pak je přípustný.\begin{proof}
+		Ponecháno čtenáři.
+	\end{proof}
+\end{theorem}
+\begin{theorem}["Obrátka"]
+	Nechť $L(\t,\delta)$ je striktně konvexní v $\delta$ pro $\forall\delta$, $\delta_0$ je přípustná riziková funkce a $\delta_0$ má konstantní riziko $\RF$. Pak $\delta_0$ je jednoznačný MINIMAX.
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.4\linewidth]{pictures/26.11-3}
+		\caption{popis}
+		\label{fig:26-3}
+	\end{figure}
+	
+	\begin{proof}
+		\begin{enumerate}[1)]
+			\item Ukážeme, že $\delta_0$ je minimax: sporem $\delta_0$ není minimax, viz obrázek \ref{fig:26-3}. Tím získáme spor s přípustností $\delta_0$.
+			\item Jednoznačnost: $\delta_0$ je minimax: sporem. $\exists\delta_1\neq\delta_0$ a přitom $/delta_1$ je minimax.
+			\begin{center}
+				\includegraphics[width=0.7\linewidth]{pictures/26.11-4}
+			\end{center}
+		\end{enumerate}
+	\end{proof}
+\end{theorem}
+\subsection{Steinův efekt (paradox) (1955)}
+Nechť $\textbf{X}\sim f(\textbf{x},\boldsymbol{\t}),~\boldsymbol{\t}\in\Theta\subset\R^k,~f$ je sféricky symetrické rozdělení okolo $\boldsymbol{\t}$, tzn. $f(\left\|\textbf{x}'-\boldsymbol{\t}\right\|+\left\|\textbf{x}''\right\|)$, kde $\textbf{x}=(\textbf{x}',\textbf{x}''),~\textbf{x}'\in\R^k,~\textbf{x}''\in\R^{n-k}$, např. $\NN_k(\boldsymbol{\t},\I_{k\times k})$,... Volme pro $\boldsymbol{\t}$ váženou kvadratickou $L_2^w(\boldsymbol{\t},\boldsymbol{\delta})=\sum_{j=1}^k w_j(\t_j-\delta_j)^2$. 
+	
+Označme $\boldsymbol{\delta}^\ast(\textbf{x})=\big(\delta_1^\ast(\textbf{x}),...,\delta_k^\ast(\textbf{x})\big)$ odhad (rozhodovacích funkcí) pro $\boldsymbol{\t}$ klasickou statistickou procedurou. 
+
+Pak $\exists k_0$ tak, že $\forall k\geq k_0$ je $\boldsymbol{\delta}^\ast$ nepřípustným odhadem (rozhodovací funkce) pro $\boldsymbol{\t}$, přestože $\delta_j^\ast$ jsou pro odhad $\t_j$ přípustné $\forall j\in\widehat{k}$.
+\begin{dusl}
+	Například klasickou rizikovou funkci metodou jednoznačného minimaxu je od $k_0$ beznadějná, protože víme (z nějaké věty), že pokud existuje jednoznačný minimax , pak je přípustný. Stein ale říká, že od $k_0$ klasická statistika nemůže poskytovat přípustný. Tedy stejnoměrně nejlepší strategie od dimenze $k_0$ neexistuje.
+\end{dusl}
+Co s tím? Místo $\delta_u=\argmin\limits_{\delta\in\mathscr{D}}\RF(\t,\delta),~\forall\t$ hledá $\delta_{pu}=\argmin\limits_{\delta\in\mathscr{D}_0\subset\mathscr{D}}\RF(\t,\delta)$, např. $\mathscr{D}_0$ nestranné odhady (UMVUE). Tím jsme zajistili existenci, ale pro vysokou dimenzi opět dostaneme nepřípustné řešení. Další možností je použít $\mathscr{D}_0'$ jako \textbf{ekvivariantní} odhady. Ty pak vedou na ...něco.
+
+Řešení se pak nabízí v podobě Bayese (začlenění apriorní informace $\pi$).
