@@ -427,7 +427,7 @@ Problém principu neurčitosti: $\pi(\t)=$konst. na~$\Theta$ (rovnoměrnou aprio
 		\item Pokud je $\lambda$ neznámé, pak $\pi(\lambda)=1$ na~$\R^+$ (nevlastní).
 		$$
 		\pi(\lambda|\textbf{x})=\frac{\fex \pi}{\int_{0}^{+\infty}\fex\pi\d\lambda}=\frac{1}{c}\frac{1}{\prod x_j!}\lambda^{\sumjn x_j}\e{-n\lambda}\sim\mathrm{Gamma}\big(\sumjn x_j+1,n\big).$$
-		Bayesovský odhad $$\widehat{\lambda}_B=\EE{\mathrm{Gamma}(\underbrace{\sum x_j+1}_{\alpha},\underbrace{n}_\beta)}=\frac{\alpha}{beta}=\frac{\sumjn x_j}{n}+\frac{1}{n}=\Oxn+\frac{1}{n}\sim \Oxn~(MLE).$$
+		Bayesovský odhad $$\widehat{\lambda}_B=\EE{\mathrm{Gamma}(\underbrace{\sum x_j+1}_{\alpha},\underbrace{n}_\beta)}=\frac{\alpha}{\beta}=\frac{\sumjn x_j}{n}+\frac{1}{n}=\Oxn+\frac{1}{n}\sim \Oxn~(MLE).$$
 		\item Jeffrys: $$\pi(\lambda)=\sqrt{\det \mathbb{J}(\lambda)}=\sqrt{\det \EE{-\frac{\partial^2\log\fex}{\partial\lambda^2}}}=\sqrt{n\cdot\frac{1}{\lambda}}=\sqrt{n}\frac{1}{\sqrt{\lambda}}.$$
 		Volba $\pi(\lambda)=\frac{1}{\sqrt{\lambda}}$ viz obr. \ref{fig:p72}.
 		\begin{figure}[h]
@@ -437,13 +437,13 @@ Problém principu neurčitosti: $\pi(\t)=$konst. na~$\Theta$ (rovnoměrnou aprio
 			\label{fig:p72}
 		\end{figure}
 		$$ \pi(\lambda|\textbf{x})=\frac{f \pi(\lambda)c}{\int f\pi(\lambda)c\d\lambda}=\frac{1}{c'}\lambda^{\sumjn x_j-\frac{1}{2}}\e{-n\lambda}\sim\mathrm{Gamma}\Big(\underbrace{\sumjn x_j+\frac{1}{2}}_{\tilde{\alpha}},\underbrace{n}_{\tilde{\beta}}\Big).$$
-		Bayes $\widehat{\lambda}_B^J=\EE{\mathrm{Gamma}(\tilde{\alpha},\tilde{\beta})}=\frac{\alpha}{\beta}=\Oxn+\frac{1}{2n}\sim\Oxn$ (MLE, velká $n$).
+		Bayes $\widehat{\lambda}_B^J=\EE{\mathrm{Gamma}(\tilde{\alpha},\tilde{\beta})}=\frac{\tilde{\alpha}}{\tilde{\beta}}=\Oxn+\frac{1}{2n}\sim\Oxn$ (MLE, velká $n$).
 	\end{enumerate}
 	Pro $n$ malé je volba a) nebo b) vlivná.
 \end{example}
 
 \section{Limitní aposteriorní hustoty ($\widehat{\t}_B$)}
-Mějme ÚBM $\{\mathcal{F},\pi(\t)\}$ a~předpokládejme, že $\pi\in\Pi=\{\pi(\t),\boldsymbol{\lambda}:\boldsymbol{\lambda}\in\Lambda\}=\mathcal{H}$. Volme $\lambda_0\in\partial\Lambda$ hranice a~definujme $\pi_{\lambda_0}(\t)=\lim\limits_{\lambda\to\lambda_0}c\cdot \pi(\t,\lambda)$, která bývá nevlastní. 
+Mějme ÚBM $\{\mathcal{F},\pi(\t)\}$ a~předpokládejme, že $\pi\in\Pi=\{\pi(\t),\boldsymbol{\lambda}:\boldsymbol{\lambda}\in\Lambda\}=\mathcal{H}$. Volme $\lambda_0\in\partial\Lambda$ z hranice a~definujme $\pi_{\lambda_0}(\t)=\lim\limits_{\lambda\to\lambda_0}c\cdot \pi(\t,\lambda)$, která bývá nevlastní. 
 
 Dále pak (s použitím záměny integrálu a~limity) $$\pi_{\lambda_0}(\t|\textbf{x})\equal{ozn}\frac{f\pi_{\lambda_0}(\t)}{\int_\Theta f\pi_{\lambda_0}(\t)\d\t}=\frac{f\lim\limits_{\lambda\to\lambda_0}c\pi(\t,\lambda)}{\int_\Theta f\lim\limits_{\lambda\to\lambda_0}c\pi(\t,\lambda) \d\t}=\lim\limits_{\substack{
 		\lambda\to\lambda_0\in\partial\Lambda\\\lambda\in\Lambda	}
@@ -483,7 +483,7 @@ Pokud $\pi_0=1$, pak $KL(\pi,1)=-\int\pi\log\pi=H(\pi)$. Závisí naše volba $\
 	\begin{proof}
 		$\pi(\t)\in\mathcal{H}$, tzn. $\pi(\t)\sim g_m(\t,\textbf{t})$. Z toho vyplývá, že $\exists\textbf{y}$ tak, že $T_m(\textbf{y})=\textbf{t}$. Dále pak platí, že \[
 		\begin{split}
-		\pi(&\t|\underbrace{\textbf{x}}_{\dim n})\sim f_n(\textbf{x}|\t)g_m(\boldsymbol{\t},\textbf{t})\sim \underbrace{g_m\big(\t,T_m(\textbf{y})\big)h_m(\textbf{y})}_{NF_nK\Rightarrow f_m(\textbf{y}|\t)}f_n(\textbf{x}|\t)=f_m(\textbf{y}|\t)f_n(\textbf{x}|\t)=\\&=\prod_{j=1}^nf(y_j|\t)\prod_{j=1}^nf(x_j|\t)=\prod_{j=1}^{m+n}\underbrace{f_{Z_j}(z_j|\t)}_{\textbf{z}=(\textbf{y},\textbf{x})}=f_{m+n}(\textbf{z}|\t)=\underbrace{h_{n+m}(\textbf{z})}_{\text{konst}}g_{n+m}\big(\t,\underbrace{T_{n+m}(\textbf{y})}_{\textbf{t}\in S_{n+m}}\big)\sim g_{n+m}(\t,\textbf{t})
+		\pi(&\t|\underbrace{\textbf{x}}_{\dim n})\sim f_n(\textbf{x}|\t)g_m(\boldsymbol{\t},\textbf{t})\sim \underbrace{g_m\big(\t,T_m(\textbf{y})\big)h_m(\textbf{y})}_{NF_nK\Rightarrow f_m(\textbf{y}|\t)}f_n(\textbf{x}|\t)=f_m(\textbf{y}|\t)f_n(\textbf{x}|\t)=\\&=\prod_{j=1}^mf(y_j|\t)\prod_{j=1}^nf(x_j|\t)=\prod_{j=1}^{m+n}\underbrace{f_{Z_j}(z_j|\t)}_{\textbf{z}=(\textbf{y},\textbf{x})}=f_{m+n}(\textbf{z}|\t)=\underbrace{h_{n+m}(\textbf{z})}_{\text{konst}}g_{n+m}\big(\t,\underbrace{T_{n+m}(\textbf{y})}_{\textbf{t}\in S_{n+m}}\big)\sim g_{n+m}(\t,\textbf{t})
 		\end{split}
 		\]
 		Z rozšíření na $m\in\R$ (vhodně) vznikne CF (obvyklá).
@@ -500,7 +500,7 @@ Protože $X\sim\Exp(\lambda),~\pi(\lambda)=\mathrm{Gamma}(\alpha,\beta)$, pak
 $$ \pi(\lambda|\textbf{x})=\frac{\lambda^n\e{-\lambda\sum x_j}\frac{1}{c}\lambda^{\alpha-1}\e{-\lambda\beta}}{\int_{0}^{+\infty}\lambda^n\e{-\lambda\sum x_j}\frac{1}{c}\lambda^{\alpha-1}\e{-\lambda\beta}\d\lambda}=\frac{\lambda^{n+\alpha-1}\e{-\lambda(\sum x_j+\beta)}}{c}\sim\mathrm{Gamma}\big(n+\alpha,\sumjn x_j+\beta\big)\in\Hobv .$$
 
 Seznam CF: \begin{enumerate}[a)]
-	\item $X\sin \mathrm{Bi}(n,p)\Rightarrow CF~\mathcal{H}=\{\pi(p)\sim\mathrm{Beta}(\alpha,\beta)\}$,
+	\item $X\sim \mathrm{Bi}(n,p)\Rightarrow CF~\mathcal{H}=\{\pi(p)\sim\mathrm{Beta}(\alpha,\beta)\}$,
 	\item $X\sim\mathrm{Poisson}(\lambda)\Rightarrow CF~\mathcal{H}=\{\pi(\lambda)\sim\mathrm{Gamma}(\alpha,\beta)\}$,
 	\item $X\sim U(0,\t),~\t\in\R^+\Rightarrow CF~\mathcal{H}=\{\pi(\t)\sim\mathrm{Pareto}(a,b)\}$, kde Paretovo rozdělení je mocninného typu $\t\sim\frac{a}{b}\big(\frac{b}{\t}\big)^{a+1},~\t\geq b$, které má těžké chvosty.
 	\item \begin{enumerate}[1)]
@@ -519,7 +519,7 @@ Seznam CF: \begin{enumerate}[a)]
 		\begin{figure}[h]
 			\centering
 			\includegraphics[width=0.7\linewidth]{pictures/8_1}
-			\caption{no idea what is it and where did it come from :D}
+			\caption{no idea what is it and where did it come from :D....me neither :D}
 			\label{fig:81}
 		\end{figure}
 		
@@ -584,7 +584,7 @@ Seznam CF: \begin{enumerate}[a)]
 	
 	Se zadáním můžeme dělat několik věcí:\begin{enumerate}[1)]
 		\item apriorní odhad $\widehat{p}_a=\E\mathrm{Beta}(a,b)=\frac{a}{a+b}.$
-		\item Můžeme naměřit data $x$a vypočíst klasický ML: $\widehat{p}_\mathrm{ML}=\frac{x}{n}=\oxnn ... \widehat{p}_\mathrm{UMVUE}$ $(L=L_2)$.
+		\item Můžeme naměřit data $x$ a vypočíst klasický ML: $\widehat{p}_\mathrm{ML}=\frac{x}{n}=\oxnn ... \widehat{p}_\mathrm{UMVUE}$ $(L=L_2)$.
 		\item Bayesovský odhad: $$\pi(p|x)=\frac{\binom{n}{x}p^x(1-p)^{n-x}\cdot\frac{1}{B(a,b)}p^{a-1}(1-p)^{b-1}}{\int_{0}^{1}...\d p}=\frac{1}{c}p^{x+a-1}(1-p)^{n-x+b-1}\sim\mathrm{Beta}(x+a,n-x+b).$$
 		Z toho potom $\widehat{p}_B=\E \mathrm{Beta}(x+a,n-x+b)=\frac{x+a}{n+a+b}=\frac{\oxnn+\frac{a}{n}}{1+\frac{a+b}{n}}$. Zároveň však
 		$$ \widehat{p}_B=\frac{a+b}{a+b+n}\frac{a}{a+b}+\frac{n}{n+a+b}\frac{x}{n}==\alpha_n\widehat{p}_a+(1-\alpha_n)\widehat{p}_\mathrm{ML}.$$
@@ -700,7 +700,7 @@ Seznam CF: \begin{enumerate}[a)]
 		Sporem. Nechť $\delta^\pi$ je nepřípustná. Pak by ale $\exists\delta_0\ll\delta^\pi$, tzn. $\RF(\t,\delta_0)$ stejnoměrně vylepšuje $\RF(\t,\delta^\pi)$ a $\exists\t_0$ tak, že $\RF(\t_0,\delta_0)<\RF(\t_0,\delta^\pi)$,viz obr. \ref{fig:26}.
 		\begin{figure}[h]
 			\centering
-			\includegraphics[width=0.5\linewidth]{pictures/26.11}
+			\includegraphics[width=0.5\linewidth]{pictures/26_11}
 			\caption{popis}
 			\label{fig:26}
 		\end{figure}
@@ -712,7 +712,7 @@ Seznam CF: \begin{enumerate}[a)]
 	$\pi(\t)>0$
 \begin{enumerate}[a)]
 	\item 	\begin{center}
-			\includegraphics[width=0.5\linewidth]{pictures/26.11-2}
+			\includegraphics[width=0.5\linewidth]{pictures/26_11-2}
 	\end{center}
 \item $\RF(\t,\delta)=\E L\big(\t,\delta(X)\big)=\int_{\chi(\R^n)}L\big(\t,\delta(x)\big)f(x|\t)\d x$. Zde stačí zajistit, aby měl integrand Lebegovskou majorantu.
 \end{enumerate}
@@ -748,7 +748,7 @@ Jak přípustnost u klasických strategií?
 	Nechť $L(\t,\delta)$ je striktně konvexní v $\delta$ pro $\forall\delta$, $\delta_0$ je přípustná riziková funkce a $\delta_0$ má konstantní riziko $\RF$. Pak $\delta_0$ je jednoznačný MINIMAX.
 	\begin{figure}[h]
 		\centering
-		\includegraphics[width=0.4\linewidth]{pictures/26.11-3}
+		\includegraphics[width=0.4\linewidth]{pictures/26_11-3}
 		\caption{popis}
 		\label{fig:26-3}
 	\end{figure}
@@ -758,7 +758,7 @@ Jak přípustnost u klasických strategií?
 			\item Ukážeme, že $\delta_0$ je minimax: sporem $\delta_0$ není minimax, viz obrázek \ref{fig:26-3}. Tím získáme spor s přípustností $\delta_0$.
 			\item Jednoznačnost: $\delta_0$ je minimax: sporem. $\exists\delta_1\neq\delta_0$ a přitom $/delta_1$ je minimax.
 			\begin{center}
-				\includegraphics[width=0.7\linewidth]{pictures/26.11-4}
+				\includegraphics[width=0.7\linewidth]{pictures/26_11-4}
 			\end{center}
 		\end{enumerate}
 	\end{proof}
