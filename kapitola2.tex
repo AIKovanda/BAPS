@@ -700,7 +700,7 @@ Seznam CF: \begin{enumerate}[a)]
 		Sporem. Nechť $\delta^\pi$ je nepřípustná. Pak by ale $\exists\delta_0\ll\delta^\pi$, tzn. $\RF(\t,\delta_0)$ stejnoměrně vylepšuje $\RF(\t,\delta^\pi)$ a $\exists\t_0$ tak, že $\RF(\t_0,\delta_0)<\RF(\t_0,\delta^\pi)$,viz obr. \ref{fig:26}.
 		\begin{figure}[h]
 			\centering
-			\includegraphics[width=0.5\linewidth]{pictures/26_11}
+			\includegraphics[width=0.5\linewidth]{pictures/26.11}
 			\caption{popis}
 			\label{fig:26}
 		\end{figure}
@@ -712,7 +712,7 @@ Seznam CF: \begin{enumerate}[a)]
 	$\pi(\t)>0$
 \begin{enumerate}[a)]
 	\item 	\begin{center}
-			\includegraphics[width=0.5\linewidth]{pictures/26_11-2}
+			\includegraphics[width=0.5\linewidth]{pictures/26.11-2}
 	\end{center}
 \item $\RF(\t,\delta)=\E L\big(\t,\delta(X)\big)=\int_{\chi(\R^n)}L\big(\t,\delta(x)\big)f(x|\t)\d x$. Zde stačí zajistit, aby měl integrand Lebegovskou majorantu.
 \end{enumerate}
@@ -748,7 +748,7 @@ Jak přípustnost u klasických strategií?
 	Nechť $L(\t,\delta)$ je striktně konvexní v $\delta$ pro $\forall\delta$, $\delta_0$ je přípustná riziková funkce a $\delta_0$ má konstantní riziko $\RF$. Pak $\delta_0$ je jednoznačný MINIMAX.
 	\begin{figure}[h]
 		\centering
-		\includegraphics[width=0.4\linewidth]{pictures/26_11-3}
+		\includegraphics[width=0.4\linewidth]{pictures/26.11-3}
 		\caption{popis}
 		\label{fig:26-3}
 	\end{figure}
@@ -758,7 +758,7 @@ Jak přípustnost u klasických strategií?
 			\item Ukážeme, že $\delta_0$ je minimax: sporem $\delta_0$ není minimax, viz obrázek \ref{fig:26-3}. Tím získáme spor s přípustností $\delta_0$.
 			\item Jednoznačnost: $\delta_0$ je minimax: sporem. $\exists\delta_1\neq\delta_0$ a přitom $/delta_1$ je minimax.
 			\begin{center}
-				\includegraphics[width=0.7\linewidth]{pictures/26_11-4}
+				\includegraphics[width=0.7\linewidth]{pictures/26.11-4}
 			\end{center}
 		\end{enumerate}
 	\end{proof}
@@ -775,3 +775,150 @@ Pak $\exists k_0$ tak, že $\forall k\geq k_0$ je $\boldsymbol{\delta}^\ast$ nep
 Co s tím? Místo $\delta_u=\argmin\limits_{\delta\in\mathscr{D}}\RF(\t,\delta),~\forall\t$ hledá $\delta_{pu}=\argmin\limits_{\delta\in\mathscr{D}_0\subset\mathscr{D}}\RF(\t,\delta)$, např. $\mathscr{D}_0$ nestranné odhady (UMVUE). Tím jsme zajistili existenci, ale pro vysokou dimenzi opět dostaneme nepřípustné řešení. Další možností je použít $\mathscr{D}_0'$ jako \textbf{ekvivariantní} odhady. Ty pak vedou na ...něco.
 
 Řešení se pak nabízí v podobě Bayese (začlenění apriorní informace $\pi$).
+
+\begin{description}
+	\item[1955 Steinův efekt:] Mějme $X\sim \NN_k(\boldsymbol{\t},\mathbb{I}_{k\times k})$ a nechť $\delta_0(\textbf{x}=\textbf{x})$ je ML, minimaxní a víme, že $\RF(\t,\delta_0)=konst$. Do roku 1955 se myslelo, že $\delta_0$ je jednoznačný minimax $\forall k$. Dle věty o jednoznačnosti minimaxu by bylo $\delta_0$  přípustné $\forall k$. Stein však roku 1955 ukázal, že $\delta_0$ je jednoznačný minimax přípustný pro $k=\hat{2}$ a že pro $(\forall k\geq3)(\exists\delta')(\delta'\ll\delta_0)$.
+	  \begin{figure}[h]
+		\centering
+		\begin{asy}
+		unitsize(0.65cm);
+		arrowbar myarrow=Arrow;
+		void xtick(real x){draw((x,-.1) -- (x,.1));}
+		
+		void ytick(real y){draw((-.1,y) -- (.1,y));}
+		
+		path s = ((0,.5) .. (1.5,1.2) .. (3,2) .. (4.5,1.2) .. (6,.5) .. (7,.4));
+		draw(s);
+		draw((-.1,0) -- (7.1,0));
+		draw((0,-.1) -- (0,3));
+		draw((6,-.1) -- (6,3));
+		dot((3,2));
+		draw((0,2)--(7,2));
+		ytick(2);
+		label("$\mathrm{R}(\theta,\delta_0)$",(3,2.5));
+		label("$\left\|\theta\right\|$",(3,-0.5));
+		\end{asy}
+		\caption{Popis.}\label{pic2}
+	\end{figure}
+	\item[1961 James-Steinův (shrinkable):]$$ \delta^\mathrm{JS}(\textbf{x})=\underbrace{\Big(1-\frac{k-2}{\left\|\textbf{x}\right\|}\Big)}_{\to-\infty\text{ při }\left\|\textbf{x}\right\|\to0_+}\textbf{x} $$
+	\item[1970 Baranchick:] $$ \delta_c^+(\textbf{x})=\Big(1-\frac{c}{\left\|\textbf{x}\right\|^2}\Big)^+\textbf{x}=\begin{cases}
+	\big(1-\frac{c}{\left\|\textbf{x}\right\|^2}\big)\textbf{x} & \text{pokud }c<\abs{\textbf{x}}^2 \\0 & \text{jinak,}
+	\end{cases} $$
+	kde $c\in[k-2,2(k-2)]$. Pak $\delta_c^+\ll \delta_\mathrm{JS} \ll \delta_0,~\forall k\geq 3$.
+	\item[1994 Shao et al.] $\exists \delta_S \ll \delta_c^+$, ale vylepšení už nestojí za tu složitost (tedy Baranchick je kompromis v rámci použitelnosti).
+\end{description}
+\begin{remark}
+   Pro $c=2k-1\notin [k-2,2(k-2)]$, $\RF(\t,\delta_{2k-1}^+)$.
+   \begin{figure}[h]
+   	\centering
+   	\begin{asy}
+   	unitsize(0.65cm);
+   	arrowbar myarrow=Arrow;
+   	void xtick(real x){draw((x,-.1) -- (x,.1));}
+   	
+   	void ytick(real y){draw((-.1,y) -- (.1,y));}
+   	
+   	path s = ((0,1) .. (2,2.2) .. (4,2.1) .. (6,2));
+   	draw(s);
+   	draw((-.1,0) -- (7.5,0), arrow=myarrow);
+   	draw((0,-.1) -- (0,3), arrow=myarrow);
+   	draw((0,2)--(6,2));
+   	ytick(2);
+   	label("$\mathrm{R}(\theta,\delta_{2k-1}^+)$",(2,0.8));
+   	label("$\left\|\theta\right\|$",(8.2,0));
+   	label("$\big(\delta_0(\textbf{x})=\textbf{x}\big)~\mathrm{R}(\theta,\delta_0)$",(9,2));
+   	label("$k$",(-0.4,2));
+   	\end{asy}
+   	\caption{Popis.}\label{pic1}
+   \end{figure}
+\end{remark}
+\begin{theorem}[Bergerův jev]
+	$\forall k_0\in\N$ (dimenzi $\boldsymbol{\t}$) $\exists L(\boldsymbol{\t},\boldsymbol{\delta})$, že $\boldsymbol{\delta}^\ast(\textbf{x})$ klasickou statistickou procedurou je $\forall k\geq k_0$ nepřípustný.
+\end{theorem}
+
+\begin{remark}
+	Připomínka: R-B. V. Mějme $L(\t,\delta)$ konvexní v $\delta$ při $\forall\t$, $\pi(\textbf{X})$ je PS, $delta_0$ je libovolná riziková funkce. Pak $\widehat{\delta}(\textbf{t})=\EE{\delta_0(\textbf{X})|\pi(\textbf{X})=\textbf{t}}\ll \delta_0$ a $\E\widehat{\delta}=\E \delta_0$.
+\end{remark}
+\begin{define}
+	Označme $L\big(\t,\delta|\tau(\t)\big)$. Pak $/delta(\textbf{x})$ nazýváme \textbf{nestranná} vzhledem k $L$, pokud $$ \E L\big(\t,\delta|\tau(\t)\big)\leq \E L\big(\t,\delta|\phi(\t))\big),~\forall\phi,\forall\t.$$
+\end{define}
+$\mathscr{D}_0\subset \mathscr{D}$ jako prostor nestranných rizikových funkcí vzhledem k $L$. Dále
+$ \delta_U^0=\argmin_{\delta\in\mathscr{D}_0}\RF(\t,\delta),~\forall\t$ jako UBU$_L$E, pokud existuje. Pak
+$$ L=L_2(\t,\boldsymbol{\delta})=(\t-\delta)^2\equal{\text{případně}}\big(\tau(\t)-\delta\big)^2\quad\Rightarrow\quad UMVUE.$$
+
+\begin{theorem}
+	Mějme $L$ konvexní v $\delta$, $T(\textbf{X})$ je ÚPS, $\delta_0$ nestranná $L_2$. Pak $\widehat{\delta}_\mathrm{R-B}(\textbf{t})$ je UMVUE (potenciálně nepřípustný).
+	
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.6\linewidth]{pictures/3.12-1}
+		\caption{popis}
+		\label{fig:3}
+	\end{figure}
+	
+\end{theorem}
+
+\section{Equivariantní R. F. (MRE$_q$E)}
+\begin{define}
+	Mějme grupu $(G,\ast)$, tj. $g_1,g_2\in G~\Rightarrow~ g_1\ast g_2$ a grupu $(R,\ast)$, \[
+	\begin{split}
+	g\in G,~x\in R&~\Rightarrow g\ast x \\ \textbf{x}\in\R^n&~\Rightarrow~ g\ast \textbf{x}\text{ po složkách }\textbf{x},~\forall g\in G.
+	\end{split}
+	\]
+	Pravděpodobnostní model $X_j=\t\ast \epsilon_j$, kde $\epsilon_j$ značí chyby měření s $\epsilon_j\sim \PP_{0j},~\forall j\in\hat{n}$. $\textbf{X}=(X_j)_{j=1}^n=\t\ast\boldsymbol{\epsilon}$, kde $\boldsymbol{\epsilon}$ je chyba měření s $$\boldsymbol{\epsilon}\stackrel{id}{\sim}\prod_{j=1}^n \PP_{0j}\equal{iid}(\PP_{0j})^n.$$
+	Dále platí, že $$ \textbf{X}\sim \PP_\t\in\PP_\ast=\{\PP_\t:\t\in\Theta\subset \R\}~\Rightarrow~ g\in G~\Rightarrow~ g\ast \textbf{X}=g\ast(\t\ast\boldsymbol{\epsilon})=(g\ast\t)\ast\boldsymbol{\epsilon}\sim \PP_{g\ast \t}\in \PP_\ast.$$ 
+\end{define}
+\begin{theorem}
+	Rozhodovací funkce $\delta$ se nazývá ekvivariantní pro $\t$ vzhledem k $(G,\ast)$, pokud $$ \delta(g\ast\textbf{x})=g\ast \delta(\textbf{x}),\quad \forall g\in G,~\forall \textbf{x}\in\chi(\R^n).$$
+\end{theorem}
+\begin{theorem}
+	Ztrátová funkce $L(\t,\delta)$ se nazývá \textbf{invariantní} vzhledem k $(G,\ast)$, pokud $$ L(g\ast\t,g\ast\boldsymbol{\delta})=L(\t,\boldsymbol{\delta}),\quad\forall \t,\forall g,\forall \delta.$$
+\end{theorem}
+\begin{dusl}
+	\[
+	\begin{split}
+	L(\t,\delta)\equal{\forall g}L(h\ast\t,g\ast \delta)&=\Big| \begin{array}{l}
+	\text{volme }g=\tilde{\t}\text{ inverzní prvek v }(G,\ast)\\\text{tzn. }\tilde{\t}\ast\t=I/O\text{ neutrální prvek v }(G,\ast)
+	\end{array}
+	\Big|=L(\tilde{\t}\ast\t,\tilde{\t}\ast\delta)=\\&=L(I/O,\tilde{\t}\ast\delta)=\rho(\tilde{\t}\ast\delta),\quad\forall\t,\forall\delta.
+	\end{split}
+	\] 
+\end{dusl}
+\begin{dusl}
+	\[
+	\begin{split}
+	\RF(\t,\delta)&=\E_\t L\big(\t,\delta(\textbf{X})\big)\equal{inv.~L}\E_\t\rho\big(\tilde{\t}\ast\delta(\textbf{X})\big)=\Big|\begin{array}{l}
+	\textbf{x}=\t\ast\boldsymbol{\epsilon}\\\boldsymbol{\epsilon}\sim\PP_0	
+	\end{array}
+	\Big|=\E_{\PP_0}\rho\big(\tilde{\t}\ast\delta(\t\ast\boldsymbol{\epsilon})\big)\equal{\delta~eqiv.}\\&=\E_{\PP_0}\rho\big(\tilde{\t}\ast\t\ast\delta(\boldsymbol{\epsilon})\big)=\E_{\PP_0}\rho\big(I/O\ast\delta(\boldsymbol{\epsilon})\big)=konst~v~\t,~\forall\t,
+	\end{split}
+	\]
+což nezávisí na $\t$.
+\end{dusl}
+\begin{define}
+	Definujeme $$ \delta^\ast:=\argmin_{\delta\in\mathscr{D}_{Eq}}\RF(\t,\delta),~\forall\t\quad-\text{říkáme }MRE_qE.$$
+\end{define}
+\begin{example}
+	$(G,\ast)=(R,+)$... $g\ast\textbf{x}=(x_1+g,...,x_n+g)=g+\textbf{x}.$Pravděpodobnostní model se na Location family
+	\[
+\begin{split}
+X_j&=\t+\epsilon_j\quad(\text{aditivní chyba})\\
+\textbf{x}&=\t+\boldsymbol{\epsilon}\sim\PP_\t\text{ a platí, že }\\
+g\ast \textbf{X}&=g+\textbf{X}\sim \PP_{g+\t}.
+\end{split}
+\]
+	$\delta$ je ekvivariantní, pokud $\delta(g+\textbf{x})=g+\delta(\textbf{x})$, např. $\delta(\textbf{x})=\frac{1}{n}\sumjn X_j$ je ekvivariantní rifizová funkce, protože $\delta(g+\textbf{x})=\frac{1}{n}\sumjn (X_j+g)=\frac{1}{n}\sumjn X_j + g=\delta(\textbf{x})+g$. $L$ invariantní znamená, že $L(\t,\delta)=\rho(\tilde{\t}\ast\delta)=\rho(\delta-\t)\equal{\text{např.}}(\delta-\t)^2=L_2$.
+\end{example}
+
+Závěr: Existuje procedura pro hledání $MSE_qE$ .. pro $(G,\ast)=(R,+)$ ve tvaru
+$$ \delta^\ast(\textbf{x})=\argmin_{\delta\in\mathscr{D}_{Eq}}\frac{\int\rho(\delta-\t)f(\textbf{x}-\t)\d\t}{\int f(\textbf{x}-\t)\d\t}=\delta_B^{\pi=1}(\textbf{x}).$$
+
+\begin{remark}
+	Připomínka: $\widehat{\delta_B}=\argmin_\delta r(\pi,\delta)$ nebo $\widehat{\delta_B}(\textbf{x})=\argmin_{\delta(\textbf{x})}\rho(\pi,\delta|\textbf{x})$, kde 
+	$$ \rho(\pi,\delta|\textbf{x})=\E^\pi[L|\textbf{x}]=\int L(\t,\delta)\pi(\t|\textbf{x})\d\t=\int L(\t,\delta)\frac{f \pi(\t)}{\int f \pi(\t)\d\t}\d\t.$$
+ Zde stačí volit $\pi(\t)=1$ na $\Theta$. Pokud zvolíme konkrétně $L=L_2$, pak $\delta^\ast(\textbf{x})=\frac{\int\t f(\textbf{x}-\t)\d\t}{\int f(\textbf{x}-\t)\d\t}$, což se nazývá \textbf{Pitmanův odhad}.
+\end{remark}
+\begin{example}
+	Mějme $\epsilon_j~iid~\mathrm{Exp}(1)$, $f(\textbf{x}-\boldsymbol{\t})=\e{-\sumjn x_j+n\t}$, pokud $\t< x_{(1)}=\min (x_j)_1^n$. Dále pak
+	$$ \delta^\ast(\textbf{x})\equal{L_2}...=x_{(1)}-\frac{1}{n},$$ což je Pitmanův odhad pro $\mathrm{Exp}(1)$, tedy $MRE_qE$.
+\end{example}

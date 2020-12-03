@@ -16,10 +16,14 @@
 \usepackage[utf8]{inputenc}
 \usepackage[czech]{babel}
 \usepackage{relsize}
+
+
 \usepackage[unicode,breaklinks=true,hypertexnames=false]{hyperref}
 \def\dotminus{\mathbin{\ooalign{\hss\raise1ex\hbox{.}\hss\cr
 			\mathsurround=0pt$-$}}}
-
+		
+\usepackage[inline,attach]{asymptote}
+\usepackage[dvips]{attachfile2}
 %definice textu nad rovnítkem
 \newcommand{\equal}[1]{\mathop{\overset{#1}{\resizebox{\widthof{.{\ensuremath{\mathop{\overset{#1}{\mathop{=}}}}.}}}{\heightof{=}}{$\mathop{=}$}}}}
 
