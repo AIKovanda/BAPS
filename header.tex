@@ -18,6 +18,7 @@
 \usepackage{relsize}
 
 
+
 \usepackage[unicode,breaklinks=true,hypertexnames=false]{hyperref}
 \def\dotminus{\mathbin{\ooalign{\hss\raise1ex\hbox{.}\hss\cr
 			\mathsurround=0pt$-$}}}
@@ -232,3 +233,6 @@
 \renewcommand{\indexname}{Rejstřík}
 
 \frenchspacing
+
+\usepackage[symbol]{footmisc} %Speciálná \footnote{}
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}

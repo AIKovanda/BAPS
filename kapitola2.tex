@@ -6,8 +6,8 @@
 	$$ L_1(\t|x_1)=c L_2(\t|x_2),\quad\forall\t\in\Theta,$$
 	pak chceme, aby závěry o~parametru $\t$ v~obou experimentech byly shodné. Označíme to $\mathrm{Ev}(\mathcal{E}_1,x_1)=\mathrm{Ev}(\mathcal{E}_2,x_2)$ (Ev jako Evidence). 
 	\item[CONDITIONALITY princip:] Nechť máme dostupné $\mathcal{E}_1,\mathcal{E}_2$. Definujeme $\mathcal{E}^*$ experiment tak, že vybereme náhodně mezi~$\mathcal{E}_1 \vee \mathcal{E}_2$, a~v~tom vybraném naměříme $x_j,~j=1\vee 2$. Chceme, aby $\Ev\big(\mathcal{E}^*,(j,x_j)\big)=\Ev(\mathcal{E}_j,x_j),~\forall j,\forall x_j$.
-	\item[STOPPING rule:] Máme posloupnost experimentů $\mathcal{E}_1,\mathcal{E}_2,...$ a zastavovací pravidlo $\tau$, které zastavuje posloupnost v~bodě $\mathcal{E}_n$. Jsou naměřeny $\textbf{x}=\Big( x_1^{\mathcal{E}_1},x_2^{\mathcal{E}_2},...,x_n^{\mathcal{E}_n} \Big)$, ozn. $\{ \mathcal{E}_1,...,\mathcal{E}_n,\tau \}$ (sekvenční). Chceme, aby $\Ev\Big( \{ \mathcal{E}_1,...,\mathcal{E}_n,\tau \},\textbf{x} \Big)$ zvisela na~$\tau$ pouze prostřednictvím $\textbf{x}$, tzn. $$\Ev\Big( \{ \mathcal{E}_1,...,\mathcal{E}_n,\tau_1 \},\textbf{x} \Big)=\Ev\Big( \{ \mathcal{E}_1,...,\mathcal{E}_n,\tau_2 \},\textbf{x} \Big),~\forall \textbf{x}.$$
-	\item[BAYESOVSKÝ princip:] Taková procedůra, která využívá k~rozhodnutí o~parametru $\t$ aposteriorní hustotu $\pi(\t,\textbf{x})=\frac{f_\X\cdot\pi(\t)}{\int f_\X\cdot\pi(\t) d\t}$, např. $\widehat{\t}_B=''\EE{\pi(\t,\textbf{x})}''=\E^\pi(\t|\textbf{x})$.
+	\item[STOPPING rule:] Máme posloupnost experimentů $\mathcal{E}_1,\mathcal{E}_2,...$ a zastavovací pravidlo $\tau$, které zastavuje posloupnost v~bodě $\mathcal{E}_n$. Jsou naměřeny $\textbf{x}=\Big( x_1^{\mathcal{E}_1},x_2^{\mathcal{E}_2},...,x_n^{\mathcal{E}_n} \Big)$, ozn. $\{ \mathcal{E}_1,...,\mathcal{E}_n,\tau \}$ (sekvenční). Chceme, aby $\Ev\Big( \{ \mathcal{E}_1,...,\mathcal{E}_n,\tau \},\textbf{x} \Big)$ závisela na~$\tau$ pouze prostřednictvím $\textbf{x}$, tzn. $$\Ev\Big( \{ \mathcal{E}_1,...,\mathcal{E}_n,\tau_1 \},\textbf{x} \Big)=\Ev\Big( \{ \mathcal{E}_1,...,\mathcal{E}_n,\tau_2 \},\textbf{x} \Big),~\forall \textbf{x}.$$
+	\item[BAYESOVSKÝ princip:] Taková procedura, která využívá k~rozhodnutí o~parametru $\t$ aposteriorní hustotu $\pi(\t,\textbf{x})=\frac{f_\X\cdot\pi(\t)}{\int f_\X\cdot\pi(\t) d\t}$, např. $\widehat{\t}_B=''\EE{\pi(\t,\textbf{x})}''=\E^\pi(\t|\textbf{x})$.
 \end{description}
 
 \begin{example}
@@ -77,11 +77,11 @@ Poslední rovnost není myšlena jako číselná rovnost, ale spíše jako ekviv
 Motivace: označme $d_i$ jako investice do~$i$-té společnosti. Na~konci roku pak očekáváme dividendy $r_i$. $(d_i)_1^k...(r_i)_1^k$ a celková dividenda $r=\sumin r_i$ má pak rozdělení $\PP=\PP_1\ast...\ast\PP_k$, které lze aproximovat z CLT.
 
 \begin{define}
-	Funkci $U$ na~$\R$ nazveme \textbf{užitkovou} (utility function), pokud $\forall P,Q\in\mathcal{P}$ platí, že 
+	Funkci $U$ na~$\Rr$ nazveme \textbf{užitkovou} (utility function), pokud $\forall P,Q\in\mathcal{P}$ platí, že 
 	$$ P\leq Q\quad\Leftrightarrow\quad\E^P\big[U(r)\big]\leq\E^Q\big[U(r)\big],$$ kde $r$ je náhodná veličina. Pokut to jde, můžeme například volit $U(r)=r$.
 \end{define}
 \begin{remark}
-	Pokud má $\mathcal{P}$ vhodné vlastnosti, pak existuje užitková funkce $U(r)$, která zachovává dané uspořádání $\mathcal{P}$ a pro~ztrátu $L(\t,\delta)$ můžeme volit $L(\t,\delta)=U(\t,\delta)=-\E[U(r)]+c$, kde konstantu $c$ přičítáme proto, abychom se~nedostali do~záporných čísel. Tím zajistíme, že pokud budeme provádět minimalizaci $L$, pak provádíme i~maximalizaci užitku.
+	Pokud má $\mathcal{P}$ vhodné vlastnosti, pak existuje užitková funkce $U(r)$, která zachovává dané uspořádání $\mathcal{P}$ a pro~ztrátu $L(\t,\delta)\geq 0$ můžeme volit $L(\t,\delta)=U(\t,\delta)=-\E[U(r)]+c$, kde konstantu $c$ přičítáme proto, abychom se~nedostali do~záporných čísel. Tím zajistíme, že pokud budeme provádět minimalizaci $L$, pak provádíme i~maximalizaci užitku.
 \end{remark}
 \begin{example}[volba L]
 		Předpověď počasí v~Kanadě. Předpovědi jsou ve~tvaru "pravděpodobnost, že zítra bude pršet je $p$". Předpovědi od~různých společností chceme nějak porovnat. Sledujeme tedy 365 dní všechny předpovědi a~přiřadíme každému předpovídateli jeho použitá $p_1,...,p_N$. Definujeme relativní četnost $$\t_j=\frac{\text{\# dnů, kdy pršelo a~byla použita }p_j}{\text{\# dnů, kdy byla použita }p_j},\quad j\in\widehat{N}.$$ Sestavíme ztrátovou funkci (použil De Groot v~roce 1988) $$L(\boldsymbol{\t},\textbf{p})=\sum_{j=1}^N q_j(p_j-\t_j)^2+\sum_{i=1}^N q_i\ln q_i,$$ kde $q_j=\frac{\text{\# použití }p_j}{365}$ a~$H(\textbf{q})=-\sum_1^N q_j\ln q_j\geq 0$ je entropie rozdělení $\{q_j\}_{j=1}^N$. Suma $\sum_{i=1}^N q_i\ln q_i$ pak penalizuje předpovědi, které jsou nevyvážené, protože pro systém neuspořádanosti (rovnoměrné rozdělení $q_j=\frac{1}{N},~\forall j$) je $H(\textbf{q})$ maximální.
@@ -133,7 +133,7 @@ $};
 
 \begin{example} \label{example:problemy}
 	Mějme $X=\begin{cases}
-	\t-1,& \PP=\frac{1}{2}, \\ \t+1,& \PP=\frac{1}{2},
+	\t-1 & \text{s pravd. } \frac{1}{2}, \\ \t+1 & \text{s pravd. } \frac{1}{2},
 	\end{cases}~\t\in\R,~\mathscr{D}=\R$. Volme
 	$ L(\t,\delta)=1-I_\t(\delta)$, kterou nazýváme "0-1" ztrátovou funkci.
 	
@@ -219,7 +219,7 @@ $};
 \end{remark}
 \begin{example}
 	Mějme $X\sim\underbrace{\NN(\t,1)}_{f_X}$, $\t\in\R,~\pi(\t)=1$ (konstantní) na~$\R$ (nevlastní hustota). Pak
-	$$ \pi(\t,|x)=\frac{f_X \pi(\t)}{\int_{-\infty}^{+\infty}f_X \pi(\t)\d\t}=\frac{1}{c}\e{-\frac{1}{2}(\t-x)^2}=\frac{1}{\sqrt{2\pi}}\e{-\frac{1}{2}(\t-x)^2}.$$
+	$$ \pi(\t|x)=\frac{f_X \pi(\t)}{\int_{-\infty}^{+\infty}f_X \pi(\t)\d\t}=\frac{1}{c}\e{-\frac{1}{2}(\t-x)^2}=\frac{1}{\sqrt{2\pi}}\e{-\frac{1}{2}(\t-x)^2}.$$
 	\[\begin{split}
 	\delta^\pi(\textbf{x})&=\EE{\pi(\t|x)}=\E\NN(x,1)=x\text{ obecněji }\overline{x}_n\\
 	r(\pi)&= r(\pi,\delta^\pi)=\E^\pi R=\E^\pi[\E^f L_2]\equal{def}\E^\pi\big[ \E^f\underbrace{\big(\t-\delta^\pi(X) \big)^2}_{L_2} \big]=\E^\pi\E^f(\t-X)^2=\\&=\E^\pi\big[ \E^f(X-\E^fX)^2 \big]=\E^\pi(\sigma^2)=\int_{-\infty}^{+\infty}\sigma^2\cdot 1\d\t=+\infty
@@ -227,8 +227,8 @@ $};
 	\]
 \end{example}
 \begin{define}
-	Máme $L,~f_X,~\pi(\t)$. Definujeme \textbf{aposteriorní Bayesovskou rizikovou funkci} vztahem
-	$$ \rho(\pi,\delta|\textbf{x})=\E^\pi\big[ L\big(\t,\delta(\textbf{x})\big)|\textbf{x} \big]=\int L\big(\t,\delta(\textbf{x})\big)\pi(\t|\textbf{x})\d\t.$$ 
+	Máme $L,~f_{\X},~\pi(\t)$. Definujeme \textbf{aposteriorní Bayesovskou rizikovou funkci} vztahem
+	$$ \rho(\pi,\delta(\textbf{x})|\textbf{x})=\E^\pi\big[ L\big(\t,\delta(\textbf{x})\big)|\textbf{x} \big]=\int L\big(\t,\delta(\textbf{x})\big)\pi(\t|\textbf{x})\d\t.$$ 
 \end{define}
 
 \begin{description}
@@ -236,46 +236,48 @@ $};
 \end{description}
 
 \begin{remark}
-	Výhoda tého definice je, že $\delta_\rho^\pi$ závisí přímo na~datech $\textbf{x}$. Nevýhoda pak je, že musíme minimalizaci dělat opakovaně pro~každá data $\textbf{x}$.
+	Výhoda této definice je, že $\delta_\rho^\pi$ závisí přímo na~datech $\textbf{x}$. Nevýhoda pak je, že musíme minimalizaci dělat opakovaně pro~každá data $\textbf{x}$.
 \end{remark}
 \begin{theorem}
-	Mám-li $\delta_\rho^\pi~\forall s.v.\textbf{x}$, pak $/delta_\rho^\pi=\delta^\pi$ Bayesovskou rizikovou funkci (D strategie $\delta^\pi=\argmin_\delta r(\pi,\delta)$).
+	Máme-li $\delta_\rho^\pi$ pro s.v. $\textbf{x}$, pak $\delta_\rho^\pi=\delta^\pi$, tj. je rovna s.v. Bayesovské rizikové funkci (D strategie $\delta^\pi=\argmin_\delta r(\pi,\delta)$).
 	\begin{proof}
 		\[
 		\begin{split}
-		\rho\big(\pi,\delta_\rho^\pi(\textbf{x})|\textbf{x}\big)&\leq \rho(\pi,\delta(\textbf{x})|\textbf{x}), \\
-		\E^m\rho\big(\pi,\delta_\rho^\pi(\textbf{x})|\textbf{x}\big)&\leq \E^m\rho(\pi,\delta(\textbf{x})|\textbf{x}),
+		\rho\big(\pi,\delta_\rho^\pi(\textbf{x})|\textbf{x}\big)&\leq \rho(\pi,\delta(\textbf{x})|\textbf{x}) \hspace{0.2cm} \text{pro s.v. } \textbf{x} \\
+		\E^m\rho\big(\pi,\delta_\rho^\pi(\textbf{x})|\textbf{x}\big)&\leq \E^m\rho(\pi,\delta(\textbf{x})|\textbf{x})\text{, kde } m(\textbf{x})=\int_{\Theta}f(\textbf{x}|\t)\cdot \pi(\t)\d\t
 		\end{split}
 		\]
 		kde
 		\[
 		\begin{split}
-		\E^m\rho(\pi,\delta(\textbf{x})|\textbf{x})&=\int\limits_{\chi}\Big( \int\limits_{\Theta} L(\t,\delta)\underbrace{\pi(\t|\textbf{x})}_{\frac{f\pi(\t)}{\int f\pi(\t)\d\t}=\frac{f\pi(\t)}{m(\textbf{x})}}m(\textbf{x})\d\textbf{x}\Big)\equal{Fubini}\int\limits_{\Theta}\Big( \underbrace{\int\limits_{\chi} L\big(\t,\delta(\textbf{x})\big)f(\textbf{x}|\t)\d\textbf{x}}_{\E^f L=R(\t,\delta)} \Big)\pi(\t)\d\t=\\&=\E^\pi\E^f L=r(\pi,\delta) 
+		\E^m\rho(\pi,\delta(\textbf{x})|\textbf{x})&=\int\limits_{\chi}\Big( \int\limits_{\Theta} L(\t,\delta)\underbrace{\pi(\t|\textbf{x})}_{\frac{f\pi(\t)}{\int f\pi(\t)\d\t}=\frac{f\pi(\t)}{m(\textbf{x})}}\d\t\Big)m(\textbf{x})\d\textbf{x}\equal{Fubini}\int\limits_{\Theta}\Big( \underbrace{\int\limits_{\chi} L\big(\t,\delta(\textbf{x})\big)f(\textbf{x}|\t)\d\textbf{x}}_{\E^f L=R(\t,\delta)} \Big)\pi(\t)\d\t=\\&=\E^\pi\E^f L=r(\pi,\delta) \\
+		\E^m\rho(\pi,\delta_\rho^\pi(\textbf{x})|\textbf{x})&=\{\text{Analogický postup}\}=r(\pi,\delta_\rho^\pi).
 		\end{split}
 		\]
-		a tedy 
+		A tedy 
 		$$ r(\pi,\delta_\rho^\pi)\leq r(\pi,\delta),~\forall\delta\quad \Rightarrow\quad \delta_\rho^\pi=\delta^\pi.$$
-		Závěr: D strategie Bayes($\delta^\pi$) je rovna E strategii Bayes ($\delta_\rho^\pi(\textbf{x})$ skoro všude $\textbf{x}$).
+		Závěr: D strategie Bayes($\delta^\pi$) je rovna E strategii Bayes ($\delta_\rho^\pi(\textbf{x})$ pro s.v. $\textbf{x}$).
 	\end{proof} 
 \end{theorem}
-Rozšíření: máme $\delta_\rho^\pi(\textbf{x}),~\forall s.v.~ \textbf{x}$ a~stane se, že $r(\pi)=+\infty$. Toto řešení nazveme \textbf{Zobecněnou Bayesovskou rozhodovací funkcí}.
+Rozšíření: máme-li $\delta_\rho^\pi(\textbf{x})$ pro s.v. $\textbf{x}$ a~stane se, že $r(\pi)=+\infty$. Toto řešení $\delta^{\phi}$ nazveme \textbf{Zobecněnou Bayesovskou rozhodovací funkcí}.
 
-Další výhody: $\pi(\t)$ a~máme data $\textbf{X}\sim f(\textbf{x},\t)\stackrel{\text{ÚBM}}{\longrightarrow}\pi(\t,\textbf{x})$ (ÚBM = úplný Bayes. model) update ($\widehat{\t}_B$ int. spol.). $\tilde{\pi}(\t)=\pi(\t|\textbf{x})$ nová data $\tilde{\textbf{X}}\sim\tilde{f}(\tilde{\textbf{x}}|\t)\stackrel{\text{ÚBM}}{\longrightarrow}\tilde{\pi}(\t|\tilde{\textbf{x}})$ update ($\tilde{\widehat{\t}_B}$) apod. 
+Další výhody: $\pi(\t)$ a~máme data $\textbf{X}\sim f(\textbf{x},\t)\stackrel{\text{ÚBM}}{\longrightarrow}\pi(\t,\textbf{x})$ (ÚBM = úplný Bayes. model) update ($\widehat{\t}_B$ int. spol.). $\tilde{\pi}(\t)=\pi(\t|\textbf{x})$ nová data $\tilde{\textbf{X}}\sim\tilde{f}(\tilde{\textbf{x}}|\t)\stackrel{\text{ÚBM}}{\longrightarrow}\tilde{\pi}(\t|\tilde{\textbf{x}})$ update ($\widehat{\t}_B^{\sim}$) apod. 
 
 \begin{example}
-	Varianta: lékař sleduje chorobu pacienta. 1. den $x_1\sim f(x|\t)$, kde $\pi_1(\t)$ je apriorní informace. Z~toho pak $\pi(\t|x_1)$. 2. den naměří $x_2\sim f(x|\t)$. Z~toho pak $\pi_2(\t)=\alpha\pi(\t| x_1)+(1-\alpha)\tilde{\pi}_2(\t)\to \pi(\t|x_2,x_1)$. n-tý den pak neměří $x_n$ a~proces se~opakuje.
+	Varianta: lékař sleduje chorobu pacienta. 1. den $x_1\sim f(x|\t)$, kde $\pi_1(\t)$ je apriorní informace. Z~toho pak $\pi(\t|x_1)$. 2. den naměří $x_2\sim f(x|\t)$. Z~toho pak $\pi_2(\t)=\alpha\pi(\t| x_1)+(1-\alpha)\tilde{\pi}_2(\t)\to \pi(\t|x_2,x_1)$. Pak n-tý den naměří $x_n$ a~proces se~opakuje.
 \end{example}
 \subsection*{Úloha predikce}
 \begin{description}
-	\item[KLAS. STAT.] Máme $X\sim f(x,\t)$, data $D\sim\textbf{x}=(x_1,...,x_n)$, realizaci $\textbf{X}=(X_1,...,X_n)$ a~hledáme predikci $X_{n+1}$. Pokud použijeme IID model, pak $X_{n+1}\sim f(x|\t)$ a~odhad $\widehat{\t}=\widehat{\t}(\textbf{x})=\widehat{\t}_{\mathrm{ML}}$. Z~toho pak $\widehat{f}(x)=f(x,\widehat{\t}_\mathrm{ML})$ a~z~toho $X_{n+1}\sim\widehat{f}$.
+	\item[KLAS. STAT.] Máme $X\sim f(x,\t)$, data $D\sim\textbf{x}=(x_1,...,x_n)$, realizaci $\textbf{X}=(X_1,...,X_n)$ a~hledáme predikci $X_{n+1}$. Pokud použijeme IID model, pak $X_{n+1}\sim f(x|\t)$ a~odhad $\widehat{\t}=\widehat{\t}(\textbf{x})=\widehat{\t}_{\mathrm{ML}}$. Z~toho pak $\widehat{f}_{ML}(x)=f(x,\widehat{\t}_\mathrm{ML})$ a~z~toho $X_{n+1}\sim\widehat{f}$.
 	\item[BAYES. STAT.] \begin{enumerate}[a)]
 		\item Máme $X\sim f(x|\t)$, data $D:\textbf{x}$ a~$\pi(\t)$ apriorní informaci. Z~toho získáme $\pi(\t|\textbf{x})$ a~z~toho $\widehat{\t}_B=\EE{\pi(\t|\textbf{x})}$. Z~toho už $\widehat{f}(x)=f(x|\widehat{\t}_B)$ a~potom $X_{n+1}\sim\widehat{f}$.
-		\item $\tau(\t)=f(x|\t)$, $\pi(\t)$, $\widehat{f}_B(x)=\widehat{\tau(\t)_B}$... $X_{n+1}\sim\widehat{f}_B$.
-		\item Definujeme ÚBM $X\sim f_X(x|\t)$, $\pi(\t)$, $\pi(\t|\textbf{x})$. Pak definujeme \textbf{Bayesovskou prediktivní hustotu} $f_B^{PR} $ vztahem
+		\item $\tau(\t)=f(x|\t)$, $\pi(\t)$, $\widehat{f}_B(x)=\widehat{\tau_B(\t)}$... $X_{n+1}\sim\widehat{f}_B$.
+		\item \begin{define} Máme ÚBM pro $\X\sim f_{\X}(\textbf{x}|\t)$, $\pi(\t)$, $\pi(\t|\textbf{x})$. Pak definujeme \textbf{Bayesovskou prediktivní hustotu} $f_B^{PR} $ vztahem
 		$$ f_B^{PR}(t|\textbf{x}\sim\text{data})=\int\limits_{\Theta} \underbrace{f_X(t|\t)\pi(\t,\textbf{x})}_{\phi(t,\t|\textbf{x})}\d\t=\EE{f_X(t|\t)|\textbf{x}}.$$
+		\end{define}
 		Potom
 		$$ X_{n+1}\sim f_B^{PR}(x_{n+1}|\textbf{x}\text{ data})\quad\to\quad \PP(X_{n+1}>b)=\int\limits_b^{+\infty}f_B^{PR}\d x_{n+1}.$$
-		Výhodou je potom to, že obsahuje plnou informaci ve~tvaru $\pi(\t|\textbf{x})$.
+		Výhodou c) je potom to, že obsahuje ''plnou'' (ve smyslu integrálu) informaci ve~tvaru $\pi(\t|\textbf{x})$.
 	\end{enumerate}
 \end{description}
 \begin{define}
@@ -285,17 +287,20 @@ Další výhody: $\pi(\t)$ a~máme data $\textbf{X}\sim f(\textbf{x},\t)\stackre
 	\right|=\int |p-q|\d\mu=\left\|p-q\right\|_{L_1}$.
 \end{define}
 \begin{define}
-	Mějme $(P_n)_1^{+\infty},~Q$. Řekneme, že $P_n\stackrel{\text{silně}}{\longrightarrow}Q$, pokud $\TV(P_n,Q)\to0$.
+	Mějme posloupnost měr $(P_n)_1^{+\infty}$ a limitní míru $Q$. Řekneme, že $P_n$ konverguje silně ke $Q$, značíme $P_n\stackrel{\text{s}}{\rightarrow}Q$, pokud $\TV(P_n,Q)\to0$.
 \end{define}
-\begin{remark}
+\begin{remark}{Slabá konvergence:}
 	$$ P_n\wto Q~\Leftrightarrow~\int g(\X)\d P_n\to\int g(\Y)\d Q,\qquad \forall g\in C_B^{(0)}\text{ spojité a~omezené.}$$
 \end{remark}
 \begin{theorem}
-	Nechť $P_n\stackrel{s}{\to}Q\Rightarrow P_n\wto Q$ (AN). Funkce $g$ nechť je spojitá a~omezená, $|g|\leq M$. $g^\ast =g|_M$, $|g^\ast|\leq 1$. Pak
-	$$ \left| \int g(\X)\d P_n-\int g(\Y)\d Q \right|=M\left| \int g^\ast(\X)\d P_n-\int g^\ast(\Y)\d Q \right|\leq M\cdot \left\| P-Q\right\|_\TV\to0.$$
+	Nechť $P_n\stackrel{s}{\to}Q\Rightarrow P_n\wto Q$ (AN).
 \end{theorem}
+\begin{proof}
+	 Nechť funkce $g$ je spojitá a~omezená, $|g|\leq M$. $g^\ast =g|_M$, $|g^\ast|\leq 1$. Pak
+	$$ \left| \int g(\X)\d P_n-\int g(\Y)\d Q \right|=M\left| \int g^\ast(\X)\d P_n-\int g^\ast(\Y)\d Q \right|\leq M\cdot \left\| P-Q\right\|_\TV \stackrel{\text{LDCT}}{\longrightarrow} 0.$$
+\end{proof}
 \begin{theorem}[Scheffé theorem]
-	Mějme $P_n,Q$ s~ASR$_\mu$, $p_n=\frac{\d P_n}{\d \mu}$, $q=\frac{\d Q}{\d \mu}$. Nechť dále $p_n\to q~s.v.\mu$. Pak $P_n\stackrel{s,(\TV)}{\longrightarrow}Q$. 
+	Mějme $P_n,Q$ s~ASR$_\mu$, $p_n=\frac{\d P_n}{\d \mu}$, $q=\frac{\d Q}{\d \mu}$. Nechť dále hustota pravděpodobnosti $p_n\to q$ s.v. $\mu$. Pak $P_n\stackrel{s,(\TV)}{\longrightarrow}Q$. 
 	\begin{proof}
 		$$ \left| \int_A (p_n-q)\d\mu \right|\leq \int_A|p_n-q|\d\mu\leq \int_\R|p_n-q|\d\mu=2\int(p_n-q)^+\d\mu\to0,$$
 		kde poslední rovnost platí, protože $\int(p_n-q)\d\mu=0$, a~tedy $\int(p_n-q)^+\d\mu-\int(p_n-q)^-\d\mu=0$.	\end{proof}
@@ -303,23 +308,23 @@ Další výhody: $\pi(\t)$ a~máme data $\textbf{X}\sim f(\textbf{x},\t)\stackre
 \begin{remark}
 	Opakování. Z~01MAS víme, že pro~$\fregmle$ platí, že \begin{enumerate}[1)]
 		\item $\supp f$ nezávisí na~$\t$,
-		\item $f\in\mathcal{C}^{(3)}$ vzhledem k~$\t$ pro~$s.v.x\in\supp f$,
+		\item $f\in\mathcal{C}^{(3)}$ vzhledem k~$\t$ pro s.v. $x\in\supp f$,
 		\item $\int f_\t'=0$ a~$\int f_{\t\t}''=0$,
 		\item $\left( \mathbb{J}(\t)_{(\text{FIM})} \right)_{i,j}=\EE{\frac{\partial\log f}{\partial \t_i}\cdot\frac{\partial\log f}{\partial \t_j}}=-\EE{\frac{\partial^2 \log f}{\partial\t_i \partial \t_j}}$, $\mathbb{J}(\t)$ je PD a~konečná pro~$\forall\t\in\Theta$,
 		\item $\forall\t_0~\exists H_{\t_0}~\exists M(\X)\in\LL_1(P_{\t_0})$ tak, že $\left\| \frac{\partial^3\log }{\partial \t^3}\right\|\leq M(x)$ na~$H_{\t_0}$, kde $\E_{\t_0}[M(X)]<+\infty$.
 	\end{enumerate}
 \end{remark}
 \begin{theorem}[Bernstein - von Mises]
-	Předpokládejme ÚBM: $X\sim f(x|\t)~w.r.t.\lambda,\sigma-$finite, $\mathcal{F}=\left\{ f(x|\t):\t\in\Theta\subset R^k \right\}$, $\Theta$ otevřená, $\t\sim\pi(\t)$ vlastní hustota spojitá (Tedy máme $\Phi(x,\t)=f\cdot\pi$, $m(\textbf{x})=\int f\cdot \pi\d\t$, $\pi(\t|\textbf{x})=\Phi/m=\frac{f\cdot\pi}{\int f\cdot\pi\d\t}$). Nechť dále $\mathcal{F}=\fregmle$. Pak
-	$$ \left\| \pi_n(\t|\textbf{x})-f_{\NN\left( \widehat{\t}_n,\frac{1}{n}\mathbb{J}^{-1}(\t) \right)} \right\|\to0,$$
+	Předpokládejme ÚBM: $X\sim f(x|\t)$ vzhledem k míře $\lambda$, která je $\sigma-$finitní, $\mathcal{F}=\left\{ f(x|\t):\t\in\Theta\subset \R^k \right\}$, $\Theta$ otevřená, $\t\sim\pi(\t)$ vlastní hustota, spojitá a $\pi(\t)>0$ (Tedy máme $\varphi(x,\t)=f\cdot\pi$, $m(\textbf{x})=\int f\cdot \pi\d\t$, $\pi(\t|\textbf{x})=\varphi/m=\frac{f\cdot\pi}{\int f\cdot\pi\d\t}$). Nechť dále $\mathcal{F}=\fregmle$. Pak
+	$$ \left\| \pi_n(\t|\textbf{x})-f_{\NN\left( \widehat{\t}_n,\frac{1}{n}\mathbb{J}^{-1}(\t_0) \right)} \right\|_{TV}\to0 \hspace{0.2cm}\text{ pro }\forall \t_0,$$
 	kde $\widehat{\t}_n$ je konzistentní řešení $LE_Q$, tzn. $\widehat{\t}_n$ řeší $\frac{\partial \log f}{\partial \t_j}=0,~\forall j\in\hat{k}$.
 \end{theorem}
 \begin{dusl}
-	Mějme $\fregmle$, $\pi(\t)>0$ spojitá, $\t_0$ skutečná hodnota parametru $\t$. Pak $(\t|\textbf{x})\sim\AN\big(\htn(\textbf{x}),\frac{1}{n}\mathbb{J}^{-1}(\t_0)\big)$ pro~$\forall\t_0$.
+	Mějme $\fregmle$, $\pi(\t)>0$ vlastní hustota a spojitá, $\t_0$ skutečná hodnota parametru $\t$. Pak $(\t|\textbf{x})\sim\AN\big(\htn(\textbf{x}),\frac{1}{n}\mathbb{J}^{-1}(\t_0)\big)$ pro~$\forall\t_0$.
 	
-	Závěr: $\sqrt{n}\big( (\t|\textbf{x})-\htn(\textbf{x}) \big)\Dto \NN\big( 0,\frac{1}{n}\mathbb{J}^{-1}(\t_0) \big),~\forall\t_0$. Bayesová strategie je asymptoticky ekvivalentní MLE.
+	Závěr: $\sqrt{n}\big( (\t|\textbf{x})-\htn(\textbf{x}) \big)\Dto \NN\big( 0,\frac{1}{n}\mathbb{J}^{-1}(\t_0) \big),~\forall\t_0$. Bayesovská strategie je asymptoticky ekvivalentní MLE.
 	\begin{proof}
-		$k=1$: Máme $f_x,~(X_j)_1^n,~f_{X_j}(x_j|\t),~f_n\equal{id}\prod_1^n f_{X_j}=f_n(\textbf{x}|\t),~\pi(\textbf{x}|\t),~\pi(\t|\textbf{x})=\frac{f_n \pi}{\int f_n \pi\d\t}$. Víme, že $(\t|\textbf{x})\sim\pi(\t|\textbf{x})$. Transformujeme pomocí $g: t=\sqrt{n}\big( \t|_\textbf{x}-\htn \big)$, $g^{-1}:\t|\textbf{x}=\htn + \frac{t}{\sqrt{n}}$, $\mathbb{J}_{g^{-1}}=\frac{1}{\sqrt{n}}>0$. Potom
+		$k=1$: Máme $f_{X},~(X_j)_1^n,~f_{X_j}(x_j|\t),~f_n\equal{id}\prod_1^n f_{X_j}=f_n(\textbf{x}|\t),~\pi(\textbf{x}|\t),~\pi(\t|\textbf{x})=\frac{f_n \pi}{\int f_n \pi\d\t}$. Víme z Bayesovského modelu, že $(\t|\textbf{x})\sim\pi(\t|\textbf{x})$. Transformujeme pomocí $g: t=\sqrt{n}\big( \t|_\textbf{x}-\htn \big)$, kde $\htn$ je ELE (konzistentní řešení $LE_Q$), $g^{-1}:\t|\textbf{x}=\htn + \frac{t}{\sqrt{n}}$, $\mathbb{J}_{g^{-1}}=\frac{1}{\sqrt{n}}>0$. Potom
 		\[
 		\begin{split}
 		T&=\sqrt{n}\big(\t|_\textbf{x}-\htn\big)\stackrel{ozn.}{\sim}\pi(t|\textbf{x})=\frac{f_n\big(\textbf{x}|\htn+\frac{t}{\sqrt{n}}\big)\pi\big( \htn+\frac{t}{\sqrt{n}} \big)\big(\frac{1}{\sqrt{n}}\big)}{\int f_n(\textbf{x}|\t)\pi(\t)\d\t}=\left|\begin{array}{l}
@@ -327,34 +332,39 @@ Další výhody: $\pi(\t)$ a~máme data $\textbf{X}\sim f(\textbf{x},\t)\stackre
 		\right|=\\ &=\frac{f_n\big(\textbf{x}|\htn+\frac{t}{\sqrt{n}}\big)\pi\big( \htn+\frac{t}{\sqrt{n}} \big)}{\int f_n\big(\textbf{x}|\htn+\frac{s}{\sqrt{n}}\big)\pi\big( \htn+\frac{s}{\sqrt{n}} \big)\d s}.
 		\end{split}
 		\]
-		máme spojité $\partial_\t^3$, a~proto rozvineme $\log f_n$ do~2. řádu:
+		máme spojité $\partial_\t^3$, a~proto rozvineme pomocí Taylora $\log f_n$ do~2. řádu:
 		\[
 		\begin{split}
-		\log f_n(\textbf{x}|\htn+\frac{t}{\sqrt{n}})&=\log f_n(\textbf{x}|\htn)+0+\frac{1}{2}\frac{t^2}{n}\frac{\partial^2 \log f_n}{\partial\t^2}\Big|_{\t=\htn}+R_n=\\&=\log f_n(\textbf{x}|\htn)+\frac{t^2}{2}\underbrace{\Big( \frac{1}{n}\sumjn \frac{\partial^2 \log f_{X_j}(x_j|\htn)}{\partial\t^2} \Big)}_{\stackrel{\PP_{\t_0}}{\longrightarrow}\EE{\frac{\partial^2\log f_X}{\partial\t^2}}=-\mathbb{J}(\t_0)}+R_n\stackrel{\PP_{\t_0}~s.j.}{\longrightarrow}0.
+		\log f_n(\textbf{x}|\htn+\frac{t}{\sqrt{n}})&=\log f_n(\textbf{x}|\htn)+0\text{\footnotemark}+\frac{1}{2}\frac{t^2}{n}\frac{\partial^2 \log f_n}{\partial\t^2}\Big|_{\t=\htn}+R_n=\\&=\log f_n(\textbf{x}|\htn)+\frac{t^2}{2}\underbrace{\Big( \frac{1}{n}\sumjn \frac{\partial^2 \log f_{X_j}(x_j|\htn)}{\partial\t^2} \Big)}_{\xrightarrow[\text{ZVČ}]{\PP_{\t_0}}\EE{\frac{\partial^2\log f_X}{\partial\t^2}}=-\mathbb{J}(\htn)\wedge \htn\rightarrow \t_0}+\underbrace{R_n}_{\stackrel{\PP_{\t_0}~(s.j.)}{\longrightarrow}0}.
 		\end{split}
 		\]
+		\footnotetext{$\frac{\partial \log f_n}{\partial \t}\|_{\t=\htn}=0$, protože $\htn$ je řešením soustavy věrohodnostních rovnic}
 		Z toho potom plyne, že $f_n\big(\textbf{x}|\htn+\frac{t}{\sqrt{n}}\big)=f_n(\textbf{x}|\htn)\e{-\frac{t^2}{2}\mathbb{J}(\htn)}\cdot\tilde{R}_n$ a~tedy \[
 		\begin{split}
-		\pi(t|\textbf{x})&=\frac{f_n\e{-\frac{t^2}{2}\mathbb{J}(\htn)}\cdot\tilde{R}_n \pi\big( \htn+\frac{t}{\sqrt{n}} \big)}{f_n\int \e{-\frac{s^2}{2}\mathbb{J}(\htn)}\tilde{R}_n \pi\big(\htn+\frac{s}{\sqrt{n}}\big)\d s}\stackrel{\PP_{\t_0}}{\to}\frac{\e{-\frac{t^2}{2}\mathbb{J}(\t_0)}\cdot1\cdot \pi(\t_0)}{\int\e{-\frac{s^2}{2}\mathbb{J}(\t_0)}\cdot1\cdot\pi(\t_0)\d s}=\left| \begin{array}{l}
+		\pi(t|\textbf{x})&=\frac{f_n\e{-\frac{t^2}{2}\mathbb{J}(\htn)}\cdot\tilde{R}_n \pi\big( \htn+\frac{t}{\sqrt{n}} \big)}{f_n\int \e{-\frac{s^2}{2}\mathbb{J}(\htn)}\tilde{R}_n \pi\big(\htn+\frac{s}{\sqrt{n}}\big)\d s}\xrightarrow[(n\rightarrow \infty)]{\PP_{\t_0}\text{\footnotemark}}\frac{\e{-\frac{t^2}{2}\mathbb{J}(\t_0)}\cdot1\cdot \pi(\t_0)}{\int\e{-\frac{s^2}{2}\mathbb{J}(\t_0)}\cdot1\cdot\pi(\t_0)\d s}=\left| \begin{array}{l}
 		u=s\sqrt{\mathbb{J}(\t_0)}\\\d s=\frac{\d u}{\sqrt{\mathbb{J}(\t_0)}}		
 		\end{array}
 		\right|=\\&=\frac{\sqrt{\mathbb{J}(\t_0)}}{\sqrt{2\pi}}\e{-\frac{t^2}{2}\mathbb{J}(\t_0)}\sim\NN\Big( 0,\frac{1}{\mathbb{J}(\t_0)} \Big).
 		\end{split}
 		\]
+		\footnotetext{Záměna limity a integrálu: z MIPu známe větu, která říká, že v případě hustot a integrací dle pravděpodobnostní míry, že nepotřebujeme Lebesgueovskou majorantu}
 	\end{proof}
 \end{dusl}
 \begin{theorem}
-	Mějme UBM, $f_X$, $\pi(\t)$ omezenou a~vlastní. Označme $\pi(\t|\textbf{x})=\frac{f\cdot\pi}{\int f\cdot\pi\d\t},~\pi_0(\t|\textbf{x})=\frac{f\cdot1}{\int f\cdot1 \d\t}$, kde $\int f\cdot\pi\d\t<+\infty$ a~$\int f\cdot1 \d\t<+\infty$. Pak
+	Mějme ÚBM, $f_X$, $\pi(\t)>0$ omezenou a~vlastní. Označme $\pi(\t|\textbf{x})=\frac{f\cdot\pi}{\int f\cdot\pi\d\t},~\pi_0(\t|\textbf{x})=\frac{f\cdot1}{\int f\cdot1 \d\t}$, kde $\int f\cdot\pi\d\t<+\infty$ a~$\int f\cdot1 \d\t<+\infty$. Pak
 	$$ \left\|\pi(\t|\textbf{x})-\pi_0(\t|\textbf{x})\right\|_\TV\leq \max\Big(\frac{a+b}{1-a},\frac{a+b+ac}{1+a+b+ac}\Big)+\frac{a(2-a+c)}{1-a}=\epsilon_{a,b,c},$$
-	kde $a,b,c$, $a\in[0,1),~b>0,~c>0$, jsou definovány následovně:\begin{enumerate}[1)]
+	kde $a\in[0,1),~b>0,~c>0$, jsou definovány následovně:\begin{enumerate}[1)]
 		\item $\exists A\subset \Theta$ tak, že $\int_A \pi_0(\t|\textbf{x})\d\t\geq 1-a$,
-		\item $\int_A \pi(\t)=m>0$,
+		\item $\inf_A \pi(\t)=m>0$,
 		\item $\sup_A \pi(\t)\leq (1+b)m$,
 		\item $\sup\limits_{\Theta\setminus A} \pi(\t)\leq(1+c)m$. 
 	\end{enumerate}
 \end{theorem}
+\begin{proof}
+Bez důkazu.
+\end{proof}
 \begin{dusl}
-	Pokud dokážeme stlačit horní hranici $\epsilon_{a,b,c}$ k~nule, tak v~$\TV$ je $\pi(\t|\textbf{x})$ a~$\pi_0(\t|\textbf{x})$ velmi blízko. Potom tedy $\widehat{\t}_B^\pi=\EE{\pi(\t|\textbf{x})}$ a~$\widehat{\t}_B^1=\EE{\pi_0(\t|\textbf{x})}$. To znamená, že vliv $\pi(\t)$ se~ztrácí.
+	Pokud dokážeme stlačit horní hranici $\epsilon_{a,b,c}$ k~nule, tak v~$\TV$ jsou $\pi(\t|\textbf{x})$ a~$\pi_0(\t|\textbf{x})$ velmi blízko. Potom tedy $\widehat{\t}_B^\pi=\EE{\pi(\t|\textbf{x})}$ a~$\widehat{\t}_B^1=\EE{\pi_0(\t|\textbf{x})}$ jsou blízko. To znamená, že vliv $\pi(\t)$ se~ztrácí.
 \end{dusl}\newpage
 \begin{remark}
 	$\epsilon_{a,b,c}$ chceme malé. Potřebujeme $a,b$ malé, $c$ ne příliš velké.
