@@ -385,7 +385,7 @@ Bez důkazu.
 \section{5.11.}
 Problém principu neurčitosti: $\pi(\t)=$konst. na~$\Theta$ (rovnoměrnou apriorní informaci).
 \begin{example}
-	Mějme $X\sim f(x|\t),~\t\in(0,1),~\pi(\t)=1$ na~$(0,1)$. Bayes: $\pi(\t|\textbf{x})$.. $\widehat{\t}_B(\textbf{x})$. Označme $\eta=\t^2...,~\t=\sqrt{\eta}$, reparametrizace $f(x|\t=\sqrt{\eta})=f(x|\eta)$. $\t$ považujeme za~znáhodněné (apriorně předpokládáme, že o~$\t$ nic nevíme). Transformace $\t$ na~$\eta$: $$\pi_H(\eta)=\pi(\sqrt{\eta})\big|\mathbb{J}_H(\eta)\big|=1\cdot\frac{1}{2\sqrt{\eta}}=\frac{1}{2\sqrt{\eta}}.$$
+	Mějme ÚBM, $X\sim f(x|\t),~\t\in(0,1),~\pi(\t)=1$ na~$(0,1)$. Bayes: $\pi(\t|\textbf{x})$.. $\widehat{\t}_B(\textbf{x})$. Označme $\eta=\t^2...,~\t=\sqrt{\eta}$, reparametrizace $f(x|\t=\sqrt{\eta})=f(x|\eta)$. $\t$ považujeme za~znáhodněné (apriorně předpokládáme, že o~$\t$ nic nevíme). Transformace hustoty, $\t$ na~$\eta$: $$\pi_H(\eta)=\pi(\sqrt{\eta})\cdot\big|\mathbb{J}_H(\eta)\big|=1\cdot\frac{1}{2\sqrt{\eta}}=\frac{1}{2\sqrt{\eta}}.$$
 	Je paradoxní, že o~$\t$ nemáme konkrétní apriorní informaci a~přitom o~$\eta=\t^2$ víme, že (viz obr. \ref{fig:p71}) nevlastní.
 
 \begin{figure}[h]
@@ -401,16 +401,16 @@ Problém principu neurčitosti: $\pi(\t)=$konst. na~$\Theta$ (rovnoměrnou aprio
 
 \end{example}
 \begin{example}
-	Mějme $X\sim f(x|\t),~\t\in\Theta_j,~\t\sim\pi(\t),~\mathcal{F}=\{f(x|\t)\}$. Víme, že $\eta=\inv{H}(\t)$, tzn. $\t=H(\eta)$. 
-	$$ f_H(x|\eta)=f\big(x|\t=H(\eta)\big)=f\big(x|H(\eta)\big)...\mathcal{F}$$
-	$$ \pi_H(\eta)=\pi\big(H(\eta)\big)\big|D_H(\eta)\big|$$
+	Mějme $X\sim f(x|\t),~\t\in\Theta,~\t\sim\pi(\t),~\mathcal{F}=\{f(x|\t)\}$. Zavedeme reparametrizaci $\eta=\inv{H}(\t)$, tzn. $\t=H(\eta)$. 
+	$$ f_H(x|\eta)=f\big(x|\t=H(\eta)\big)=f\big(x|H(\eta)\big)...\mathcal{F}_H$$
+	$$\pi(\t)\longrightarrow \pi_H(\eta)=\pi\big(H(\eta)\big)\cdot\big|D_H(\eta)\big| \text{, kde } D_H(\eta) \text{ je Jacobián.}  $$
 	Z ÚBM $\{\mathcal{F},\pi\}$ plyne aposteriorní hustota $\pi(\t|\textbf{x})~\to~\widehat{\t}_B(\textbf{x})=\EE{\pi(\t|\textbf{x})}$. Dále z~ÚBM $\{\mathcal{F},\pi\}$ plyne ÚBM $\{\mathcal{F}_H,\pi_H\}$ a~z~něho aposteriorní hustota $\pi(\eta|\textbf{x})~\to~ \widehat{\eta}_B(\textbf{x})=\EE{\pi(\eta|\textbf{x})}$. 
 	
 	Pozor na~$\widehat{\t}_B\neq H(\widehat{\eta}_B)$! To může být problém.
 \end{example}
 \begin{theorem}[Jeffreys]
-	Máme ÚBM $\mathcal{F},\pi(\t),~\eta=\inv{H}(\t),~\t=H(\eta)$ a~předpokládejme, že $\t\in\Theta\subset\R^k$ a~že $H$ je regulární transformace. Nechť $\mathcal{F}$ je regulární systém hustot ($\fregp$). $\mathcal{F}_H,\pi_H$. Volme $\pi(\t)=\sqrt{\det \mathbb{J}(\t)}$, kde $\mathbb{J}(\t)$ je FIM pro~$\t$ v~$\mathcal{F}$. Pak $\pi_H(\eta)=\sqrt{\det \mathbb{J}_H(\eta)}$ a~platí, že 
-	$$ \int_B\pi(\t|\textbf{x})\d\t=\int_{\inv{H}(B)}\pi_H(\eta|\textbf{x})\d\eta,\qquad\forall B\in\Bb_\Theta.$$
+	Máme ÚBM $\mathcal{F},\pi(\t),~\eta=\inv{H}(\t),~\t=H(\eta)$ a~předpokládejme, že $\t\in\Theta\subset\R^k$ a~že $H$ je regulární transformace. Nechť $\mathcal{F}$ je regulární systém hustot ($\fregp$). Po reparametrizaci máme $\mathcal{F}_H,\pi_H$. Volme $\pi(\t)=\sqrt{\det \mathbb{J}(\t)}$, kde $\mathbb{J}(\t)$ je FIM pro~$\t$ v~$\mathcal{F}$. Pak $\pi_H(\eta)=\sqrt{\det \mathbb{J}_H(\eta)}$ v $\mathcal{F}_H$ a~platí, že 
+	$$ \int_B\pi(\t|\textbf{x})\d\t=\int_{\inv{H}(B)}\pi_H(\eta|\textbf{x})\d\eta,\qquad\forall B\in\Bb_\Theta \text{ (B je borelovská množina).}$$
 	\begin{proof}
 		Pro $k=1$: (zbytek ponecháno čtenáři)\begin{enumerate}[a)]
 			\item \[
@@ -418,62 +418,70 @@ Problém principu neurčitosti: $\pi(\t)=$konst. na~$\Theta$ (rovnoměrnou aprio
 			\int_B\pi(\t|\textbf{x})\d\t&=\frac{1}{c}\int_B f(\textbf{x}|\t)\pi(\t)\d\t=\left|\begin{array}{c}
 			\t=H(\eta)\\D_H(\eta)
 			\end{array}
-			\right|=\frac{1}{c}\int_{\inv{H}(B)}\underbrace{f\big(\textbf{x}|H(\eta)\big)}_{f_H(\eta)}\underbrace{\pi\big(H(\eta)\big)\big|D_H(\eta)\big|}_{\pi_H(\eta)}\d\eta=\\&=\frac{1}{c_{(H)}}\int_{\inv{H}(B)}f_H\pi_H\d\eta=\int_{\inv{H}(B)}\pi(\eta|\textbf{x})\d\eta
+			\right|=\frac{1}{c}\int_{\inv{H}(B)}\underbrace{f\big(\textbf{x}|H(\eta)\big)}_{f_H(\eta)}\underbrace{\pi\big(H(\eta)\big)\cdot\big|D_H(\eta)\big|}_{\pi_H(\eta)}\d\eta=\\&=\frac{1}{c_{(H)}}\int_{\inv{H}(B)}f_H\pi_H\d\eta=\int_{\inv{H}(B)}\pi(\eta|\textbf{x})\d\eta \hspace{0.3cm} (c \text{ a } c_{(H)} \text{ splývají}).
 			\end{split}
 			\]
 			\item Protože 
-			$$ \mathbb{J}_H(\eta)=\EE{\frac{\partial\log f_H(\eta)}{\partial\eta}}^2=\EE{\frac{\partial\log f(x|H(\eta))}{\partial\t}\frac{\partial H(\eta)}{\partial\eta}}^2=D_H^2(\eta)\mathbb{J}\big(H(\eta)\big) ,$$
+			$$ \mathbb{J}_H(\eta)=\EE{\frac{\partial\log f_H(\eta)}{\partial\eta}}^2=\EE{\frac{\partial\log f(x|H(\eta))}{\partial\t}\frac{\partial H(\eta)}{\partial\eta}}^2=\mathbb{J}\big(H(\eta)\big) \cdot D_H^2(\eta) ,$$
 			pak \[
 			\begin{split}
-			\pi_H(\eta)&=\pi\big(H(\eta)\big)\big|D_H(\eta)\big|=\sqrt{\det \mathbb{J}\big(H(\eta)\big)}\cdot\big|D_H(\eta)\big|=\sqrt{\det \mathbb{J}_H(\eta)D_H^{-2}(\eta)}\cdot\big|D_H(\eta)\big|=\\&=\sqrt{\det \mathbb{J}_H(\eta)}
+			\pi_H(\eta)&=\pi\big(H(\eta)\big)\cdot\big|D_H(\eta)\big|=\sqrt{\det \mathbb{J}\big(H(\eta)\big)}\cdot\big|D_H(\eta)\big|=\sqrt{\det \mathbb{J}_H(\eta)D_H^{-2}(\eta)}\cdot\big|D_H(\eta)\big|=\\&=\sqrt{\det \mathbb{J}_H(\eta)}
 			\end{split}
 			\]
-			Tedy $\pi(\t)=\sqrt{\det \mathbb{J}(\t)}$, což je \textbf{Jeffraysova apriorní hustota} (často bývá nevlastní).
+			Tedy $\pi(\t)=\sqrt{\det \mathbb{J}(\t)}$, což je \textbf{Jeffraysova apriorní hustota} (nebo také Jeffraysův princip neurčitosti).
 		\end{enumerate}
 	\end{proof}
 \end{theorem}
+Tedy pokud obecně o parametru $\t$ nevíme nic, tak máme 2 možnosti. Můžeme na celém oboru zvolit $\pi(\t)=1$, ale nebudeme mít zaručenou invarianci na reparametrizaci. Nebo právě můžeme zvolit Jeffraysovu apriorní hustotu, která často bývá nevlastní.
 \begin{example}
-	Mějme $X\sim f_X(x|\lambda)=\mathrm{Po}(\lambda)$, tzn. $f_{X_j}=\frac{\lambda^{x_j}}{x_j!}\e{-\lambda},~f_\textbf{x}(\textbf{x}|\lambda)=\frac{\lambda^{\sum x_j}}{\prod x_j!}\e{-n\lambda},~\lambda>0$.\begin{enumerate}[a)]
-		\item Pokud je $\lambda$ neznámé, pak $\pi(\lambda)=1$ na~$\R^+$ (nevlastní).
+	Mějme $X\sim f_X(x|\lambda)=\mathrm{Poiss}(\lambda)$, tzn. $f_{X_j}=\frac{\lambda^{x_j}}{x_j!}\e{-\lambda},~f_\textbf{x}(\textbf{x}|\lambda)=\frac{\lambda^{\sum x_j}}{\prod x_j!}\e{-n\lambda},~\lambda~>~0$.\begin{enumerate}[a)]
+		\item Pokud je $\lambda$ neznámé, pak $\pi(\lambda)=1$ na~$\R^+$ (nevlastní). (Je jedno, jestli vezmeme rovno 1 nebo rovno nějaké konstantě.)
 		$$
-		\pi(\lambda|\textbf{x})=\frac{\fex \pi}{\int_{0}^{+\infty}\fex\pi\d\lambda}=\frac{1}{c}\frac{1}{\prod x_j!}\lambda^{\sumjn x_j}\e{-n\lambda}\sim\mathrm{Gamma}\big(\sumjn x_j+1,n\big).$$
-		Bayesovský odhad $$\widehat{\lambda}_B=\EE{\mathrm{Gamma}(\underbrace{\sum x_j+1}_{\alpha},\underbrace{n}_\beta)}=\frac{\alpha}{\beta}=\frac{\sumjn x_j}{n}+\frac{1}{n}=\Oxn+\frac{1}{n}\sim \Oxn~(MLE).$$
+		\pi(\lambda|\textbf{x})=\frac{\fex \pi}{\underbrace{\int_{0}^{+\infty}\fex\pi\d\lambda}_{<+\infty}}=\underbrace{\frac{1}{c}\frac{1}{\prod x_j!}}_{\frac{1}{c'}}\lambda^{\sumjn x_j}\e{-n\lambda}\sim\mathrm{Gamma}\big(\sumjn x_j+1,n\big).$$
+		
+		Pro připomenutí: $\frac{1}{c'}x^{\alpha-1}e^{-\beta x}=\frac{\beta^{\alpha}}{\Gamma(\alpha)}x^{\alpha-1}e^{-\beta x } \sim \mathrm{Gamma}(\alpha,\beta) $
+		
+		Bayesovský odhad
+		 $$\widehat{\lambda}_B=\EE{\mathrm{Gamma}(\underbrace{\sum x_j+1}_{\alpha},\underbrace{n}_\beta)}=\frac{\alpha}{\beta}=\frac{\sumjn x_j}{n}+\frac{1}{n}=\Oxn+\frac{1}{n}\sim \Oxn~(\text{MLE pro velká }n).$$
 		\item Jeffrys: $$\pi(\lambda)=\sqrt{\det \mathbb{J}(\lambda)}=\sqrt{\det \EE{-\frac{\partial^2\log\fex}{\partial\lambda^2}}}=\sqrt{n\cdot\frac{1}{\lambda}}=\sqrt{n}\frac{1}{\sqrt{\lambda}}.$$
-		Volba $\pi(\lambda)=\frac{1}{\sqrt{\lambda}}$ viz obr. \ref{fig:p72}.
+		Volba $\pi(\lambda)=\frac{1}{\sqrt{\lambda}}$ viz obr. \ref{fig:p72} (V apriorní informaci nehraje konstanta roli, protože se vždy v Bayesově vzorci pokrátí, tedy můžeme vypustit $\sqrt{n}$).
 		\begin{figure}[h]
 			\centering
 			\includegraphics[width=0.5\linewidth]{pictures/P7_2}
 			\caption{Nevlastní}
 			\label{fig:p72}
 		\end{figure}
-		$$ \pi(\lambda|\textbf{x})=\frac{f \pi(\lambda)c}{\int f\pi(\lambda)c\d\lambda}=\frac{1}{c'}\lambda^{\sumjn x_j-\frac{1}{2}}\e{-n\lambda}\sim\mathrm{Gamma}\Big(\underbrace{\sumjn x_j+\frac{1}{2}}_{\tilde{\alpha}},\underbrace{n}_{\tilde{\beta}}\Big).$$
-		Bayes $\widehat{\lambda}_B^J=\EE{\mathrm{Gamma}(\tilde{\alpha},\tilde{\beta})}=\frac{\tilde{\alpha}}{\tilde{\beta}}=\Oxn+\frac{1}{2n}\sim\Oxn$ (MLE, velká $n$).
+		$$ \pi(\lambda|\textbf{x})=\frac{f \pi(\lambda)\cancel{c}}{\underbrace{\int f\pi(\lambda)\cancel{c}\d\lambda}_{<+\infty}}=\frac{1}{c'}\lambda^{\sumjn x_j-\frac{1}{2}}\e{-n\lambda}\sim\mathrm{Gamma}\Big(\underbrace{\sumjn x_j+\frac{1}{2}}_{\tilde{\alpha}},\underbrace{n}_{\tilde{\beta}}\Big).$$
+		Bayesovský odhad $\widehat{\lambda}_B^J=\EE{\mathrm{Gamma}(\tilde{\alpha},\tilde{\beta})}=\frac{\tilde{\alpha}}{\tilde{\beta}}=\Oxn+\frac{1}{2n}\sim\Oxn$ (MLE pro velká $n$).
 	\end{enumerate}
-	Pro $n$ malé je volba a) nebo b) vlivná.
+	Pro $n$ malá se odhady v a) a b) liší.
 \end{example}
 
 \section{Limitní aposteriorní hustoty ($\widehat{\t}_B$)}
-Mějme ÚBM $\{\mathcal{F},\pi(\t)\}$ a~předpokládejme, že $\pi\in\Pi=\{\pi(\t),\boldsymbol{\lambda}:\boldsymbol{\lambda}\in\Lambda\}=\mathcal{H}$. Volme $\lambda_0\in\partial\Lambda$ z hranice a~definujme $\pi_{\lambda_0}(\t)=\lim\limits_{\lambda\to\lambda_0}c\cdot \pi(\t,\lambda)$, která bývá nevlastní. 
+Mějme ÚBM $\{\mathcal{F},\pi(\t)\}$ a~předpokládejme, že $\pi\in\Pi=\{\pi(\t,\boldsymbol{\lambda}):\boldsymbol{\lambda}\in\Lambda\}=\mathcal{H}$. Volme $\lambda_0\in\partial\Lambda$ z hranice a~definujme limitní apriorní hustotu $\pi_{\lambda_0}(\t)=\lim\limits_{\substack{
+		\lambda\to\lambda_0\\\lambda\in\Lambda	}
+}c\cdot \pi(\t,\lambda)$, která bývá často nevlastní. 
 
-Dále pak (s použitím záměny integrálu a~limity) $$\pi_{\lambda_0}(\t|\textbf{x})\equal{ozn}\frac{f\pi_{\lambda_0}(\t)}{\int_\Theta f\pi_{\lambda_0}(\t)\d\t}=\frac{f\lim\limits_{\lambda\to\lambda_0}c\pi(\t,\lambda)}{\int_\Theta f\lim\limits_{\lambda\to\lambda_0}c\pi(\t,\lambda) \d\t}=\lim\limits_{\substack{
+Dále pak vyjádříme limitní aposteriorní hustota (za předpokladu záměny integrálu a~limity v parametrickém integrálu) $$\pi_{\lambda_0}(\t|\textbf{x})\equal{ozn}\frac{f\pi_{\lambda_0}(\t)}{\int_\Theta f\pi_{\lambda_0}(\t)\d\t}=\frac{f\lim\limits_{\lambda\to\lambda_0}c\pi(\t,\lambda)}{\int_\Theta f\lim\limits_{\lambda\to\lambda_0}c\pi(\t,\lambda) \d\t}=\lim\limits_{\substack{
 		\lambda\to\lambda_0\in\partial\Lambda\\\lambda\in\Lambda	}
 }\frac{f\pi(\t,\lambda)}{\int f\pi(\t,\lambda)\d\t}=\lim\limits_{\lambda\to\lambda_0}\pi(\t|\textbf{x},\lambda).$$
-Z toho vyplývá, že $\htb^\mathrm{lim} =\EE{\pi_{\lambda_0}(\t|\textbf{x})}$, což často vede na~klasickou statistickou proceduru.
+Z toho vyplývá, že $\htb^\mathrm{lim} =\EE{\pi_{\lambda_0}(\t|\textbf{x})}$, což často vede na~nějakou~klasickou statistickou proceduru.
 
 \begin{example}
-	Mějme $X\sim f_X=\mathrm{Exp}(\t),~f_X=\theta\e{-\t x},~\t>0$, $$\mathcal{H}=\{\t\sim\mathrm{Gamma}(\alpha,\beta),~\text{tzn. }\pi\big(\t,\underbrace{(\alpha,\beta)}_{\boldsymbol{\lambda}}\big)=\t^{\alpha-1}\e{-\beta\t}\},~\Lambda=\R^{2+}.$$ $\boldsymbol{\lambda}_0=(0,0)\in\partial\Lambda\Rightarrow\pi_{0,0}(\t)=\lim\limits_{(\alpha,\beta)\to(0,0_+)}\t^{\alpha-1}\e{-\beta\t}=\frac{1}{\t}$ (nevlastní).
-	$$\pi_{(0,0)}(\t|\textbf{x})=\frac{f\cdot\frac{1}{\t}}{\int_{0}^{+\infty}f\cdot\frac{1}{\t}\d\t}\equal{iid}\frac{\t^n\e{-\t\sumjn x_j}\cdot\frac{1}{\t}}{c}=\t^{n-1}\e{-\t\sumjn x_j}\sim\mathrm{Gamma}\Big(n,\sumjn x_j\Big),$$
+	Mějme $X\sim f_X=\mathrm{Exp}(\t),~f_X=\theta\e{-\t x},~\t>0$, $$\mathcal{H}=\{\t\sim\mathrm{Gamma}(\alpha,\beta),~\text{tzn. }\pi\big(\t,\underbrace{(\alpha,\beta)}_{\boldsymbol{\lambda}}\big)=\t^{\alpha-1}\e{-\beta\t}\},~\Lambda=\R^{2+}.$$ $\boldsymbol{\lambda}_0=(0,0)\in\partial\Lambda\Rightarrow\pi_{0,0}(\t)=\lim\limits_{(\alpha,\beta)\to(0,0)^{+}}\t^{\alpha-1}\e{-\beta\t}=\frac{1}{\t}$ (nevlastní).
+	$$\pi_{(0,0)}(\t|\textbf{x})=\frac{f\cdot\frac{1}{\t}}{\underbrace{\int_{0}^{+\infty}f\cdot\frac{1}{\t}\d\t}_{<+\infty}}\equal{iid}\frac{\t^n e{-\t\sumjn x_j}\cdot\frac{1}{\t}}{c}=\frac{1}{c}\t^{n-1}\e{-\t\sumjn x_j}\sim\mathrm{Gamma}\Big(n,\sumjn x_j\Big),$$
 	$$\htb^{\mathrm{lim}}=\E\Big[\mathrm{Gamma}\Big(n,\sumjn x_j\Big)\Big]=\frac{n}{\sumjn x_j}=\inv{(\Oxn)}=\html.$$
+	Pokud bychom chtěli dostat pouze $\Oxn$, tak bychom v $\mathcal{H}$ museli namísto $\mathrm{Gamma}$ rozdělení použít inverzní $\mathrm{Gamma}$ rozdělení.
 \end{example}
 \begin{example}
-	Volba $\pi(\t)$? Subjektivní. New England Your. of Medicine - studie\begin{enumerate}[1)]
+	Volba $\pi(\t)$? Subjektivní. New England Journal of Medicine - studie\begin{enumerate}[1)]
 		\item léčba rakoviny plic - operace - víme, že šance na~přežití je 68\%, ale jen 44\% lidí by tam šla. 
 		\item léčba rakoviny plic - operace - víme, že pravděpodobnost úmrtí je 32\%, ale jen 18\% lidí by tam šla. 
 	\end{enumerate}
 \end{example}
 
 \subsection{Empirical Bayes}
-Máme $\mathcal{H}=\{\pi(\t,\lambda):\lambda\in\Lambda\}$. Spočítá se~$m_\lambda(\textbf{x})=\int_\Theta\underbrace{f(\textbf{x}|\t)\pi(\t,\lambda)}_{\phi(\textbf{x},\t,\lambda)}\d\t$. Data $\textbf{X}..\textbf{x}$ na~základě dat odhadneme $\widehat{\lambda}(\textbf{x})$ v~té $m_\lambda(\textbf{x})$ a~provedeme BP s~apriorní hustotou $\pi(\t,\widehat{\lambda}_{\mathrm{ML}})$ klasickou statistickou procedurou $\widehat{\lambda}_{\mathrm{ML}}$.
+Máme $\mathcal{H}=\{\pi(\t,\lambda):\lambda\in\Lambda\}$. Spočítá se marginální rozdělení $m_\lambda(\textbf{x})=\int_\Theta\underbrace{f(\textbf{x}|\t)\pi(\t,\lambda)}_{\phi(\textbf{x},\t,\lambda)}\d\t$. Vezmete data $\textbf{X}$, realizace $\textbf{x}$ a  na~základě dat odhadneme klasickou statistickou procedurou (např. $\lambda_{ML}$ - maximálně věrohodný odhad) $\widehat{\lambda}(\textbf{x})$ v~té $m_\lambda(\textbf{x})$ a~provedeme Bayesovský princip s~apriorní hustotou $\pi(\t,\widehat{\lambda}_{\mathrm{ML}})$ klasickou statistickou procedurou $\widehat{\lambda}_{\mathrm{ML}}$.
 
 Principem ME $H(\pi)=-\int_\Theta\pi(\t)\log \pi(\t)\d\t$ .. $\pi$ volíme tak, aby $H(\pi)$ bylo maximální.
 
