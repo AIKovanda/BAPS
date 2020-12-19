@@ -483,38 +483,47 @@ Z toho vyplývá, že $\htb^\mathrm{lim} =\EE{\pi_{\lambda_0}(\t|\textbf{x})}$, 
 \subsection{Empirical Bayes}
 Máme $\mathcal{H}=\{\pi(\t,\lambda):\lambda\in\Lambda\}$. Spočítá se marginální rozdělení $m_\lambda(\textbf{x})=\int_\Theta\underbrace{f(\textbf{x}|\t)\pi(\t,\lambda)}_{\phi(\textbf{x},\t,\lambda)}\d\t$. Vezmete data $\textbf{X}$, realizace $\textbf{x}$ a  na~základě dat odhadneme klasickou statistickou procedurou (např. $\lambda_{ML}$ - maximálně věrohodný odhad) $\widehat{\lambda}(\textbf{x})$ v~té $m_\lambda(\textbf{x})$ a~provedeme Bayesovský princip s~apriorní hustotou $\pi(\t,\widehat{\lambda}_{\mathrm{ML}})$ klasickou statistickou procedurou $\widehat{\lambda}_{\mathrm{ML}}$.
 
-Principem ME $H(\pi)=-\int_\Theta\pi(\t)\log \pi(\t)\d\t$ .. $\pi$ volíme tak, aby $H(\pi)$ bylo maximální.
+2. možnost volby - principem ME (maximální entropie) $H(\pi)=-\int_\Theta\pi(\t)\log \pi(\t)\d\t$. $\pi$~volíme tak, aby $H(\pi)$ bylo maximální.
 
 %%%%%%%%%%%%%%%%%%% lesson 8
 
-Máme tedy omezení ve formě $\E^\pi[g_i(\t)]=\omega_i,~\forall i\in K$. $H(\pi)$ max vazebné je $$\pi^K(\t_i)=\frac{\e{\sumjn \lambda_j g_j(\t_i)}}{\sum \e{\sumjn \lambda_jg_j(\t_i)}},~\forall i,$$
+Máme tedy omezení ve formě $\E^\pi[g_i(\t)]=\omega_i,~\forall i\in K$. Maximální $H(\pi)$ vazebné je $$\pi^K(\t_i)=\frac{\e{\sumjn \lambda_j g_j(\t_i)}}{\sum \e{\sumjn \lambda_jg_j(\t_i)}},~\forall i,$$
 kde $\lambda_j$ jsou Lagrangeovy koeficienty.
 
-$$ KL(\pi,\pi_0)=\E^\pi\big[\log\frac{\pi_0}{\pi}\big]=\int\pi\log\frac{\pi_0}{\pi}\d\t.$$
-Pokud $\pi_0=1$, pak $KL(\pi,1)=-\int\pi\log\pi=H(\pi)$. Závisí naše volba $\pi$ na $\pi_0$?
+Pro spojitý model:
 
-\begin{define}[Konjugované sytémy apriorní hodnoty]
-	Mějme systém hustot $\mathcal{F}=\{f(x|\t):\t\in\Theta\subset\R^k\}$ a označme $\mathcal{H}$ systém hustot pro $\t$. $\mathcal{H}$ nazveme \textbf{konjugovaný sytém apriorní hodnoty} pro $\mathcal{F}$, pokud $\pi(\t|\textbf{x})\in\mathcal{H}$.
+$$ KL(\pi,\pi_0)=\E^\pi\big[\log\frac{\pi_0}{\pi}\big]=\int\pi\log\frac{\pi_0}{\pi}\d\t \text{, kde KL je Kulback-Leiblerova vzdálenost}.$$
+Pokud $\pi_0=1$, pak $KL(\pi,1)=-\int\pi\log\pi=H(\pi)$. Naše volba $\pi$ závisí na $\pi_0$.
+
+\begin{define}[Konjugované systémy apriorních hustot]
+	Mějme systém hustot $\mathcal{F}=\{f(x|\t):\t\in\Theta\subset\R^k\}$ a označme $\mathcal{H}$ systém apriorních hustot pro $\t$. Pak $\mathcal{H}$ nazveme \textbf{konjugovaný systém apriorních hustot} pro $\mathcal{F}$, pokud $\pi(\t|\textbf{x})\in\mathcal{H}$.
 \end{define}
 \begin{theorem}
-	Mějme $\mathcal{F}_n=\{\fex(\textbf{x}|\t)=\prod_{j=1}^n f_{X_j}(x_j|\t)\} ~id$ a předpokládejme, že $T_n(\textbf{X})$ je postačující statistika pro $\mathcal{F}_\textbf{X}$, tzn. dle Neymannova faktorizačního kritéria $\fex(\textbf{y}|\t)=h_n(\textbf{y})g_n\big(T_n(\t,\textbf{y})\big),$ $\forall\t,\forall\textbf{y},\forall n$. Pak $$\mathcal{H}=\bigg\{\frac{g_m(\boldsymbol{\t},\textbf{t})}{\int g_m(\boldsymbol{\t},\textbf{t})\d\t}:\forall m\in\N,\forall\textbf{t}\in S_m,\text{ kde }S_m=\{\textbf{t}:\exists\textbf{y},\text{ že }T_m(\textbf{y})=\textbf{t}\}\bigg\}\text{ je CF.}$$
+	Mějme $\mathcal{F}_n=\{\fex(\textbf{x}|\t)=\prod_{j=1}^n f_{X_j}(x_j|\t)\} ~id$ a předpokládejme, že $T_n(\textbf{X})$ je postačující statistika pro $\mathcal{F}_\textbf{X}$, tzn. dle Neymannova faktorizačního kritéria $\fex(\textbf{y}|\t)=h_n(\textbf{y})g_n\big(\t,T_n(\textbf{y})\big),$ $\forall\t,\forall\textbf{y},\forall n$. Pak $$\mathcal{H}=\bigg\{\frac{g_m(\boldsymbol{\t},\textbf{t})}{\int_{\Theta} g_m(\boldsymbol{\t},\textbf{t})\d\t}:\forall m\in\N,\forall\textbf{t}\in S_m,\text{ kde }S_m=\{\textbf{t}:\exists\textbf{y},\text{ že }T_m(\textbf{y})=\textbf{t}\}\bigg\}$$
+	je Conjugated Family (CF). (Konjugovaný systém apriorních hustot)
 	\begin{proof}
-		$\pi(\t)\in\mathcal{H}$, tzn. $\pi(\t)\sim g_m(\t,\textbf{t})$. Z toho vyplývá, že $\exists\textbf{y}$ tak, že $T_m(\textbf{y})=\textbf{t}$. Dále pak platí, že \[
+		Volíme apriorní hustotu $\pi(\t)\in\mathcal{H}$, tzn. $\pi(\t)\sim g_m(\t,\textbf{t})$. Z toho vyplývá, že $\exists\textbf{y}$ tak, že $T_m(\textbf{y})=\textbf{t}$. Dále platí, že \[
 		\begin{split}
-		\pi(&\t|\underbrace{\textbf{x}}_{\dim n})\sim f_n(\textbf{x}|\t)g_m(\boldsymbol{\t},\textbf{t})\sim \underbrace{g_m\big(\t,T_m(\textbf{y})\big)h_m(\textbf{y})}_{NF_nK\Rightarrow f_m(\textbf{y}|\t)}f_n(\textbf{x}|\t)=f_m(\textbf{y}|\t)f_n(\textbf{x}|\t)=\\&=\prod_{j=1}^mf(y_j|\t)\prod_{j=1}^nf(x_j|\t)=\prod_{j=1}^{m+n}\underbrace{f_{Z_j}(z_j|\t)}_{\textbf{z}=(\textbf{y},\textbf{x})}=f_{m+n}(\textbf{z}|\t)=\underbrace{h_{n+m}(\textbf{z})}_{\text{konst}}g_{n+m}\big(\t,\underbrace{T_{n+m}(\textbf{y})}_{\textbf{t}\in S_{n+m}}\big)\sim g_{n+m}(\t,\textbf{t})
+		\pi(&\t|\underbrace{\textbf{x}}_{\dim n})\sim f_n(\textbf{x}|\t)\cdot g_m(\t,\textbf{t})\sim \underbrace{g_m\big(\t,T_m(\textbf{y})\big)\cdot h_m(\textbf{y})}_{NFK\Rightarrow f_m(\textbf{y}|\t)}\cdot f_n(\textbf{x}|\t)=f_m(\textbf{y}|\t)\cdot f_n(\textbf{x}|\t)=\\&=\prod_{j=1}^mf(y_j|\t)\prod_{j=1}^nf(x_j|\t)=\prod_{j=1}^{m+n}\underbrace{f_{Z_j}(z_j|\t)}_{\textbf{z}=(\textbf{y},\textbf{x})}=f_{m+n}(\textbf{z}|\t)\overset{\text{NFK}}{=}\underbrace{h_{n+m}(\textbf{z})}_{\text{konst}}\cdot g_{n+m}\big(\t,\underbrace{T_{n+m}(\textbf{y})}_{\textbf{t}\in S_{n+m}}\big)\sim g_{n+m}(\t,\textbf{t})
 		\end{split}
 		\]
-		Z rozšíření na $m\in\R$ (vhodně) vznikne CF (obvyklá).
+		
+		Z tohoto důkazu jsme dostali přirozenou CF.
+		
+		Vhodným rozšířit na $m\in\R$ vznikne obvyklá CF.
 	\end{proof}
 \end{theorem}
 \begin{example}
 	Mějme $X\sim f_X(x|\t)=\Exp(\lambda)$, $f_X=\lambda\e{-\lambda x},~\lambda>0$. $$\mathcal{F}_n: ~f_n(\textbf{x}|\underbrace{\t}_{\lambda})=\lambda^n\e{-\lambda\sumjn x_j}=\left|\begin{array}{c}
-	ozn.~T_n(\textbf{x})=\sumjn x_j\\\text{je PS pro }\mathcal{F}_n
+	ozn.~T_n(\textbf{x})=\sumjn x_j\\\text{je postač. stat. pro }\mathcal{F}_n
 \end{array}
 \right|=1\cdot g_n\big(\lambda,T_n(\textbf{x})\big).$$
-Označme $$\sumjn x_j=t~\Rightarrow~\mathcal{H}=\Big\{ \frac{g_m(\lambda,\textbf{t})}{c}:m\in\N,~t\in S_m,... \Big\}=\Big\{\underbrace{\lambda^m\frac{\e{-\lambda t}}{c}}_{\Gamma(m+1,t)}:m\in\N,t\in S_m=\{\textbf{t}=\sum x_j \}=\R^+\Big\}.$$
-Přirozená CF ... širší $\Gamma(\alpha,\beta)=\Hobv ,~\alpha,\beta>0$.
-Protože $X\sim\Exp(\lambda),~\pi(\lambda)=\mathrm{Gamma}(\alpha,\beta)$, pak 
+Označme $$\sumjn x_j=t~\Rightarrow~\mathcal{H}=\Big\{ \frac{g_m(\lambda,t)}{c}:m\in\N,~t\in S_m,... \Big\}=\Big\{\underbrace{\lambda^m\frac{\e{-\lambda t}}{c}}_{\mathrm{Gamma}(m+1,t)}:m\in\N,t\in S_m=\{\textbf{t}=\sum_{j=1}^m x_j \}=\R^+\Big\},$$
+čímž jsme získali přirozenou CF.
+
+Opět lze rozšířit na obvyklou CF, tj. $\mathrm{Gamma}(\alpha,\beta)=\mathcal{H}_{obv}$, $\alpha,\beta >0$ (rozšíření v $\alpha$, $\mathbb{N}\rightarrow \R^{+}$).
+
+Jelikož $X\sim\Exp(\lambda),~\pi(\lambda)=\mathrm{Gamma}(\alpha,\beta)$, pak 
 $$ \pi(\lambda|\textbf{x})=\frac{\lambda^n\e{-\lambda\sum x_j}\frac{1}{c}\lambda^{\alpha-1}\e{-\lambda\beta}}{\int_{0}^{+\infty}\lambda^n\e{-\lambda\sum x_j}\frac{1}{c}\lambda^{\alpha-1}\e{-\lambda\beta}\d\lambda}=\frac{\lambda^{n+\alpha-1}\e{-\lambda(\sum x_j+\beta)}}{c}\sim\mathrm{Gamma}\big(n+\alpha,\sumjn x_j+\beta\big)\in\Hobv .$$
 
 Seznam CF: \begin{enumerate}[a)]
@@ -522,18 +531,18 @@ Seznam CF: \begin{enumerate}[a)]
 	\item $X\sim\mathrm{Poisson}(\lambda)\Rightarrow CF~\mathcal{H}=\{\pi(\lambda)\sim\mathrm{Gamma}(\alpha,\beta)\}$,
 	\item $X\sim U(0,\t),~\t\in\R^+\Rightarrow CF~\mathcal{H}=\{\pi(\t)\sim\mathrm{Pareto}(a,b)\}$, kde Paretovo rozdělení je mocninného typu $\t\sim\frac{a}{b}\big(\frac{b}{\t}\big)^{a+1},~\t\geq b$, které má těžké chvosty.
 	\item \begin{enumerate}[1)]
-		\item $X\sim \NN(\mu,\sigma_0^2),~\sigma_0\text{ známé }>0$, pak PS je ve tvaru $T_n(\textbf{X})=\sumjn X_j\in\R$. Potom $$\HCF=\big\{\pi(\mu)\sim\NN(a,b^2),~a\in\R,b>0\big\}$$ a parametry $a,b$ ladíme pro tvar apriorní informace.
-		\item $X\sim\NN(\mu_0,\sigma^2),~\mu_0$ známe. Pak PS je ve tvaru $T_n(\textbf{X})=\sumjn(X_j-\mu_0)^2$, protože 
+		\item $X\sim \NN(\mu,\sigma_0^2),~\sigma_0>0$ a známé, pak postačující statistika je ve tvaru $T_n(\textbf{X})=\sumjn X_j\in\R$. Potom $$\mathcal{H}_{CF_{obv}}=\big\{\pi(\mu)\sim\NN(a,b^2),~a\in\R,b>0\big\}$$ a parametry $a,b$ ladíme tvar apriorní informace.
+		\item $X\sim\NN(\mu_0,\sigma^2),~\mu_0$ známe. Pak postačující statistika je ve tvaru $T_n(\textbf{X})=\sumjn(X_j-\mu_0)^2$, protože 
 		$$ \fex=\underbrace{\frac{1}{c}\e{-\frac{1}{2\sigma^2}\sumjn(X_j-\mu_0)^2}}_{g_n(t,\sigma^2)},$$ a proto $\Hobv$ pro parametr $\underbrace{\frac{1}{\sigma^2}}_{\t}=\{\pi(\t)\sim\mathrm{Gamma}(\alpha,\beta)\}.$
-		\item $X\sim\NN(\mu,\sigma^2)$. Pak $\pi_n(\textbf{X})=\Big(\sumjn X_j,\sumjn X_j^2\Big)\in\R\times\R_0^+$ je PS, a proto
-		$\Hobv$ pro $(\mu,\frac{1}{\sigma^2})$ definujeme tak, že $\pi\big(\mu\frac{
+		\item $X\sim\NN(\mu,\sigma^2)$. Pak $T_n(\textbf{X})=\Big(\sumjn X_j,\sumjn X_j^2\Big)\in\R\times\R_0^+$ je postačující statistika, a proto
+		$\Hobv$ pro $(\mu,\frac{1}{\sigma^2})$ definujeme tak, že $\pi\big(\mu|\frac{
 		1}{\sigma^2}\big)\sim\NN$ a $\pi\big(\frac{1}{\sigma^2}\big)\sim\mathrm{Gamma}$. Z toho pak 
-		$$ \pi\big(\mu,\frac{1}{\sigma^2}\big)=\pi\big(\mu|\frac{1}{\sigma^2}\big)\pi\big(\frac{1}{\sigma^2}\big)=N\cdot\mathrm{Gamma}.$$
+		$$\big\{ \pi\big(\mu,\frac{1}{\sigma^2}\big)=\pi\big(\mu\big|\frac{1}{\sigma^2}\big)\pi\big(\frac{1}{\sigma^2}\big)=\underbrace{\NN\cdot\mathrm{Gamma}}_{\text{normální-gamma rozdělení}}\big\}.$$
 	\end{enumerate}
 \end{enumerate}
 \end{example}
-\begin{remark}
-	$\pi(\t)=\sum_{i=1}^lw_i\pi_i(\t)$, kde $\pi_i\in\HCF$. Pak $$\pi(\t|\textbf{x})=\frac{f\pi}{\int f\pi}=\frac{1}{c}\sum_{i=1}^lw_i f\pi_i(\t)=\frac{1}{c}\sum_{i=1}^l w_ic_i\frac{f \pi_i}{c_i~(=\int f\pi_i\d\t)}=\sum_{i=1}^l \underbrace{\frac{w_ic_i}{c}}_{w_i'}\pi_i(\t|\textbf{x})=\sum_{i=1}^l w_i\underbrace{\pi_i(\t|\textbf{x})}_{\HCF}.$$
+\begin{remark}[Směs z CF]
+	$\pi(\t)=\sum_{i=1}^lw_i\pi_i(\t)$, kde $\pi_i\in\HCF$ a $w_i$ jsou váhy splňující pro $\forall i\in\hat{l}$, $w_i>0$ a $\sum_{i=1}^l w_i=1$. Pak $$\pi(\t|\textbf{x})=\frac{f\pi}{\int f\pi}=\frac{1}{c}\sum_{i=1}^lw_i f\pi_i(\t)=\frac{1}{c}\sum_{i=1}^l w_ic_i\frac{f \pi_i}{c_i~(=\int f\pi_i\d\t)}=\sum_{i=1}^l \underbrace{\frac{w_ic_i}{c}}_{w_i'}\pi_i(\t|\textbf{x})=\sum_{i=1}^l w_i'\underbrace{\pi_i(\t|\textbf{x})}_{\HCF}.$$
 		\begin{figure}[h]
 			\centering
 			\includegraphics[width=0.6\linewidth]{pictures/8_1.pdf}
