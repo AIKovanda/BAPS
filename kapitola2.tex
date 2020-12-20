@@ -7,11 +7,11 @@
 	pak chceme, aby závěry o~parametru $\t$ v~obou experimentech byly shodné. Označíme to $\mathrm{Ev}(\mathcal{E}_1,x_1)=\mathrm{Ev}(\mathcal{E}_2,x_2)$ (Ev jako Evidence). 
 	\item[CONDITIONALITY princip:] Nechť máme dostupné $\mathcal{E}_1,\mathcal{E}_2$. Definujeme $\mathcal{E}^*$ experiment tak, že vybereme náhodně mezi~$\mathcal{E}_1 \vee \mathcal{E}_2$, a~v~tom vybraném naměříme $x_j,~j=1\vee 2$. Chceme, aby $\Ev\big(\mathcal{E}^*,(j,x_j)\big)=\Ev(\mathcal{E}_j,x_j),~\forall j,\forall x_j$.
 	\item[STOPPING rule:] Máme posloupnost experimentů $\mathcal{E}_1,\mathcal{E}_2,...$ a zastavovací pravidlo $\tau$, které zastavuje posloupnost v~bodě $\mathcal{E}_n$. Jsou naměřeny $\textbf{x}=\Big( x_1^{\mathcal{E}_1},x_2^{\mathcal{E}_2},...,x_n^{\mathcal{E}_n} \Big)$, ozn. $\{ \mathcal{E}_1,...,\mathcal{E}_n,\tau \}$ (sekvenční). Chceme, aby $\Ev\Big( \{ \mathcal{E}_1,...,\mathcal{E}_n,\tau \},\textbf{x} \Big)$ závisela na~$\tau$ pouze prostřednictvím $\textbf{x}$, tzn. $$\Ev\Big( \{ \mathcal{E}_1,...,\mathcal{E}_n,\tau_1 \},\textbf{x} \Big)=\Ev\Big( \{ \mathcal{E}_1,...,\mathcal{E}_n,\tau_2 \},\textbf{x} \Big),~\forall \textbf{x}.$$
-	\item[BAYESOVSKÝ princip:] Taková procedura, která využívá k~rozhodnutí o~parametru $\t$ aposteriorní hustotu $\pi(\t,\textbf{x})=\frac{f_\X\cdot\pi(\t)}{\int f_\X\cdot\pi(\t) d\t}$, např. $\widehat{\t}_B=''\EE{\pi(\t,\textbf{x})}''=\E^\pi(\t|\textbf{x})$.
+	\item[BAYESOVSKÝ princip:] Taková procedura, která využívá k~rozhodnutí o~parametru $\t$ aposteriorní hustotu $\pi(\t|\textbf{x})=\frac{f_\X\cdot\pi(\t)}{\int f_\X\cdot\pi(\t) d\t}$, např. $\widehat{\t}_B=''\EE{\pi(\t,\textbf{x})}''=\E^\pi(\t|\textbf{x})$.
 \end{description}
 
 \begin{example}
-	Mějme $\mathcal{E}_j..x_j\in\Ran(X_j)$, kde $X_j\sim f(x_j,\t),~\forall j\in 1,2,...$. Teoricky můžeme jít až do~nekonečna, ale někdy chceme experiment zastavit, abychom mohli vyhodnotit data. Definujeme tedy $\tau$ jako zastavení v~bodě $n$, pokud $\textbf{x}:=(x_1,...,x_n)\in\Ran(X_1)\times\Ran(X_2)\times...\times\Ran(X_n)\equal{ozn}\Aa_n$. Platí, že
+	Mějme $\mathcal{E}_j..x_j\in\Ran(X_j)$, kde $X_j\sim f(x_j,\t),~\forall j\in 1,2,...$. Teoreticky můžeme jít až do~nekonečna, ale někdy chceme experiment zastavit, abychom mohli vyhodnotit data. Definujeme tedy $\tau$ jako zastavení v~bodě $n$, pokud $\textbf{x}:=(x_1,...,x_n)\in\Ran(X_1)\times\Ran(X_2)\times...\times\Ran(X_n)\equal{ozn}\Aa_n$. Platí, že
 	$$ L(\t|\textbf{x})\equal{id}\Big(\prod f_{X_j}(x_j,\t) \Big)\cdot I_{\Aa_n}(\textbf{x})\equal{non~id}f(x_1|\t)f(x_2|x_1,\t)...f(x_n|x_1,x_2,...,x_{n-1},\t)I_{\Aa_n}(\textbf{x}).$$
 	Vidíme, že $L(\t|\textbf{x})$ nezávisí na zastavovacím pravidlu $\tau$ přímo, ale pouze prostřednictvím $\textbf{x}$. Tedy pokud platí $L$ princip, potom platí i $SR$ princip.
 \end{example}
@@ -37,7 +37,7 @@
 	\end{enumerate}
 \end{example}
 \begin{theorem}
-	$S\wedge C\Leftrightarrow L\Rightarrow SR$. Implikace $L\Rightarrow C$ a $L\Rightarrow S$ jsou důležité, protože $B~''\Rightarrow'' L$.
+	$S\wedge C\Leftrightarrow L\Rightarrow SR$. Implikace $L\Rightarrow C$ a $L\Rightarrow S$ jsou důležité, protože $B~"\Rightarrow" L$.
 	\begin{proof}
 		\begin{enumerate}[$B"\Rightarrow"L$:]
 			\item Mějme $\mathcal{E}_1,\mathcal{E}_2$, $x_1,x_2$ a~předpokládejme, že $L_1(\t)=c L_2(\t)$. Ptáme se, jestli je $\Ev(\mathcal{E}_1,x_1)=\Ev(\mathcal{E}_2,x_2)$. Víme, že $$ \underbrace{\pi_1(\t|x_1)}_{\sim\mathcal{E}_1}=\frac{f_{X_1}(x_1|\t)\pi(\t)}{\int f_{X_1}(x_1|\t)\pi(\t)\d\t}=\frac{c f_{X_2}\pi}{\int c f_{X_2}\pi\d\t}=\underbrace{\pi_2(\t| x_2)}_{\sim\mathcal{E}_2}.$$
@@ -262,9 +262,9 @@ $};
 		Závěr: D strategie Bayes($\delta^\pi$) je rovna E strategii Bayes ($\delta_\rho^\pi(\textbf{x})$ pro s.v. $\textbf{x}$).
 	\end{proof} 
 \end{theorem}
-Rozšíření: máme-li $\delta_\rho^\pi(\textbf{x})$ pro s.v. $\textbf{x}$ a~stane se, že $r(\pi)=+\infty$. Toto řešení $\delta^{\phi}$ nazveme \textbf{Zobecněnou Bayesovskou rozhodovací funkcí}.
+Rozšíření: máme-li $\delta_\rho^\pi(\textbf{x})$ pro s.v. $\textbf{x}$ a~stane se, že $r(\pi)=+\infty$. Toto řešení $\delta^{\pi}$ nazveme \textbf{Zobecněnou Bayesovskou rozhodovací funkcí}.
 
-Další výhody: $\pi(\t)$ a~máme data $\textbf{X}\sim f(\textbf{x},\t)\stackrel{\text{ÚBM}}{\longrightarrow}\pi(\t,\textbf{x})$ (ÚBM = úplný Bayes. model) update ($\widehat{\t}_B$ int. spol.). $\tilde{\pi}(\t)=\pi(\t|\textbf{x})$ nová data $\tilde{\textbf{X}}\sim\tilde{f}(\tilde{\textbf{x}}|\t)\stackrel{\text{ÚBM}}{\longrightarrow}\tilde{\pi}(\t|\tilde{\textbf{x}})$ update ($\widehat{\t}_B^{\sim}$) apod. 
+Další výhody: $\pi(\t)$ a~máme data $\textbf{X}\sim f(\textbf{x}|\t)\stackrel{\text{ÚBM}}{\longrightarrow}\pi(\t|\textbf{x})$ (ÚBM = úplný Bayes. model) update ($\widehat{\t}_B$ int. spol.). $\tilde{\pi}(\t)=\pi(\t|\textbf{x})$ nová data $\tilde{\textbf{X}}\sim\tilde{f}(\tilde{\textbf{x}}|\t)\stackrel{\text{ÚBM}}{\longrightarrow}\tilde{\pi}(\t|\tilde{\textbf{x}})$ update ($\widehat{\t}_B^{\sim}$) apod. 
 
 \begin{example}
 	Varianta: lékař sleduje chorobu pacienta. 1. den $x_1\sim f(x|\t)$, kde $\pi_1(\t)$ je apriorní informace. Z~toho pak $\pi(\t|x_1)$. 2. den naměří $x_2\sim f(x|\t)$. Z~toho pak $\pi_2(\t)=\alpha\pi(\t| x_1)+(1-\alpha)\tilde{\pi}_2(\t)\to \pi(\t|x_2,x_1)$. Pak n-tý den naměří $x_n$ a~proces se~opakuje.
@@ -628,7 +628,7 @@ Věta \ref{veticka2} je jednou z prvních vět o tom, jak se za daných podmíne
 		\item Můžeme naměřit data $x$ a vypočíst klasický odhad ML: $\widehat{p}_\mathrm{ML}=\frac{x}{n}=\oxnn$ (Pokud $(L=L_2)$, tak je to $\widehat{p}_\mathrm{UMVUE}$).
 		\item Bayesovský odhad: $$\pi(p|x)=\frac{\binom{n}{x}p^x(1-p)^{n-x}\cdot\frac{1}{B(a,b)}p^{a-1}(1-p)^{b-1}}{\int_{0}^{1}-||-\d p}=\frac{1}{c}p^{x+a-1}(1-p)^{n-x+b-1}\sim\mathrm{Beta}(x+a,n-x+b).$$
 		Z toho potom $\widehat{p}_B=\E \mathrm{Beta}(x+a,n-x+b)=\frac{x+a}{n+a+b}=\frac{\oxnn+\frac{a}{n}}{1+\frac{a+b}{n}}$. Zároveň však lze $\widehat{p}_B$ zapsat jako konvexní kombinaci z bodu 2)
-		$$ \widehat{p}_B=\underbrace{\frac{a+b}{a+b+n}}_{\alpha_n}\frac{a}{a+b}+\underbrace{\frac{n}{n+a+b}}_{1-\alpha_n}\frac{x}{n}=\alpha_n\widehat{p}_a+(1-\alpha_n)\widehat{p}_\mathrm{ML},$$ kde $\alpha_n$ se nazývá proce neurčitosti apriorní znalosti.
+		$$ \widehat{p}_B=\underbrace{\frac{a+b}{a+b+n}}_{\alpha_n}\frac{a}{a+b}+\underbrace{\frac{n}{n+a+b}}_{1-\alpha_n}\frac{x}{n}=\alpha_n\widehat{p}_a+(1-\alpha_n)\widehat{p}_\mathrm{ML},$$ kde $\alpha_n$ se nazývá porce neurčitosti apriorní znalosti.
 		\begin{enumerate}[a)]
 			\item $n$ pevně, $a,b\to+\infty$ (velké), $b/a=konst$ $(\alpha_n\to1\Rightarrow\widehat{p}_B=\widehat{p}_a)$
 			\item $a,b$ pevně, $n\to+\infty$ (velké), pak $\alpha_n\to0$ $(\alpha_n\doteq0)\Rightarrow\widehat{p}_B=\widehat{p}_\mathrm{ML}$,
@@ -822,7 +822,7 @@ Označme $\boldsymbol{\delta}^\ast(\textbf{x})=\big(\delta_1^\ast(\textbf{x}),..
 
 Pak $\exists k_0$ tak, že $\forall k\geq k_0$ je $\boldsymbol{\delta}^\ast$ nepřípustným odhadem (rozhodovací funkce) pro $\boldsymbol{\t}$, přestože $\delta_j^\ast$ jsou pro odhad $\t_j$ přípustné $\forall j\in\widehat{k}$.
 \begin{dusl}
-	Například klasická rozhodovací funkce metodou jednoznačného minimaxu je od jistého $k_0$ beznadějná, protože víme (z věty \ref{veta_mini}), že pokud existuje jednoznačný minimax , pak je přípustný. Stein ale říká, že od jistého $k_0$ se klasickou statistickou procedurou získat přípustné řešení nedá, tzn. od jistého $k_0$ nemůže existovat jednoznačný minimax. A také stejnoměrně nejlepší strategie $\delta_U$ od jisté dimenze $k_0$ neexistuje.
+	Například klasická rozhodovací funkce metodou jednoznačného minimaxu je od jistého $k_0$ beznadějná, protože víme (z věty \ref{veta_mini}), že pokud existuje jednoznačný minimax, pak je přípustný. Stein ale říká, že od jistého $k_0$ se klasickou statistickou procedurou získat přípustné řešení nedá, tzn. od jistého $k_0$ nemůže existovat jednoznačný minimax. A také stejnoměrně nejlepší strategie $\delta_U$ od jisté dimenze $k_0$ neexistuje.
 \end{dusl}
 Co s tím? Místo $\delta_u=\argmin\limits_{\delta\in\mathscr{D}}\RF(\t,\delta),~\forall\t$ hledá $\delta_{pu}=\argmin\limits_{\delta\in\mathscr{D}_0\subset\mathscr{D}}\RF(\t,\delta)\,\t$, např. $\mathscr{D}_0$ nestranné odhady (UMVUE). Tím jsme zajistili existenci, ale pro vysokou dimenzi opět dostaneme nepřípustné řešení. Další možností je použít $\mathscr{D}_0'$ jako \textbf{ekvivariantní} odhady. Ty pak vedou na UMEqE (\textit{Uniformly minimum equivariant estimator}).  
 

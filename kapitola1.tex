@@ -8,7 +8,7 @@ Ve statistice provádíme experimenty, abychom získali nějaký užitek, příp
 		\item V~tom případě ale potřebujeme model, který by úlohu popisoval. V~rámci toho modelu musíme zkoumat faktory ovlivňující požáry lesa. Těch je však mnoho, a~proto musíme vybrat ty relevantní. 
 		\item Dále potom záleží na~struktuře dat. Vezmeme $p$ jako pravděpodobnost, že v~lese vznikne požár. Vybraný logistický model pro~tuto pravděpodobnost vypadá jako
 		$$ p=\frac{\e{\alpha_1 h+\alpha_2t+\alpha_3x}}{1+\e{\alpha_1 h+\alpha_2 t+\alpha_3 x}}, $$
-		kde $h$ je vlhost, $t$ teplota a~$x$ stupeň péče o~les.
+		kde $h$ je vlhkost, $t$ teplota a~$x$ stupeň péče o~les.
 		\item Snažíme se~nyní odhadnout parametry $\walpha_1,\walpha_2,\walpha_3$. na~základě dostupných dat.
 		\item Dále musíme ověřit tento model na~reálné situaci.
 	\end{enumerate} 
@@ -74,7 +74,7 @@ Ve statistice provádíme experimenty, abychom získali nějaký užitek, příp
 		$$\PP(H_k|A)=\frac{\PP(H_k\cap A)}{\PP(A)}=\frac{\PP(A|H_k)\PP(H_k)}{\sum\limits_{j=1}^{n,+\infty}\PP(A|H_j)\PP(H_j)}.$$
 	\end{proof}
 \end{theorem}
-\begin{theorem}{Bayesova (pro hustoty)}
+\begin{theorem}[Bayesova (pro hustoty)]
 	Mějme $X,Y$ jako náhodné veličiny s~$f_{X,Y}$. Pak
 	$$ f(y|x)=\frac{f(x|y)g(y)}{\int_{\mathcal{Y}}f(x|y)g(y)dy}. $$
 \begin{proof}
