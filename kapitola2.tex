@@ -657,7 +657,7 @@ Věta \ref{veticka2} je jednou z prvních vět o tom, jak se za daných podmíne
 		$\lim\limits_{n\to+\infty}r(\pi_n)=1=r$ a víme, že máme $\delta_0$, pro který je $r=\RF(\mu,\underbrace{\overbrace{\widehat{\mu}_B}^{\text{z A)}}}_{=\delta_0=x})$. Potom dle věty \ref{veticka3} je $\delta_0=x$ minimaxní a posloupnost $\NN(0,n)$ je LF. (V tomto příkladu jsme používali $\propto$ (úměrnost), protože jsme nijak neřešili konstanty)
 	\end{enumerate}
 \end{example}
-\begin{theorem}[!!!Vyhazovací!!!]
+\begin{theorem}[!!!Vyhazovací!!!]\label{vyhazovaci}
 	ÚBM, $X\sim f(x|\t),~\pi(\t),~L(\t,\delta)=L_2(\t,\delta)=(\t-\delta)^2$. Nechť pro aposteriorní střední hodnotu platí, že $0<\E^\pi(\t^2|x)<+\infty$ ($\neq 0$ aby nebyla degenerovaná). Pak $$\delta^\pi(x)=\E^\pi(\t|x)=\frac{\int\t f(x|\t)\pi(\t)\d\t}{\int f(x|\t)\pi(\t)\d\t}, \text{ , kde } \frac{f(x|\t)\pi(\t)}{\int f(x|\t)\pi(\t)\d\t}=\pi(\t|x)$$
 	a pro Bayesovské riziko 
 	$$r(\pi)=\E^m[\D^\pi(\t|x)],$$
@@ -964,84 +964,107 @@ $$ \delta^\ast(\textbf{x})=\argmin_{\delta\in\mathscr{D}_{Eq}}\frac{\int\rho(\de
 \end{example}
 
 %########################## LESSON 10.12
-\begin{theorem}\label{veta1}
-	Mějme $X\sim \fex(x|\t),~\pi(\t)\sim \t,L_2$ (ÚBM). Pokud $0<\E(\t^2|\textbf{x})<+\infty$, pak $\delta^\pi(\textbf{x})=\E^\pi(\t|\textbf{x})$, kde $$\pi(\t|\textbf{x})=\frac{f(x|\t)\pi(\t)}{\int_\Theta f(x|\t)\pi(\t)\d\t}.$$
+\begin{theorem}[Opakování vyhazovací věty \ref{vyhazovaci}]\label{veta1}
+	Mějme $X\sim f_{X}(x|\t),~\pi(\t)\sim \t,L_2$ (ÚBM). Pokud $0<\E(\t^2|\textbf{x})<+\infty$, pak $\delta^\pi(\textbf{x})=\E^\pi(\t|\textbf{x})$ a Bayesovské riziko  je $r(\pi)=\E^m[\D^\pi(\t|\textbf{x}]$, kde $$\pi(\t|\textbf{x})=\frac{f(x|\t)\pi(\t)}{\int_\Theta f(x|\t)\pi(\t)\d\t}.$$ 
 \end{theorem}
 
 \begin{theorem}
-	Mějme $\fex,~\pi(\t),~L_2^w(\t,\delta)=w(\t)(\t-\delta)^2$. Pokud $0<\EE{\t^2w(\t)}<+\infty$, pak $$\delta^\pi(\textbf{x})=\frac{\E^\pi{\t w(\t)|\textbf{x}}}{\EE{w(\t)|\textbf{x}}}$$
-	a $r(\pi)=c\E^{m_w}[\D^{\pi_w}(\t|\textbf{x})]$, kde $m_w^{(*)}$ a $\pi_w(\t|\textbf{x})$ jsou marginální rozdělení $\textbf{X}$ a $\t|\textbf{x}$ příslušné $\pi_w(\t)=\frac{\pi(\t)w(\t)}{c}$, $c=\int\pi w\d\t$.
+	Mějme $f_X,~\pi(\t),~L_2^w(\t,\delta)=w(\t)(\t-\delta)^2$. Pokud $0<\EE{\t^2w(\t)|\textbf{x}}<+\infty$, pak $$\delta^\pi(\textbf{x})=\frac{\E^\pi[{\t w(\t)|\textbf{x}}]}{\E^{\pi}[{w(\t)|\textbf{x}}]}$$
+	a $r(\pi)=c\cdot\E^{m_w}[\D^{\pi_w}(\t|\textbf{x})]$, kde $m_w^{(*)}$ a $\pi_w(\t|\textbf{x})$ jsou marginální rozdělení $\textbf{X}$ a $\t|\textbf{x}$ příslušné $\pi_w(\t)=\frac{\pi(\t)w(\t)}{c}$, $c=\int\pi w\d\t$.
 	\begin{proof}
 		\[
 		\begin{split}
 		r_w(\pi,\delta)&\stackrel{L_2^w}{\equiv}\E^\pi\big[\E^f[L_2^w(\t,\delta(\textbf{X}))]\big]=\int_\Theta\Big(\int_{\chi(\R^n)} w(\t)\big(\t-\delta(\textbf{x})\big)^2 f(\textbf{x}|\t)\d\textbf{x}\Big)\pi(\t)\d\t=\\
-		&= \int_\Theta \E\big[L_2\big(\t,\delta(\textbf{X})\big)\big]\underbrace{ \pi(\t)w(\t)}_{\propto \pi_w(\t)c}\d\t = c\E^{\pi_w}\underbrace{\E^f (L_2)}_{\RF(\t,\delta)}=cr_2(\pi_w,\delta).
+		&= \int_\Theta \E^f\big[L_2\big(\t,\delta(\textbf{X})\big)\big]\underbrace{ \pi(\t)w(\t)}_{\propto \pi_w(\t)\cdot c}\d\t = c\cdot\E^{\pi_w}\underbrace{\E^f (L_2)}_{\RF(\t,\delta)}=c\cdot r_2(\pi_w,\delta).
 		\end{split}
 		\]
 		Ukázali jsme tedy, že  
-		$$\delta^\pi=\argmin_\delta r_w(\pi,\delta)=\argmin_\delta r_2(\pi_w,\delta)\stackrel{\ref{veta1}}{=}\E^{\pi_w}(\t|\textbf{x}),$$
-		kde $\pi_w(\t|\textbf{x})$ příslušné $\pi_w(\t)$. Z toho se dá vyjádřit, že $r(\pi)\stackrel{\ref{veta1}}{=}\E^{m_w}\D^{\pi_w}(\t|\textbf{x})$.
+		\begin{align*}
+		\delta^\pi&=\argmin_\delta r_w(\pi,\delta)=\argmin_\delta r_2(\pi_w,\delta)\stackrel{\ref{veta1}}{=}\E^{\pi_w}(\t|\textbf{x})=\\
+		&=\Bigg| 
+		\begin{array}{l}
+		\text{nyní je třeba si vyjádřit apost.} \\
+		\text{rozd. z Bayes. vzorečku, když} \\
+		\text{vezmeme } \pi_{w}(\t)
+		\end{array}
+		 \Bigg|=\dots=\frac{\E^\pi[{\t w(\t)|\textbf{x}}]}{\E^{\pi}[{w(\t)|\textbf{x}}]}
+		 \end{align*} 
+		kde aposteriorní rozdělení $\pi_w(\t|\textbf{x})$ příslušné apriorní hustotě $\pi_w(\t)$. A dále $r(\pi)\stackrel{\ref{veta1}}{=}\E^{m_w}\D^{\pi_w}(\t|\textbf{x})$.
 	\end{proof}
 \end{theorem}
 \begin{remark}\begin{itemize}
 		\item $w(\t)$ výrazně ovlivňuje Bayesovské řešení.
-		\item $\delta^\pi$ je jednoznačný, potom je přípustný. $\RF(\t,\delta)$ je spojitá v $\t$ a $\pi>0\Rightarrow\delta^\pi$ je přípustná, přípustná $\delta^\pi$ není ovlivněna $w(\t)$ v $L_2^w$ (robustnost $/delta^\pi$).
+		\item Pokud $\delta^\pi$ je jednoznačný, potom je přípustný. Pokud $\RF(\t,\delta)$ je spojitá v $\t$ a $\pi>0\Rightarrow\delta^\pi$ je přípustná. Přípustná $\delta^\pi$ není ovlivněna $w(\t)$ v $L_2^w$ (robustnost $\delta^\pi$ z hlediska volby váhy).
 	\end{itemize}
 \end{remark}
 
-\begin{theorem}
-	Mějme $\big\{ f(x|\bt):\bt\in\Theta\subset\R^k \big\},~\bt\sim\pi(\bt),~L=L_2^Q(\bt,\bdelta)=(\bt-\bdelta)^T\Q(\bt-\bdelta)$, kde $\Q$ je PD matice o rozměru $k\times k $ a $\Q$ nezávisí na $\bt$. Nechť $\Cov(\bt|\textbf{x})=\D(\bt|\textbf{x})$ je konečná (ideálně regulární), nenulová. Pak $\bdelta^\pi(\textbf{x})=\E^\pi(\bt|\textbf{x})$. 
+\begin{theorem}\label{vyhazovaci2}
+	Mějme $\big\{ f(x|\bt):\bt\in\Theta\subset\R^k \big\},~\bt\sim\pi(\bt),~L=L_2^{\Q}(\bt,\bdelta)=(\bt-\bdelta)^T\Q(\bt-\bdelta)$, kde $\Q$ je PD matice o rozměru $k\times k $ a $\Q$ nezávisí na $\bt$. Nechť $\Cov(\bt|\textbf{x})$ je konečná (ideálně regulární) a nenulová. Pak Bayesovské řešení $\bdelta^\pi(\textbf{x})=\E^\pi(\bt|\textbf{x})$. 
 	\begin{proof}
-		Obdodně jako v $\R^1$.
+		Obdodně jako v $\R^1$ (viz \ref{vyhazovaci}).
 	\end{proof}
 \end{theorem}
 \begin{remark}
 	\begin{enumerate}[a)]
-		\item $\delta^\pi$ nezávisí na tvaru $\Q$, tzn. volíme $\Q=\I$ a nemusíme užívat $L_2^\Q=\sum_i\sum_j q_{ij}(\t_i-\delta_i)(\t_j-\delta_j)$.
-		\item $L_2^{\Q,\textbf{w}}(\bt,\bdelta)=\sum_1^k w_i(\t_i-\delta_i)^2$. Neplatí V3! 
+		\item $\delta^\pi$ nezávisí na tvaru $\Q$, tzn. volíme $\Q=\I$, tzn. $L_2^{\Q}=\sum_{i=1}^k (\t_i-\delta_i)^2$, a nemusíme užívat $L_2^\Q=\sum_i\sum_j q_{ij}(\t_i-\delta_i)(\t_j-\delta_j)$.
+		\item $L_2^{\Q,\textbf{w}}(\bt,\bdelta)=\sum_1^k w_i(\bt)\cdot(\t_i-\delta_i)^2$. Neplatí věta \ref{vyhazovaci2}! 
 	\end{enumerate}
 \end{remark}
-Další volby L?
-$L_2$ není robustní (1964 Huber, Hampel, Ronchetti). 
+
+\underline{Další volby L?}
+$L_2$ není robustní na odchylky (1964 Huber, Hampel, Ronchetti). 
 
 $$ L_p,~p\in(1,2)=(\t-\delta)^p.$$
 
-$$\delta^\pi=\argmin_\delta \underbrace{r(\pi,\delta)}_{\E^\pi\E^f L}\stackrel{\forall\textbf{x}}{=}\argmin_{\delta(\textbf{x})}\underbrace{\rho(\pi,\delta|\textbf{x})}_{\E^\pi(L|\textbf{x})=\int L\big(\t,\delta(\textbf{x})\big)\pi(\t|\textbf{x})\d\t}.$$
+$$\delta^\pi=\argmin_\delta \underbrace{r(\pi,\delta)}_{\E^\pi\underbrace{\E^f L}_{\RF(\t,\delta)}}\stackrel{\forall\textbf{x}}{=}\argmin_{\delta(\textbf{x})}\underbrace{\rho(\pi,\delta|\textbf{x})}_{\E^\pi(L|\textbf{x})=\int L\big(\t,\delta(\textbf{x})\big)\pi(\t|\textbf{x})\d\t},$$ kde $\rho$ je aposteriorní bayesovské riziko.
 
 
-\begin{theorem}\begin{enumerate}[a:]
-		\item $f(x,\t),~\pi(\t),~L=L_1(\t,\delta)=|\t-\delta|$. Nechť $0<\EE{|\t|\big|\textbf{x}}<+\infty$, pak $\delta^\pi(\textbf{x})=\pi_{1/2}(\t|\textbf{x})$ medián aposteriorního rozdělení.
-		\item $f,~\pi,~L=L_{k_1,k_2}(\t,\delta)=\begin{cases}
-		k_1(\delta-\t)&\delta\geq \t \\ k_2(\t-\delta)& \delta<\t.
-		\end{cases}$ (multilineární loss). Nechť $0<\E\big(|\t|\big|\textbf{x}\big)<+\infty$. Pak $\delta^\pi(\textbf{x})=\pi_{\frac{k_2}{k_1+k_2}}(\t|\textbf{x})$, $\frac{k_2}{k_1+k_2}$ je kvantil aposteriorního rozdělení.
+\begin{theorem}
+$f(x|\t),~\pi(\t),~L=L_1(\t,\delta)=|\t-\delta|$. Nechť $0<\EE{|\t|\big|\textbf{x}}<+\infty$, pak $\delta^\pi(\textbf{x})=\pi_{1/2}(\t|\textbf{x})$ medián aposteriorního rozdělení.
+\begin{proof}
+Viz obecnější důkaz věty \ref{veta7}
+\end{proof}
+\end{theorem}
 		\begin{figure}[h]
 			\centering
 			\includegraphics[width=0.7\linewidth]{pictures/10.12}
 			\caption{popis}
 			\label{fig:10}
 		\end{figure}
-		
+		\FloatBarrier
+\begin{theorem}\label{veta7}
+$f,~\pi,~L=L_{k_1,k_2}(\t,\delta)=\begin{cases}
+		k_1(\delta-\t)&\delta\geq \t \\ k_2(\t-\delta)& \delta<\t.
+		\end{cases}$ (multilineární loss). Nechť $0<\E\big(|\t|\big|\textbf{x}\big)<+\infty$. Pak $\delta^\pi(\textbf{x})=\pi_{\frac{k_2}{k_1+k_2}}(\t|\textbf{x})$, kde $\frac{k_2}{k_1+k_2}$ je kvantil aposteriorního rozdělení.		
 		\begin{proof}
+		Spočítáme si, jak vypadá aposteriorní bayesovské riziko:
 			\[
 			\begin{split}
-			\rho(\pi,&\delta|\textbf{x})=\big[L_{k_1,k_2}(\t,\delta\big| \textbf{x})\big]=k_1\int_{-\infty}^\delta (\delta-\t)\pi(\t|\textbf{x})\d\t+k_2\int_\delta^{+\infty}(\t-\delta)\pi(\t|\textbf{x})\d\t\stackrel{P.P.}{=}\\&=k_1\Big(\big[(\delta-\t)\FF_\pi(\t|\textbf{x})\big]_{-\infty}^\delta+\int_{-\infty}^\delta \FF_\pi(\t|\textbf{x})\d\t\Big)+k_2(DCv.)\Big)=\\&=k_1\Big( 0-\underbrace{\delta\FF_\pi(-\infty|\textbf{x})}_{0}+\underbrace{\lim\limits_{\t\to+\infty}\t\FF_\pi(\t|\textbf{x})}_{0\text{, protože }\int_\Theta |\t|\pi(\t|\textbf{x})<\infty}+\int_{-\infty}^\delta \FF_\pi(\t|\textbf{x})\d\t \Big)+k_2\Big( []_\delta^{+\infty}-\int_\delta^{+\infty}\FF_\pi \d\t \Big)=\\&=k_1\int_{-\infty}^\delta \FF_\pi(\t|\textbf{x})\d\t+k_2\int_\delta^{+\infty}\big(1-\FF_\pi(\t|\textbf{x})\big)\d\t.
+			\rho(\pi,&\delta|\textbf{x})=\E^{\pi}\big[L_{k_1,k_2}(\t,\delta)\big| \textbf{x}\big]=k_1\int_{-\infty}^\delta (\delta-\t)\pi(\t|\textbf{x})\d\t+k_2\int_\delta^{+\infty}(\t-\delta)\pi(\t|\textbf{x})\d\t\stackrel{P.P.}{=}\\
+			&=k_1\Big(\big[(\delta-\t)\FF_\pi(\t|\textbf{x})\big]_{-\infty}^\delta+\int_{-\infty}^\delta \FF_\pi(\t|\textbf{x})\d\t\Big)+k_2\cdot (\dots)=\\
+			&=k_1\Big( 0-\underbrace{\delta\cdot\FF_\pi(-\infty|\textbf{x})}_{0}+\underbrace{\lim\limits_{\t\to-\infty}\t\FF_\pi(\t|\textbf{x})}_{0\text{, protože }\int_\Theta |\t|\pi(\t|\textbf{x})<\infty}+\int_{-\infty}^\delta \FF_\pi(\t|\textbf{x})\d\t \Big)+k_2\cdot (\dots\text{\footnotemark})=\\
+			&=k_1\int_{-\infty}^\delta \FF_\pi(\t|\textbf{x})\d\t+k_2\int_\delta^{+\infty}\big(1-\FF_\pi(\t|\textbf{x})\big)\d\t.
 			\end{split}
 			\]
 			\[
 			\begin{split}
-			\rho_\delta'&=k_1\cdot 1\cdot\FF_\pi(\delta|\textbf{x})+k_2\cdot(-1)\big(1-\FF_\pi(\delta|\textbf{x})\big)=0,\\\delta(\textbf{x})&=\pi_{\frac{k_2}{k_1+k_2}}(\t|\textbf{x}) \Leftarrow \FF_\pi(\delta|\textbf{x})=\frac{k_2}{k_1+k_2}\in(0,1)
+			\rho_\delta'&=k_1\cdot 1\cdot\FF_\pi(\delta|\textbf{x})+k_2\cdot(-1)\big(1-\FF_\pi(\delta|\textbf{x})\big)=0,\\
+			\FF_\pi(\delta|\textbf{x})&=\frac{k_2}{k_1+k_2}\in(0,1)\Rightarrow \delta(\textbf{x})=\pi_{\frac{k_2}{k_1+k_2}}(\t|\textbf{x})
 			\end{split}
 			\]
+			\footnotetext{$0=\lim\limits_{\t\to+\infty}\t(1-\FF_{\pi}(\t|\textbf{x}))$}
 		\end{proof} 
-	\end{enumerate}
+
 	
 \end{theorem}
 \begin{theorem}
 	Mějme $f,~\pi,~L=L_{\{0,1\}}(\t,\delta)\equal{ozn}L_{0,1}(\t,\delta)=\begin{cases}
 	0&|\t-\delta|\leq c,\\1& |\t-\delta|>c.
-	\end{cases}$. Pak $\delta^\pi(\textbf{x})$ je středem intervalu $I_{2c}$ délky $2c$, který maximalizuje $\PP^\pi(\t\in I_{2c}|\textbf{x})$.
+	\end{cases}$. Pak Bayesovské řešení $\delta^\pi(\textbf{x})$ je středem intervalu $I_{2c}$ délky $2c$, který maximalizuje $\PP^\pi(\t\in I_{2c}|\textbf{x})$.
 	\begin{proof}
-		Přenecháno čtenáři.
+		Přenecháno čtenáři (Zkouškový důkaz).
+		
+		Nápověda: Vyjít z $\rho(\pi,\delta(\textbf{x})|\textbf{x})$ a vyrobit tam $\argmin \rho$.
 	\end{proof}
 \begin{figure}[h]
 	\centering
@@ -1050,9 +1073,20 @@ $$\delta^\pi=\argmin_\delta \underbrace{r(\pi,\delta)}_{\E^\pi\E^f L}\stackrel{\
 	\label{fig:105}
 \end{figure}
 \end{theorem}
+\FloatBarrier
 
 \begin{define}
-	$c\to 0+$ definujeme \textbf{maximum aposteriori rohodovací funkce} vztahem $\delta_\mathrm{MAP}(\textbf{x})=\argmax_\t \pi(\t|\textbf{x})$. Pak $$\delta_\mathrm{MAP}(\textbf{x})=\argmax_\t f(\textbf{x}|\t)\pi(\t).$$
+	Definujeme \textbf{maximum aposteriori odhad rozhodovací funkce} (někdy také Bayesovská maximálně věrohodný odhad) vztahem $\delta_\mathrm{MAP}(\textbf{x})=\argmax_\t \underbrace{\pi(\t|\textbf{x})}_{\frac{f\cdot\pi}{\int f\cdot\pi\,\d\t}}$ nebo alternativně, pokud $\int f\cdot\pi\,\d\t=+\infty$, definujeme vztahem  $\delta_\mathrm{MAP}(\textbf{x})=\argmax_\t f(\textbf{x}|\t)\pi(\t).$
 \end{define}
 
+\begin{example}
+$\N(\mu,\sigma^2)$
+\begin{enumerate}[a)]
+\item $\sigma^2$ známé $\Rightarrow$ $\widehat{\mu}_{MAP}=?$ při $\pi(\mu)=konst.$
+\item $\mu$ známé $\Rightarrow$ $\widehat{\sigma}_{MAP}=?$ při $\pi(\sigma)=\frac{1}{\sigma}$ (tzn. $\pi(\log \sigma)=konst.$)
+\item $\mu$ i $\sigma^2$ neznámá $\Rightarrow$ $(\widehat{\mu}_{MAP},\widehat{\sigma}_{MAP})$ 2D Bayesovský maximálně věrohodný odhad (MAP)
+\end{enumerate}
+\end{example}
+
+{\Huge Zde by měly následovat dodatečně doplněné materiály k 12. přednášce.}
 
