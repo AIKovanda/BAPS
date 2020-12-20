@@ -59,6 +59,8 @@
 	\end{proof}
 \end{theorem}
 
+\chapter{Třídy optimálních strategii, užitková funkce a~podmínky pro~existenci užitkové funkce.}
+
 \section{Statistical decision theory}
 
 \begin{define}
@@ -88,6 +90,8 @@ Motivace: označme $d_i$ jako investice do~$i$-té společnosti. Na~konci roku p
 		
 		Člen $\sumjn q_j(p_j-\t_j)^2$ nemusí být nutně na~druhou, můžeme brát závorku i~v~absolutní hodnotě, případně ji umocnit na~$\alpha\in(0,2)$ a regulovat tak robustnost $L(\t,p)$. Tím vším vstupuje do~našeho problému tzv. \textbf{Apriorno}, musíme totiž dopředu vědět některé informace, třeba $X\sim f(x,\t)$, tvar $L(\t,\delta)$. 
 \end{example}
+
+\chapter{Bayesovské riziko, aposteriorní hustota, prediktivní bayesovská hustota.}
 
 \section{Rozhodovací principy statistiky}
 
@@ -149,8 +153,7 @@ $};
 	\end{enumerate}
 	Srovnání $\delta_0$ a~$\delta_1$ nelze rozhodnout na~základě $\RF$-strategie. 
 \end{example}
-
-\chapter{Nezkontrolováno}
+š
 \begin{description}
 	\item[Metoda c) Strategie MINIMAXní] $\sup\limits_{\t\in\Theta} \RF(\t,\delta)$ nazýváme ''\textit{maxní}''(\textit{supremální}) riziková funkce a~je rovna $\RF_{\sup}(\t,\delta)$. Definujeme 
 	$$ \delta_0=\argmin\limits_{\delta\in\mathscr{D}}\RF_{\sup}(\t,\delta)=\argmin\limits_{\delta\in\mathscr{D}}\underbrace{\sup\limits_{\t\in\Theta}\underbrace{\E_\t L(\t,\delta(\X))}_{\RF(\t,\delta)}}_{r_{\sup}\in\R_0^+}.$$
@@ -280,6 +283,9 @@ Další výhody: $\pi(\t)$ a~máme data $\textbf{X}\sim f(\textbf{x},\t)\stackre
 		Výhodou c) je potom to, že obsahuje ''plnou'' (ve smyslu integrálu) informaci ve~tvaru $\pi(\t|\textbf{x})$.
 	\end{enumerate}
 \end{description}
+
+\chapter{Asymptotické vlastnosti aposteriorní hustoty a~bayesovských bodových odhadů.}
+
 \begin{define}
 	Mějme $P,Q\in\mathcal{P}$ a~definujeme \textbf{totální variaci} $\TV(P,Q)=\left\|P-Q\right\|_\TV=\sup\limits_{|g|\leq 1}\left| \int g(\X)\d P-\int g(\Y)\d Q \right|\equal{ASR}=\left|\begin{array}{l}
 	p\equal{ozn}\frac{\d P}{\d \mu}\quad P,Q\ll\mu\\ q=\frac{\d Q}{\d \mu}
@@ -382,7 +388,8 @@ Bez důkazu.
 	
 \end{remark}
 
-\section{5.11.}
+\chapter{Formy apriorní informace, princip neurčitosti, Jeffreysova hustota, ukázky.}
+
 Problém principu neurčitosti: $\pi(\t)=$konst. na~$\Theta$ (rovnoměrnou apriorní informaci).
 \begin{example}
 	Mějme ÚBM, $X\sim f(x|\t),~\t\in(0,1),~\pi(\t)=1$ na~$(0,1)$. Bayes: $\pi(\t|\textbf{x})$.. $\widehat{\t}_B(\textbf{x})$. Označme $\eta=\t^2...,~\t=\sqrt{\eta}$, reparametrizace $f(x|\t=\sqrt{\eta})=f(x|\eta)$. $\t$ považujeme za~znáhodněné (apriorně předpokládáme, že o~$\t$ nic nevíme). Transformace hustoty, $\t$ na~$\eta$: $$\pi_H(\eta)=\pi(\sqrt{\eta})\cdot\big|\mathbb{J}_H(\eta)\big|=1\cdot\frac{1}{2\sqrt{\eta}}=\frac{1}{2\sqrt{\eta}}.$$
@@ -456,6 +463,8 @@ Tedy pokud obecně o parametru $\t$ nevíme nic, tak máme 2 možnosti. Můžeme
 	\end{enumerate}
 	Pro $n$ malá se odhady v a) a b) liší.
 \end{example}
+
+\chapter{Konjugované systémy apriorních hustot, princip maximální entropie, limitní aposteriorní hustoty, příklady.}
 
 \section{Limitní aposteriorní hustoty ($\widehat{\t}_B$)}
 Mějme ÚBM $\{\mathcal{F},\pi(\t)\}$ a~předpokládejme, že $\pi\in\Pi=\{\pi(\t,\boldsymbol{\lambda}):\boldsymbol{\lambda}\in\Lambda\}=\mathcal{H}$. Volme $\lambda_0\in\partial\Lambda$ z hranice a~definujme limitní apriorní hustotu $\pi_{\lambda_0}(\t)=\lim\limits_{\substack{
@@ -551,6 +560,8 @@ Seznam CF: \begin{enumerate}[a)]
 		\end{figure}
 		
 \end{remark}
+
+\chapter{Nejméně příznivá apriorní rozdělení, souvislost s~minimaxním principem rozhodování.}
 
 \section{Propojování Bayesovské statistiky s klasickou statistikou (nejméně příznivé rozdělení)}
 \begin{define}
@@ -676,6 +687,8 @@ Věta \ref{veticka2} je jednou z prvních vět o tom, jak se za daných podmíne
 		Záměna je provedena obdobně jako ve větě \ref{veta_zamena}.
 	\end{proof}
 \end{theorem}
+
+\chapter{Přípustnost bayesovského řešení, Steinův efekt pro~sféricky symetrická rozdělení, Bergerův jev.}
 
 \section{Přípustnost (Admissibility)}
 \begin{define}
@@ -898,6 +911,8 @@ $$ L=L_2(\t,\boldsymbol{\delta})=(\t-\delta)^2\equal{\text{případně}}\big(\ta
 	
 \end{theorem}
 
+\chapter{Grupy transformací, ekvivariantní odhady a~jejich bayesovská reprezentace.}
+
 \section{Equivariantní rozhodovací funkce (MRE$_q$E)}
 \begin{define}
 	Mějme grupu $(G,\ast)$, tj. $g_1,g_2\in G~\Rightarrow~ g_1\ast g_2$ a volme speciálně grupu $(\R,\ast)$, \[
@@ -963,6 +978,7 @@ $$ \delta^\ast(\textbf{x})=\argmin_{\delta\in\mathscr{D}_{Eq}}\frac{\int\rho(\de
 	$$ \delta^\ast(\textbf{x})\equal{L_2}...=x_{(1)}-\frac{1}{n},$$ což je Pitmanův odhad pro $\mathrm{Exp}(1)$, tedy $MRE_qE$.
 \end{example}
 
+\chapter{Bayesovské odhady pro~absolutní, multi-lineární, (váženou) kvadratickou a~0-1 ztrátovou funkci.}
 %########################## LESSON 10.12
 \begin{theorem}[Opakování vyhazovací věty \ref{vyhazovaci}]\label{veta1}
 	Mějme $X\sim f_{X}(x|\t),~\pi(\t)\sim \t,L_2$ (ÚBM). Pokud $0<\E(\t^2|\textbf{x})<+\infty$, pak $\delta^\pi(\textbf{x})=\E^\pi(\t|\textbf{x})$ a Bayesovské riziko  je $r(\pi)=\E^m[\D^\pi(\t|\textbf{x}]$, kde $$\pi(\t|\textbf{x})=\frac{f(x|\t)\pi(\t)}{\int_\Theta f(x|\t)\pi(\t)\d\t}.$$ 
@@ -1088,5 +1104,7 @@ $\N(\mu,\sigma^2)$
 \end{enumerate}
 \end{example}
 
-{\Huge Zde by měly následovat dodatečně doplněné materiály k 12. přednášce.}
+\chapter{Vzorkování podle důležitosti, Metropolisův algoritmus, variační Bayes.}
+
+\includepdf[pages=-]{scan.pdf}
 
