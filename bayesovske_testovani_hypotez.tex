@@ -26,10 +26,10 @@ $$ \tau(\t)=I_{\Theta_0}=\begin{cases}
 	0& \text{pokud }\PP^\pi(\t\in\Theta_0|\textbf{x})\leq\frac{a_1}{a_0+a_1},
 	\end{cases}$$ kde $\frac{a_1}{a_0+a_1}=\frac{1}{1+\frac{a_0}{a_1}}$ je závislá na poměru $\frac{a_0}{a_1}$. Pro $a_0=a_1=1$ je pak hranice $\frac{1}{2}$.
 	\begin{proof}
-		Vezmeme aposteriorní bayesovské riziko (za $L$ bereme $L_{a_0-a_1}(\t,\delta)$ )
+		Vezmeme aposteriorní bayesovské riziko (za $L$ bereme $L_{a_0-a_1}(\t,\delta)$)
 		\[
 		\begin{split}
-		\rho(\pi,\delta|\textbf{x})&=\E^\pi\big[L\big(\t,\delta(\textbf{x})\big)\big| \textbf{x}\big]=0\cdot\PP^{\pi}(...)+a_0\cdot \PP^\pi(\t\in\Theta_0|\textbf{x})\cdot I_{\{0\}}(\delta)+a_1 \cdot\PP^\pi (\t\in\Theta_1|\textbf{x})\cdot I_{\{1\}}(\delta)=\\&=\begin{cases}
+		\rho(\pi,\delta|\textbf{x})&=\E^\pi\big[L\big(\t,\delta(\textbf{x})\big)\big| \textbf{x}\big]\overset{L_{a_0-a_1}}{=}0\cdot\PP^{\pi}(...)+a_0\cdot \PP^\pi(\t\in\Theta_0|\textbf{x})\cdot I_{\{0\}}(\delta)+a_1 \cdot\PP^\pi (\t\in\Theta_1|\textbf{x})\cdot I_{\{1\}}(\delta)=\\&=\begin{cases}
 		a_0\cdot \PP^\pi(\t\in\Theta_0|\textbf{x})&\text{pokud }\delta(\textbf{x})=0,\\
 		a_1\cdot \PP^\pi(\t\in\Theta_1|\textbf{x})&\text{pokud }\delta(\textbf{x})=1,
 		\end{cases}
@@ -39,7 +39,7 @@ $$ \tau(\t)=I_{\Theta_0}=\begin{cases}
 		1&\text{pokud }a_1\cdot\PP^\pi(\t\in\Theta_1|\textbf{x})<a_0\cdot\PP^\pi(\t\in\Theta_0|\textbf{x}),\\
 		0&\text{pokud }a_1\cdot\PP^\pi(\t\in\Theta_1|\textbf{x})\geq a_0\cdot\PP^\pi(\t\in\Theta_0|\textbf{x}),\\
 		\end{cases} $$
-		a z $a_1\cdot\big(1-\PP^\pi(\t\in\Theta_0|\textbf{x})\big)<a_0\cdot\PP^\pi(\t\in\Theta_0|\textbf{x})$ spočítáme $\PP^\pi(\t\in\Theta_0|\textbf{x})>\frac{a_1}{a_0+a_1}\Big(=\frac{1}{2}\Big)$.
+		a z $a_1\cdot\big(1-\PP^\pi(\t\in\Theta_0|\textbf{x})\big)<a_0\cdot\PP^\pi(\t\in\Theta_0|\textbf{x})$ spočítáme $\PP^\pi(\t\in\Theta_0|\textbf{x})>\frac{a_1}{a_0+a_1}(=\frac{1}{2})$.
 	\end{proof}
 \end{theorem}
 		\begin{figure}[h]
