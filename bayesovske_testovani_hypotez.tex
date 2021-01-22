@@ -105,6 +105,13 @@ tedy $B^\pi(\textbf{x})=\frac{f_0(\textbf{x})}{m_1(\textbf{x})}$.
 \end{example}
 \begin{example}
 	Mějme $X\sim\NN(\mu,1)$ a chceme testovat $\hypothesis{\mu=0}{\mu\neq0}$, kde $\mu\in\R$. Víme, že $\rho_0=\frac{1}{2}$, $\rho_1=\frac{1}{2}$ (tzn. $H_0$ věříme na 50\%). Potom volíme
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.8\linewidth]{pictures/last02}
+		\caption{Jeffreys-Lindley Paradox}
+		\label{fig:last02}
+	\end{figure}
+	
 	\begin{enumerate}[a)]
 		\item $$ \pi(\mu)=\frac{1}{2}\delta_0+\frac{1}{2}\pi_1(\t)\text{ , kde }\pi_1(\mu)=1\text{ na }\mu\neq0\quad(\text{nevlastní apriorní hustota}).$$
 		Potom $$ \pi(\mu=0|\underbrace{\textbf{x}}_{=x})=\frac{1}{1+\sqrt{2\pi} \e{x^2/2}}\stackrel{\forall x\in\R}{\leq}\frac{1}{1+\sqrt{2\pi}}=0.285\quad \text{tzn. vždy zamítáme }H_0!$$
@@ -124,9 +131,3 @@ x & 0 & 0.68 & 1.28 & 1.96 & ... \\\hline
 \end{array}
  $$
 \end{example}
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.8\linewidth]{pictures/last02}
-	\caption{Jeffreys-Lindley Paradox}
-	\label{fig:last02}
-\end{figure}

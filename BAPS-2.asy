@@ -13,7 +13,7 @@ void xtick(real x){draw((x,-.1) -- (x,.1));}
 
 void ytick(real y){draw((-.1,y) -- (.1,y));}
 
-path s = ((0,1) .. (2,2.2) .. (4,2.1) .. (6,2));
+path s~= ((0,1) .. (2,2.2) .. (4,2.1) .. (6,2));
 draw(s);
 draw((-.1,0) -- (7.5,0), arrow=myarrow);
 draw((0,-.1) -- (0,3), arrow=myarrow);
