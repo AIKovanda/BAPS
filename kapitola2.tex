@@ -1,17 +1,19 @@
 \chapter{Princip postačitelnosti, podmíněnosti, věrohodnosti, zastavovací pravidlo sekvenčního principu, vztahy.}
+Uvedené principy nejsou věty, ale něco, co chceme, aby platilo ve statistické procedůře (zatím ne Bayesovské).
 \begin{description}
-	\item[SUFFICIENCY princip:] Máme experiment $\mathcal{E}$ závislý na~$\t$, pozorování $x,y$ a~nechť je v~$\mathcal{E}$ k~dispozici postačující statistika $T$ (PS). Víme-li, že $T(x)=T(y)$,~chceme, aby závěry o~$\t$ na~základě $x$ nebo $y$ byly shodné. ($T$ je PS pokud rozdělení $X|T(X)=t$ nezávisí na~$\t$).
+	\item[SUFFICIENCY princip:] Máme experiment $\mathcal{E}$ závislý na~$\t$, pozorování $x,y$ a~nechť je v~$\mathcal{E}$ k~dispozici postačující statistika $T$ (PS). Víme-li, že $T(x)=T(y)$,~chceme, aby závěry o~$\t$ na~základě $x$ nebo $y$ byly shodné. ($T$ je PS, pokud rozdělení $X|T(X)=t$ nezávisí na~$\t$).
 	
-	\item[LIKELIHOOD princip:] Informace o~$\t$ nesená $x$ je zcela obsažena ve~věrohodnostní funkci $f_\X(\textbf{x},\t)=L$. Navíc, pokud máme pozorování $x_1$ v experimentu $\mathcal{E}_1$ a~$x_2$ v~experimentu $\mathcal{E}_2$ taková, že 
+	\item[LIKELIHOOD princip:] Informace o~$\t$ nesená $x$ je zcela obsažena ve~věrohodnostní funkci $L(\t)=f_\X(\textbf{x},\t)$. Navíc, pokud máme pozorování $x_1$ v experimentu $\mathcal{E}_1$ a~$x_2$ v~experimentu $\mathcal{E}_2$ taková, že 
 	$$ L_1(\t|x_1)=c L_2(\t|x_2),\quad\forall\t\in\Theta,$$
 	pak chceme, aby závěry o~parametru $\t$ v~obou experimentech byly shodné. Označíme to $\mathrm{Ev}(\mathcal{E}_1,x_1)=\mathrm{Ev}(\mathcal{E}_2,x_2)$ (Ev jako Evidence). 
-	\item[CONDITIONALITY princip:] Nechť máme dostupné $\mathcal{E}_1,\mathcal{E}_2$. Definujeme $\mathcal{E}^*$ experiment tak, že vybereme náhodně mezi~$\mathcal{E}_1 \vee \mathcal{E}_2$, a~v~tom vybraném naměříme $x_j,~j=1\vee 2$. Chceme, aby $\Ev\big(\mathcal{E}^*,(j,x_j)\big)=\Ev(\mathcal{E}_j,x_j),~\forall j,\forall x_j$.
-	\item[STOPPING rule:] Máme posloupnost experimentů $\mathcal{E}_1,\mathcal{E}_2,...$ a zastavovací pravidlo $\tau$, které zastavuje posloupnost v~bodě $\mathcal{E}_n$. Jsou naměřeny $\textbf{x}=\Big( x_1^{\mathcal{E}_1},x_2^{\mathcal{E}_2},...,x_n^{\mathcal{E}_n} \Big)$, ozn. $\{ \mathcal{E}_1,...,\mathcal{E}_n,\tau \}$ (sekvenční). Chceme, aby $\Ev\Big( \{ \mathcal{E}_1,...,\mathcal{E}_n,\tau \},\textbf{x} \Big)$ závisela na~$\tau$ pouze prostřednictvím $\textbf{x}$, tzn. $$\Ev\Big( \{ \mathcal{E}_1,...,\mathcal{E}_n,\tau_1 \},\textbf{x} \Big)=\Ev\Big( \{ \mathcal{E}_1,...,\mathcal{E}_n,\tau_2 \},\textbf{x} \Big),~\forall \textbf{x}.$$
-	\item[BAYESOVSKÝ princip:] Taková procedura, která využívá k~rozhodnutí o~parametru $\t$ aposteriorní hustotu $\pi(\t|\textbf{x})=\frac{f_\X\cdot\pi(\t)}{\int f_\X\cdot\pi(\t) d\t}$, např. $\widehat{\t}_B=''\EE{\pi(\t,\textbf{x})}''=\E^\pi(\t)$.
+	
+	\item[CONDITIONALITY princip:] Tento princip se od prvních dvou liší tím, že chceme, aby něco platilo pro všechna potenciálně naměřená data. Nechť máme dostupné $\mathcal{E}_1,\mathcal{E}_2$. Definujeme $\mathcal{E}^*$ experiment tak, že vybereme náhodně mezi~$\mathcal{E}_1 \vee \mathcal{E}_2$ a~v~tom vybraném naměříme $x_j,~j=1\vee 2$. Chceme, aby $\Ev\big(\mathcal{E}^*,(j,x_j)\big)=\Ev(\mathcal{E}_j,x_j),~\forall j,\forall x_j$. V prvním (složeném) experimentu tedy zaznamenáváme $j\in\{0,1\}$ jako index experimentu a $x_j$ jako naměřenou hodnotu a chceme, aby závěr ze složeného experimentu byl stejný, jako kdyby nevybraný experiment vůbec neexistoval.
+	\item[STOPPING rule:] Máme posloupnost experimentů $\mathcal{E}_1,\mathcal{E}_2,...$ a zastavovací pravidlo $\tau$, které zastavuje posloupnost v~bodě $\mathcal{E}_n$. Jsou naměřeny $\textbf{x}=\big( x_1^{\mathcal{E}_1},x_2^{\mathcal{E}_2},...,x_n^{\mathcal{E}_n} \big)$. Chceme, aby $\Ev\big( \{ \mathcal{E}_1,...,\mathcal{E}_n,\tau \},\textbf{x} \big)$ závisela na~$\tau$ pouze prostřednictvím $\textbf{x}$, tzn. $$\Ev\big( \{ \mathcal{E}_1,...,\mathcal{E}_n,\tau_1 \},\textbf{x} \big)=\Ev\big( \{ \mathcal{E}_1,...,\mathcal{E}_n,\tau_2 \},\textbf{x} \big),~\forall \textbf{x}.$$
+	\item[BAYESOVSKÝ princip:] Taková procedura, která využívá k~rozhodnutí o~parametru $\t$ aposteriorní hustotu $\pi(\t|\textbf{x})=\frac{f_\X(\textbf{x}|\t)\cdot\pi(\t)}{\int f_\X(\textbf{x}|\t)\cdot\pi(\t) \d\t}$, např. $\widehat{\t}_\mathrm{B}=''\EE{\pi(\t,\textbf{x})}''=\E^\pi(\t)$.
 \end{description}
 
 \begin{example}
-	Mějme $\mathcal{E}_j..x_j\in\Ran(X_j)$, kde $X_j\sim f(x_j,\t),~\forall j\in 1,2,...$. Teoreticky můžeme jít až do~nekonečna, ale někdy chceme experiment zastavit, abychom mohli vyhodnotit data. Definujeme tedy $\tau$ jako zastavení v~bodě $n$, pokud $\textbf{x}:=(x_1,...,x_n)\in\Ran(X_1)\times\Ran(X_2)\times...\times\Ran(X_n)\equal{ozn}\Aa_n$. Platí, že
+	Mějme $\mathcal{E}_j..x_j\in\Ran(X_j)$, kde $X_j\sim f(x_j,\t),~\forall j\in 1,2,...$. Teoreticky můžeme jít až do~nekonečna, ale někdy chceme experiment zastavit, abychom mohli vyhodnotit data. Definujeme tedy $\tau$ jako zastavení v~bodě $n$, pokud $$\textbf{x}:=(x_1,...,x_n)\in\Ran(X_1)\times\Ran(X_2)\times...\times\Ran(X_n)\equal{ozn}\Aa_n.$$ Platí, že
 	$$ L(\t|\textbf{x})\equal{id}\Big(\prod f_{X_j}(x_j,\t) \Big)\cdot I_{\Aa_n}(\textbf{x})\equal{non~id}f(x_1|\t)f(x_2|x_1,\t)...f(x_n|x_1,x_2,...,x_{n-1},\t)I_{\Aa_n}(\textbf{x}).$$
 	Vidíme, že $L(\t|\textbf{x})$ nezávisí na zastavovacím pravidlu $\tau$ přímo, ale pouze prostřednictvím $\textbf{x}$. Tedy pokud platí $L$ princip, potom platí i $SR$ princip.
 \end{example}
@@ -40,7 +42,7 @@
 	$S\wedge C\Leftrightarrow L\Rightarrow SR$. Implikace $L\Rightarrow C$ a $L\Rightarrow S$ jsou důležité, protože $B~"\Rightarrow" L$.
 	\begin{proof}
 		\begin{enumerate}[$B"\Rightarrow"L$:]
-			\item Mějme $\mathcal{E}_1,\mathcal{E}_2$, $x_1,x_2$ a~předpokládejme, že $L_1(\t)=c L_2(\t)$. Ptáme se, jestli je $\Ev(\mathcal{E}_1,x_1)=\Ev(\mathcal{E}_2,x_2)$. Víme, že $$ \underbrace{\pi_1(\t|x_1)}_{\sim\mathcal{E}_1}=\frac{f_{X_1}(x_1|\t)\pi(\t)}{\int f_{X_1}(x_1|\t)\pi(\t)\d\t}=\frac{c f_{X_2}\pi}{\int c f_{X_2}\pi\d\t}=\underbrace{\pi_2(\t| x_2)}_{\sim\mathcal{E}_2}.$$
+			\item Mějme $\mathcal{E}_1,\mathcal{E}_2$, $x_1,x_2$ a~předpokládejme, že $L_1(\t)=c L_2(\t)$. Ptáme se, jestli je $\Ev(\mathcal{E}_1,x_1)=\Ev(\mathcal{E}_2,x_2)$. Víme, že $$ \underbrace{\pi_1(\t|x_1)}_{\sim\mathcal{E}_1}=\frac{f_{X_1}(x_1|\t)\pi(\t)}{\int f_{X_1}(x_1|\t)\pi(\t)\d\t}=\frac{c f_{X_2}(x_2|\t)\pi(\t)}{\int c f_{X_2}(x_2|\t)\pi(\t)\d\t}=\underbrace{\pi_2(\t| x_2)}_{\sim\mathcal{E}_2}.$$
 		\end{enumerate}
 	\begin{enumerate}[$L\Rightarrow S$:]
 		\item Nechť T je PS pro exponenciální $\mathcal{E}$ a~nechť máme data $x_1^0,x_2^0$ (nula značí konkrétní výběr, nikoliv obecný), taková, že $T(x_1^0)=T(x_2^0)$. Máme k~dispozici Neymannův faktorizační teorém, $X\sim f(x,\t)$, pak $T(X)$ je PS právě tehdy, když $f(x|\t)=h(x)g\big(T(x),\t \big),~\forall\t$. Potom tedy 
@@ -64,224 +66,213 @@
 \section{Statistical decision theory}
 
 \begin{define}
-	Označíme $\Dd$ jako množinu možných rozhodnutí o~$\t$, případně $\tau(\t)$. Dále potom $\delta\in\Dd$. $L:\Theta\times\Dd\to[0,+\infty)$ nazýváme \textbf{loss function} (ztrátová funkce) a~$L(\t,\delta)$ je \textbf{míra ztráty} (shody, neshody), pokud pro~$\t$ použijeme rozhodnutí $\delta$.
+	Označíme $\Dd$ jako \textbf{množinu možných rozhodnutí} o~$\t$, případně $\tau(\t)$. Dále potom $d\in\Dd$ je rozhodnutí. $L:\Theta\times\Dd\to[0,+\infty)$ nazýváme \textbf{loss function} (ztrátová funkce) a~$L(\t,d)$ je \textbf{míra ztráty} (shody, neshody), pokud pro~$\t$ použijeme rozhodnutí $d$.
 	
-	Označme dále $\Rr$ jako \textbf{reward space}, který je spojen s~$\Dd$, tj. $\forall\delta\in\Dd$ přiřazujeme $r\in\Rr$ ($\delta\leftrightarrow r$). Předpokládejme dále, že na~$\Rr$ existuje úplné uspořádání ($\leq$) tak, že \begin{enumerate}[{A}1)]
+	Označme dále $\Rr$ jako \textbf{reward space}, který je spojen s~$\Dd$, tj. $\forall d\in\Dd$ přiřazujeme $r\in\Rr$ ($d\leftrightarrow r$). Předpokládejme dále, že na~$\Rr$ existuje úplné uspořádání ($\leq$) tak, že \begin{enumerate}[{A}1)]
 		\item $\forall r_1,r_2\in\Rr,~r_1\leq r_2 \vee r_2\leq r_1$,
 		\item $\forall r_1,r_2,r_3\in\Rr,~r_1\leq r_2 \wedge r_2\leq r_3~\Rightarrow~r_1\leq r_3$. 
 	\end{enumerate}Z~toho vyplývá, že nastává právě jedna varianta
 $$ r_1<r_2,\quad r_2<r_1,\quad r_1=r_2~(r_1\sim r_2).$$
 Poslední rovnost není myšlena jako číselná rovnost, ale spíše jako ekvivalence (peníze pro~nás můžou mít stejnou cenu, jako získané znalosti).
 
-	Nad $\Rr$ definujeme prostor $\mathcal{P}$ pravděpodobnostních distribucí náhodné veličiny $r$ ($r\sim\PP\in\mathcal{P}$). Předpokládejme, že na~$\mathcal{P}$ existuje úplné uspořádání ($\leq$) analogické s A1) a A2).
+	Nad $\Rr$ definujeme prostor $\mathcal{P}$ pravděpodobnostních distribucí náhodné veličiny $r$ ($r\sim\PP\in\mathcal{P}$). Předpokládejme, že na~$\mathcal{P}$ existuje úplné uspořádání ($\leq$) analogické s A1) a A2) (jinými slovy zvolíme způsob, jakým lze uspořádat pravděpodobnosti, třeba jak moc se odchylují od rovnoměrného rozdělení apod.).
 \end{define}
 
-Motivace: označme $d_i$ jako investice do~$i$-té společnosti. Na~konci roku pak očekáváme dividendy $r_i$. $(d_i)_1^k...(r_i)_1^k$ a celková dividenda $r=\sumin r_i$ má pak rozdělení $\PP=\PP_1\ast...\ast\PP_k$, které lze aproximovat z CLT.
+\begin{example}[Motivace] 
+	Označme $d_i$ jako investice do~$i$-té společnosti. Na~konci roku pak očekáváme dividendy $r_i$. Máme tedy $(d_i)_1^k$, $(r_i)_1^k$ a celková dividenda $r=\sum_{i=1}^n r_i$ pak mají rozdělení $\PP=\PP_1\ast...\ast\PP_k$ (konvoluce, protože sčítáme náhodné veličiny), které lze aproximovat z CLT.
+\end{example}
 
 \begin{define}
 	Funkci $U$ na~$\Rr$ nazveme \textbf{užitkovou} (utility function), pokud $\forall P,Q\in\mathcal{P}$ platí, že 
-	$$ P\leq Q\quad\Leftrightarrow\quad\E^P\big[U(r)\big]\leq\E^Q\big[U(r)\big],$$ kde $r$ je náhodná veličina. Pokut to jde, můžeme například volit $U(r)=r$.
+	$$ P\leq Q\quad\Leftrightarrow\quad\E^P\big[U(r)\big]\leq\E^Q\big[U(r)\big],$$ kde $r$ je náhodná veličina. Pokud to jde, můžeme například volit $U(r)=r$.
 \end{define}
 \begin{remark}
-	Pokud má $\mathcal{P}$ vhodné vlastnosti, pak existuje užitková funkce $U(r)$, která zachovává dané uspořádání $\mathcal{P}$ a pro~ztrátu $L(\t,\delta)\geq 0$ můžeme volit $L(\t,\delta)=U(\t,\delta)=-\E[U(r)]+c$, kde konstantu $c$ přičítáme proto, abychom se~nedostali do~záporných čísel. Tím zajistíme, že pokud budeme provádět minimalizaci $L$, pak provádíme i~maximalizaci užitku.
+	Pokud má $\mathcal{P}$ vhodné vlastnosti, pak existuje užitková funkce $U(r)$, která zachovává dané uspořádání $\mathcal{P}$, a pro~ztrátu $L(\t,d)\geq 0$ můžeme volit $L(\t,d)=U(\t,d)=-\E[U(r)]+c$, kde konstantu $c$ přičítáme proto, abychom se~nedostali do~záporných čísel. Tím zajistíme, že pokud budeme provádět minimalizaci $L$, pak provádíme i~maximalizaci užitku.
 \end{remark}
 \begin{example}[volba L]
-		Předpověď počasí v~Kanadě. Předpovědi jsou ve~tvaru "pravděpodobnost, že zítra bude pršet je $p$". Předpovědi od~různých společností chceme nějak porovnat. Sledujeme tedy 365 dní všechny předpovědi a~přiřadíme každému předpovídateli jeho použitá $p_1,...,p_N$. Definujeme relativní četnost $$\t_j=\frac{\text{\# dnů, kdy pršelo a~byla použita }p_j}{\text{\# dnů, kdy byla použita }p_j},\quad j\in\widehat{N}.$$ Sestavíme ztrátovou funkci (použil De Groot v~roce 1988) $$L(\boldsymbol{\t},\textbf{p})=\sum_{j=1}^N q_j(p_j-\t_j)^2+\sum_{i=1}^N q_i\ln q_i,$$ kde $q_j=\frac{\text{\# použití }p_j}{365}$ a~$H(\textbf{q})=-\sum_1^N q_j\ln q_j\geq 0$ je entropie rozdělení $\{q_j\}_{j=1}^N$. Suma $\sum_{i=1}^N q_i\ln q_i$ pak penalizuje předpovědi, které jsou nevyvážené, protože pro systém neuspořádanosti (rovnoměrné rozdělení $q_j=\frac{1}{N},~\forall j$) je $H(\textbf{q})$ maximální.
+		Předpověď počasí v~Kanadě. Předpovědi jsou ve~tvaru "pravděpodobnost, že zítra bude pršet je $p$". Předpovědi od~různých společností chceme nějak porovnat. Sledujeme tedy 365 dní všechny předpovědi a~přiřadíme každému předpovídateli jeho použitá $p_1,...,p_N$, kde $N$ je počet různých procentuálních předpovědí v daném roce (tedy $N\leq 365$). Definujeme relativní četnost $$\t_j=\frac{\text{\# dnů, kdy pršelo a~byla použita }p_j}{\text{\# dnů, kdy byla použita }p_j},\quad j\in\widehat{N}.$$ Sestavíme ztrátovou funkci (použil De Groot v~roce 1988) $$L(\boldsymbol{\t},\textbf{p})=\sum_{j=1}^N q_j(p_j-\t_j)^2+\sum_{i=1}^N q_i\ln q_i,$$ kde $q_j=\frac{\text{\# použití }p_j}{365}$ a~$H(\textbf{q})=-\sum_1^N q_j\ln q_j\geq 0$ je entropie rozdělení $\{q_j\}_{j=1}^N$. Suma $\sum_{i=1}^N q_i\ln q_i$ pak penalizuje předpovědi, které jsou nevyvážené, protože pro systém neuspořádanosti (rovnoměrné rozdělení $q_j=\frac{1}{N},~\forall j$) je $H(\textbf{q})$ maximální.
 		
 		Člen $\sumjn q_j(p_j-\t_j)^2$ nemusí být nutně na~druhou, můžeme brát závorku i~v~absolutní hodnotě, případně ji umocnit na~$\alpha\in(0,2)$ a regulovat tak robustnost $L(\t,p)$. Tím vším vstupuje do~našeho problému tzv. \textbf{Apriorno}, musíme totiž dopředu vědět některé informace, třeba $X\sim f(x,\t)$, tvar $L(\t,\delta)$. 
 \end{example}
 
-\chapter{Bayesovské riziko, aposteriorní hustota, prediktivní bayesovská hustota.}
+\chapter{Rozhodovací principy statistiky}
 
-\section{Rozhodovací principy statistiky}
-
+Zatím tedy máme 3 prostory, výběrový prostor $\chi= \{\textbf{x}\}$ pro~data $\textbf{x}$, parametrický prostor $\Theta=\{\t\}$ a rozhodovací prostor $\Dd= \{d\}$ a na nich definujeme několik věcí.
 \begin{define}
-	Mějme $\Theta$, $\mathcal{F}=\big\{ f(x|\t):\t\in\Theta \big\}$,~$\mathscr{D}$, kde $\delta\in\mathscr{D}$ a~$\chi$ jako výběrový prostor pro~data $\textbf{x}$. Funkci $\delta:\chi\to\mathscr{D}$ nazýváme \textbf{rozhodovací funkce}, $\delta(\textbf{x})=\delta\in\mathscr{D}$. 
+	Mějme $\chi,\Theta,\Dd$ a prostor  $\mathcal{F}=\big\{ f(x|\t):\t\in\Theta \big\}$. Funkci $\delta:\chi\to\Dd $ nazýváme \textbf{rozhodovací funkce} a platí, že $\delta(\textbf{x})=d\in\Dd $, kde $\delta\in\Dd'$ jako prvek prostoru rozhodovacích funkcí.  Rozhodovací funkce nám tedy říká, jaké rozhodnutí uděláme na základě dat \textbf{x}.
 \end{define}
-\begin{description}
-	\item[Metoda A) minimalizace L:] $\delta_L(\textbf{x})=\argmin\limits_{\delta\in\mathscr{D}} L\big(\t,\delta(\textbf{x})\big),~\forall \t\in\Theta,~\forall\textbf{x}\in\chi$. Avšak je obtížné, až nemožné, takto obecně stejnoměrně minimalizovat.
-	\item[Metoda B) Riziková funkce] (risk function) je funkce $\RF:\Theta\times\mathscr{D}\to\R^+$, definovaná jako $$\RF(\t,\delta)=\E_\t L\big(\t,\delta(\textbf{X})\big)=\int L\big(\t,\delta(\textbf{x})\big)f_\textbf{X}(\textbf{x}|\t)\d\textbf{x}.$$
-	Rizikovou funkci také nazýváme jako \textit{střední ztrátu}. Definujeme $\delta_U=\argmin\limits_{\delta\in\mathscr{D}} \RF(\t,\delta),~\forall\t\in\Theta$.
+
+\section{Metoda A) minimalizace L:} $\delta_L(\textbf{x})=\argmin\limits_{\delta\in\Dd'} L\big(\t,\delta(\textbf{x})\big),~\forall \t\in\Theta,~\forall\textbf{x}\in\chi$. Avšak je obtížné, až nemožné, takto obecně stejnoměrně minimalizovat.
+
+\section{Metoda B) minimalizace $\E $L}
+Stejnoměrná minimalizace má spoustu problémů (ne vždy to jde). Pokud se jich chceme zbavit, můžeme například minimalizovat střední ztrátu. Použijeme k tomu rizikovou funkci (risk function) $\RF:\Theta\times\Dd \to\R^+$, definovanou jako $$\RF(\t,\delta)=\E_\t L\big(\t,\delta(\textbf{X})\big)=\int_\chi L\big(\t,\delta(\textbf{x})\big)f_\textbf{X}(\textbf{x}|\t)\d\textbf{x}.$$
+	Rizikovou funkci také nazýváme jako \textit{střední ztrátu}. Definujeme $d_U=\argmin\limits_{\delta\in\Dd' } \RF(\t,\delta),~\forall\t\in\Theta$.
 	
 	\begin{figure}[h]
 		\centering
 		\begin{tikzpicture}
 		\node[inner sep=0pt] (pic) at (0,0)
 		{\includegraphics[width=7.5cm]{pictures/picture_3_2.pdf}};
-		\draw [color=black](3.4,2.0) node[anchor=north west] {$ \text{R}(\theta, \delta_1 )
+		\draw [color=black](3.4,2.0) node[anchor=north west] {$ \RF (\theta, \delta_1 )
 			$};
-		\draw [color=black](3.4,1.3) node[anchor=north west] {$ \text{R}(\theta, \delta_2 )
+		\draw [color=black](3.4,1.3) node[anchor=north west] {$ \RF (\theta, \delta_2 )
 			$};
-		\draw [color=black](3.4,0.2) node[anchor=north west] {$ \text{R}(\theta, \delta_3 )
+		\draw [color=black](3.4,0.2) node[anchor=north west] {$ \RF (\theta, \delta_3 )
 		$};
-	\draw [color=black](3.4,-0.4) node[anchor=north west] {$ \text{R}(\theta, \delta_4 )
+	\draw [color=black](3.4,-0.4) node[anchor=north west] {$ \RF (\theta, \delta_4 )
 	$};
-\draw [color=black](3.4,-.8) node[anchor=north west] {$ \text{R}(\theta, \delta_5 )
+\draw [color=black](3.4,-.8) node[anchor=north west] {$ \RF (\theta, \delta_5 )
 $};
+\draw [color=black](-0.3,-1.7) node[anchor=north west] {$\Theta$};
 		\end{tikzpicture}
-		\caption{HPD Region.}
+		\caption{HPD Region (Highest Posterior Density). Pokud by nějaká funkce $ \RF (\theta, \delta_6 )
+			$ náhodou na nějakém intervalu byla menší, než $ \RF (\theta, \delta_5 )
+			$, tak bychom ji jednoduše zahodili.}\label{HPD}
 	\end{figure}
 	
-	Ne vždy lze najít stejnoměrně nejlepší řešení. V~takovém případě pak přejdeme na~prostor $\mathscr{D}_0\subset\mathscr{D}$, kde již lze najít stejnoměrně nejlepší řešení (typicky vypustíme některé rizikové funkce). Můžeme tedy optimalizovat na různých prostorech rozhodovacích fukncí, např.
+	Ne vždy lze najít stejnoměrně nejlepší řešení. V~takovém případě pak přejdeme na~prostor $\Dd'_0\subset\Dd' $, kde již lze najít stejnoměrně nejlepší řešení (typicky vypustíme některé rizikové funkce), viz \ref{HPD}. Můžeme tedy optimalizovat na různých prostorech rozhodovacích funkcí, např.
 	\begin{enumerate}[a)]
 		\item  Prostor rozhodovacích funkcí, které jsou nestranné -- pak vede na~UMVUE.
-		\item $\mathscr{D}_0$ takový, který je prostorem ekvivariantních rozhodovacích funkcí na modelech invariantních na~určitou transformaci (např. posunutí, přeškálování, tzn. tzv. \textbf{lokálně-měřítkové modely}).
+		\item $\Dd _0$ takový, který je prostorem ekvivariantních rozhodovacích funkcí na modelech invariantních na~určitou transformaci (např. posunutí, přeškálování, tzn. tzv. \textbf{lokálně-měřítkové modely}).
 	\end{enumerate}
 	
 	Problémy této stejnoměrně optimální strategie: \begin{enumerate}[a)]
 		\item $\delta_1,\delta_2$ a~k~nim $\RF(\t,\delta_1),\RF(\t,\delta_2)$ takové, že se~kříží -- nejsme schopni rozhodnout, která strategie je lepší.
-		\item Minimalizujeme $\E L$, ale předpis $\delta$ (odhadce) nezávisí na~$\textbf{x}$ - výběr nejlepšího $\delta$ nezávisí na~naměřených datech.
-		\item Na~rozmyšlenou je následující příklad \ref{example:problemy}.
+		\item Minimalizujeme $\E L$, ale $\delta$ nezávisí na~$\textbf{x}$, tedy výběr nejlepšího $\delta$ nezávisí na~naměřených datech.
+		\item Na~rozmyšlenou je příklad \ref{example:problemy}.
 	\end{enumerate}
-\end{description}
 
 \begin{example} \label{example:problemy}
 	Mějme $X=\begin{cases}
-	\t-1 & \text{s pravd. } \frac{1}{2}, \\ \t+1 & \text{s pravd. } \frac{1}{2},
-	\end{cases}~\t\in\R,~\mathscr{D}=\R$. Volme
-	$ L(\t,\delta)=1-I_\t(\delta)$, kterou nazýváme "0-1" ztrátovou funkci.
+	\t-1, & \PP= \frac{1}{2}, \\ \t+1, & \PP=\frac{1}{2},
+	\end{cases}~\t\in\R,~\Dd =\R$. Volme
+	$ L(\t,d)=1-I_\t(d)$, kde $I_\t(d)$ je 1, pokud $d=\t$ a nula, pokud ne (nazýváme ji "0-1" ztrátovou funkci).
 	
 	\begin{enumerate}[1)]
-		\item Máme $(x_1,x_2)$ data a~sestrojíme $\delta_0=\frac{x_1+x_2}{2}=\begin{cases}
+		\item Máme $\textbf{x}=(x_1,x_2)$ data a~sestrojíme $\delta_0(\textbf{x})=\frac{x_1+x_2}{2}=\begin{cases}
 		\t\\\t-1\\\t+1
 		\end{cases}$ symetricky kolem~$\t$. Potom
-		$$ \RF(\t,\delta_0)=\E L(\t,\delta_0)=1-\E I_\t(\delta_0)=1-\PP(\delta_0=\t)=1-\PP(X_1\neq X_2)=\frac{1}{2}.$$ To nám říká, že střední ztráta je rovna $\frac{1}{2}$, tzn. že v~průměru 50\% případů bude příznivých (trefíme se~do~parametru).
-		\item Máme data $(x_1,x_2)$ a~sestrojíme $\delta_1=x_1+1=\begin{cases}
+		$$ \RF(\t,\delta_0)=\E L(\t,\delta_0(\textbf{X}))=1-\E I_\t\big(\delta_0(\textbf{X})\big)=1-\PP\big(\delta_0(\textbf{X})=\t\big)=1-\PP(X_1\neq X_2)=\frac{1}{2}.$$ To nám říká, že střední ztráta je rovna $\frac{1}{2}$, tzn. že v~průměru 50\% případů bude příznivých (trefíme se~do~parametru).
+		\item Máme data $\textbf{x}=(x_1,x_2)$ a~sestrojíme $\delta_1(\textbf{x})=x_1+1=\begin{cases}
 		\t\\\t+2
 		\end{cases}$ nesymetricky rozdělené kolem~$\t$. Potom
-		$$\RF(\t,\delta_1)=...=1-\PP(\delta_1=\t)=1-\PP(X_1=\t-1)=\frac{1}{2}.$$
+		$$\RF(\t,\delta_1)=...=1-\PP\big(\delta_1(\textbf{X})=\t\big)=1-\PP(X_1=\t-1)=\frac{1}{2}.$$
 	\end{enumerate}
 	Srovnání $\delta_0$ a~$\delta_1$ nelze rozhodnout na~základě $\RF$-strategie. 
 \end{example}
-\begin{description}
-	\item[Metoda c) Strategie MINIMAXní] $\sup\limits_{\t\in\Theta} \RF(\t,\delta)$ nazýváme ''\textit{maxní}''(\textit{supremální}) riziková funkce a~je rovna $\RF_{\sup}(\t,\delta)$. Definujeme 
-	$$ \delta_0=\argmin\limits_{\delta\in\mathscr{D}}\RF_{\sup}(\t,\delta)=\argmin\limits_{\delta\in\mathscr{D}}\underbrace{\sup\limits_{\t\in\Theta}\underbrace{\E_\t L(\t,\delta(\X))}_{\RF(\t,\delta)}}_{r_{\sup}\in\R_0^+}.$$
-\end{description}
-
+\section{Metoda C) Strategie MINIMAXní}
 \begin{define}
-	Definujeme \textbf{minimaxní riziko} ve~tvaru $\overline{\RF}=\inf\limits_\delta\sup\limits_\t\RF(\t,\delta)$.
+	 Mějme $\delta\in\Dd'$. Potom definujeme $\RF_{\sup}(\t,\delta):=\sup\limits_{\t\in\Theta} \RF(\t,\delta) \in\R^+$ jako ''\textit{maxní}''(\textit{supremální}) rizikovou funkci. Definujeme dále
+	$$ \delta_0=\argmin\limits_{\delta\in\Dd'}\RF_{\sup}(\t,\delta)=\argmin\limits_{\delta\in\Dd' }\sup\limits_{\t\in\Theta}\underbrace{\E_\t L\big(\t,\delta(\X)\big)}_{\RF(\t,\delta)}.$$
 \end{define}
 
+\begin{define}
+	Definujeme \textbf{minimaxní riziko} jako $\overline{\RF}=\inf\limits_{\delta\in\Dd'}\sup\limits_{\t\in\Theta}\RF(\t,\delta)$.
+\end{define}
+
+\begin{remark}
+	Analogie z~teorie her. Máme 2 hráče, kteří mají antagonický vztah (snaží se~navzájem poškodit a~nezáleží jim na~ztrátě). První hráč udělá nějaký tah. Druhý hráč pak udělá tah, který co nejvíc poškodí 1. hráče. První hráč to předvídá a~snaží se~tedy minimalizovat nejhorší možnou ztrátu.
+\end{remark}
+
 \begin{figure}[h]
-	\centering
-	\begin{tikzpicture}
-	\node[inner sep=0pt] (pic) at (0,0)
-	{\includegraphics[width=15.0cm]{pictures/picture_3_4.pdf}};
-	\draw [color=black](3,0.5) node[anchor=north west] {$ \delta $};
-	\draw [color=black](0,-0.3) node[anchor=north west] {$ \theta $};
-	\end{tikzpicture}
-	\caption{1: zeleně suprema, nejmenší supremum je delta3 2: lepší je delta2, protože ač je riziko vysoké, jeho šance je velice malá - toto je nevýhoda minimaxní strategie 3: delta2 jen lehce překmitne delta1 a~pak se~k~němu blíží asymptoticky}
+\centering
+\begin{tikzpicture}
+\node[inner sep=0pt] (pic) at (0,0)
+{\includegraphics[width=15.0cm]{pictures/picture_3_4.pdf}};
+\draw [color=black](4.2,1.5) node[anchor=north west] {$ \RF(\t,\delta_2) $};
+\draw [color=black](4.7,0.1) node[anchor=north west] {$ \RF(\t,\delta_1) $};
+\draw [color=black](1.6,0.9) node[anchor=north west] {$ \RF(\t,\delta_1) $};
+\draw [color=black](1.6,-.4) node[anchor=north west] {$ \RF(\t,\delta_2) $};
+\draw [color=black](-3.8,1.5) node[anchor=north west] {$ \RF(\t,\delta_1) $};
+\draw [color=black](-3.8,1) node[anchor=north west] {$ \RF(\t,\delta_2) $};
+\draw [color=black](-3.8,0) node[anchor=north west] {$ \RF(\t,\delta_3) $};
+\draw [color=black](-3.8,-.5) node[anchor=north west] {$ \RF(\t,\delta_4) $};
+\draw [color=black](-5.8,-1) node[anchor=north west] {$ \Theta $};
+\draw [color=black](-.4,-1) node[anchor=north west] {$ \Theta $};
+\draw [color=black](3.2,-1) node[anchor=north west] {$ 0 $};
+\draw [color=black](4.3,-1) node[anchor=north west] {$ \left\|\Theta\right\|,~\mathrm{dim}\Theta\geq 3 $};
+\end{tikzpicture}
+\caption{1: zeleně suprema, nejmenší supremum je pro $\delta_2$, 2: lepší je $\delta_2$, protože ač je riziko vysoké, jeho šance je velice malá - toto je nevýhoda minimaxní strategie 3: $\delta_2$ jen lehce překmitne $\delta_1$ a~pak se~k~němu blíží asymptoticky}
 \end{figure}
 
-\begin{remark}
-	Analogie z~teorie her. Pokud máme 2 hráče, kteří mají antagonický vztah (snaží se~navzájem poškodit a~nezáleží jim na~ztrátě). První hráč udělá nějaký tah. Druhý hráč pak udělá tah, který co nejvíc poškodí 1. hráče. První hráč to předvídá a~snaží se~tedy minimalizovat nejhorší možnou ztrátu.
-\end{remark}
+\section{Metoda D) Bayesovská riziková funkce} 
+\begin{define}
+	Nechť $\Pi=\{ \pi\}$ je množina všech apriorních rozdělení pro parametr $\t$. Definujeme \textbf{Bayesovskou rizikovou funkci} $r:\Pi\times\Dd' \to\R_0^+$ vztahem
+	$$ r(\pi,\delta):=\E^\pi\big[ \RF(\t,\delta) \big]=\int\limits_{\Theta}\RF(\t,\delta)\pi(\t)\d\t=\int\limits_{\Theta}\Big( \int\limits_{\chi}L\big(\t,\delta(\textbf{X})\big)f_\textbf{X}(\textbf{x}|\t)\d\textbf{x} \Big)\pi(\t)\d\t.$$
+	Definujeme dále \textbf{Bayesovskou rozhodovací funkci}, za~předpokladu existence, jako $$\delta^\pi:=\argmin\limits_{\delta\in\Dd '}r(\pi,\delta).$$ 
+	Číslo $r(\pi):=r(\pi,\delta^\pi)$ nazýváme \textbf{Bayesovské (apriorní) riziko}.  
 
+\end{define}
 \begin{remark}
-	Stavba naftové plošina v~Severním moři. Máme vstupy=parametry (teplota, vítr, příliv, bouřky, lidský faktor,...) a~rozhodujeme se, jak plošinu postavit.
-	\begin{figure}[h]
-		\centering
-		\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.5cm,y=1.5cm]
-		\clip(-1.25,-0.27) rectangle (7,3.03);
-		\draw [->] (0,-0.48) -- (0,3);
-		\draw [->] (-0.25,0) -- (5,0);
-		\draw [dash pattern=on 2pt off 2pt] (4.27,-0.38)-- (4.27,2.55);
-		\draw [dash pattern=on 2pt off 2pt] (-0.25,2.55)-- (4.27,2.55);
-		\draw [shift={(0.04,2.55)}] plot[domain=-1.595:0,variable=\t]({1*0.63*cos(\t r)+0*0.63*sin(\t r)},{0*0.63*cos(\t r)+1*0.63*sin(\t r)});
-		\draw [shift={(0.02,0)}] plot[domain=0:1.595,variable=\t]({1*0.74*cos(\t r)+0*0.74*sin(\t r)},{0*0.74*cos(\t r)+1*0.74*sin(\t r)});
-		\begin{scriptsize}
-		\draw [color=black] (1.64,1.4)-- ++(-1.5pt,-1.5pt) -- ++(3.0pt,3.0pt) ++(-3.0pt,0) -- ++(3.0pt,-3.0pt);
-		\draw [color=black] (0.88,1.52)-- ++(-1.5pt,-1.5pt) -- ++(3.0pt,3.0pt) ++(-3.0pt,0) -- ++(3.0pt,-3.0pt);
-		\draw [color=black] (1.98,1.9)-- ++(-1.5pt,-1.5pt) -- ++(3.0pt,3.0pt) ++(-3.0pt,0) -- ++(3.0pt,-3.0pt);
-		\draw [color=black] (0.4,0.34)-- ++(-1.5pt,-1.5pt) -- ++(3.0pt,3.0pt) ++(-3.0pt,0) -- ++(3.0pt,-3.0pt);
-		\draw [color=black] (3.2,1.8)-- ++(-1.5pt,-1.5pt) -- ++(3.0pt,3.0pt) ++(-3.0pt,0) -- ++(3.0pt,-3.0pt);
-		\draw [color=black] (3.14,0.96)-- ++(-1.5pt,-1.5pt) -- ++(3.0pt,3.0pt) ++(-3.0pt,0) -- ++(3.0pt,-3.0pt);
-		\draw [color=black] (1.98,0.52)-- ++(-1.5pt,-1.5pt) -- ++(3.0pt,3.0pt) ++(-3.0pt,0) -- ++(3.0pt,-3.0pt);
-		\draw [color=black] (0.98,1.96)-- ++(-1.5pt,-1.5pt) -- ++(3.0pt,3.0pt) ++(-3.0pt,0) -- ++(3.0pt,-3.0pt);
-		\end{scriptsize}
-		\draw [color=black](-0.6,2.3) node[anchor=north west] {$ v_{\text{max}}$};
-		\draw [color=black](-0.6,3) node[anchor=north west] {vítr};
-		\draw [color=black](0,0) node[anchor=north west] {$ t_\text{min} $};
-		\draw [color=black](3.3,0) node[anchor=north west] {$ +50^\circ C $};
-		\draw [color=black](5,0.2) node[anchor=north west] {teplota};
-		\draw [color=black](-0.4,0.4) node[anchor=north west] {$ 0 $};
-		\end{tikzpicture}
-		\caption{}
-		\label{fig:p51}
-	\end{figure}
-	
-\end{remark}
-\begin{description}
-	\item[Metoda d) Bayesovská riziková funkce] $r(\pi,\delta):\Pi=\{ \pi\text{ apriorní rozdělení pro~}\t \}\times\mathscr{D}\to\R_0^+$.
-	$$ r(\pi,\delta)=\E^\pi\big[ R(\t,\delta) \big]=\int\limits_{\Theta}R(\t,\delta)\pi(\t)\d\t=\int\limits_{\Theta}\Big( \int\limits_{\chi}L\big(\t,\delta(\textbf{X})\big)f_\textbf{X}\d\textbf{x} \Big)\pi(\t)\d\t.$$
-	Definujeme $\delta^\pi=\argmin\limits_{\delta\in\mathscr{D}}r(\pi,\delta)$, za~předpokladu existence, jako \textbf{Bayesovskou rozhodovací funkci}. Číslo $r(\pi)=r(\pi,\delta^\pi)$ nazýváme \textbf{Bayesovské (apriorní) riziko}.  
-\end{description}
-\begin{remark}
-	Mějme $\pi$ fixní, $\delta_1\leq\delta_2~\Leftrightarrow~r(\pi,\delta_1)\leq r(\pi,\delta_2)$ uspořádané v~$\R^1$. Rozšíření i~na~\textbf{nevlastní apriorní hustoty} (inf.), pokud $r(\pi)<+\infty$. ($r_\text{inf}(\pi)=\inf_\delta r(\pi,\delta)<+\infty$)
+	Mějme $\pi$ fixní. Pak $\delta_1\leq\delta_2$ právě tehdy, když $r(\pi,\delta_1)\leq r(\pi,\delta_2)$ jsou uspořádané v~$\R^1$. To lze rozšířit i~na~nevlastní apriorní hustoty (informace), ale pouze pokud $r(\pi)<+\infty$.
 \end{remark}
 \begin{example}
-	Mějme $X\sim\underbrace{\NN(\t,1)}_{f_X}$, $\t\in\R,~\pi(\t)=1$ (konstantní) na~$\R$ (nevlastní hustota). Pak
-	$$ \pi(\t|x)=\frac{f_X \pi(\t)}{\int_{-\infty}^{+\infty}f_X \pi(\t)\d\t}=\frac{1}{c}\e{-\frac{1}{2}(\t-x)^2}=\frac{1}{\sqrt{2\pi}}\e{-\frac{1}{2}(\t-x)^2}.$$
+	Mějme $X\sim\underbrace{\NN(\t,1)}_{f_X(x|\t)}$, $\t\in\R,~\pi(\t)=1$ (konstantní) na~$\R$ (nevlastní hustota, tedy nepreferujeme dopředu žádnou hodnotu). Pak
+	$$ \pi(\t|x)=\frac{f_X(x|\t) \pi(\t)}{\int_{-\infty}^{+\infty}f_X(x|\t) \pi(\t)\d\t}=\frac{1}{c}\e{-\frac{1}{2}(\t-x)^2}=\frac{1}{\sqrt{2\pi}}\e{-\frac{1}{2}(\t-x)^2}=\NN(x,1).$$
 	\[\begin{split}
-	\delta^\pi(\textbf{x})&=\EE{\pi(\t|x)}=\E\NN(x,1)=x\text{ obecněji }\overline{x}_n\\
-	r(\pi)&= r(\pi,\delta^\pi)=\E^\pi R=\E^\pi[\E^f L_2]\equal{def}\E^\pi\big[ \E^f\underbrace{\big(\t-\delta^\pi(X) \big)^2}_{L_2} \big]=\E^\pi\E^f(\t-X)^2=\\&=\E^\pi\big[ \E^f(X-\E^fX)^2 \big]=\E^\pi(\sigma^2)=\int_{-\infty}^{+\infty}\sigma^2\cdot 1\d\t=+\infty
+	\delta^\pi(x)&=\EE{\pi(\t|x)}=\E\NN(x,1)=x,\\
+	r(\pi)&= r(\pi,\delta^\pi)=\E^\pi \RF(\t,\delta^\pi)=\E^\pi\big[\E^f L_2\big(\t,\delta^\pi(X)\big)\big]\equal{def}\E^\pi\big[ \E^f\big(\t-\delta^\pi(X) \big)^2 \big]=\E^\pi\E^f(\t-X)^2=\\&=\E^\pi\big[ \E^f(X-\E^fX)^2 \big]=\E^\pi(\sigma^2)=\int_{-\infty}^{+\infty}\sigma^2\cdot \underbrace{\pi(\t)}_{1}\d\t=+\infty.
 	\end{split}
 	\]
 \end{example}
 \begin{define}
 	Máme $L,~f_{\X},~\pi(\t)$. Definujeme \textbf{aposteriorní Bayesovskou rizikovou funkci} vztahem
-	$$ \rho(\pi,\delta(\textbf{x})|\textbf{x})=\E^\pi\big[ L\big(\t,\delta(\textbf{x})\big)|\textbf{x} \big]=\int L\big(\t,\delta(\textbf{x})\big)\pi(\t|\textbf{x})\d\t.$$ 
+	$$ \rho(\pi,\delta|\textbf{x}):=\E^\pi\big[ L\big(\t,\delta(\textbf{x})\big)|\X=\textbf{x} \big]=\int_\Theta L\big(\t,\delta(\textbf{x})\big)\pi(\t|\textbf{x})\d\t.$$ 
 \end{define}
 
-\begin{description}
-	\item[Metoda e) ???] definujeme $\delta_\rho^\pi(\textbf{x})=\argmin\limits_{\delta(\textbf{x})}\rho(\pi,\delta(\textbf{x})|\textbf{x})$ za~předpokladu existence pro~skoro všechna $\textbf{x}$.
-\end{description}
+\section{Metoda E) nic nového} 
+Definujeme $\delta_\rho^\pi(\textbf{x}):=\argmin\limits_{\delta}\rho(\pi,\delta|\textbf{x})$ za~předpokladu existence pro~skoro všechna $\textbf{x}$.
 
 \begin{remark}
 	Výhoda této definice je, že $\delta_\rho^\pi$ závisí přímo na~datech $\textbf{x}$. Nevýhoda pak je, že musíme minimalizaci dělat opakovaně pro~každá data $\textbf{x}$.
 \end{remark}
 \begin{theorem}\label{veta_zamena}
-	Máme-li $\delta_\rho^\pi$ pro s.v. $\textbf{x}$, pak $\delta_\rho^\pi=\delta^\pi$, tj. je rovna s.v. Bayesovské rizikové funkci (D strategie $\delta^\pi=\argmin_\delta r(\pi,\delta)$).
+	Máme-li $\delta_\rho^\pi$ pro s.v. $\textbf{x}$, pak $\delta_\rho^\pi=\delta^\pi$, tj. je rovna s.v. Bayesovské rizikové funkci $\delta^\pi=\argmin\limits_\delta r(\pi,\delta)$ podle D strategie.
 	\begin{proof}
 		\[
 		\begin{split}
-		\rho\big(\pi,\delta_\rho^\pi(\textbf{x})|\textbf{x}\big)&\leq \rho(\pi,\delta(\textbf{x})|\textbf{x}) \hspace{0.2cm} \text{pro s.v. } \textbf{x} \\
-		\E^m\rho\big(\pi,\delta_\rho^\pi(\textbf{x})|\textbf{x}\big)&\leq \E^m\rho(\pi,\delta(\textbf{x})|\textbf{x})\text{, kde } m(\textbf{x})=\int_{\Theta}f(\textbf{x}|\t)\cdot \pi(\t)\d\t
+		\rho\big(\pi,\delta_\rho^\pi(\textbf{x})|\textbf{x}\big)&\leq \rho(\pi,\delta(\textbf{x})|\textbf{x}) \hspace{0.2cm} \text{pro s.v., což víme z definice. Potom ale } \textbf{x} \\
+		\E^m\rho\big(\pi,\delta_\rho^\pi(\textbf{x})|\textbf{x}\big)&\leq \E^m\rho(\pi,\delta(\textbf{x})|\textbf{x})\text{, kde } m(\textbf{x})=\int_{\Theta}f(\textbf{x}|\t)\cdot \pi(\t)\d\t.
 		\end{split}
 		\]
-		kde
+		Nyní rozepíšeme pravou stranu (potom to uděláme i s levou)
 		\[
 		\begin{split}
-		\E^m\rho(\pi,\delta(\textbf{x})|\textbf{x})&=\int\limits_{\chi}\Big( \int\limits_{\Theta} L(\t,\delta)\underbrace{\pi(\t|\textbf{x})}_{\frac{f\pi(\t)}{\int f\pi(\t)\d\t}=\frac{f\pi(\t)}{m(\textbf{x})}}\d\t\Big)m(\textbf{x})\d\textbf{x}\equal{Fubini}\int\limits_{\Theta}\Big( \underbrace{\int\limits_{\chi} L\big(\t,\delta(\textbf{x})\big)f(\textbf{x}|\t)\d\textbf{x}}_{\E^f L=R(\t,\delta)} \Big)\pi(\t)\d\t=\\&=\E^\pi\E^f L=r(\pi,\delta) \\
+		\E^m\rho(\pi,\delta(\textbf{x})|\textbf{x})&=\int\limits_{\chi}\Big( \int\limits_{\Theta} L(\t,\delta)\underbrace{\pi(\t|\textbf{x})}_{\frac{f\pi(\t)}{\int f\pi(\t)\d\t}=\frac{f\pi(\t)}{m(\textbf{x})}}\d\t\Big)m(\textbf{x})\d\textbf{x}\equal{Fubini}\int\limits_{\Theta}\Big( \underbrace{\int\limits_{\chi} L\big(\t,\delta(\textbf{x})\big)f(\textbf{x}|\t)\d\textbf{x}}_{\E^f L=\RF(\t,\delta)} \Big)\pi(\t)\d\t=\\&=\E^\pi\E^f L=r(\pi,\delta). \\
 		\E^m\rho(\pi,\delta_\rho^\pi(\textbf{x})|\textbf{x})&=\{\text{Analogický postup}\}=r(\pi,\delta_\rho^\pi).
 		\end{split}
 		\]
 		A tedy 
 		$$ r(\pi,\delta_\rho^\pi)\leq r(\pi,\delta),~\forall\delta\quad \Rightarrow\quad \delta_\rho^\pi=\delta^\pi.$$
-		Závěr: D strategie Bayes($\delta^\pi$) je rovna E strategii Bayes ($\delta_\rho^\pi(\textbf{x})$ pro s.v. $\textbf{x}$).
+		Závěr: D strategie Bayes ($\delta^\pi$) je rovna E strategii Bayes ($\delta_\rho^\pi(\textbf{x})$ pro s.v. $\textbf{x}$).
 	\end{proof} 
 \end{theorem}
 Rozšíření: Máme-li $\delta_\rho^\pi(\textbf{x})$ pro s.v. $\textbf{x}$ a~stane se, že $r(\pi)=+\infty$, pak toto řešení $\delta^{\pi}$ nazveme \textbf{Zobecněnou Bayesovskou rozhodovací funkcí}.
 
-Další výhody: $\pi(\t)$ a~máme data $\textbf{X}\sim f(\textbf{x}|\t)\stackrel{\text{ÚBM}}{\longrightarrow}\pi(\t|\textbf{x})$ (ÚBM = úplný Bayes. model) update ($\widehat{\t}_B$ int. spol.). $\tilde{\pi}(\t)=\pi(\t|\textbf{x})$ nová data $\tilde{\textbf{X}}\sim\tilde{f}(\tilde{\textbf{x}}|\t)\stackrel{\text{ÚBM}}{\longrightarrow}\tilde{\pi}(\t|\tilde{\textbf{x}})$ update ($\widehat{\t}_B^{\sim}$) apod. 
+\section{Postup při aplikaci Bayesovské strategie} 
+	Můžeme postupně iterovat přes nová data. Na začátku máme znalosti o parametru $\t$ z minulosti v podobě $\pi(\t)$ a~nově naměříme data $\textbf{X}\sim f(\textbf{x}|\t)$. Za pomocí úplného Bayesovského modelu můžeme updatovat naše znalosti, přičemž získáme $\pi(\t|\textbf{x})$. Z toho můžeme například odhadnout $\widehat{\t}_\mathrm{B}$, případně interval spolehlivosti apod. Poté nová data označíme za aktuální (aposteriorní hustotu přeznačíme na apriorní) a pokračujeme dále, tedy $\widetilde{\pi}(\t)=\pi(\t|\textbf{x})$. Následně získáme nová data $\widetilde{\textbf{X}}\sim\widetilde{f}(\widetilde{\textbf{x}}|\t)$ a získáme $\widetilde{\pi}(\t|\widetilde{\textbf{x}})$... 
 
-\begin{example}
-	Varianta: lékař sleduje chorobu pacienta. 1. den $x_1\sim f(x|\t)$, kde $\pi_1(\t)$ je apriorní informace. Z~toho pak $\pi(\t|x_1)$. 2. den naměří $x_2\sim f(x|\t)$. Z~toho pak $\pi_2(\t)=\alpha\pi(\t| x_1)+(1-\alpha)\tilde{\pi}_2(\t)\to \pi(\t|x_2,x_1)$. Pak n-tý den naměří $x_n$ a~proces se~opakuje.
-\end{example}
-\subsection*{Úloha predikce}
+\section{Úloha predikce}
+Zkusme porovnat klasickou a bayesovskou statistiku v úloze predikce.
 \begin{description}
-	\item[KLAS. STAT.] Máme $X\sim f(x,\t)$, data $D\sim\textbf{x}=(x_1,...,x_n)$, realizaci $\textbf{X}=(X_1,...,X_n)$ a~hledáme predikci $X_{n+1}$. Pokud použijeme IID model, pak $X_{n+1}\sim f(x|\t)$ a~odhad $\widehat{\t}=\widehat{\t}(\textbf{x})=\widehat{\t}_{\mathrm{ML}}$. Z~toho pak $\widehat{f}_{ML}(x)=f(x,\widehat{\t}_\mathrm{ML})$ a~z~toho $X_{n+1}\sim\widehat{f}$.
-	\item[BAYES. STAT.] \begin{enumerate}[a)]
-		\item Máme $X\sim f(x|\t)$, data $D:\textbf{x}$ a~$\pi(\t)$ apriorní informaci. Z~toho získáme $\pi(\t|\textbf{x})$ a~z~toho $\widehat{\t}_B=\EE{\pi(\t|\textbf{x})}$. Z~toho už $\widehat{f}(x)=f(x|\widehat{\t}_B)$ a~potom $X_{n+1}\sim\widehat{f}$.
-		\item $\tau(\t)=f(x|\t)$, $\pi(\t)$, $\widehat{f}_B(x)=\widehat{\tau_B(\t)}$... $X_{n+1}\sim\widehat{f}_B$.
-		\item \begin{define} Máme ÚBM pro $\X\sim f_{\X}(\textbf{x}|\t)$, $\pi(\t)$, $\pi(\t|\textbf{x})$. Pak definujeme \textbf{Bayesovskou prediktivní hustotu} $f_B^{PR} $ vztahem
-		$$ f_B^{PR}(t|\textbf{x}\sim\text{data})=\int\limits_{\Theta} \underbrace{f_X(t|\t)\pi(\t|\textbf{x})}_{\phi(t,\t|\textbf{x})}\d\t=\EE{f_X(t|\t)|\textbf{x}}.$$
+	\item[Klasická statistika] Předpokládáme $X\sim f(x,\t)$, aniž bychom měli apriorní informaci, a naměříme data $\textbf{x}=(x_1,...,x_n)$ jako realizaci $\textbf{X}=(X_1,...,X_n)$. Hledáme predikci (realizaci) $X_{n+1}$. Pokud jsou $X_1,...,X_n ~iid$, pak $X_{n+1}\sim f(x,\t)$ a stačí nám najít příslušné rozdělení. Proto zkusíme najít odhad závislý na $\textbf{x}$ ve tvaru $\widehat{\t}=\widehat{\t}(\textbf{x})=\widehat{\t}_{\mathrm{ML}}$. Z~toho pak získáme $\widehat{f}(x)=f(x,\widehat{\t}_\mathrm{ML})$ a~z~toho $X_{n+1}\sim\widehat{f}(x)$.
+	\item[Bayesovská statistika] Opět máme $X\sim f(x|\t)$, data $\textbf{x}$ a~navíc apriorní informaci $\pi(\t)$. Máme několik možností jak pokračovat.
+	\begin{enumerate}[a)]
+		\item  Z~toho vypočítáme $\pi(\t|\textbf{x})$ a~z~toho získáme odhad $\widehat{\t}_\mathrm{B}=\EE{\pi(\t|\textbf{x})}$. Následně určíme hustotu $\widehat{f}(x)=f(x|\widehat{\t}_\mathrm{B})$ a pokračujeme klasicky s odhadem $X_{n+1}\sim\widehat{f}$. Bayes obecně není invariantní na tranformace, takže nemůžeme říct, že jsme získali bayesovský odhad hustoty.
+		
+		\item Můžeme také zkusit odhadnout přímo celou hustotu $\tau(\t)=f(x|\t)$, kde za použití apriorní hustoty $\pi(\t)$ získáme $\widehat{f}_\mathrm{B}(x)=\widehat{\tau_\mathrm{B}(\t)}$. Následní můžeme predikovat $X_{n+1}$ jako $X_{n+1}\sim\widehat{f}_\mathrm{B}$.
+		
+		\item \begin{define} Máme ÚBM (Úplný bayesovský model) pro $\X\sim f_{\X}(\textbf{x}|\t)$, apriorní hustotu $\pi(\t)$ a aposteriorní hustotu $\pi(\t|\textbf{x})$. Pak definujeme \textbf{Bayesovskou prediktivní hustotu} $f_\mathrm{B}^{PR} $ vztahem
+		$$ f_\mathrm{B}^\mathrm{PR}(t|\textbf{x})=\int\limits_{\Theta} f_X(t|\t)\pi(\t|\textbf{x})\d\t=\E^\pi[f_X(t|\t)|\textbf{x}].$$
 		\end{define}
 		Potom
-		$$ X_{n+1}\sim f_B^{PR}(x_{n+1}|\textbf{x}\text{ data})\quad\to\quad \PP(X_{n+1}>b)=\int\limits_b^{+\infty}f_B^{PR}\d x_{n+1}.$$
-		Výhodou c) je potom to, že obsahuje ''plnou'' (ve smyslu integrálu) informaci ve~tvaru $\pi(\t|\textbf{x})$.
+		$ X_{n+1}\sim f_\mathrm{B}^\mathrm{PR}(x_{n+1}|\textbf{x})$, z čehož můžeme predikovat $$\PP(X_{n+1}>b)=\int\limits_\mathrm{B}^{+\infty}f_\mathrm{B}^\mathrm{PR}\d x_{n+1}.$$
+		Výhodou c) je to, že obsahuje ''plnou'' (ve smyslu integrálu) informaci aposteriorní hustoty $\pi(\t|\textbf{x})$.
 	\end{enumerate}
 \end{description}
+
+
+
 
 \chapter{Asymptotické vlastnosti aposteriorní hustoty a~bayesovských bodových odhadů.}
 
@@ -294,34 +285,35 @@ Další výhody: $\pi(\t)$ a~máme data $\textbf{X}\sim f(\textbf{x}|\t)\stackre
 \begin{define}
 	Mějme posloupnost měr $(P_n)_1^{+\infty}$ a limitní míru $Q$. Řekneme, že $P_n$ konverguje silně ke $Q$, značíme $P_n\stackrel{\text{s}}{\rightarrow}Q$, pokud $\TV(P_n,Q)\to0$.
 \end{define}
-\begin{remark}{Slabá konvergence:}
-	$$ P_n\wto Q~\Leftrightarrow~\int g(\X)\d P_n\to\int g(\Y)\d Q,\qquad \forall g\in C_B^{(0)}\text{ spojité a~omezené.}$$
+\begin{remark}{Připomenutí slabé konvergence}
+	$$ P_n\wto Q~\Leftrightarrow~\int g(\X)\d P_n\to\int g(\Y)\d Q,\qquad \forall g\in C_\mathrm{B}^{(0)}\text{ spojité a~omezené.}$$
 \end{remark}
+
 \begin{theorem}
-	Nechť $P_n\stackrel{s}{\to}Q\Rightarrow P_n\wto Q$ (AN).
+	$P_n\stackrel{s}{\to}Q\Rightarrow P_n\wto Q$ (AN).
 \end{theorem}
+
 \begin{proof}
-	 Nechť funkce $g$ je spojitá a~omezená, $|g|\leq M$. $g^\ast =\frac{g}{M}$, $|g^\ast|\leq 1$. Pak
+	 Nechť funkce $g$ je spojitá a~omezená, $|g|\leq M$, $g^\ast =\frac{g}{M}$, $|g^\ast|\leq 1$. Pak
 	$$ \left| \int g(\X)\d P_n-\int g(\Y)\d Q \right|=M\left| \int g^\ast(\X)\d P_n-\int g^\ast(\Y)\d Q \right|\leq M\cdot \left\| P-Q\right\|_\TV \stackrel{\text{LDCT}}{\longrightarrow} 0.$$
 \end{proof}
 \begin{theorem}[Scheffé theorem]
-	Mějme $P_n,Q$ s~ASR$_\mu$, $p_n=\frac{\d P_n}{\d \mu}$, $q=\frac{\d Q}{\d \mu}$. Nechť dále hustota pravděpodobnosti $p_n\to q$ s.v. $\mu$. Pak $P_n\stackrel{s,(\TV)}{\longrightarrow}Q$. 
+	Mějme $P_n,Q$ s~ASR$_\mu$, $p_n=\frac{\d P_n}{\d \mu}$, $q=\frac{\d Q}{\d \mu}$. Nechť dále hustota pravděpodobnosti $p_n\to q$ s.v. $\mu$. Pak $P_n\stackrel{s}{\longrightarrow}Q$. 
 	\begin{proof}
 		$$ \left| \int_A (p_n-q)\d\mu \right|\leq \int_A|p_n-q|\d\mu\leq \int_\R|p_n-q|\d\mu=2\int(p_n-q)^+\d\mu\to0,$$
 		kde poslední rovnost platí, protože $\int(p_n-q)\d\mu=0$, a~tedy $\int(p_n-q)^+\d\mu-\int(p_n-q)^-\d\mu=0$.	\end{proof}
 \end{theorem}
-\begin{remark}
-	Opakování. Z~01MAS víme, že pro~$\fregmle$ platí, že \begin{enumerate}[1)]
+\begin{remark} Z~01MAS víme, že pro~$\fregmle$ platí, že \begin{enumerate}[1)]
 		\item $\supp f$ nezávisí na~$\t$,
 		\item $f\in\mathcal{C}^{(3)}$ vzhledem k~$\t$ pro s.v. $x\in\supp f$,
 		\item $\int f_\t'=0$ a~$\int f_{\t\t}''=0$,
-		\item $\left( \mathbb{J}(\t)_{(\text{FIM})} \right)_{i,j}=\EE{\frac{\partial\log f}{\partial \t_i}\cdot\frac{\partial\log f}{\partial \t_j}}=-\EE{\frac{\partial^2 \log f}{\partial\t_i \partial \t_j}}$, $\mathbb{J}(\t)$ je PD a~konečná pro~$\forall\t\in\Theta$,
+		\item $\left( \mathbb{J}(\t) \right)_{i,j}=\EE{\frac{\partial\log f}{\partial \t_i}\cdot\frac{\partial\log f}{\partial \t_j}}=-\EE{\frac{\partial^2 \log f}{\partial\t_i \partial \t_j}}$, $\mathbb{J}(\t)$ je PD a~konečná pro~$\forall\t\in\Theta$,
 		\item $\forall\t_0~\exists H_{\t_0}~\exists M(\X)\in\LL_1(P_{\t_0})$ tak, že $\left\| \frac{\partial^3\log }{\partial \t^3}\right\|\leq M(x)$ na~$H_{\t_0}$, kde $\E_{\t_0}[M(X)]<+\infty$.
 	\end{enumerate}
 \end{remark}
 \begin{theorem}[Bernstein - von Mises]
-	Předpokládejme ÚBM: $X\sim f(x|\t)$ vzhledem k míře $\lambda$, která je $\sigma-$finitní, $\mathcal{F}=\left\{ f(x|\t):\t\in\Theta\subset \R^k \right\}$, $\Theta$ otevřená, $\t\sim\pi(\t)$ vlastní hustota, spojitá a $\pi(\t)>0$ (Tedy máme $\varphi(x,\t)=f\cdot\pi$, $m(\textbf{x})=\int f\cdot \pi\d\t$, $\pi(\t|\textbf{x})=\varphi/m=\frac{f\cdot\pi}{\int f\cdot\pi\d\t}$). Nechť dále $\mathcal{F}=\fregmle$. Pak
-	$$ \left\| \pi_n(\t|\textbf{x})-f_{\NN\left( \widehat{\t}_n,\frac{1}{n}\mathbb{J}^{-1}(\t_0) \right)} \right\|_{TV}\to0 \hspace{0.2cm}\text{ pro }\forall \t_0,$$
+	Předpokládejme ÚBM. Potom $X\sim f(x|\t)$ vzhledem k míře $\lambda$, která je $\sigma$-finitní, $\mathcal{F}=\left\{ f(x|\t):\t\in\Theta\subset \R^k \right\}$, $\Theta$ otevřená, $\t\sim\pi(\t)$ vlastní hustota, spojitá a $\pi(\t)>0$ (Tedy máme $\varphi(x,\t)=f\cdot\pi$, $m(\textbf{x})=\int f\cdot \pi\d\t$, $\pi(\t|\textbf{x})=\varphi/m=\frac{f\cdot\pi}{\int f\cdot\pi\d\t}$). Nechť dále $\mathcal{F}=\fregmle$. Pak
+	$$ \left\| \pi(\t|\textbf{x})-f_{\NN\left( \widehat{\t}_n,\frac{1}{n}\mathbb{J}^{-1}(\t_0) \right)} \right\|_{TV}\to0 \hspace{0.2cm}\text{ pro }\forall \t_0,$$
 	kde $\widehat{\t}_n$ je konzistentní řešení $LE_Q$, tzn. $\widehat{\t}_n$ řeší $\frac{\partial \log f}{\partial \t_j}=0,~\forall j\in\hat{k}$.
 \end{theorem}
 \begin{dusl}
@@ -329,24 +321,25 @@ Další výhody: $\pi(\t)$ a~máme data $\textbf{X}\sim f(\textbf{x}|\t)\stackre
 	
 	Závěr: $\sqrt{n}\big( (\t|\textbf{x})-\htn(\textbf{x}) \big)\Dto \NN\big( 0,\mathbb{J}^{-1}(\t_0) \big),~\forall\t_0$. Bayesovská strategie je asymptoticky ekvivalentní MLE.
 	\begin{proof}
-		$k=1$: Máme $f_{X},~(X_j)_1^n,~f_{X_j}(x_j|\t),~f_n\equal{id}\prod_1^n f_{X_j}=f_n(\textbf{x}|\t),~\pi(\t|\textbf{x})=\frac{f_n \pi}{\int f_n \pi\d\t}$. Víme z Bayesovského modelu, že $(\t|\textbf{x})\sim\pi(\t|\textbf{x})$. Transformujeme pomocí $g: t=\sqrt{n}\big( \t|\textbf{x}-\htn \big)$, kde $\htn$ je ELE (konzistentní řešení $LE_Q$), $g^{-1}:\t|\textbf{x}=\htn + \frac{t}{\sqrt{n}}$, $\mathbb{J}_{g^{-1}}=\frac{1}{\sqrt{n}}>0$. Potom
+		$k=1$: Máme $f_{X},~(X_j)_1^n,~f_{X_j}(x_j|\t),~f_n\equal{id}\prod_1^n f_{X_j}=f_n(\textbf{x}|\t),~\pi(\t|\textbf{x})=\frac{f_n \pi}{\int f_n \pi\d\t}$. Transformujeme pomocí $g: t=\sqrt{n}\big( \t|\textbf{x}-\htn \big)$, kde $\htn$ je ELE (konzistentní řešení $LE_Q$), $g^{-1}:\t|\textbf{x}=\htn + \frac{t}{\sqrt{n}}$, $\mathbb{J}_{g^{-1}}=\frac{1}{\sqrt{n}}>0$. Potom transformujeme
 		\[
 		\begin{split}
-		T&=\sqrt{n}\big(\t|\textbf{x}-\htn\big)\stackrel{ozn.}{\sim}\pi(t|\textbf{x})=\frac{f_n\big(\textbf{x}|\htn+\frac{t}{\sqrt{n}}\big)\pi\big( \htn+\frac{t}{\sqrt{n}} \big)\big(\frac{1}{\sqrt{n}}\big)}{\int f_n(\textbf{x}|\t)\pi(\t)\d\t}=\left|\begin{array}{l}
+		\t|\textbf{x}&\sim\pi(\t|\textbf{x}),\\
+		\sqrt{n}\big(\t|\textbf{x}-\htn\big)&\sim\frac{f_n\big(\textbf{x}|\htn+\frac{t}{\sqrt{n}}\big)\pi\big( \htn+\frac{t}{\sqrt{n}} \big)\big(\frac{1}{\sqrt{n}}\big)}{\int f_n(\textbf{x}|\t)\pi(\t)\d\t}=\left|\begin{array}{l}
 		\t=\htn+\frac{s}{\sqrt{n}}\\\d\t=\frac{\d s}{\sqrt{n}}\end{array}
 		\right|=\\ &=\frac{f_n\big(\textbf{x}|\htn+\frac{t}{\sqrt{n}}\big)\pi\big( \htn+\frac{t}{\sqrt{n}} \big)}{\int f_n\big(\textbf{x}|\htn+\frac{s}{\sqrt{n}}\big)\pi\big( \htn+\frac{s}{\sqrt{n}} \big)\d s}.
 		\end{split}
 		\]
-		máme spojité $\partial_\t^3$, a~proto rozvineme pomocí Taylora $\log f_n$ do~2. řádu:
+		Máme spojité $\partial_\t^3$, a~proto rozvineme pomocí Taylora $\log f_n$ do~2. řádu:
 		\[
 		\begin{split}
 		\log f_n(\textbf{x}|\htn+\frac{t}{\sqrt{n}})&=\log f_n(\textbf{x}|\htn)+0\text{\footnotemark}+\frac{1}{2}\frac{t^2}{n}\frac{\partial^2 \log f_n}{\partial\t^2}\Big|_{\t=\htn}+R_n=\\&=\log f_n(\textbf{x}|\htn)+\frac{t^2}{2}\underbrace{\Big( \frac{1}{n}\sumjn \frac{\partial^2 \log f_{X_j}(x_j|\htn)}{\partial\t^2} \Big)}_{\xrightarrow[\text{ZVČ}]{\PP_{\t_0}}\EE{\frac{\partial^2\log f_X}{\partial\t^2}}=-\mathbb{J}(\htn)\wedge \htn \stackrel{\PP_{\t_0}}{\rightarrow} \t_0}+\underbrace{R_n}_{\xrightarrow[(s.j.)]{\PP_{\t_0}}0}.
 		\end{split}
 		\]
 		\footnotetext{$\frac{\partial \log f_n}{\partial \t}|_{\t=\htn}=0$, protože $\htn$ je řešením soustavy věrohodnostních rovnic}
-		Z toho potom plyne, že $f_n\big(\textbf{x}|\htn+\frac{t}{\sqrt{n}}\big)=f_n(\textbf{x}|\htn)\e{-\frac{t^2}{2}\mathbb{J}(\htn)}\cdot\tilde{R}_n$ a~tedy \[
+		Z toho potom plyne, že $f_n\big(\textbf{x}|\htn+\frac{t}{\sqrt{n}}\big)=f_n(\textbf{x}|\htn)\e{-\frac{t^2}{2}\mathbb{J}(\htn)}\cdot\widetilde{R}_n$ a~tedy \[
 		\begin{split}
-		\pi(t|\textbf{x})&=\frac{f_n\e{-\frac{t^2}{2}\mathbb{J}(\htn)}\cdot\tilde{R}_n \pi\big( \htn+\frac{t}{\sqrt{n}} \big)}{f_n\int \e{-\frac{s^2}{2}\mathbb{J}(\htn)}\tilde{R}_n \pi\big(\htn+\frac{s}{\sqrt{n}}\big)\d s}\xrightarrow[(n\rightarrow \infty)]{\PP_{\t_0}\text{\footnotemark}}\frac{\e{-\frac{t^2}{2}\mathbb{J}(\t_0)}\cdot1\cdot \pi(\t_0)}{\int\e{-\frac{s^2}{2}\mathbb{J}(\t_0)}\cdot1\cdot\pi(\t_0)\d s}=\left| \begin{array}{l}
+		\pi(t|\textbf{x})&=\frac{f_n\e{-\frac{t^2}{2}\mathbb{J}(\htn)}\cdot\widetilde{R}_n \pi\big( \htn+\frac{t}{\sqrt{n}} \big)}{f_n\int \e{-\frac{s^2}{2}\mathbb{J}(\htn)}\widetilde{R}_n \pi\big(\htn+\frac{s}{\sqrt{n}}\big)\d s}\xrightarrow[(n\rightarrow \infty)]{\PP_{\t_0}\text{\footnotemark}}\frac{\e{-\frac{t^2}{2}\mathbb{J}(\t_0)}\cdot1\cdot \pi(\t_0)}{\int\e{-\frac{s^2}{2}\mathbb{J}(\t_0)}\cdot1\cdot\pi(\t_0)\d s}=\left| \begin{array}{l}
 		u=s\sqrt{\mathbb{J}(\t_0)}\\\d s=\frac{\d u}{\sqrt{\mathbb{J}(\t_0)}}		
 		\end{array}
 		\right|=\\&=\frac{\sqrt{\mathbb{J}(\t_0)}}{\sqrt{2\pi}}\e{-\frac{t^2}{2}\mathbb{J}(\t_0)}\sim\NN\Big( 0,\frac{1}{\mathbb{J}(\t_0)} \Big).
@@ -369,104 +362,104 @@ Další výhody: $\pi(\t)$ a~máme data $\textbf{X}\sim f(\textbf{x}|\t)\stackre
 Bez důkazu.
 \end{proof}
 \begin{dusl}
-	Pokud dokážeme stlačit horní hranici $\epsilon_{a,b,c}$ k~nule, tak v~$\TV$ jsou $\pi(\t|\textbf{x})$ a~$\pi_0(\t|\textbf{x})$ velmi blízko. Potom tedy $\widehat{\t}_B^\pi=\EE{\pi(\t|\textbf{x})}$ a~$\widehat{\t}_B^1=\EE{\pi_0(\t|\textbf{x})}$ jsou blízko. To znamená, že vliv $\pi(\t)$ se~ztrácí.
+	Pokud dokážeme stlačit horní hranici $\epsilon_{a,b,c}$ k~nule, tak v~$\TV$ jsou $\pi(\t|\textbf{x})$ a~$\pi_0(\t|\textbf{x})$ velmi blízko. Potom tedy $\widehat{\t}_\mathrm{B}^\pi=\EE{\pi(\t|\textbf{x})}$ a~$\widehat{\t}_\mathrm{B}^1=\EE{\pi_0(\t|\textbf{x})}$ jsou blízko. To znamená, že vliv $\pi(\t)$ se~ztrácí.
 \end{dusl}
 \begin{remark}
 	$\epsilon_{a,b,c}$ chceme malé. Potřebujeme $a,b$ malé, $c$ ne příliš velké.
-	
-\begin{figure}[h]
-	\centering
-	\begin{tikzpicture}
-	\node[inner sep=0pt] (pic) at (0,0)
-	{\includegraphics[width=15.0cm]{pictures/picture_4_1.pdf}};
-	\draw [color=black](3,0.5) node[anchor=north west] {$ \delta $};
-	\draw [color=black](0,-0.3) node[anchor=north west] {$ \theta $};
-	\end{tikzpicture}
-	\caption{popis}
-\end{figure}
-	
 \end{remark}
+	
+%\begin{figure}[h]
+%	\centering
+%	\begin{tikzpicture}
+%	\node[inner sep=0pt] (pic) at (0,0)
+%	{\includegraphics[width=15.0cm]{pictures/picture_4_1.pdf}};
+%	\draw [color=black](3,0.5) node[anchor=north west] {$ \delta $};
+%	\draw [color=black](0,-0.3) node[anchor=north west] {$ \theta $};
+%	\end{tikzpicture}
+%	\caption{popis}
+%\end{figure}
+	
 
-\chapter{Formy apriorní informace, princip neurčitosti, Jeffreysova hustota, ukázky.}
 
-Problém principu neurčitosti: $\pi(\t)=$konst. na~$\Theta$ (rovnoměrnou apriorní informaci).
+
+\chapter{Princip neurčitosti}
+
+Problém principu neurčitosti spočívá v tom, že máme možnost volit nevlastní apriorní hustotu ve tvaru $\pi(\t)=c$ na~$\Theta$, což znamená, že původně o parametru $\t$ vůbec nic nevíme. Z fyzikální podstaty můžeme třeba vědět jen to, že se parametr nachází na $\R^+$. Uveďme příklad tohoto problému.
 \begin{example}
-	Mějme ÚBM, $X\sim f(x|\t),~\t\in(0,1),~\pi(\t)=1$ na~$(0,1)$. Bayes: $\pi(\t|\textbf{x})$.. $\widehat{\t}_B(\textbf{x})$. Označme $\eta=\t^2...,~\t=\sqrt{\eta}$, reparametrizace $f(x|\t=\sqrt{\eta})=f(x|\eta)$. $\t$ považujeme za~znáhodněné (apriorně předpokládáme, že o~$\t$ nic nevíme). Transformace hustoty, $\t$ na~$\eta$: $$\pi_H(\eta)=\pi(\underbrace{\sqrt{\eta}}_{\t})\cdot\big|\mathbb{J}_H(\eta)\big|=1\cdot\frac{1}{2\sqrt{\eta}}=\frac{1}{2\sqrt{\eta}}.$$
-	Je paradoxní, že o~$\t$ nemáme konkrétní apriorní informaci a~přitom o~$\eta=\t^2$ víme, že je nevlastní (viz obr. \ref{fig:p71}).
+	Mějme ÚBM, $X\sim f(x|\t),~\t\in(0,1),~\pi(\t)=1$ na~$(0,1)$. Podle Bayese získáme aposteriorní hustotu $\pi(\t|\textbf{x})$ a z ní můžeme provést odhad $\widehat{\t}_\mathrm{B}(\textbf{x})$. Představme si nyní, že budeme chtít místo parametru odhadnout např. odmocninu z tohoto parametru. Označme tedy $\eta=\t^2$, $\t=\sqrt{\eta}$. Po dosazení do původní hustoty získáme reparametrizaci $$f(x~|~\t=\sqrt{\eta})=f(x|\eta).$$ $\t$ považujeme za~znáhodněné (apriorně předpokládáme, že o~$\t$ nic nevíme). Transformace hustoty, $\t$ na~$\eta$ probíhá jako $$\pi_H(\eta)=\pi(\underbrace{\sqrt{\eta}}_{\t})\cdot\big|\mathbb{J}_H(\eta)\big|=1\cdot\frac{1}{2\sqrt{\eta}}=\frac{1}{2\sqrt{\eta}},$$
+	kde $\pi_H$ značíme obecně transformovanou informaci. Je paradoxní, že o~$\t$ nemáme konkrétní apriorní informaci a~přitom o~$\eta=\t^2$ víme, že je nevlastní (viz obr. \ref{fig:p71}).
 \begin{figure}[h]
 	\centering
 	\begin{tikzpicture}
 	\node[inner sep=0pt] (pic) at (0,0)
 	{\includegraphics[width=12.0cm]{pictures/picture_4_2.pdf}};
-	\draw [color=black](3,0.5) node[anchor=north west] {$ \delta $};
-	\draw [color=black](0,-0.3) node[anchor=north west] {$ \theta $};
+	\draw [color=black](3,0.23) node[anchor=north west] {$ \pi_H(\eta) $};
+ 	\draw [color=black](-4,0.73) node[anchor=north west] {$ \pi(\theta) $};
+ 	\draw [color=black](-1.3,0.8) node[anchor=north west] {transformace};
+ 	\draw [color=black](-5.87,-0.95) node[anchor=north west] {$ 0 $};
+ 	\draw [color=black](-1.65,-0.95) node[anchor=north west] {$ 1 $};
+ 	\draw [color=black](1.13,-0.95) node[anchor=north west] {$ 0 $};
+ 	\draw [color=black](5.4,-0.95) node[anchor=north west] {$ 1 $};
 	\end{tikzpicture}
-	\caption{popis}
+	\caption{Znázornění transformace $\pi(\t)$. O $\t$ nemáme konkrétní apriorní informaci, ale o $\eta=\t^2$ víme, že je nevlastní (není ani integrovatelná na 1). To ukazuje problém principu neurčitosti.}
 	\label{fig:p71}
 \end{figure}
 
 \end{example}
-\begin{example}
+\section{Jeffreysova hustota}
 	Mějme $X\sim f(x|\t),~\t\in\Theta,~\t\sim\pi(\t),~\mathcal{F}=\{f(x|\t)\}$. Zavedeme reparametrizaci $\eta=\inv{H}(\t)$, tzn. $\t=H(\eta)$. 
-	$$ f_H(x|\eta)=f\big(x|\t=H(\eta)\big)=f\big(x|H(\eta)\big)...\mathcal{F}_H$$
-	$$\pi(\t)\longrightarrow \pi_H(\eta)=\pi\big(H(\eta)\big)\cdot\big|D_H(\eta)\big| \text{, kde } D_H(\eta) \text{ je Jacobián.}  $$
-	Z ÚBM $\{\mathcal{F},\pi\}$ plyne aposteriorní hustota $\pi(\t|\textbf{x})~\to~\widehat{\t}_B(\textbf{x})=\EE{\pi(\t|\textbf{x})}$. Dále z~ÚBM $\{\mathcal{F},\pi\}$ plyne ÚBM $\{\mathcal{F}_H,\pi_H\}$ a~z~něho aposteriorní hustota $\pi(\eta|\textbf{x})~\to~ \widehat{\eta}_B(\textbf{x})=\EE{\pi(\eta|\textbf{x})}$. 
+	$$ f_H(x|\eta)=f\big(x|\t=H(\eta)\big)=f\big(x|H(\eta)\big),\quad\text{takto získáme }\mathcal{F}_H.$$
+	Z $\pi(\t)$ vytvoříme $\pi_H(\eta)=\pi\big(H(\eta)\big)\cdot\big|\mathbb{J}_H(\eta)\big|$, kde  $\mathbb{J}_H(\eta)$ je Jacobián.
+	Z ÚBM $\{\mathcal{F},\pi\}$ potom plyne aposteriorní hustota $\pi(\t|\textbf{x})~\to~\widehat{\t}_\mathrm{B}(\textbf{x})=\EE{\pi(\t|\textbf{x})}$. Dále z~ÚBM $\{\mathcal{F},\pi\}$ plyne ÚBM $\{\mathcal{F}_H,\pi_H\}$ a~z~něho aposteriorní hustota $\pi(\eta|\textbf{x})$ a následně $ \widehat{\eta}_\mathrm{B}(\textbf{x})=\EE{\pi(\eta|\textbf{x})}$. 
 	
-	Pozor na~$\widehat{\t}_B\neq H(\widehat{\eta}_B)$! To může být problém.
-\end{example}
+	Pozor na~$\widehat{\t}_\mathrm{B}\neq H(\widehat{\eta}_\mathrm{B})$! To může být problém.
+	
 \begin{theorem}[Jeffreys]
-	Máme ÚBM $\mathcal{F},\pi(\t),~\eta=\inv{H}(\t),~\t=H(\eta)$ a~předpokládejme, že $\t\in\Theta\subset\R^k$ a~že $H$ je regulární transformace. Nechť $\mathcal{F}$ je regulární systém hustot ($\fregp$). Po reparametrizaci máme $\mathcal{F}_H,\pi_H$. Volme $\pi(\t)=\sqrt{\det \mathbb{J}(\t)}$, kde $\mathbb{J}(\t)$ je Fishera informační matice pro~$\t$ v~$\mathcal{F}$. Pak $\pi_H(\eta)=\sqrt{\det \mathbb{J}_H(\eta)}$ v $\mathcal{F}_H$ a~platí, že 
-	$$ \int_B\pi(\t|\textbf{x})\d\t=\int_{\inv{H}(B)}\pi_H(\eta|\textbf{x})\d\eta,\qquad\forall B\in\Bb_\Theta \text{ (B je borelovská množina).}$$
+	Máme ÚBM $\mathcal{F},\pi(\t),~\eta=\inv{H}(\t),~\t=H(\eta)$ a~předpokládejme, že $\t\in\Theta\subset\R^k$ a~že $H$ je regulární transformace. Nechť $\mathcal{F}$ je regulární systém hustot ($\fregp$). Po reparametrizaci máme $\mathcal{F}_H$ a $\pi_H$. Volme $\pi(\t)=\sqrt{\det \mathbb{I}(\t)}$, kde $\mathbb{I}(\t)$ je Fishera informační matice pro~$\t$ v~$\mathcal{F}$. Pak $\pi_H(\eta)=\sqrt{\det \mathbb{I}_H(\eta)}$ v $\mathcal{F}_H$ a~platí, že 
+	$$ \int_\mathrm{B}\pi(\t|\textbf{x})\d\t=\int_{\inv{H}(B)}\pi_H(\eta|\textbf{x})\d\eta,\qquad\forall B\in\Bb_\Theta \text{ (B je borelovská množina).}$$
 	\begin{proof}
-		Pro $k=1$: (zbytek ponecháno čtenáři)\begin{enumerate}[a)]
-			\item \[
+		Pro $k=1$: (zbytek ponechán čtenáři ;) ) Nejprve tedy spočítáme
+		\[
 			\begin{split}
-			\int_B\pi(\t|\textbf{x})\d\t&=\frac{1}{c}\int_B f(\textbf{x}|\t)\pi(\t)\d\t=\left|\begin{array}{c}
-			\t=H(\eta)\\D_H(\eta)
+			\int_\mathrm{B}\pi(\t|\textbf{x})\d\t&=\frac{1}{c}\int_\mathrm{B} f(\textbf{x}|\t)\pi(\t)\d\t=\left|\begin{array}{c}
+			\t=H(\eta)\\\mathbb{J}_H(\eta)
 			\end{array}
-			\right|=\frac{1}{c}\int_{\inv{H}(B)}\underbrace{f\big(\textbf{x}|H(\eta)\big)}_{f_H(\eta)}\underbrace{\pi\big(H(\eta)\big)\cdot\big|D_H(\eta)\big|}_{\pi_H(\eta)}\d\eta=\\&=\frac{1}{c_{(H)}}\int_{\inv{H}(B)}f_H\pi_H\d\eta=\int_{\inv{H}(B)}\pi(\eta|\textbf{x})\d\eta \hspace{0.3cm} (c \text{ a } c_{(H)} \text{ splývají}).
+			\right|=\frac{1}{c}\int_{\inv{H}(B)}\underbrace{f\big(\textbf{x}|H(\eta)\big)}_{f_H(\textbf{x}|\eta)}\underbrace{\pi\big(H(\eta)\big)\cdot\big|\mathbb{J}_H(\eta)\big|}_{\pi_H(\eta)}\d\eta=\\&=\frac{1}{c}\int_{\inv{H}(B)}f_H(\textbf{x}|\eta)\pi_H(\eta)\d\eta=\int_{\inv{H}(B)}\pi(\eta|\textbf{x})\d\eta,
 			\end{split}
 			\]
-			\item Protože 
-			$$ \mathbb{J}_H(\eta)=\EE{\frac{\partial\log f_H(\eta)}{\partial\eta}}^2=\EE{\frac{\partial\log f(x|H(\eta))}{\partial\t}\frac{\partial H(\eta)}{\partial\eta}}^2=\mathbb{J}\big(H(\eta)\big) \cdot D_H^2(\eta) ,$$
+		neboť $c$ je v obou případech stejné. Protože platí, že
+			$$ \mathbb{I}_H(\eta)=\EE{\frac{\partial\log f_H(\eta)}{\partial\eta}}^2=\EE{\frac{\partial\log f(x|H(\eta))}{\partial\t}\frac{\partial H(\eta)}{\partial\eta}}^2=\mathbb{I}\big(H(\eta)\big) \cdot \mathbb{J}_H^2(\eta) ,$$
 			pak \[
 			\begin{split}
-			\pi_H(\eta)&=\pi\big(H(\eta)\big)\cdot\big|D_H(\eta)\big|=\sqrt{\det \mathbb{J}\big(H(\eta)\big)}\cdot\big|D_H(\eta)\big|=\sqrt{\det \mathbb{J}_H(\eta)D_H^{-2}(\eta)}\cdot\big|D_H(\eta)\big|=\\&=\sqrt{\det \mathbb{J}_H(\eta)}
+			\pi_H(\eta)&=\pi\big(H(\eta)\big)\cdot\big|\mathbb{J}_H(\eta)\big|=\sqrt{\det \mathbb{I}\big(H(\eta)\big)}\cdot\big|\mathbb{J}_H(\eta)\big|=\sqrt{\det \mathbb{I}_H(\eta)\mathbb{J}_H^{-2}(\eta)}\cdot\big|\mathbb{J}_H(\eta)\big|=\\&=\sqrt{\det \mathbb{I}_H(\eta)}.
 			\end{split}
 			\]
-			Tedy $\pi(\t)=\sqrt{\det \mathbb{J}(\t)}$, což je \textbf{Jeffraysova apriorní hustota} (nebo také Jeffreysův princip neurčitosti).
-		\end{enumerate}
+			Získali jsme tedy $\pi(\t)=\sqrt{\det \mathbb{I}(\t)}$, což je \textbf{Jeffraysova apriorní hustota} (nebo také Jeffreysův princip neurčitosti).
 	\end{proof}
 \end{theorem}
-Tedy pokud obecně o parametru $\t$ nevíme nic, tak máme 2 možnosti. Můžeme na celém oboru zvolit $\pi(\t)=1$, ale nebudeme mít zaručenou invarianci na reparametrizaci. Nebo právě můžeme zvolit Jeffreysovu apriorní hustotu, která ale často bývá nevlastní.
+Tedy pokud obecně o parametru $\t$ nevíme nic, tak máme 2 možnosti. Můžeme na celém oboru zvolit $\pi(\t)=1$, ale nebudeme mít zaručenou invarianci na reparametrizaci. Druhou možností je právě zvolit Jeffreysovu apriorní hustotu, která často není vlastní, ale můžeme pak použít Jeffreysovu větu. Pojďme si to ukázat na nějakém příkladu.
 \begin{example}
-	Mějme $X\sim f_X(x|\lambda)=\mathrm{Poiss}(\lambda)$, tzn. $f_{X_j}=\frac{\lambda^{x_j}}{x_j!}\e{-\lambda},~f_\textbf{X}(\textbf{x}|\lambda)=\frac{\lambda^{\sum x_j}}{\prod x_j!}\e{-n\lambda},~\lambda~>~0$.\begin{enumerate}[a)]
+	Mějme $X\sim f_X(x|\lambda)=\mathrm{Po}(\lambda)$, tzn. $f_{X_j}=\frac{\lambda^{x_j}}{x_j!}\e{-\lambda},~f_\textbf{X}(\textbf{x}|\lambda)=\frac{\lambda^{\sum x_j}}{\prod x_j!}\e{-n\lambda},~\lambda~>~0$.\begin{enumerate}[a)]
 		\item Pokud je $\lambda$ neznámé, pak $\pi(\lambda)=1$ na~$\R^+$ (nevlastní). (Je jedno, jestli vezmeme rovno 1 nebo nějaké jiné konstantě.)
 		$$
-		\pi(\lambda|\textbf{x})=\frac{\fex \pi}{\underbrace{\int_{0}^{+\infty}\fex\pi\d\lambda}_{<+\infty}}=\underbrace{\frac{1}{c}\frac{1}{\prod x_j!}}_{\frac{1}{c'}}\lambda^{\sumjn x_j}\e{-n\lambda}\sim\mathrm{Gamma}\big(\sumjn x_j+1,n\big).$$
+		\pi(\lambda|\textbf{x})=\frac{\fex \pi}{\underbrace{\int_{0}^{+\infty}\fex\pi\d\lambda}_{<+\infty}}=\underbrace{\frac{1}{c}\frac{1}{\prod x_j!}}_{\frac{1}{c'}}\lambda^{\sumjn x_j}\e{-n\lambda}\sim\mathrm{Gamma}\Big(\sumjn x_j+1,n\Big).$$
 		
 		Pro připomenutí: $\frac{1}{c'}x^{\alpha-1}e^{-\beta x}=\frac{\beta^{\alpha}}{\Gamma(\alpha)}x^{\alpha-1}e^{-\beta x } \sim \mathrm{Gamma}(\alpha,\beta) $
 		
-		Bayesovský odhad:
-		 $$\widehat{\lambda}_B=\EE{\mathrm{Gamma}(\underbrace{\sum x_j+1}_{\alpha},\underbrace{n}_\beta)}=\frac{\alpha}{\beta}=\frac{\sumjn x_j}{n}+\frac{1}{n}=\Oxn+\frac{1}{n}\sim \Oxn~(\text{MLE pro velká }n).$$
-		\item Jeffreys: $$\pi(\lambda)=\sqrt{\det \mathbb{J}(\lambda)}=\sqrt{\det \EE{-\frac{\partial^2\log\fex}{\partial\lambda^2}}}=\sqrt{n\cdot\frac{1}{\lambda}}=\sqrt{n}\frac{1}{\sqrt{\lambda}}.$$
-		Volba $\pi(\lambda)=\frac{1}{\sqrt{\lambda}}$ viz obr. \ref{fig:p72} (V apriorní informaci nehraje konstanta roli, protože se vždy v Bayesově vzorci pokrátí, tedy můžeme vypustit $\sqrt{n}$).
-		\begin{figure}[h]
-			\centering
-			\includegraphics[width=0.5\linewidth]{pictures/P7_2}
-			\caption{Nevlastní}
-			\label{fig:p72}
-		\end{figure}
-		$$ \pi(\lambda|\textbf{x})=\frac{f \pi(\lambda)\cancel{c}}{\underbrace{\int f\pi(\lambda)\cancel{c}\d\lambda}_{<+\infty}}=\frac{1}{c'}\lambda^{\sumjn x_j-\frac{1}{2}}\e{-n\lambda}\sim\mathrm{Gamma}\Big(\underbrace{\sumjn x_j+\frac{1}{2}}_{\tilde{\alpha}},\underbrace{n}_{\tilde{\beta}}\Big).$$
-		Bayesovský odhad $\widehat{\lambda}_B^J=\EE{\mathrm{Gamma}(\tilde{\alpha},\tilde{\beta})}=\frac{\tilde{\alpha}}{\tilde{\beta}}=\Oxn+\frac{1}{2n}\sim\Oxn$ (MLE pro velká $n$).
+		Bayesovský odhad pak bude ve tvaru
+		 $$\widehat{\lambda}_\mathrm{B}=\E\Big[\mathrm{Gamma}\Big(\underbrace{\sum x_j+1}_{\alpha},\underbrace{n}_\beta\Big)\Big]=\frac{\alpha}{\beta}=\frac{1}{n}\sumjn x_j+\frac{1}{n}=\Oxn+\frac{1}{n}\sim \Oxn~(\text{MLE pro velká }n).$$
+		\item Jeffreys: Zkonstuujeme apriorní informaci jako $$\pi(\lambda)=\sqrt{\det \mathbb{I}(\lambda)}=\sqrt{\det \EE{-\frac{\partial^2\log\fex}{\partial\lambda^2}}}=\sqrt{n\cdot\frac{1}{\lambda}}=\sqrt{n}\frac{1}{\sqrt{\lambda}}.$$
+		Volíme $\pi(\lambda)=\frac{1}{\sqrt{\lambda}}$. V apriorní informaci nehraje konstanta roli, protože se vždy v Bayesově vzorci pokrátí, tedy můžeme vypustit $\sqrt{n}$.
+		$$ \pi(\lambda|\textbf{x})=\frac{f(\textbf{x}|\lambda) \pi(\lambda)}{\underbrace{\int f(\textbf{x}|\lambda)\pi(\lambda)\d\lambda}_{<+\infty}}=\frac{1}{c'}\lambda^{\sum_{j=1}^n x_j-\frac{1}{2}}\e{-n\lambda}\sim\mathrm{Gamma}\Big(\underbrace{\sumjn x_j+\frac{1}{2}}_{\widetilde{\alpha}},\underbrace{n}_{\widetilde{\beta}}\Big).$$
+		Bayesovský odhad $\widehat{\lambda}_\mathrm{B}^J=\EE{\mathrm{Gamma}(\widetilde{\alpha},\widetilde{\beta})}=\frac{\widetilde{\alpha}}{\widetilde{\beta}}=\Oxn+\frac{1}{2n}\sim\Oxn$ (MLE pro velká $n$).
 	\end{enumerate}
-	Pro $n$ malá se odhady v a) a b) liší.
+	Pro malá $n$ se odhady v a) a b) liší.
 \end{example}
 
 \chapter{Konjugované systémy apriorních hustot, princip maximální entropie, limitní aposteriorní hustoty, příklady.}
 
-\section{Limitní aposteriorní hustoty ($\widehat{\t}_B$)}
-Mějme ÚBM $\{\mathcal{F},\pi(\t)\}$ a~předpokládejme, že $\pi\in\Pi=\{\pi(\t,\boldsymbol{\lambda}):\boldsymbol{\lambda}\in\Lambda\}=\mathcal{H}$. Volme $\lambda_0\in\partial\Lambda$ z hranice a~definujme limitní apriorní hustotu $\pi_{\lambda_0}(\t)=\lim\limits_{\substack{
+\section{Limitní aposteriorní hustoty ($\widehat{\t}_\mathrm{B}$)}
+Mějme ÚBM $\{\mathcal{F},\pi(\t)\}$ a~předpokládejme, že $\pi\in\mathcal{H}:=\{\pi(\t,\boldsymbol{\lambda}):\boldsymbol{\lambda}\in\Lambda\}$. Volme $\lambda_0\in\partial\Lambda$ z hranice a~definujme limitní apriorní hustotu $\pi_{\lambda_0}(\t)=\lim\limits_{\substack{
 		\lambda\to\lambda_0\\\lambda\in\Lambda	}
 }c\cdot \pi(\t,\lambda)$, která bývá často nevlastní. 
 
@@ -489,7 +482,7 @@ Z toho vyplývá, že $\htb^\mathrm{lim} =\EE{\pi_{\lambda_0}(\t|\textbf{x})}$, 
 \end{example}
 
 \subsection{Empirical Bayes}
-Máme $\mathcal{H}=\{\pi(\t,\lambda):\lambda\in\Lambda\}$. Spočítá se marginální rozdělení $m_\lambda(\textbf{x})=\int_\Theta\underbrace{f(\textbf{x}|\t)\pi(\t,\lambda)}_{\phi(\textbf{x},\t,\lambda)}\d\t$. Vezmete data $\textbf{X}$, realizace $\textbf{x}$ a  na~základě dat odhadneme klasickou statistickou procedurou (např. $\lambda_{ML}$ - maximálně věrohodný odhad) $\widehat{\lambda}(\textbf{x})$ v $m_\lambda(\textbf{x})$ a~provedeme Bayesovský princip s~apriorní hustotou $\pi(\t,\widehat{\lambda}_{\mathrm{ML}})$ klasickou statistickou procedurou $\widehat{\lambda}_{\mathrm{ML}}$.
+Máme $\mathcal{H}=\{\pi(\t,\lambda):\lambda\in\Lambda\}$. Spočítá se marginální rozdělení $m_\lambda(\textbf{x})=\int_\Theta\underbrace{f(\textbf{x}|\t)\pi(\t,\lambda)}_{\phi(\textbf{x},\t,\lambda)}\d\t$. Vezmete data $\textbf{X}$, realizace $\textbf{x}$ a  na~základě dat odhadneme klasickou statistickou procedurou (např. $\lambda_{\mathrm{ML}}$ - maximálně věrohodný odhad) $\widehat{\lambda}(\textbf{x})$ v $m_\lambda(\textbf{x})$ a~provedeme Bayesovský princip s~apriorní hustotou $\pi(\t,\widehat{\lambda}_{\mathrm{ML}})$ klasickou statistickou procedurou $\widehat{\lambda}_{\mathrm{ML}}$.
 
 2. možnost volby - principem ME (maximální entropie) $H(\pi)=-\int_\Theta\pi(\t)\log \pi(\t)\d\t$. $\pi$~volíme tak, aby $H(\pi)$ bylo maximální.
 
@@ -564,7 +557,7 @@ Seznam CF: \begin{enumerate}[a)]
 
 \section{Propojování Bayesovské statistiky s klasickou statistikou (nejméně příznivé rozdělení)}
 \begin{define}
-	Mějme $\t\in\Theta,~\tau(\t)\in\mathcal{T}$, rozhodovací prostor (\textit{decision space}) $\mathscr{D}$, ztrátovou funkci  $L(\t,\delta)$ ($\delta_L$ $\forall \t,\forall \textbf{x}$), rizikovou funkci $\RF(\t,\delta)=\E^fL$ ($\delta_U$ $\forall\t$) a supremální rizikovou funkci $\sup_\t\RF(\t,\delta)$ ($\delta_0$). Dále ÚBM a apriorní bayesovské riziko $r(\pi,\delta)=\E^\pi\RF(\t,\delta)$ ($\delta^{\pi}=\argmin\limits_{\delta\in\mathscr{D}}r(\pi,\delta)$). Definujeme $\underline{\RF}=\sup\limits_{\pi\in\Pi} r(\pi,\delta^{\pi})=\sup\limits_{\pi\in\Pi}\inf\limits_{\delta} r(\pi,\delta)=\sup\limits_{\pi\in\Pi}r(\pi),$ kde $\Pi$ je rodina apriorních hustot a $\underline{\RF}$ nazveme maximinimální riziko.
+	Mějme $\t\in\Theta,~\tau(\t)\in\mathcal{T}$, rozhodovací prostor (\textit{decision space}) $\Dd $, ztrátovou funkci  $L(\t,\delta)$ ($\delta_L$ $\forall \t,\forall \textbf{x}$), rizikovou funkci $\RF(\t,\delta)=\E^fL$ ($\delta_U$ $\forall\t$) a supremální rizikovou funkci $\sup_\t\RF(\t,\delta)$ ($\delta_0$). Dále ÚBM a apriorní bayesovské riziko $r(\pi,\delta)=\E^\pi\RF(\t,\delta)$ ($\delta^{\pi}=\argmin\limits_{\delta\in\Dd }r(\pi,\delta)$). Definujeme $\underline{\RF}=\sup\limits_{\pi\in\Pi} r(\pi,\delta^{\pi})=\sup\limits_{\pi\in\Pi}\inf\limits_{\delta} r(\pi,\delta)=\sup\limits_{\pi\in\Pi}r(\pi),$ kde $\Pi$ je rodina apriorních hustot a $\underline{\RF}$ nazveme maximinimální riziko.
 \end{define}
 \begin{theorem}\label{veticka}
 	$\underline{\RF}\leq \overline{\RF}$, kde $\overline{\RF}=\inf\limits_\delta\sup\limits_\t \RF(\t,\delta)$ (minimaxní riziko).
@@ -626,17 +619,17 @@ Věta \ref{veticka2} je jednou z prvních vět o tom, jak za daných podmínek l
 		\item apriorní odhad $\widehat{p}_a=\E\mathrm{Beta}(a,b)=\frac{a}{a+b}.$
 		\item Můžeme naměřit data $x$ a vypočíst klasický odhad ML: $\widehat{p}_\mathrm{ML}=\frac{x}{n}=\oxnn$ (Pokud $(L=L_2)$, tak je to $\widehat{p}_\mathrm{UMVUE}$).
 		\item Bayesovský odhad: $$\pi(p|x)=\frac{\binom{n}{x}p^x(1-p)^{n-x}\cdot\frac{1}{B(a,b)}p^{a-1}(1-p)^{b-1}}{\int_{0}^{1}-||-\d p}=\frac{1}{c}p^{x+a-1}(1-p)^{n-x+b-1}\sim\mathrm{Beta}(x+a,n-x+b).$$
-		Z toho potom $\widehat{p}_B=\E \mathrm{Beta}(x+a,n-x+b)=\frac{x+a}{n+a+b}=\frac{\oxnn+\frac{a}{n}}{1+\frac{a+b}{n}}$. Zároveň však lze $\widehat{p}_B$ zapsat jako konvexní kombinaci z bodu 2)
-		$$ \widehat{p}_B=\underbrace{\frac{a+b}{a+b+n}}_{\alpha_n}\frac{a}{a+b}+\underbrace{\frac{n}{n+a+b}}_{1-\alpha_n}\frac{x}{n}=\alpha_n\widehat{p}_a+(1-\alpha_n)\widehat{p}_\mathrm{ML},$$ kde $\alpha_n$ se nazývá porce neurčitosti apriorní znalosti.
+		Z toho potom $\widehat{p}_\mathrm{B}=\E \mathrm{Beta}(x+a,n-x+b)=\frac{x+a}{n+a+b}=\frac{\oxnn+\frac{a}{n}}{1+\frac{a+b}{n}}$. Zároveň však lze $\widehat{p}_\mathrm{B}$ zapsat jako konvexní kombinaci z bodu 2)
+		$$ \widehat{p}_\mathrm{B}=\underbrace{\frac{a+b}{a+b+n}}_{\alpha_n}\frac{a}{a+b}+\underbrace{\frac{n}{n+a+b}}_{1-\alpha_n}\frac{x}{n}=\alpha_n\widehat{p}_a+(1-\alpha_n)\widehat{p}_\mathrm{ML},$$ kde $\alpha_n$ se nazývá porce neurčitosti apriorní znalosti.
 		\begin{enumerate}[a)]
-			\item $n$ pevně, $a,b\to+\infty$ (velké), $b/a=konst$ $(\alpha_n\to1\Rightarrow\widehat{p}_B=\widehat{p}_a)$
-			\item $a,b$ pevně, $n\to+\infty$ (velké), pak $\alpha_n\to0$ $(\alpha_n\doteq0)\Rightarrow\widehat{p}_B=\widehat{p}_\mathrm{ML}$,
-			\item $a=b=1$, tzn. $\pi(p)=U(0,1)$ - princip neurčitosti. Z toho pak $\widehat{p}_B=\frac{x+1}{n+2}\doteq \widehat{p}_\mathrm{ML}$ pro vysoká $n$.
+			\item $n$ pevně, $a,b\to+\infty$ (velké), $b/a=konst$ $(\alpha_n\to1\Rightarrow\widehat{p}_\mathrm{B}=\widehat{p}_a)$
+			\item $a,b$ pevně, $n\to+\infty$ (velké), pak $\alpha_n\to0$ $(\alpha_n\doteq0)\Rightarrow\widehat{p}_\mathrm{B}=\widehat{p}_\mathrm{ML}$,
+			\item $a=b=1$, tzn. $\pi(p)=U(0,1)$ - princip neurčitosti. Z toho pak $\widehat{p}_\mathrm{B}=\frac{x+1}{n+2}\doteq \widehat{p}_\mathrm{ML}$ pro vysoká $n$.
 			\item $a=b=0,~\pi(p)=\inv{p}\inv{(1-p)}$ je apriorní nevlastní limitní rozdělení, pak $\pB=\pML$.
 			\item $a=a_n=\frac{\sqrt{n}}{2},~b=b_n=\frac{\sqrt{n}}{2}$, tzn. $\pi(p)=\mathrm{Beta}\big(\frac{\sqrt{n}}{2},\frac{\sqrt{n}}{2}\big)$ (závisí na $n$).
 			\[
 			\begin{split}
-			\pB&=\frac{x+\frac{\sqrt{n}}{2}}{n+\sqrt{n}}\Rightarrow \RF(p,\pB)=\Big|L=L_2\Big|=\E \underbrace{(p-\widehat{p}_B)^2}_{L_2(p,\pB)}=\E\Big(p-\frac{X+\frac{\sqrt{n}}{2}}{n+\sqrt{n}}\Big)^2=\\&=c\underbrace{\E X^2}_{np-np^2+n^2p^2}+d \underbrace{\E X}_{np}+e=\dots=\frac{n}{4(n+\sqrt{n})^2}=konst.
+			\pB&=\frac{x+\frac{\sqrt{n}}{2}}{n+\sqrt{n}}\Rightarrow \RF(p,\pB)=\Big|L=L_2\Big|=\E \underbrace{(p-\widehat{p}_\mathrm{B})^2}_{L_2(p,\pB)}=\E\Big(p-\frac{X+\frac{\sqrt{n}}{2}}{n+\sqrt{n}}\Big)^2=\\&=c\underbrace{\E X^2}_{np-np^2+n^2p^2}+d \underbrace{\E X}_{np}+e=\dots=\frac{n}{4(n+\sqrt{n})^2}=konst.
 			\end{split}
 			\] 
 			Dle věty \ref{veticka2} a důsledku \ref{dusledek2} víme, že $r(\pi)=\sup\limits_{\theta}\RF(\t,\delta^\pi)$ implikuje to, že $\pB~=~\widehat{p}_\mathrm{Minimax}$ a $\pi^\ast=\pi(p)$ je LF.
@@ -651,20 +644,20 @@ Věta \ref{veticka2} je jednou z prvních vět o tom, jak za daných podmínek l
 \end{example}	
 	
 \begin{example}
-	Mějme $X\sim\NN(\mu,1)=\NN(\t,1),~\wmu=?$, $x$ data $\Rightarrow$ $\widehat{\mu}_{ML}=x(=\overline{x}_n)$
+	Mějme $X\sim\NN(\mu,1)=\NN(\t,1),~\wmu=?$, $x$ data $\Rightarrow$ $\widehat{\mu}_{\mathrm{ML}}=x(=\overline{x}_n)$
 	\begin{enumerate}[A)]
 		\item Zvolíme neurčitou informaci $\pi(\mu)=konst=1$ na $\R$ nevlastní ($\wmu_a$ není). $$\pi(\mu|x)=\frac{1}{\sqrt{2\pi}}\e{-\frac{1}{2}(x-\mu)^2}\cdot \frac{1}{\int_\R -||-\d\mu}=\frac{1}{\sqrt{2\pi}}\e{-\frac{1}{2}(\mu-x)^2}\sim\NN(x,1).$$
-		$$\widehat{\mu}_B=\EE{\NN(x,1)}=x(=\oxnn),$$
-		$$ \RF(\mu,\widehat{\mu}_B)\equal{L=L_2}\E(\mu-X)^2=\D X=1,$$ tzn. $\RF(\mu,\widehat{\mu}_B)=konst.$, ale nelze aplikovat větu \ref{veticka2}, protože $\pi$ není vlastní.
+		$$\widehat{\mu}_\mathrm{B}=\EE{\NN(x,1)}=x(=\oxnn),$$
+		$$ \RF(\mu,\widehat{\mu}_\mathrm{B})\equal{L=L_2}\E(\mu-X)^2=\D X=1,$$ tzn. $\RF(\mu,\widehat{\mu}_\mathrm{B})=konst.$, ale nelze aplikovat větu \ref{veticka2}, protože $\pi$ není vlastní.
 		\item $\pi_n(\mu)=\NN(0,n)$ je vlastní hustota $\forall n$ (CF)(zkusíme na větu \ref{veticka3}).
 		\[
 		\begin{split}
 		\pi_n(\mu|x)~\propto~ \e{-\frac{1}{2}(x-\mu)^2}\e{-\frac{1}{2n}(\mu-0)^2}~\propto~\e{-\frac{1}{2}\big[\big(1+\frac{1}{n}\big)\mu^2-2\mu x+x^2\big]}~\propto~\e{-\frac{1}{2}\big(1+\frac{1}{n}\big)\big[\mu-\frac{n}{n+1}x\big]^2}\sim \NN\Big(\frac{n}{n+1}x,\frac{n}{n+1}\Big)
 		\end{split}
 		\]
-		$$\widehat{\mu}_B=\E \NN\Big(\frac{n}{n+1}x,\frac{n}{n+1}\Big)=\frac{n}{n+1}x=\delta^{\pi_n}\sim\widehat{\mu}_{B,n}.$$
+		$$\widehat{\mu}_\mathrm{B}=\E \NN\Big(\frac{n}{n+1}x,\frac{n}{n+1}\Big)=\frac{n}{n+1}x=\delta^{\pi_n}\sim\widehat{\mu}_{B,n}.$$
 		$$r(\pi_n)\equal{L=L_2}\D \pi(\mu|x)=\frac{n}{n+1}\to1 \text{ (ověříme vzorec v následující větě)}.$$
-		$\lim\limits_{n\to+\infty}r(\pi_n)=1=r$ a víme, že máme $\delta_0$, pro který je $r=\RF(\mu,\underbrace{\overbrace{\widehat{\mu}_B}^{\text{z A)}}}_{=\delta_0=x})$. Potom dle věty \ref{veticka3} je $\delta_0=x$ minimaxní a posloupnost $\NN(0,n)$ je LF. (V tomto příkladu jsme používali $\propto$ (úměrnost), protože jsme nijak neřešili konstanty)
+		$\lim\limits_{n\to+\infty}r(\pi_n)=1=r$ a víme, že máme $\delta_0$, pro který je $r=\RF(\mu,\underbrace{\overbrace{\widehat{\mu}_\mathrm{B}}^{\text{z A)}}}_{=\delta_0=x})$. Potom dle věty \ref{veticka3} je $\delta_0=x$ minimaxní a posloupnost $\NN(0,n)$ je LF. (V tomto příkladu jsme používali $\propto$ (úměrnost), protože jsme nijak neřešili konstanty)
 	\end{enumerate}
 \end{example}
 \begin{theorem}[!!!Vyhazovací!!!]\label{vyhazovaci}
@@ -691,7 +684,7 @@ Věta \ref{veticka2} je jednou z prvních vět o tom, jak za daných podmínek l
 
 \section{Přípustnost (Admissibility)}
 \begin{define}
-	Mějme $\mathscr{D},\Theta,...$ Rozhodovací funkce $\delta_0$ se nazývá \textbf{nepřípustná}, pokud existuje $\delta_1$, která dominuje $\delta_0$, ozn. $\delta_1\ll\delta_0$, tzn. $\RF(\t,\delta_1)\leq\RF(\t,\delta_0),~\forall\t\in\Theta$ (stejnoměrně) a $\exists\t_0\in\Theta$ tak, že $\RF(\t_0,\delta_1)<\RF(\t_0,\delta_0)$. V případě, že taková $\delta_1$ neexistuje, pak $\delta_0$ nazýváme \textbf{přípustný}.
+	Mějme $\Dd ,\Theta,...$ Rozhodovací funkce $\delta_0$ se nazývá \textbf{nepřípustná}, pokud existuje $\delta_1$, která dominuje $\delta_0$, ozn. $\delta_1\ll\delta_0$, tzn. $\RF(\t,\delta_1)\leq\RF(\t,\delta_0),~\forall\t\in\Theta$ (stejnoměrně) a $\exists\t_0\in\Theta$ tak, že $\RF(\t_0,\delta_1)<\RF(\t_0,\delta_0)$. V případě, že taková $\delta_1$ neexistuje, pak $\delta_0$ nazýváme \textbf{přípustný}.
 	
 	\begin{figure}[h]
 		\centering
@@ -777,7 +770,7 @@ Věta \ref{veticka2} je jednou z prvních vět o tom, jak za daných podmínek l
 	Pak libovolná $\delta_0$ přípustná je limitou $\delta^{\pi_n}$ Bayesovských strategií.
 	\item[Brown (1986)] Předpokládejme, že \begin{enumerate}[1)]
 		\item $L$ striktně konvexní,
-		\item $f(x|\t)>0$, $\mathscr{D}$ uzavřená a konvexní,
+		\item $f(x|\t)>0$, $\Dd $ uzavřená a konvexní,
 		\item $L$ je zdola polospojitá (lower semicontinuous), tzn. $f$ je v $x_0$ zdola polospojitá, pokud $(\forall\epsilon>0)(\exists H_{x_0})\big(f(x)\geq f(x_0)-\epsilon\big)$ na $H_{x_0}$.
 		\item $\lim\limits_{\left\|\delta\right\|\to+\infty} L(\t,\delta)=+\infty$ \hspace{0.2cm} ($L$ je nutně neomezená funkce).
 	\end{enumerate}
@@ -823,7 +816,7 @@ Pak $\exists k_0$ tak, že $\forall k\geq k_0$ je $\boldsymbol{\delta}^\ast$ nep
 \begin{dusl}
 	Například klasická rozhodovací funkce metodou jednoznačného minimaxu je od jistého $k_0$ beznadějná, protože víme (z věty \ref{veta_mini}), že pokud existuje jednoznačný minimax, pak je přípustný. Stein ale říká, že od jistého $k_0$ se klasickou statistickou procedurou získat přípustné řešení nedá, tzn. od jistého $k_0$ nemůže existovat jednoznačný minimax. A také stejnoměrně nejlepší strategie $\delta_U$ od jisté dimenze $k_0$ neexistuje.
 \end{dusl}
-Co s tím? Místo $\delta_u=\argmin\limits_{\delta\in\mathscr{D}}\RF(\t,\delta),~\forall\t$ hledá $\delta_{pu}=\argmin\limits_{\delta\in\mathscr{D}_0\subset\mathscr{D}}\RF(\t,\delta)\,\forall\t$, např. $\mathscr{D}_0$ nestranné odhady (UMVUE). Tím jsme zajistili existenci, ale pro vysokou dimenzi opět dostaneme nepřípustné řešení. Další možností je použít $\mathscr{D}_0'$ jako \textbf{ekvivariantní} odhady. Ty pak vedou na UMEqE (\textit{Uniformly minimum equivariant estimator}).  
+Co s tím? Místo $\delta_u=\argmin\limits_{\delta\in\Dd }\RF(\t,\delta),~\forall\t$ hledá $\delta_{pu}=\argmin\limits_{\delta\in\Dd _0\subset\Dd }\RF(\t,\delta)\,\forall\t$, např. $\Dd _0$ nestranné odhady (UMVUE). Tím jsme zajistili existenci, ale pro vysokou dimenzi opět dostaneme nepřípustné řešení. Další možností je použít $\Dd _0'$ jako \textbf{ekvivariantní} odhady. Ty pak vedou na UMEqE (\textit{Uniformly minimum equivariant estimator}).  
 
 Řešení se pak nabízí v podobě Bayese (začlenění apriorní informace $\pi$).
 
@@ -894,8 +887,8 @@ Co s tím? Místo $\delta_u=\argmin\limits_{\delta\in\mathscr{D}}\RF(\t,\delta),
 \begin{define}
 	Označme ztrátovou funkci $L\big(\t,\delta|\tau(\t)\big)$. Pak rozhodovací funkci $\delta(\textbf{x})$ nazýváme \textbf{nestrannou} vzhledem k $L$, pokud $$ \E L\big(\t,\delta|\tau(\t)\big)\leq \E L\big(\t,\delta|\phi(\t))\big),~\forall\phi,\forall\t.$$
 \end{define}
-Omezili jsme se na $\mathscr{D}_0\subset \mathscr{D}$ prostor nestranných rizikových funkcí vzhledem k $L$. Dále
-$ \delta_U^0~=~\argmin_{\delta\in\mathscr{D}_0}\RF(\t,\delta),~\forall\t$ jako UBU$_L$E (\textit{Uniformly best unbiased estimators}), pokud existuje. Pak
+Omezili jsme se na $\Dd _0\subset \Dd $ prostor nestranných rizikových funkcí vzhledem k $L$. Dále
+$ \delta_U^0~=~\argmin_{\delta\in\Dd _0}\RF(\t,\delta),~\forall\t$ jako UBU$_L$E (\textit{Uniformly best unbiased estimators}), pokud existuje. Pak
 $$ L=L_2(\t,\boldsymbol{\delta})=(\t-\delta)^2\equal{\text{případně}}\big(\tau(\t)-\delta\big)^2\quad\Rightarrow\quad UMVUE.$$
 
 \begin{theorem}
@@ -932,25 +925,25 @@ $$ L=L_2(\t,\boldsymbol{\delta})=(\t-\delta)^2\equal{\text{případně}}\big(\ta
 	\[
 	\begin{split}
 	L(\t,\delta)\equal{\forall g}L(g\ast\t,g\ast \delta)&=\Big| \begin{array}{l}
-	\text{volme }g=\tilde{\t}\text{ inverzní prvek v }(G,\ast)\\\text{tzn. }\tilde{\t}\ast\t=I/O\text{ neutrální prvek v }(G,\ast)
+	\text{volme }g=\widetilde{\t}\text{ inverzní prvek v }(G,\ast)\\\text{tzn. }\widetilde{\t}\ast\t=I/O\text{ neutrální prvek v }(G,\ast)
 	\end{array}
-	\Big|=L(\tilde{\t}\ast\t,\tilde{\t}\ast\delta)=\\&=L(I/O,\tilde{\t}\ast\delta)=\rho(\tilde{\t}\ast\delta),\quad\forall\t,\forall\delta.
+	\Big|=L(\widetilde{\t}\ast\t,\widetilde{\t}\ast\delta)=\\&=L(I/O,\widetilde{\t}\ast\delta)=\rho(\widetilde{\t}\ast\delta),\quad\forall\t,\forall\delta.
 	\end{split}
 	\] 
 \end{dusl}
 \begin{dusl}
 	\[
 	\begin{split}
-	\RF(\t,\delta)&=\E_\t L\big(\t,\delta(\textbf{X})\big)\equal{inv.~L}\E_\t\rho\big(\tilde{\t}\ast\delta(\textbf{X})\big)=\Big|\begin{array}{l}
+	\RF(\t,\delta)&=\E_\t L\big(\t,\delta(\textbf{X})\big)\equal{inv.~L}\E_\t\rho\big(\widetilde{\t}\ast\delta(\textbf{X})\big)=\Big|\begin{array}{l}
 	\textbf{X}=\t\ast\boldsymbol{\epsilon}\\\boldsymbol{\epsilon}\sim\PP_0	
 	\end{array}
-	\Big|=\E_{\PP_0}\rho\big(\tilde{\t}\ast\delta(\t\ast\boldsymbol{\epsilon})\big)\equal{\delta~ekvi.}\\&=\E_{\PP_0}\rho\big(\tilde{\t}\ast\t\ast\delta(\boldsymbol{\epsilon})\big)=\E_{\PP_0}\rho\big(I/O\ast\delta(\boldsymbol{\epsilon})\big)=konst~v~\t,~\forall\t,
+	\Big|=\E_{\PP_0}\rho\big(\widetilde{\t}\ast\delta(\t\ast\boldsymbol{\epsilon})\big)\equal{\delta~ekvi.}\\&=\E_{\PP_0}\rho\big(\widetilde{\t}\ast\t\ast\delta(\boldsymbol{\epsilon})\big)=\E_{\PP_0}\rho\big(I/O\ast\delta(\boldsymbol{\epsilon})\big)=konst~v~\t,~\forall\t,
 	\end{split}
 	\]
 tedy nezávisí na $\t$.
 \end{dusl}
 \begin{define}
-	Definujeme $$ \delta^\ast:=\argmin_{\delta\in\mathscr{D}_{Eq}}\RF(\t,\delta),~\forall\t\quad-\text{říkáme }MRE_qE\,(\text{\textit{Minimum risk equivariant estimator}}).$$
+	Definujeme $$ \delta^\ast:=\argmin_{\delta\in\Dd _{Eq}}\RF(\t,\delta),~\forall\t\quad-\text{říkáme }MRE_qE\,(\text{\textit{Minimum risk equivariant estimator}}).$$
 \end{define}
 \begin{example}
 	Volme $(G,\ast)=(\R,+)$, $g\ast\textbf{x}=(x_1+g,...,x_n+g)=g+\textbf{x}.$ Pravděpodobnostní model se nazývá model s měřítkem (\textit{Location family}) (např. $\NN(\mu,\sigma^2 \text{ známé}))$
@@ -961,14 +954,14 @@ X_j&=\t+\epsilon_j\quad(\text{aditivní chyba})\\
 g\ast \textbf{X}&=g+\textbf{X}\sim \PP_{g+\t}.
 \end{split}
 \]
-	$\delta$ je ekvivariantní, pokud $\delta(g+\textbf{x})=g+\delta(\textbf{x})$, např. $\delta(\textbf{x})=\frac{1}{n}\sumjn X_j$ (nebo také $\delta(\textbf{x})=x_{\text{medián}}$) je ekvivariantní rozhodovací funkce, protože $\delta(g+\textbf{x})=\frac{1}{n}\sumjn (X_j+g)=\frac{1}{n}\sumjn X_j + g=\delta(\textbf{x})+g$. $L$ invariantní znamená, že $L(\t,\delta)=\rho(\tilde{\t}\ast\delta)=\rho(\delta-\t)\equal{\text{např.}}(\delta-\t)^2=L_2$. Máme tedy zajištěno, že $\RF(\t,\delta_{Eq})=konst.$ v $\t$.
+	$\delta$ je ekvivariantní, pokud $\delta(g+\textbf{x})=g+\delta(\textbf{x})$, např. $\delta(\textbf{x})=\frac{1}{n}\sumjn X_j$ (nebo také $\delta(\textbf{x})=x_{\text{medián}}$) je ekvivariantní rozhodovací funkce, protože $\delta(g+\textbf{x})=\frac{1}{n}\sumjn (X_j+g)=\frac{1}{n}\sumjn X_j + g=\delta(\textbf{x})+g$. $L$ invariantní znamená, že $L(\t,\delta)=\rho(\widetilde{\t}\ast\delta)=\rho(\delta-\t)\equal{\text{např.}}(\delta-\t)^2=L_2$. Máme tedy zajištěno, že $\RF(\t,\delta_{Eq})=konst.$ v $\t$.
 \end{example}
 
 Závěr: Existuje procedura pro hledání $MRE_qE$ pro $(G,\ast)=(\R,+)$ ve tvaru
-$$ \delta^\ast(\textbf{x})=\argmin_{\delta\in\mathscr{D}_{Eq}}\frac{\int\rho(\delta-\t)f(\textbf{x}-\t)\d\t}{\int f(\textbf{x}-\t)\d\t}=\delta_B^{\pi=1}(\textbf{x}).$$
+$$ \delta^\ast(\textbf{x})=\argmin_{\delta\in\Dd _{Eq}}\frac{\int\rho(\delta-\t)f(\textbf{x}-\t)\d\t}{\int f(\textbf{x}-\t)\d\t}=\delta_\mathrm{B}^{\pi=1}(\textbf{x}).$$
 
 \begin{remark}
-	Připomínka: Bayesovské řešení $\widehat{\delta_B}=\argmin_\delta r(\pi,\delta)$ nebo $\widehat{\delta_B}(\textbf{x})= \argmin_{\delta(\textbf{x})}\rho(\pi,\delta|\textbf{x})$, kde $\rho(\pi,\delta|\textbf{x})$ se nazývá aposteriorní bayesovské riziko a splňuje (toto $\rho$ není to stejné jako v textu výše) 
+	Připomínka: Bayesovské řešení $\widehat{\delta_\mathrm{B}}=\argmin_\delta r(\pi,\delta)$ nebo $\widehat{\delta_\mathrm{B}}(\textbf{x})= \argmin_{\delta(\textbf{x})}\rho(\pi,\delta|\textbf{x})$, kde $\rho(\pi,\delta|\textbf{x})$ se nazývá aposteriorní bayesovské riziko a splňuje (toto $\rho$ není to stejné jako v textu výše) 
 	$$ \rho(\pi,\delta|\textbf{x})=\E^\pi[L|\textbf{x}]=\int L(\t,\delta)\pi(\t|\textbf{x})\d\t=\int L(\t,\delta)\frac{f \pi(\t)}{\int f \pi(\t)\d\t}\d\t.$$
  Zde stačí volit $\pi(\t)=1$ na $\Theta$ (potenciálně nevlastní). Pokud zvolíme konkrétně $L=L_2$, pak $\delta^\ast(\textbf{x})=\frac{\int\t f(\textbf{x}-\t)\d\t}{\int f(\textbf{x}-\t)\d\t}$, což se nazývá \textbf{Pitmanův odhad}.
 \end{remark}
